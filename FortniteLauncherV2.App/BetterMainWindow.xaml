@@ -8,6 +8,7 @@
         xmlns:pages="clr-namespace:FortniteLauncherV2.App.Pages"
         mc:Ignorable="d"
         Background="Transparent"
+             WindowCornerPreference="Round"
         ExtendsContentIntoTitleBar="True"
         Title="Fortnite Launcher" Height="616" Width="1092">
     <DockPanel x:Name="DPanel">
