@@ -1,0 +1,51 @@
+﻿<ui:UiPage x:Class="FortniteLauncherV2.App.Pages.PlayPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FortniteLauncherV2.App.Pages"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d" 
+      d:DesignHeight="549" d:DesignWidth="1032"
+      Title="PlayPage">
+    <Grid>
+        <ui:Snackbar x:Name="playSnackbar"/>
+        <ui:TextBox PlaceholderText="Path" Margin="310,10,63,0" VerticalAlignment="Top"/>
+        <Image x:Name="FortniteSplashImage" Margin="12,9,754,276"/>
+        <ui:InfoBar x:Name="LawinServerNotStarted" Message="LawinServer is not started by this launcher!" Title="Warning!" Severity="Warning" Margin="0,362,0,0" VerticalAlignment="Top"/>
+        <ui:InfoBar x:Name="InvalidPath" Message="The path you provided does not contain the FortniteGame and Engine folders!" Title="Error" Severity="Error" Margin="0,300,0,0" VerticalAlignment="Top"/>
+        <ui:InfoBar x:Name="FortniteGameEngineFolderTip" Message="Make sure that the path you provide contains the FortniteGame and Engine folders!" Title="Tip" Severity="Informational" IsOpen="True" Margin="10,397,10,0" VerticalAlignment="Top"/>
+
+        <ToggleButton Content="Suspend BattleEye" Margin="10,507,0,0" VerticalAlignment="Top" Height="42"/>
+        <ToggleButton Content="Suspend EasyAntiCheat" Margin="152,507,0,0" VerticalAlignment="Top" Height="43"/>
+        <ui:CardControl Icon="WifiSettings20" Margin="310,50,10,0" VerticalAlignment="Top">
+            <ui:CardControl.Header>
+                <StackPanel>
+                    <TextBlock
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Text="Cranium SSL Bypass"
+                    />
+                    <TextBlock
+                    FontSize="12"
+                    Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                    Text="Try this if you experience issues with normal SSL bypass"
+                    />
+                </StackPanel>
+            </ui:CardControl.Header>
+            <ui:ToggleSwitch />
+        </ui:CardControl>
+        <ui:Button Content="LAUNCH" Margin="775,506,0,0" VerticalAlignment="Top" Width="233" Icon="Play16" Appearance="Primary" Height="43"/>
+        <Rectangle HorizontalAlignment="Center" Height="4" Margin="0,487,0,0" Stroke="Black" VerticalAlignment="Top" Fill="DarkGray"  Width="1012">
+            <UIElement.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </UIElement.RenderTransform>
+        </Rectangle>
+        <ui:Button x:Name="OpenExplorerForPathBtn" Icon="Folder20" Margin="974,10,0,0" VerticalAlignment="Top" Width="48" Height="34"/>
+    </Grid>
+</ui:UiPage>
