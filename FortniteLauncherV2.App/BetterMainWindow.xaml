@@ -8,6 +8,7 @@
         xmlns:pages="clr-namespace:FortniteLauncherV2.App.Pages"
         mc:Ignorable="d"
         Background="Transparent"
+        ResizeMode="NoResize"
              WindowCornerPreference="Round"
         ExtendsContentIntoTitleBar="True"
         Title="Fortnite Launcher" Height="616" Width="1092">
@@ -23,6 +24,7 @@
             ShowMaximize="False"
             UseSnapLayout="True"
             Icon="/FNLauncher_Icon.png"
+            CanMaximize="False"
             />
         <ui:NavigationStore DockPanel.Dock="Left"
                             x:Name="NavigationStore"
@@ -40,6 +42,12 @@
                     Icon="XboxController24"
                     PageTag="PlayPage"
                     PageType="{x:Type pages:PlayPage}"
+                    />
+                <ui:NavigationItem
+                    Cache="True"
+                    Content="Build"
+                    Icon="BoxEdit24"
+                    PageType="{x:Type pages:BuildsPage}"
                     />
                 <ui:NavigationItem
                     Cache="True"
@@ -93,7 +101,6 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Frame x:Name="RootFrame" Grid.RowSpan="2"/>
-                <ui:Snackbar x:Name="RootSnackBar" Content="hi"/>
             </Grid>
         </Border>
     </DockPanel>

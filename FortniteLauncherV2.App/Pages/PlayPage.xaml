@@ -10,42 +10,73 @@
       Title="PlayPage">
     <Grid>
         <ui:Snackbar x:Name="playSnackbar"/>
-        <ui:TextBox PlaceholderText="Path" Margin="310,10,63,0" VerticalAlignment="Top"/>
-        <Image x:Name="FortniteSplashImage" Margin="12,9,754,276"/>
-        <ui:InfoBar x:Name="LawinServerNotStarted" Message="LawinServer is not started by this launcher!" Title="Warning!" Severity="Warning" Margin="0,362,0,0" VerticalAlignment="Top"/>
-        <ui:InfoBar x:Name="InvalidPath" Message="The path you provided does not contain the FortniteGame and Engine folders!" Title="Error" Severity="Error" Margin="0,300,0,0" VerticalAlignment="Top"/>
-        <ui:InfoBar x:Name="FortniteGameEngineFolderTip" Message="Make sure that the path you provide contains the FortniteGame and Engine folders!" Title="Tip" Severity="Informational" IsOpen="True" Margin="10,397,10,0" VerticalAlignment="Top"/>
+        <Image x:Name="FortniteSplashImage" Margin="12,9,737,275"/>
+        <ui:InfoBar x:Name="LawinServerNotStarted"  Message="LawinServer is not started by this launcher!" Title="Warning!" Severity="Warning" Margin="10,380,10,0" VerticalAlignment="Top" IsOpen="True" Height="121"/>
+        <ui:InfoBar x:Name="InvalidPath" Message="The path you provided does not contain the FortniteGame and Engine folders!" Title="Error" Severity="Error" Margin="10,441,10,0" VerticalAlignment="Top" IsOpen="False"/>
 
-        <ToggleButton Content="Suspend BattleEye" Margin="10,507,0,0" VerticalAlignment="Top" Height="42"/>
-        <ToggleButton Content="Suspend EasyAntiCheat" Margin="152,507,0,0" VerticalAlignment="Top" Height="43"/>
-        <ui:CardControl Icon="WifiSettings20" Margin="310,50,10,0" VerticalAlignment="Top">
-            <ui:CardControl.Header>
-                <StackPanel>
-                    <TextBlock
+        <ui:Button x:Name="ButtonLaunch" Click="ButtonLaunch_Click" Content="LAUNCH" Margin="775,506,0,0" VerticalAlignment="Top" Width="233" Icon="Play16" Appearance="Primary" Height="43"/>
+        <ui:CardExpander IsExpanded="False" Margin="315,116,5,0" VerticalAlignment="Top">
+            <ui:CardExpander.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="13"
+                            FontWeight="Medium"
+                            Text="Configuration" />
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                            Text="Configure the way Fortnite is launched." />
+                    </StackPanel>
+                </Grid>
+            </ui:CardExpander.Header>
+            <Grid>
+                <ui:CardControl Icon="WifiSettings20" VerticalAlignment="Top">
+                    <ui:CardControl.Header>
+                        <StackPanel>
+                            <TextBlock
                     FontSize="13"
                     FontWeight="Medium"
                     Text="Cranium SSL Bypass"
                     />
-                    <TextBlock
+                            <TextBlock
                     FontSize="12"
                     Foreground="{DynamicResource TextFillColorTertiaryBrush}"
                     Text="Try this if you experience issues with normal SSL bypass"
                     />
-                </StackPanel>
-            </ui:CardControl.Header>
-            <ui:ToggleSwitch />
-        </ui:CardControl>
-        <ui:Button Content="LAUNCH" Margin="775,506,0,0" VerticalAlignment="Top" Width="233" Icon="Play16" Appearance="Primary" Height="43"/>
-        <Rectangle HorizontalAlignment="Center" Height="4" Margin="0,487,0,0" Stroke="Black" VerticalAlignment="Top" Fill="DarkGray"  Width="1012">
-            <UIElement.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </UIElement.RenderTransform>
-        </Rectangle>
-        <ui:Button x:Name="OpenExplorerForPathBtn" Icon="Folder20" Margin="974,10,0,0" VerticalAlignment="Top" Width="48" Height="34"/>
+                        </StackPanel>
+                    </ui:CardControl.Header>
+                    <ui:ToggleSwitch x:Name="CraniumSSLToggle" Checked="CraniumSSLToggle_Checked" Unchecked="CraniumSSLToggle_Unchecked"/>
+                </ui:CardControl>
+                <ToggleButton x:Name="SuspendBEToggle" Checked="SuspendBEToggle_Checked" Unchecked="SuspendBEToggle_Unchecked" Content="Suspend BattleEye" Margin="0,72,0,0" VerticalAlignment="Top" Height="42"/>
+                <ToggleButton x:Name="SuspendEACToggle" Checked="SuspendEACToggle_Checked" Unchecked="SuspendEACToggle_Unchecked" Content="Suspend EasyAntiCheat" Margin="142,72,0,0" VerticalAlignment="Top" Height="42"/>
+                <TextBlock Text="Launch Arguments" Margin="9,127,553,10"/>
+                <ui:TextBox PlaceholderText="Launch arguments" Margin="136,119,10,0" VerticalAlignment="Top"/>
+            </Grid>
+        </ui:CardExpander>
+        <Expander IsExpanded="True" Content="To select the build you want to launch, select the Builds tab on the left sidebar!" Margin="315,10,5,0" VerticalAlignment="Top">
+            <Expander.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="13"
+                            FontWeight="Medium"
+                            Text="Build Selection" />
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                            Text="Select the build you want to launch." />
+                    </StackPanel>
+                </Grid>
+            </Expander.Header>
+        </Expander>
     </Grid>
 </ui:UiPage>

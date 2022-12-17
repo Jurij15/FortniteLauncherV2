@@ -33,10 +33,12 @@ namespace FortniteLauncherV2.App
         #endregion
 
         #region Functions
+        /*
         public void ShowRootSnackbar(string SnackarText = null, string SnackbarContent = null, SymbolRegular SnackbarSymbol = SymbolRegular.GlanceDefault12, ControlAppearance SnackbarControlAppearance = ControlAppearance.Dark)
         {
             _snackbarService.Show(SnackarText, SnackbarContent, SnackbarSymbol, SnackbarControlAppearance);
         }
+        */
         //this ShowSnackbar will appear in all pages and anywhere there is a snackbar control
         public void ShowSnackbar(string SnackarText = null, string SnackbarContent = null, SymbolRegular SnackbarSymbol = SymbolRegular.GlanceDefault12, ControlAppearance SnackbarControlAppearance = ControlAppearance.Dark)
         {
@@ -49,11 +51,12 @@ namespace FortniteLauncherV2.App
             //RootSnackBar.Show();
             NavigationStore.Navigate(1);
 
-            snackbarService.SetSnackbarControl(RootSnackBar);
-            _snackbarService = snackbarService;
+            //snackbarService.SetSnackbarControl(RootSnackBar);
+            //_snackbarService = snackbarService;
             _themeService = themeService;
             themeService.SetSystemAccent();
             //ShowRootSnackbar("hello", "hi,");
+            NavigationStore.Navigate(typeof(AboutPage));  
         }
 
         private void ThemeFooter_Click(object sender, RoutedEventArgs e)

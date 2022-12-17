@@ -21,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FortniteLauncherV2.Common\FortniteLauncherV2.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="FNLauncher_Icon.png" />
   </ItemGroup>
 
