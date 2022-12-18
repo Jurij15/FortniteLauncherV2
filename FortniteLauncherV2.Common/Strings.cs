@@ -8,18 +8,39 @@ namespace FortniteLauncherV2.Common
 {
     public class Strings
     {
-        public static string Fortnite64ShippingExecutablePath = @"/FortniteGame/Binaries/Win64/FortniteClient-Win64-Shipping.exe";
+        public static string LocalAppData = Environment.GetEnvironmentVariable("LocalAppData");
 
-        public static string Fortnite64ShippingBattleEyeExecutablePath = @"/FortniteGame/Binaries/Win64/FortniteClient-Win64-Shipping_BE.exe";
+        public static string GetConfigDirectory(bool isDebug)
+        {
+            if (isDebug)
+            {
+                return "FortniteLauncherV2/";
+            }
+            else if (isDebug)
+            {
+                return LocalAppData + "/FortniteLauncherV2";
+            }
 
-        public static string Fortnite64ShippingEACExecutablePath = @"/FortniteGame/Binaries/Win64/FortniteClient-Win64-Shipping_EAC.exe";
+            return null;
+        }
 
-        public static string FortniteLauncherExecutablePath = @"/FortniteGame/Binaries/Win64/FortniteLauncher.exe";
+        public static string GetCraniumLocation(bool bDebug)
+        {
+            return GetConfigDirectory(bDebug) + "AuroraNative.dll";
+        }
 
-        public static string FortniteSplashImage = "/FortniteGame/Content/Splash/Splash.bmp";
+        public static string Fortnite64ShippingExecutablePath = @"\FortniteGame\Binaries\Win64\FortniteClient-Win64-Shipping.exe";
+
+        public static string Fortnite64ShippingBattleEyeExecutablePath = @"\FortniteGame\Binaries\Win64\FortniteClient-Win64-Shipping_BE.exe";
+
+        public static string Fortnite64ShippingEACExecutablePath = @"\FortniteGame\Binaries\Win64\FortniteClient-Win64-Shipping_EAC.exe";
+
+        public static string FortniteLauncherExecutablePath = @"\FortniteGame\Binaries\Win64\FortniteLauncher.exe";
+
+        public static string FortniteSplashImage = @"\FortniteGame\Content\Splash\Splash.bmp";
 
         public static string LaunchArguments = "-log -epicapp=Fortnite -epicenv=Prod -epiclocale=en-us -epicportal -skippatchcheck -nobe -fromfl=eac -fltoken=3db3ba5dcbd2e16703f3978d -caldera={} -AUTH_LOGIN=player@projectreboot.dev -AUTH_PASSWORD=Rebooted -AUTH_TYPE=epic";
 
-        public static string TestLaunchArguments = "-skippatchcheck -epicapp=Fortnite -epicenv=Prod -epiclocale=en-us -epicportal -noeac -fromfl=be -fltoken=7ce411021b27b4343a44fdg8 -caldera=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiYmU5ZGE1YzJmYmVhNDQwN2IyZjQwZWJhYWQ4NTlhZDQiLCJnZW5lcmF0ZWQiOjE2Mzg3MTcyNzgsImNhbGRlcmFHdWlkIjoiMzgxMGI4NjMtMmE2NS00NDU3LTliNTgtNGRhYjNiNDgyYTg2IiwiYWNQcm92aWRlciI6IkVhc3lBbnRpQ2hlYXQiLCJub3RlcyI6IiIsImZhbGxiYWNrIjpmYWxzZX0.VAWQB67RTxhiWOxx7DBjnzDnXyyEnX7OljJm-j2d88G_WgwQ9wrE6lwMEHZHjBd1ISJdUO1UVUqkfLdU5nofBQ \"-AUTH_LOGIN=[EPIC] ZenHost@projectreboot.dev\" -AUTH_PASSWORD=Rebooted -AUTH_TYPE=epic ";
+        public static string TestLaunchArguments = $"-epicapp=Fortnite -epicenv=Prod -epicportal -epiclocale=en-us -skippatchcheck -HTTP=WinInet -NOSSLPINNING -noeac -nobe -NoCodeGuards -AUTH_TYPE=epic -AUTH_LOGIN=helloPlayer -AUTH_PASSWORD=unused";
     }
 }

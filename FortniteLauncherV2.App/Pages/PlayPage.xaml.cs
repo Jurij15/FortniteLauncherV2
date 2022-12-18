@@ -146,7 +146,7 @@ namespace FortniteLauncherV2.App.Pages
             if (Build.IsPathValid(Config.FortniteGameEnginePath))
             {
                 //MessageBox.Show(SettingStrings.CraniumString);
-                Launcher.LaunchFortniteWithArugmentsAndCraniumSLLBypass(Config.FortniteGameEnginePath, Strings.TestLaunchArguments, SettingStrings.CraniumString);
+                Globals.FortniteProcess = Launcher.LaunchFortniteWithArumentsAndTryBypassSSL(Config.FortniteGameEnginePath, Strings.TestLaunchArguments, "FortniteLauncherV2/Platanium.dll");
             }
         }
     }

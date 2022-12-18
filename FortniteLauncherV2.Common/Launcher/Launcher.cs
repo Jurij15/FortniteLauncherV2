@@ -11,6 +11,9 @@ namespace FortniteLauncherV2.Common.Launcher
 {
     public class Launcher
     {
+        private static Process FNProcess;
+        private static Process EACProcess;
+        private static Process BEProcess;
         /// <summary>
         /// Launches Fortnite Without any arguments
         /// </summary>
@@ -30,15 +33,14 @@ namespace FortniteLauncherV2.Common.Launcher
             p.Start();
         }
 
-        public static void LaunchFortniteWithArugmentsAndCraniumSLLBypass(string ValidPath, string Arguments, string CraniumDLLPath)
+        public static Process LaunchFortniteWithArumentsAndTryBypassSSL(string ValidPath, string Arguments, string SSLBypassDLLLocation)
         {
-            Process p = new Process();
-            p.StartInfo.FileName = ValidPath + Strings.Fortnite64ShippingExecutablePath;
-            p.StartInfo.Arguments= Arguments;
-            p.Start();
+            FNProcess = Process.Start(ValidPath + Strings.Fortnite64ShippingExecutablePath, Arguments);
+            //FNProcess.WaitForInputIdle();
+            //Patcher.PatchSSL(FNProcess.Id, SSLBypassDLLLocation, FNProcess);
+            Patcher.InjectSSLBypass(FNProcess, SSLBypassDLLLocation);
 
-            Thread.Sleep(10000);
-            Injector.InjectDll(p.Id, CraniumDLLPath);
+            return FNProcess;
         }
     }
 }

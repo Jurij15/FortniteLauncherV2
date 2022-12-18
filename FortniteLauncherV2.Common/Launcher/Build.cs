@@ -21,14 +21,8 @@ namespace FortniteLauncherV2.Common.Launcher
                 {
                     if (File.Exists(Path + Strings.Fortnite64ShippingEACExecutablePath))
                     {
-                        if (File.Exists(Path + Strings.FortniteLauncherExecutablePath))
-                        {
-                            return true;
-                        }
-                        else if (!File.Exists(Path + Strings.FortniteLauncherExecutablePath))
-                        {
-                            return false;
-                        }
+                        //the fortnite launcher isnt 100% needed, we can just ignore it (and it makes certain builds not get detected)
+                        return true;
                     }
                     else if (!File.Exists(Path + Strings.Fortnite64ShippingEACExecutablePath))
                     {

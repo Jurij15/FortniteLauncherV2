@@ -45,6 +45,9 @@
     <Compile Include="Injector.cs" />
     <Compile Include="Launcher\Build.cs" />
     <Compile Include="Launcher\Launcher.cs" />
+    <Compile Include="Launcher\Patcher.cs" />
+    <Compile Include="Launcher\Patches.cs" />
+    <Compile Include="Memory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strings.cs" />
   </ItemGroup>

@@ -32,7 +32,5 @@ namespace FortniteLauncherV2.App
 
             return null;
         }
-
-        public static string CraniumString = GetConfigDirectory() + "craniumv2.dll";
     }
 }
