@@ -39,7 +39,6 @@ namespace FortniteLauncherV2.Common.Launcher
             //FNProcess.WaitForInputIdle();
             //Patcher.PatchSSL(FNProcess.Id, SSLBypassDLLLocation, FNProcess);
             Patcher.InjectSSLBypass(FNProcess, SSLBypassDLLLocation);
-
             return FNProcess;
         }
     }

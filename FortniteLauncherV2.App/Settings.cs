@@ -14,23 +14,4 @@ namespace FortniteLauncherV2.App
 
         }
     }
-
-    public class SettingStrings
-    {
-        public static string LocalAppData = Environment.GetEnvironmentVariable("LocalAppData");
-
-        public static string GetConfigDirectory()
-        {
-            if (Config.bDebug)
-            {
-                return "FortniteLauncherV2/";
-            }
-            else if (!Config.bDebug)
-            {
-                return LocalAppData + "/FortniteLauncherV2";
-            }
-
-            return null;
-        }
-    }
 }

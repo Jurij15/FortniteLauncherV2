@@ -41,5 +41,47 @@ namespace FortniteLauncherV2.Common.Launcher
 
             return false;
         }
+
+        public static void SaveBuildToFile(string ValidPath)
+        {
+            List<string> Content = new List<string>(); //a list that will contain every current config
+            foreach (var line in File.ReadAllLines(Strings.FileLocations.SavesFileLocations))
+            {
+                Content.Add(line); //add every existing line into the array
+            }
+
+            foreach(var line in Content) //check if the path already exists
+            {
+                if (line == ValidPath)
+                {
+                    return;
+                }
+                else if (line != ValidPath)
+                {
+                    continue;
+                }
+            }
+
+            Content.Add(ValidPath); //add in a new path
+
+            //there is probably an easier way to do this
+            File.Delete(Strings.FileLocations.SavesFileLocations); //we just delete the existing file
+
+            using (StreamWriter sw = File.CreateText(Strings.FileLocations.SavesFileLocations)) //now we write every path into the file we also create
+            {
+                foreach (var line in Content)
+                {
+                    sw.WriteLine(line);
+                }
+                sw.Close();
+            }
+
+            Content.Clear(); //do this incase if that arrray is gigantic
+        }
+
+        public static string[] GetAllSavedPaths()
+        {
+            return File.ReadAllLines(Strings.FileLocations.SavesFileLocations).ToArray();
+        }
     }
 }

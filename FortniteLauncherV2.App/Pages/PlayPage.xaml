@@ -9,12 +9,13 @@
       d:DesignHeight="549" d:DesignWidth="1032"
       Title="PlayPage">
     <Grid>
-        <ui:Snackbar x:Name="playSnackbar"/>
+        <ui:Snackbar x:Name="playSnackbar" Margin="24,367,24,0" VerticalAlignment="Top"/>
         <Image x:Name="FortniteSplashImage" Margin="12,9,737,275"/>
-        <ui:InfoBar x:Name="LawinServerNotStarted"  Message="LawinServer is not started by this launcher!" Title="Warning!" Severity="Warning" Margin="10,380,10,0" VerticalAlignment="Top" IsOpen="True" Height="121"/>
-        <ui:InfoBar x:Name="InvalidPath" Message="The path you provided does not contain the FortniteGame and Engine folders!" Title="Error" Severity="Error" Margin="10,441,10,0" VerticalAlignment="Top" IsOpen="False"/>
+        <ui:InfoBar x:Name="LawinServerNotStarted"  Message="LawinServer is not started by this launcher!" Title="Warning!" Severity="Warning" Margin="10,440,521,0" VerticalAlignment="Top" IsOpen="True" Height="61"/>
+        <ui:InfoBar x:Name="InvalidPath" Message="Check the path you provided in the Build tab!" Title="Error" Severity="Error" Margin="516,441,10,0" VerticalAlignment="Top" IsOpen="True"/>
 
         <ui:Button x:Name="ButtonLaunch" Click="ButtonLaunch_Click" Content="LAUNCH" Margin="775,506,0,0" VerticalAlignment="Top" Width="233" Icon="Play16" Appearance="Primary" Height="43"/>
+        <ui:Button x:Name="ButtonStop" Click="ButtonStop_Click" Content="STOP" Margin="775,506,0,0" VerticalAlignment="Top" Width="233" Icon="Stop16" Appearance="Danger" Height="43"/>
         <ui:CardExpander IsExpanded="False" Margin="315,116,5,0" VerticalAlignment="Top">
             <ui:CardExpander.Header>
                 <Grid>
@@ -46,7 +47,7 @@
                             <TextBlock
                     FontSize="12"
                     Foreground="{DynamicResource TextFillColorTertiaryBrush}"
-                    Text="Try this if you experience issues with normal SSL bypass"
+                    Text="Try disabling this if you experience issues with SSL bypass"
                     />
                         </StackPanel>
                     </ui:CardControl.Header>
@@ -55,7 +56,7 @@
                 <ToggleButton x:Name="SuspendBEToggle" Checked="SuspendBEToggle_Checked" Unchecked="SuspendBEToggle_Unchecked" Content="Suspend BattleEye" Margin="0,72,0,0" VerticalAlignment="Top" Height="42"/>
                 <ToggleButton x:Name="SuspendEACToggle" Checked="SuspendEACToggle_Checked" Unchecked="SuspendEACToggle_Unchecked" Content="Suspend EasyAntiCheat" Margin="142,72,0,0" VerticalAlignment="Top" Height="42"/>
                 <TextBlock Text="Launch Arguments" Margin="9,127,553,10"/>
-                <ui:TextBox PlaceholderText="Launch arguments" Margin="136,119,10,0" VerticalAlignment="Top"/>
+                <ui:TextBox PlaceholderText="Launch arguments" x:Name="ArgumentsBox" Margin="136,119,10,0" VerticalAlignment="Top"/>
             </Grid>
         </ui:CardExpander>
         <Expander IsExpanded="True" Content="To select the build you want to launch, select the Builds tab on the left sidebar!" Margin="315,10,5,0" VerticalAlignment="Top">

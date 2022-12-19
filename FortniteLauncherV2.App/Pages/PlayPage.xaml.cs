@@ -27,6 +27,18 @@ namespace FortniteLauncherV2.App.Pages
     /// </summary>
     public partial class PlayPage : Wpf.Ui.Controls.UiPage
     {
+        void ProcessRunning()
+        {
+            ButtonLaunch.Visibility = Visibility.Collapsed;
+            ButtonStop.Visibility = Visibility.Visible;
+        }
+
+        void ProcessNotRunning()
+        {
+            ButtonLaunch.Visibility = Visibility.Visible;
+            ButtonStop.Visibility = Visibility.Collapsed;
+        }
+
         void PathVaild()
         {
             string bmp = Config.FortniteGameEnginePath + Strings.FortniteSplashImage;
@@ -97,6 +109,9 @@ namespace FortniteLauncherV2.App.Pages
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_tick;
             timer.Start();
+
+            ButtonStop.Visibility = Visibility.Collapsed;
+            ArgumentsBox.Text = Strings.LaunchArguments;
         }
 
         void timer_tick(object sender, EventArgs e)
@@ -108,6 +123,17 @@ namespace FortniteLauncherV2.App.Pages
             if (!Build.IsPathValid(Config.FortniteGameEnginePath))
             {
                 PathInvalid();
+            }
+            if (Globals.FortniteProcess != null)
+            {
+                if (ProcessHelper.IsProcessRunning(Globals.FortniteProcess.Id))
+                {
+                    ProcessRunning();
+                }
+                else if (!ProcessHelper.IsProcessRunning(Globals.FortniteProcess.Id))
+                {
+                    ProcessNotRunning();
+                }
             }
         }
 
@@ -145,9 +171,28 @@ namespace FortniteLauncherV2.App.Pages
         {
             if (Build.IsPathValid(Config.FortniteGameEnginePath))
             {
-                //MessageBox.Show(SettingStrings.CraniumString);
-                Globals.FortniteProcess = Launcher.LaunchFortniteWithArumentsAndTryBypassSSL(Config.FortniteGameEnginePath, Strings.TestLaunchArguments, "FortniteLauncherV2/Platanium.dll");
+                if (Config.bUseCranium)
+                {
+                    Globals.FortniteProcess = Launcher.LaunchFortniteWithArumentsAndTryBypassSSL(Config.FortniteGameEnginePath, ArgumentsBox.Text, Strings.GetCraniumLocation(Config.bDebug));
+                }
+                else if (!Config.bUseCranium)
+                {
+                    Globals.FortniteProcess = Launcher.LaunchFortniteWithArumentsAndTryBypassSSL(Config.FortniteGameEnginePath, ArgumentsBox.Text, Strings.GetAuroraSSLLocation(Config.bDebug));
+                }
+
+                //Globals.FortniteProcess.WaitForExit();
+
+                ProcessRunning();
+
+                _snackbarService.Show("Fortnite", "Fortnite was launched!", SymbolRegular.ThumbLike24, ControlAppearance.Success);
             }
+        }
+
+        private void ButtonStop_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.FortniteProcess.Kill();
+            ProcessNotRunning();
+            Globals.FortniteProcess = null; //i need to do this otherwise it will crash beacuse process is not actually running
         }
     }
 }

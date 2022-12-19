@@ -32,7 +32,7 @@
                 </Grid>
             </ui:CardExpander.Header>
             <Grid>
-                <ListView>
+                <ListView x:Name="SavedBuilds" SelectionChanged="SavedBuilds_SelectionChanged">
                     
                 </ListView>
             </Grid>

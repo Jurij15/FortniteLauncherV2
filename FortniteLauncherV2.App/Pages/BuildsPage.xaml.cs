@@ -33,6 +33,11 @@ namespace FortniteLauncherV2.App.Pages
             {
                 PathBox.Text = Config.FortniteGameEnginePath;
             }
+
+            foreach (var buildLoc in Build.GetAllSavedPaths())
+            {
+                SavedBuilds.Items.Add(buildLoc);
+            }
         }
 
         private void PathBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -41,11 +46,22 @@ namespace FortniteLauncherV2.App.Pages
             {
                 Config.FortniteGameEnginePath = PathBox.Text;
                 InvalidPath.IsOpen = false;
+
+                //we can also add the build to the saved builds list
+                Build.SaveBuildToFile(PathBox.Text); 
             }
             else if (!Build.IsPathValid(PathBox.Text))
             {
                 Config.FortniteGameEnginePath = string.Empty;
                 InvalidPath.IsOpen = true;
+            }
+        }
+
+        private void SavedBuilds_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SavedBuilds.SelectedItem != null)
+            {
+                PathBox.Text = (string)SavedBuilds.SelectedItem;
             }
         }
     }
