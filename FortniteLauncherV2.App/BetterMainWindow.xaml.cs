@@ -57,6 +57,8 @@ namespace FortniteLauncherV2.App
             themeService.SetSystemAccent();
             //ShowRootSnackbar("hello", "hi,");
             NavigationStore.Navigate(typeof(AboutPage));  
+
+            Settings.Init();
         }
 
         private void ThemeFooter_Click(object sender, RoutedEventArgs e)

@@ -90,20 +90,7 @@ namespace FortniteLauncherV2.App.Pages
                 FortniteSplashImage.Source = new BitmapImage(new Uri(bmp));
             }
 
-            if (Config.bUseCranium)
-            {
-                CraniumSSLToggle.IsChecked = true;
-            }
-
-            if (Config.bSuspendEAC)
-            {
-                SuspendEACToggle.IsChecked = true;
-            }
-
-            if (Config.bSuspendBE)
-            {
-                SuspendBEToggle.IsChecked = true;
-            }
+            CraniumSSLToggle.IsChecked = Config.bUseCranium;
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -112,6 +99,10 @@ namespace FortniteLauncherV2.App.Pages
 
             ButtonStop.Visibility = Visibility.Collapsed;
             ArgumentsBox.Text = Strings.LaunchArguments;
+
+            SuspendBEToggle.IsChecked = Config.bSuspendBE;
+
+            SuspendEACToggle.IsChecked = Config.bSuspendEAC;
         }
 
         void timer_tick(object sender, EventArgs e)
