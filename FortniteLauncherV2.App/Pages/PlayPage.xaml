@@ -15,7 +15,7 @@
         <ui:InfoBar x:Name="InvalidPath" Message="Check the path you provided in the Build tab!" Title="Error" Severity="Error" Margin="516,441,10,0" VerticalAlignment="Top" IsOpen="True"/>
 
         <ui:Button x:Name="ButtonLaunch" Click="ButtonLaunch_Click" Content="LAUNCH" Margin="775,506,0,0" VerticalAlignment="Top" Width="233" Icon="Play16" Appearance="Primary" Height="43"/>
-        <ui:Button x:Name="ButtonStop" Click="ButtonStop_Click" Content="STOP" Margin="775,506,0,0" VerticalAlignment="Top" Width="233" Icon="Stop16" Appearance="Danger" Height="43"/>
+        <ui:Button x:Name="ButtonStop" Click="ButtonStop_Click" Content="STOP" Margin="537,506,0,0" VerticalAlignment="Top" Width="233" Icon="Stop16" Appearance="Danger" Height="43"/>
         <ui:CardExpander IsExpanded="False" Margin="315,116,5,0" VerticalAlignment="Top">
             <ui:CardExpander.Header>
                 <Grid>
