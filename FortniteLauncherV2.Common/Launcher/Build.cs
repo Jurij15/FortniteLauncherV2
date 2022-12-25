@@ -83,5 +83,60 @@ namespace FortniteLauncherV2.Common.Launcher
         {
             return File.ReadAllLines(Strings.FileLocations.SavesFileLocations).ToArray();
         }
+
+        public static void CheckIfBuildsListValid()
+        {
+            //this could take some time if the saved buids list is big
+            List<string> Content = new List<string>();
+            foreach (var item in File.ReadAllLines(Strings.FileLocations.SavesFileLocations)) //add all current builds into the array
+            {
+                Content.Add(item);
+            }
+            foreach (var line in Content)
+            {
+                if (!IsPathValid(line))
+                {
+                    RemoveBuild(line); //remove the build if the path is not valid
+                }
+                else if (IsPathValid(line))
+                {
+                    continue; // if the path is valid, just continiue
+                }
+            }
+        }
+
+        public static void RemoveBuild(string ValidPath)
+        {
+            List<string> Content = new List<string>();
+            foreach (var line in File.ReadAllLines(Strings.FileLocations.SavesFileLocations))
+            {
+                Content.Add(line); //add each saved build in the file to the array
+            }
+
+            foreach (var line in Content)
+            {
+                if (line != ValidPath)
+                {
+                    continue; //line isnt the one we want to delete
+                }
+                else if (line == ValidPath)
+                {
+                    Content.Remove(line); //remove the line that we want to remove
+                }
+            }
+
+            File.Delete(Strings.FileLocations.SavesFileLocations); //delete the current file
+
+            using (StreamWriter sw = File.CreateText(Strings.FileLocations.SavesFileLocations)) //now we write every path into the file we also create
+            {
+                foreach (var line in Content)
+                {
+                    sw.WriteLine(line);
+                }
+                sw.Close();
+            }
+
+            Content.Clear(); //clear the array, just to be sure
+        }
     }
 }

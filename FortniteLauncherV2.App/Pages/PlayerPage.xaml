@@ -11,6 +11,7 @@
       Title="PlayerPage">
     <Grid>
         <TextBlock Text="Player credentials" FontSize="32" Margin="10,10,533,389" Foreground="White"/>
+        
         <ui:Snackbar x:Name="PlayerTabSnackBar" VerticalAlignment="Bottom"/>
     </Grid>
 </Page>
