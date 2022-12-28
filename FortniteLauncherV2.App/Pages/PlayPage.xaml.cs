@@ -1,6 +1,4 @@
-﻿using FortniteLauncherV2.Common;
-using FortniteLauncherV2.Common.Launcher;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -19,6 +17,12 @@ using System.Windows.Threading;
 using Wpf.Ui.Common;
 using Wpf.Ui.Mvvm.Contracts;
 using Wpf.Ui.Mvvm.Services;
+using FortniteLauncherV2.Common;
+using FortniteSharp.Helpers;
+using FortniteSharp.Structs;
+using FortniteSharp.Launcher;
+using FortniteSharp.Patchers;
+using System.Threading.Tasks.Sources;
 
 namespace FortniteLauncherV2.App.Pages
 {
@@ -162,16 +166,49 @@ namespace FortniteLauncherV2.App.Pages
         {
             if (Build.IsPathValid(Config.FortniteGameEnginePath))
             {
+                LaunchFortnite_Params launchFortnite_Params= new LaunchFortnite_Params();
+                launchFortnite_Params.ValidPath = Config.FortniteGameEnginePath;
+                launchFortnite_Params.SuspendOnStart = false;
+                launchFortnite_Params.LaunchArguments = ArgumentsBox.Text;
+
+                Globals.FortniteProcess = Launcher.Start(FortniteSharp.Enums.FortniteExecutableType.Fortnite64ShippingExecutable, launchFortnite_Params);
+
                 if (Config.bUseCranium)
                 {
-                    Globals.FortniteProcess = Launcher.LaunchFortniteWithArumentsAndTryBypassSSL(Config.FortniteGameEnginePath, ArgumentsBox.Text, Strings.GetCraniumLocation(Config.bDebug));
+                    SSLBypassDLLParams CraniumDllParams = new SSLBypassDLLParams();
+                    CraniumDllParams.ProcessID = Globals.FortniteProcess.Id;
+                    CraniumDllParams.SSLBypassDLLLocation = Strings.GetCraniumLocation(Config.bDebug);
+
+                    SSLPatcher.PatchWithDLL(CraniumDllParams);
                 }
                 else if (!Config.bUseCranium)
                 {
-                    Globals.FortniteProcess = Launcher.LaunchFortniteWithArumentsAndTryBypassSSL(Config.FortniteGameEnginePath, ArgumentsBox.Text, Strings.GetAuroraSSLLocation(Config.bDebug));
+                    SSLBypassDLLParams CraniumDllParams = new SSLBypassDLLParams();
+                    CraniumDllParams.ProcessID = Globals.FortniteProcess.Id;
+                    CraniumDllParams.SSLBypassDLLLocation = Strings.GetAuroraSSLLocation(Config.bDebug);
+
+                    SSLPatcher.PatchWithDLL(CraniumDllParams);
                 }
 
-                //Globals.FortniteProcess.WaitForExit();
+                if (Config.bSuspendEAC)
+                {
+                    LaunchFortnite_Params EAC_Params = new LaunchFortnite_Params();
+                    EAC_Params.ValidPath = Config.FortniteGameEnginePath;
+                    EAC_Params.SuspendOnStart = true;
+                    EAC_Params.LaunchArguments = ArgumentsBox.Text;
+
+                    Globals.FortniteProcess = Launcher.Start(FortniteSharp.Enums.FortniteExecutableType.Fortnite64ShippingEasyAntiCheat, launchFortnite_Params);
+                }
+
+                if (Config.bSuspendBE)
+                {
+                    LaunchFortnite_Params BE_Params = new LaunchFortnite_Params();
+                    BE_Params.ValidPath = Config.FortniteGameEnginePath;
+                    BE_Params.SuspendOnStart = true;
+                    BE_Params.LaunchArguments = ArgumentsBox.Text;
+
+                    Globals.FortniteProcess = Launcher.Start(FortniteSharp.Enums.FortniteExecutableType.Fortnite64ShippingBattleEye, launchFortnite_Params);
+                }
 
                 ProcessRunning();
 

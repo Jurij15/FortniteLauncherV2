@@ -43,11 +43,8 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Injector.cs" />
-    <Compile Include="Launcher\Build.cs" />
-    <Compile Include="Launcher\Launcher.cs" />
-    <Compile Include="Launcher\Patcher.cs" />
-    <Compile Include="Launcher\Patches.cs" />
-    <Compile Include="Launcher\ProcessHelper.cs" />
+    <Compile Include="Build.cs" />
+    <Compile Include="ProcessHelper.cs" />
     <Compile Include="Memory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strings.cs" />

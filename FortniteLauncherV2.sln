@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FortniteLauncherV2.App", "FortniteLauncherV2.App\FortniteLauncherV2.App.csproj", "{6686594A-95AA-4752-A5E7-4B8F621CD7A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FortniteLauncherV2.App", "FortniteLauncherV2.App\FortniteLauncherV2.App.csproj", "{6686594A-95AA-4752-A5E7-4B8F621CD7A5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FortniteLauncherV2.Common", "FortniteLauncherV2.Common\FortniteLauncherV2.Common.csproj", "{B72506B9-47ED-4815-85A7-19AC399E827C}"
 EndProject
