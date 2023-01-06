@@ -24,9 +24,10 @@ namespace FortniteLauncherV2.App.Pages
     /// </summary>
     public partial class Home : Wpf.Ui.Controls.UiPage
     {
-        public Home()
+        static int rand; //this has to be static because of random (something with seeds?)
+
+        void SetImage()
         {
-            InitializeComponent();
             if (Config.ShowHomeScreenBackground)
             {
                 if (!Directory.Exists(Strings.BackgroundsDirectory))
@@ -41,16 +42,29 @@ namespace FortniteLauncherV2.App.Pages
                     backgroundslist.Add(item); //we have all items in the array now, lets now pick a random one
                 }
                 Random random = new Random();
-                int rand = random.Next(backgroundslist.Count);
+                rand = random.Next(backgroundslist.Count);
                 string path = backgroundslist[rand];
                 //MessageBox.Show(path);
                 ImageBrush img = new ImageBrush();
                 img.ImageSource = new BitmapImage(new Uri(path, UriKind.Relative));
                 BaseBorder.Background = img;
 
+                FileNameBlock.Text = System.IO.Path.GetFileName(path);
+
                 backgroundslist.Clear();
                 rand = 0;
             }
+        }
+
+        public Home()
+        {
+            InitializeComponent();
+            SetImage();
+        }
+
+        private void RerollImageLink_Click(object sender, RoutedEventArgs e)
+        {
+            SetImage();
         }
     }
 }

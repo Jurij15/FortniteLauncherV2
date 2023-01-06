@@ -10,7 +10,7 @@
       Title="Home">
 
     <Grid>
-        <Border x:Name="BaseBorder" Margin="0,0,0,75">
+        <Border x:Name="BaseBorder" Margin="0,0,0,76">
             <Border.Background>
                 <ImageBrush
                     ImageSource="/Pages/DefaultFortniteIcon.jpg"
@@ -20,11 +20,82 @@
             <Border x:Name="InternalBorder">
                 <Border.Background>
                     <RadialGradientBrush>
-                        <GradientStop Offset="0" Color="#1F000000" />
-                        <GradientStop Offset="1" Color="#4F000000" />
+                        <GradientStop Offset="-2" Color="#1F000000" />
+                        <GradientStop Offset="-2" Color="#4F000000" />
                     </RadialGradientBrush>
                 </Border.Background>
+                <Grid>
+                    <StackPanel
+                        Margin="64"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="Transparent">
+                        <TextBlock
+                            FontSize="18"
+                            Foreground="#B7FFFFFF"
+                            Text="" />
+                        <TextBlock
+                            FontSize="48"
+                            FontWeight="Bold"
+                            Foreground="#FFFFFF"
+                            Text="Fortnite Launcher" />
+                        <TextBlock
+                            FontSize="26"
+                            Foreground="#B7FFFFFF"
+                            Text="A custom Fortnite launching experience" />
+                        <ui:Button
+                            Height="36"
+                            Margin="0,6,0,0"
+                            Padding="30,6"
+                            HorizontalAlignment="Left"
+                            Appearance="Transparent"
+                            Content="Start Now"
+                            Foreground="{DynamicResource TextFillColorLightPrimaryBrush}" />
+                    </StackPanel>
+                    <TextBlock
+                        Margin="12"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        FontSize="10"
+                        Foreground="#57FFFFFF"
+                        Text="Made by Jurij15" />
+                    <TextBlock
+                        Margin="12"
+                        x:Name="FileNameBlock"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        FontSize="10"
+                        Foreground="#57FFFFFF"
+                        Text="FileName" />
+                </Grid>
             </Border>
         </Border>
+        <ui:CardAction x:Name="SelectBuildAction" Icon="Box24" VerticalAlignment="Top" Height="74" Margin="0,491,856,0">
+            <StackPanel>
+                <TextBlock
+                        Margin="0"
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="Builds" />
+                <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                        Text="Select a build" />
+            </StackPanel>
+        </ui:CardAction>
+        <ui:CardAction x:Name="LaunchBuildAction" Icon="Play24" VerticalAlignment="Top" Height="74" Margin="181,491,675,0">
+            <StackPanel>
+                <TextBlock
+                        Margin="0"
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="Launch" />
+                <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                        Text="Launch a build" />
+            </StackPanel>
+        </ui:CardAction>
+        <ui:Hyperlink Content="Reroll image" Margin="911,491,0,0" VerticalAlignment="Top" x:Name="RerollImageLink" Click="RerollImageLink_Click"/>
     </Grid>
 </ui:UiPage>
