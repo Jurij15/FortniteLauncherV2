@@ -5,10 +5,14 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+	  <UseWindowsForms>false</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DefaultFortniteIcon.jpg" />
+    <None Remove="FNLauncher_Icon.ico" />
     <None Remove="FNLauncher_Icon.png" />
+    <None Remove="Pages\DefaultFortniteIcon.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,7 +26,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="DefaultFortniteIcon.jpg" />
+    <Resource Include="FNLauncher_Icon.ico" />
     <Resource Include="FNLauncher_Icon.png" />
+    <Resource Include="Pages\DefaultFortniteIcon.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Proxy\" />
   </ItemGroup>
 
 </Project>

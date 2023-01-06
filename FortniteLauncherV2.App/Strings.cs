@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FortniteLauncherV2.App;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace FortniteLauncherV2.Common
         {
             if (isDebug)
             {
-                return "FortniteLauncherV2/";
+                return @"FortniteLauncherV2\";
             }
             else if (isDebug)
             {
@@ -43,6 +44,8 @@ namespace FortniteLauncherV2.Common
         public static string FortniteLauncherExecutablePath = @"\FortniteGame\Binaries\Win64\FortniteLauncher.exe";
 
         public static string FortniteSplashImage = @"\FortniteGame\Content\Splash\Splash.bmp";
+
+        public static string BackgroundsDirectory = GetConfigDirectory(Config.bDebug) + @"Content\Images";
 
         public static string LaunchArguments = "-log -epicapp=Fortnite -epicenv=Prod -epiclocale=en-us -epicportal -skippatchcheck -nobe -fromfl=eac -fltoken=3db3ba5dcbd2e16703f3978d -caldera={} -AUTH_LOGIN=player@projectreboot.dev -AUTH_PASSWORD=Rebooted -AUTH_TYPE=epic";
 

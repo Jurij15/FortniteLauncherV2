@@ -5,18 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FortniteLauncherV2.App.Pages"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-      mc:Ignorable="d" 
-      d:DesignHeight="549" d:DesignWidth="1032"
-      Title="PlayPage">
+      mc:Ignorable="d" d:DesignWidth="1032"
+      Title="PlayPage" d:DesignHeight="549">
     <Grid>
-        <ui:Snackbar x:Name="playSnackbar" Margin="24,367,24,0" VerticalAlignment="Top"/>
-        <Image x:Name="FortniteSplashImage" Margin="12,9,737,275"/>
-        <ui:InfoBar x:Name="LawinServerNotStarted"  Message="LawinServer is not started by this launcher!" Title="Warning!" Severity="Warning" Margin="10,440,521,0" VerticalAlignment="Top" IsOpen="True" Height="61"/>
-        <ui:InfoBar x:Name="InvalidPath" Message="Check the path you provided in the Build tab!" Title="Error" Severity="Error" Margin="516,441,10,0" VerticalAlignment="Top" IsOpen="True"/>
+        <ui:Snackbar x:Name="playSnackbar" Margin="24,308,24,0" VerticalAlignment="Top"/>
+        <Image x:Name="FortniteSplashImage" Margin="14,10,718,275" Source="/Pages/DefaultFortniteIcon.jpg"/>
+        <ui:InfoBar x:Name="LawinServerNotStarted"  Message="LawinServer is not started by this launcher!" Title="Warning!" Severity="Warning" Margin="10,412,516,0" VerticalAlignment="Top" IsOpen="True" Height="62" IsClosable="False"/>
+        <ui:InfoBar x:Name="InvalidPath" Message="Check the path you provided in the Build tab!" Title="Error" Severity="Error" Margin="522,412,8,0" VerticalAlignment="Top" IsOpen="True" IsClosable="False"/>
 
-        <ui:Button x:Name="ButtonLaunch" Click="ButtonLaunch_Click" Content="LAUNCH" Margin="775,506,0,0" VerticalAlignment="Top" Width="233" Icon="Play16" Appearance="Primary" Height="43"/>
-        <ui:Button x:Name="ButtonStop" Click="ButtonStop_Click" Content="STOP" Margin="537,506,0,0" VerticalAlignment="Top" Width="233" Icon="Stop16" Appearance="Danger" Height="43"/>
-        <ui:CardExpander IsExpanded="False" Margin="315,116,5,0" VerticalAlignment="Top">
+        <ui:Button x:Name="ButtonLaunch" Click="ButtonLaunch_Click" Content="LAUNCH" Margin="772,494,0,0" VerticalAlignment="Top" Width="250" Icon="Play16" Appearance="Primary" Height="45"/>
+        <ui:Button x:Name="ButtonStop" Click="ButtonStop_Click" Content="STOP" Margin="534,494,0,0" VerticalAlignment="Top" Width="233" Icon="Stop16" Appearance="Danger" Height="45"/>
+        <ui:CardExpander x:Name="ConfigExpander" IsExpanded="False" Margin="328,82,8,0" VerticalAlignment="Top" Width="695">
             <ui:CardExpander.Header>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -36,7 +35,7 @@
                 </Grid>
             </ui:CardExpander.Header>
             <Grid>
-                <ui:CardControl Icon="WifiSettings20" VerticalAlignment="Top">
+                <ui:CardControl Icon="WifiSettings20" VerticalAlignment="Top" >
                     <ui:CardControl.Header>
                         <StackPanel>
                             <TextBlock
@@ -59,25 +58,22 @@
                 <ui:TextBox PlaceholderText="Launch arguments" x:Name="ArgumentsBox" Margin="136,119,10,0" VerticalAlignment="Top"/>
             </Grid>
         </ui:CardExpander>
-        <Expander IsExpanded="True" Content="To select the build you want to launch, select the Builds tab on the left sidebar!" Margin="315,10,5,0" VerticalAlignment="Top">
-            <Expander.Header>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                        <TextBlock
-                            FontSize="13"
-                            FontWeight="Medium"
-                            Text="Build Selection" />
-                        <TextBlock
-                            FontSize="12"
-                            Foreground="{DynamicResource TextFillColorTertiaryBrush}"
-                            Text="Select the build you want to launch." />
-                    </StackPanel>
-                </Grid>
-            </Expander.Header>
-        </Expander>
+        <ui:CardControl x:Name="BuildsCard" Margin="320,10,0,0" VerticalAlignment="Top" Click="BuildsCard_Click" Width="695">
+            <ui:CardControl.Header>
+                <StackPanel>
+                    <TextBlock
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Text="Build Selection"
+                    />
+                    <TextBlock
+                    FontSize="12"
+                    Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                    Text="Select the build you want to launch."
+                    />
+                </StackPanel>
+            </ui:CardControl.Header>
+            <ui:SymbolIcon Symbol="ArrowRight28"/>
+        </ui:CardControl>
     </Grid>
 </ui:UiPage>

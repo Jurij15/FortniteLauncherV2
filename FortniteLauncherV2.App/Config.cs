@@ -20,5 +20,7 @@ namespace FortniteLauncherV2.App
         public static bool bSuspendBE = false;
 
         public static bool bSuspendEAC = false;
+
+        public static bool ShowHomeScreenBackground = true; 
     }
 }

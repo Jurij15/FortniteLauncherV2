@@ -1,0 +1,30 @@
+﻿<ui:UiPage x:Class="FortniteLauncherV2.App.Pages.Home"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FortniteLauncherV2.App.Pages"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d" 
+      d:DesignHeight="549" d:DesignWidth="1032"
+      Title="Home">
+
+    <Grid>
+        <Border x:Name="BaseBorder" Margin="0,0,0,75">
+            <Border.Background>
+                <ImageBrush
+                    ImageSource="/Pages/DefaultFortniteIcon.jpg"
+                    RenderOptions.BitmapScalingMode="HighQuality"
+                    Stretch="UniformToFill" />
+            </Border.Background>
+            <Border x:Name="InternalBorder">
+                <Border.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Offset="0" Color="#1F000000" />
+                        <GradientStop Offset="1" Color="#4F000000" />
+                    </RadialGradientBrush>
+                </Border.Background>
+            </Border>
+        </Border>
+    </Grid>
+</ui:UiPage>

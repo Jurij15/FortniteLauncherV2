@@ -105,7 +105,7 @@ namespace FortniteLauncherV2.Common
             }
         }
 
-        public static void RemoveBuild(string ValidPath)
+        public static void RemoveBuild(string ValidPath) //needs updating
         {
             List<string> Content = new List<string>();
             foreach (var line in File.ReadAllLines(Strings.FileLocations.SavesFileLocations))

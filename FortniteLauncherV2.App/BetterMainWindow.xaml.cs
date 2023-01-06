@@ -49,16 +49,19 @@ namespace FortniteLauncherV2.App
         {
             InitializeComponent();
             //RootSnackBar.Show();
-            NavigationStore.Navigate(1);
 
             //snackbarService.SetSnackbarControl(RootSnackBar);
             //_snackbarService = snackbarService;
             _themeService = themeService;
             themeService.SetSystemAccent();
+
             //ShowRootSnackbar("hello", "hi,");
-            NavigationStore.Navigate(typeof(AboutPage));  
 
             Settings.Init();
+
+            //RootDialog.ShowAndWaitAsync();
+            Globals.bRootDialog = RootDialog;
+            Globals.NavStore = NavigationStore;
         }
 
         private void ThemeFooter_Click(object sender, RoutedEventArgs e)
@@ -81,5 +84,10 @@ namespace FortniteLauncherV2.App
 
         public void SetPageService(IPageService pageService)
     => NavigationStore.PageService= pageService;
+
+        private void RootDialog_ButtonRightClick(object sender, RoutedEventArgs e)
+        {
+            RootDialog.Hide();
+        }
     }
 }

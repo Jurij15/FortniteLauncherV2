@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FortniteLauncherV2.Common;
+using FortniteSharp.Helpers;
 
 namespace FortniteLauncherV2.App.Pages
 {
@@ -60,7 +61,14 @@ namespace FortniteLauncherV2.App.Pages
         {
             if (SavedBuilds.SelectedItem != null)
             {
-                PathBox.Text = (string)SavedBuilds.SelectedItem;
+                if (BuildsHelper.IsPathValid((string)SavedBuilds.SelectedItem))
+                {
+                    PathBox.Text = (string)SavedBuilds.SelectedItem;
+                }
+                else
+                {
+                    Build.RemoveBuild((string)SavedBuilds.SelectedItem);    
+                }
             }
         }
     }

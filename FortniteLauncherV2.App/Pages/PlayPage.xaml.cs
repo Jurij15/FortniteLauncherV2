@@ -23,6 +23,7 @@ using FortniteSharp.Structs;
 using FortniteSharp.Launcher;
 using FortniteSharp.Patchers;
 using System.Threading.Tasks.Sources;
+using Wpf.Ui.Controls;
 
 namespace FortniteLauncherV2.App.Pages
 {
@@ -130,6 +131,7 @@ namespace FortniteLauncherV2.App.Pages
                     ProcessNotRunning();
                 }
             }
+            //TestDialog.ShowAndWaitAsync();
         }
 
         private void CraniumSSLToggle_Checked(object sender, RoutedEventArgs e)
@@ -212,6 +214,7 @@ namespace FortniteLauncherV2.App.Pages
 
                 ProcessRunning();
 
+                ConfigExpander.IsExpanded= false; //hide the config expander so it isnt breaking the snackbar
                 _snackbarService.Show("Fortnite", "Fortnite was launched!", SymbolRegular.ThumbLike24, ControlAppearance.Success);
             }
         }
@@ -221,6 +224,11 @@ namespace FortniteLauncherV2.App.Pages
             Globals.FortniteProcess.Kill();
             ProcessNotRunning();
             Globals.FortniteProcess = null; //i need to do this otherwise it will crash beacuse process is not actually running
+        }
+
+        private void BuildsCard_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.NavStore.Navigate(typeof(BuildsPage), null);
         }
     }
 }

@@ -9,6 +9,7 @@
         mc:Ignorable="d"
         Background="Transparent"
         ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
              WindowCornerPreference="Round"
         ExtendsContentIntoTitleBar="True"
         Title="Fortnite Launcher" Height="616" Width="1092">
@@ -38,6 +39,14 @@
             <ui:NavigationStore.Items>
                 <ui:NavigationItem
                     
+                    Content="Home"
+                    Icon="Home24"
+                    PageTag="HomePage"
+                    PageType="{x:Type pages:Home}"
+                    />
+                <ui:NavigationSeparator/>
+                <ui:NavigationItem
+                    
                     Content="Play"
                     Icon="XboxController24"
                     PageTag="PlayPage"
@@ -51,12 +60,6 @@
                     />
                 <ui:NavigationItem
                     Cache="True"
-                    Content="Player"
-                    Icon="Person24"
-                    PageType="{x:Type pages:PlayerPage}"
-                    />
-                <ui:NavigationItem
-                    Cache="True"
                     Content="Server"
                     Icon="Server24"
                     PageType="{x:Type pages:ServerPage}"
@@ -67,6 +70,7 @@
                     Icon="PlugDisconnected24"
                     PageType="{x:Type pages:InjectPage}"
                     />
+                <ui:NavigationSeparator/>
             </ui:NavigationStore.Items>
             <ui:NavigationStore.Footer>
                 <ui:NavigationItem
@@ -101,6 +105,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Frame x:Name="RootFrame" Grid.RowSpan="2"/>
+                <ui:Dialog x:Name="RootDialog" Grid.RowSpan="2" ButtonRightClick="RootDialog_ButtonRightClick"/>
             </Grid>
         </Border>
     </DockPanel>
