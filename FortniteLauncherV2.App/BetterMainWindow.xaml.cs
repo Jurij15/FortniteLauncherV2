@@ -58,10 +58,11 @@ namespace FortniteLauncherV2.App
             //ShowRootSnackbar("hello", "hi,");
 
             Settings.Init();
-
+            Globals.SetupConsole();
             //RootDialog.ShowAndWaitAsync();
             Globals.bRootDialog = RootDialog;
             Globals.NavStore = NavigationStore;
+            //MessageBox.Show("Version: "+ Version.VersionString, "Version Report", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void ThemeFooter_Click(object sender, RoutedEventArgs e)

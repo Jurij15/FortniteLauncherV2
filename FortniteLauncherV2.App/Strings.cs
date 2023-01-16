@@ -15,7 +15,7 @@ namespace FortniteLauncherV2.Common
         {
             if (isDebug)
             {
-                return @"FortniteLauncherV2\";
+                return @"FortniteLauncherV2/";
             }
             else if (isDebug)
             {
@@ -61,7 +61,7 @@ namespace FortniteLauncherV2.Common
 
             public static string ConfigUseCraniumLocation = GetConfigDirectory(true) + "Config/useCranium";
 
-            public static string ConfigUsernameLocation = GetConfigDirectory(true) + "Config/Username";
+            public static string ConfigUsernameLocation = GetConfigDirectory(true) + "Config/username";
         }
     }
 }

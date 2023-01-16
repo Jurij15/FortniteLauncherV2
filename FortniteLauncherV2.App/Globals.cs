@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Wpf.Ui.Mvvm.Contracts;
@@ -66,6 +67,14 @@ namespace FortniteLauncherV2.App
             }
 
             TempList.Clear();
+        }
+
+        [DllImport("kernel32.dll", EntryPoint = "AllocConsole", SetLastError = true, CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+        private static extern int AllocConsole();
+
+        public static void SetupConsole()
+        {
+            AllocConsole();
         }
     }
 }
