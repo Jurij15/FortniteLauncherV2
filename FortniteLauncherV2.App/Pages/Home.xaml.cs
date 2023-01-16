@@ -66,5 +66,26 @@ namespace FortniteLauncherV2.App.Pages
         {
             SetImage();
         }
+
+        private void StartButtonClick_Click(object sender, RoutedEventArgs e)
+        {
+            //this will just redirect to launch
+            Globals.NavStore.Navigate(typeof(PlayPage));
+        }
+
+        private void SelectBuildAction_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.NavStore.Navigate(typeof(BuildsPage));
+        }
+
+        private void LaunchBuildAction_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.NavStore.Navigate(typeof(PlayPage));
+        }
+
+        private void ServerAction_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.NavStore.Navigate(typeof(ServerPage));
+        }
     }
 }

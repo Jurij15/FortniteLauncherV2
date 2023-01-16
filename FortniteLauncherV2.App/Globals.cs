@@ -15,5 +15,57 @@ namespace FortniteLauncherV2.App
         public static Wpf.Ui.Controls.Snackbar RootSnackbar;
 
         public static Process ?FortniteProcess;
+
+        public static List<string> LaunchedBuilds= new List<string>();
+
+        public static void AddBuildToList(int PID)
+        {
+            LaunchedBuilds.Add("PID"+PID.ToString());
+        }
+
+        public static void RemoveBuildFromList(int PID)
+        {
+            List<string> TempList = new List<string>();
+
+            TempList = LaunchedBuilds.ToList();
+
+            foreach (string Temp in TempList)
+            {
+                if (Temp.Contains(PID.ToString()))
+                {
+                    LaunchedBuilds.Remove(Temp);
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
+            TempList.Clear();
+        }
+
+        public static void MakeBuildOnListGameServer(int PID)
+        {
+            List<string> TempList = new List<string>();
+
+            TempList = LaunchedBuilds.ToList();
+
+            foreach (string Temp in TempList)
+            {
+                if (Temp.Contains(PID.ToString()))
+                {
+                    string OldString = Temp;
+                    string NewString = OldString + "[GAMESERVER]";
+                    RemoveBuildFromList(PID);
+                    LaunchedBuilds.Add(NewString);
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
+            TempList.Clear();
+        }
     }
 }

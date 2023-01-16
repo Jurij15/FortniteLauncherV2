@@ -14,7 +14,7 @@
         <ui:InfoBar x:Name="InvalidPath" Message="Check the path you provided in the Build tab!" Title="Error" Severity="Error" Margin="522,412,8,0" VerticalAlignment="Top" IsOpen="True" IsClosable="False"/>
 
         <ui:Button x:Name="ButtonLaunch" Click="ButtonLaunch_Click" Content="LAUNCH" Margin="772,494,0,0" VerticalAlignment="Top" Width="250" Icon="Play16" Appearance="Primary" Height="45"/>
-        <ui:Button x:Name="ButtonStop" Click="ButtonStop_Click" Content="STOP" Margin="534,494,0,0" VerticalAlignment="Top" Width="233" Icon="Stop16" Appearance="Danger" Height="45"/>
+        <ui:Button IsEnabled="False" x:Name="ButtonStop" Click="ButtonStop_Click" Content="STOP" Margin="276,494,0,0" VerticalAlignment="Top" Width="233" Icon="Stop16" Appearance="Danger" Height="45"/>
         <ui:CardExpander x:Name="ConfigExpander" IsExpanded="False" Margin="328,82,8,0" VerticalAlignment="Top" Width="695">
             <ui:CardExpander.Header>
                 <Grid>
@@ -75,5 +75,6 @@
             </ui:CardControl.Header>
             <ui:SymbolIcon Symbol="ArrowRight28"/>
         </ui:CardControl>
+        <Button Content="Instance Manager" x:Name="InstanceManagerBtn" Click="InstanceManagerBtn_Click" Margin="514,494,0,0" VerticalAlignment="Top" Width="253" Height="45"/>
     </Grid>
 </ui:UiPage>

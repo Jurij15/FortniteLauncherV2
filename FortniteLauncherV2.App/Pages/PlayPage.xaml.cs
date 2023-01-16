@@ -24,6 +24,7 @@ using FortniteSharp.Launcher;
 using FortniteSharp.Patchers;
 using System.Threading.Tasks.Sources;
 using Wpf.Ui.Controls;
+using FortniteLauncherV2.App.Windows;
 
 namespace FortniteLauncherV2.App.Pages
 {
@@ -229,6 +230,12 @@ namespace FortniteLauncherV2.App.Pages
         private void BuildsCard_Click(object sender, RoutedEventArgs e)
         {
             Globals.NavStore.Navigate(typeof(BuildsPage), null);
+        }
+
+        private void InstanceManagerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            InstanceManager instanceManager= new InstanceManager();
+            instanceManager.Show();
         }
     }
 }

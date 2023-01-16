@@ -42,11 +42,13 @@
                         <TextBlock
                             FontSize="26"
                             Foreground="#B7FFFFFF"
-                            Text="A custom Fortnite launching experience" />
+                            Text="A custom Fortnite experience" />
                         <ui:Button
                             Height="36"
                             Margin="0,6,0,0"
                             Padding="30,6"
+                            x:Name="StartButtonClick"
+                            Click="StartButtonClick_Click"
                             HorizontalAlignment="Left"
                             Appearance="Transparent"
                             Content="Start Now"
@@ -70,7 +72,7 @@
                 </Grid>
             </Border>
         </Border>
-        <ui:CardAction x:Name="SelectBuildAction" Icon="Box24" VerticalAlignment="Top" Height="74" Margin="0,491,856,0">
+        <ui:CardAction x:Name="SelectBuildAction" Click="SelectBuildAction_Click" Icon="Box24" VerticalAlignment="Top" Height="74" Margin="0,491,772,0">
             <StackPanel>
                 <TextBlock
                         Margin="0"
@@ -83,7 +85,20 @@
                         Text="Select a build" />
             </StackPanel>
         </ui:CardAction>
-        <ui:CardAction x:Name="LaunchBuildAction" Icon="Play24" VerticalAlignment="Top" Height="74" Margin="181,491,675,0">
+        <ui:CardAction x:Name="ServerAction" Click="ServerAction_Click" Icon="Play24" VerticalAlignment="Top" Height="74" Margin="530,491,242,0">
+            <StackPanel>
+                <TextBlock
+                        Margin="0"
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="Server" />
+                <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                        Text="Start LawinServer/Proxy" />
+            </StackPanel>
+        </ui:CardAction>
+        <ui:CardAction x:Name="LaunchBuildAction" Click="LaunchBuildAction_Click" Icon="Play24" VerticalAlignment="Top" Height="74" Margin="265,491,507,0">
             <StackPanel>
                 <TextBlock
                         Margin="0"
@@ -96,6 +111,6 @@
                         Text="Launch a build" />
             </StackPanel>
         </ui:CardAction>
-        <ui:Hyperlink Content="Reroll image" Margin="911,491,0,0" VerticalAlignment="Top" x:Name="RerollImageLink" Click="RerollImageLink_Click"/>
+        <ui:Hyperlink Content="Reroll image" Margin="866,505,0,0" VerticalAlignment="Top" x:Name="RerollImageLink" Click="RerollImageLink_Click" Width="166"/>
     </Grid>
 </ui:UiPage>
