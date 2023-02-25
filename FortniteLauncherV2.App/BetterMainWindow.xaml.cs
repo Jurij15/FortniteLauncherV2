@@ -31,20 +31,6 @@ namespace FortniteLauncherV2.App
         SnackbarService snackbarService = new SnackbarService();
         ThemeService themeService = new ThemeService(); 
         #endregion
-
-        #region Functions
-        /*
-        public void ShowRootSnackbar(string SnackarText = null, string SnackbarContent = null, SymbolRegular SnackbarSymbol = SymbolRegular.GlanceDefault12, ControlAppearance SnackbarControlAppearance = ControlAppearance.Dark)
-        {
-            _snackbarService.Show(SnackarText, SnackbarContent, SnackbarSymbol, SnackbarControlAppearance);
-        }
-        */
-        //this ShowSnackbar will appear in all pages and anywhere there is a snackbar control
-        public void ShowSnackbar(string SnackarText = null, string SnackbarContent = null, SymbolRegular SnackbarSymbol = SymbolRegular.GlanceDefault12, ControlAppearance SnackbarControlAppearance = ControlAppearance.Dark)
-        {
-            _snackbarService.Show(SnackarText, SnackbarContent, SnackbarSymbol, SnackbarControlAppearance);
-        }
-        #endregion
         public BetterMainWindow()
         {
             InitializeComponent();
@@ -57,7 +43,7 @@ namespace FortniteLauncherV2.App
 
             //ShowRootSnackbar("hello", "hi,");
 
-            Settings.Init();
+            //Settings.Init();
             Globals.SetupConsole();
             //RootDialog.ShowAndWaitAsync();
             Globals.bRootDialog = RootDialog;

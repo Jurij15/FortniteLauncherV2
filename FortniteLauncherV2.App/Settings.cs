@@ -19,10 +19,5 @@ namespace FortniteLauncherV2.App
                 Config.Username = username;
             }
         }
-
-        public static void suspendBE_ChangeSettingsValue(bool NewValue)
-        {
-
-        }
     }
 }
