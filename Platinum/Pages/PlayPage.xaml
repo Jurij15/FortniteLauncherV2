@@ -1,0 +1,139 @@
+﻿<ui:UiPage x:Class="Platinum.Pages.PlayPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Platinum.Pages"
+      mc:Ignorable="d"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      Title="PlayPage" d:DesignHeight="531" d:DesignWidth="927">
+    <ScrollViewer>
+        <Grid>
+            <Image x:Name="SplashImage" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="250"/>
+            <ui:CardAction x:Name="BuildsPageCard" VerticalAlignment="Top" Margin="260,4,4,4" Click="BuildsPageCard_Click" Icon="Box24">
+                <StackPanel>
+                    <TextBlock
+                        Text="Select a build"
+                        Margin="0"
+                        FontSize="13"
+                        FontWeight="Medium"/>
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="LightGray"
+                        Text="Select a build before launching the game!" />
+                </StackPanel>
+            </ui:CardAction>
+            <ui:CardAction x:Name="InstanceManagerCard" VerticalAlignment="Top" Margin="260,80,4,4" Icon="Box24">
+                <StackPanel>
+                    <TextBlock
+                        Text="Instance Manager"
+                        Margin="0"
+                        FontSize="13"
+                        FontWeight="Medium"/>
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="LightGray"
+                        Text="Open instance manager" />
+                </StackPanel>
+            </ui:CardAction>
+            <StackPanel Margin="0,250,0,60">
+                <ui:CardExpander x:Name="ConfigExpander" Margin="4,4,4,4" Icon="Settings24">
+                    <ui:CardExpander.Header>
+                        <StackPanel>
+                            <TextBlock
+                            Text="Configuration"
+                            Margin="0"
+                            FontSize="13"
+                            FontWeight="Medium"/>
+                            <TextBlock
+                        FontSize="12"
+                        Foreground="LightGray"
+                        Text="Configure the way game is launched" />
+                        </StackPanel>
+                    </ui:CardExpander.Header>
+                    <StackPanel>
+                        <ui:CardControl Icon="WifiSettings20" VerticalAlignment="Top" Margin="4,4,4,4">
+                            <ui:CardControl.Header>
+                                <StackPanel>
+                                    <TextBlock
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Text="Cranium SSL Bypass"
+                    />
+                                    <TextBlock
+                    FontSize="12"
+                    Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                    Text="Try disabling this if you experience issues with SSL bypass"
+                    />
+                                </StackPanel>
+                            </ui:CardControl.Header>
+                            <StackPanel>
+                                <ui:ToggleSwitch x:Name="CraniumSSLToggle" Margin="2,2,2,2"/>
+                            </StackPanel>
+                        </ui:CardControl>
+                        <ui:CardControl Icon="Text16" VerticalAlignment="Top" Margin="4,4,4,4" >
+                            <ui:CardControl.Header>
+                                <StackPanel>
+                                    <TextBlock
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Text="Launch Arguments"
+                    />
+                                    <TextBlock
+                    FontSize="12"
+                    Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                    Text="Configure the launch arguments"
+                    />
+                                </StackPanel>
+                            </ui:CardControl.Header>
+                            <ScrollViewer>
+                                <ui:TextBox x:Name="launchArgumentsBox" PlaceholderEnabled="True" PlaceholderText="Launch Arguments"/>
+                            </ScrollViewer>
+                        </ui:CardControl>
+                        <ui:CardControl Icon="CircleLine24" VerticalAlignment="Top" Margin="4,4,4,4" >
+                            <ui:CardControl.Header>
+                                <StackPanel>
+                                    <TextBlock
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Text="AntiCheat"
+                    />
+                                    <TextBlock
+                    FontSize="12"
+                    Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                    Text="Select which Anti-Cheat will be suspended at launch"
+                    />
+                                </StackPanel>
+                            </ui:CardControl.Header>
+                            <ScrollViewer>
+                                <StackPanel Orientation="Horizontal">
+                                    <ToggleButton x:Name="SuspendEACToggle" Content="EasyAntiCheat" Margin="2,2,2,2"/>
+                                    <ToggleButton x:Name="SuspendBEToggle" Content="BattleEye" Margin="2,2,2,2"/>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </ui:CardControl>
+                        <ui:CardControl Icon="WifiWarning24" VerticalAlignment="Top" Margin="4,4,4,4">
+                            <ui:CardControl.Header>
+                                <StackPanel>
+                                    <TextBlock
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Text="Custom SSL Bypass"
+                    />
+                                    <TextBlock
+                    FontSize="12"
+                    Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                    Text="Specify the path to the DLL"
+                    />
+                                </StackPanel>
+                            </ui:CardControl.Header>
+                            <ui:TextBox PlaceholderText="Custom DLL Path" Margin="2,2,2,2"/>
+                        </ui:CardControl>
+                    </StackPanel>
+                </ui:CardExpander>
+                <ui:InfoBar IsOpen="True" Title="Build is not selected!" Message="Please select a build before launching the game" Margin="4,4,4,4" Severity="Warning" IsClosable="False"/>
+            </StackPanel>
+            <ui:Button Appearance="Primary" Content="LAUNCH" Icon="Play20" x:Name="LaunchBtn" Click="LaunchBtn_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="4,4,4,14"/>
+        </Grid>
+    </ScrollViewer>
+</ui:UiPage>
