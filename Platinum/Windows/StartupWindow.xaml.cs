@@ -19,9 +19,33 @@ namespace Platinum.Windows
     /// </summary>
     public partial class StartupWindow : Wpf.Ui.Controls.UiWindow
     {
+        async Task PutTaskDelayWelcomeFirstTime()
+        {
+            await Task.Delay(2500);
+        }
+
+        async Task PutTaskDelayWelcomeBack()
+        {
+            await Task.Delay(1100);
+        }
+
         public StartupWindow()
         {
             InitializeComponent();
+            OnStartup();
+            WelcomeProcessRing.IsIndeterminate = true;
+        }
+
+        private async void OnStartup()
+        {
+            PreparingAppBlock.Text = "  Loading The Application";
+            await PutTaskDelayWelcomeBack();
+            //Settings.SettingsValues.bShouldShowWelcomeBackWindow = false;
+            this.Hide();
+            MainWindow betterMainWindow = new MainWindow();
+            betterMainWindow.Show();
+            betterMainWindow.ShowActivated = true;
+            betterMainWindow.ShowInTaskbar = true;
         }
     }
 }

@@ -10,10 +10,21 @@
                                   Background="{ui:ThemeResource ApplicationBackgroundBrush}"
              ExtendsContentIntoTitleBar="True"
              WindowStartupLocation="CenterScreen"
-                              WindowBackdropType="Mica"
+             ResizeMode="NoResize"
+                              WindowBackdropType="Tabbed"
                  WindowCornerPreference="Round"
         >
     <Grid>
-        
+        <ui:TitleBar
+            Title="TextEditor - Preparing"
+            ShowMinimize="False"
+            CanMaximize="False"
+            ShowMaximize="False"
+            ShowClose="False"
+                />
+        <Image x:Name="AppIcon" Margin="20,52,432,32" Source="/Windows/FNLauncher_Icon.png"/>
+        <TextBlock Text="Preparing the application" FontWeight="DemiBold" FontSize="32" Foreground="White" Margin="400,227,22,163" x:Name="PreparingAppBlock"/>
+        <ui:ProgressRing IsIndeterminate="True" Margin="559,167,181,207" x:Name="WelcomeProcessRing"/>
+        <TextBlock Text="Welcome!" FontWeight="Medium" FontSize="16" Foreground="DimGray" Margin="553,276,175,134"/>
     </Grid>
 </ui:UiWindow>

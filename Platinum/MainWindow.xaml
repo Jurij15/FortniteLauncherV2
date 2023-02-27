@@ -7,6 +7,7 @@
         xmlns:pages="clr-namespace:Platinum.Pages"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
+             Closing="UiWindow_Closing"
         Title="Platinum Launcher" Height="857" Width="1422"
                           Background="{ui:ThemeResource ApplicationBackgroundBrush}"
              ExtendsContentIntoTitleBar="True"
