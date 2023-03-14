@@ -28,7 +28,7 @@
                             <GradientStop Offset="-2" Color="#7F000000" />
                         </RadialGradientBrush>
                     </Border.Background>
-                    <StackPanel>
+                    <StackPanel x:Name="OptionsPanel">
                         <TextBlock Text="Platinum Launcher" x:Name="TitleBlock" FontWeight="Bold" FontSize="32" Foreground="WhiteSmoke" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,40,8,8" />
                         <TextBlock Text="Welcome Back!" x:Name="SubtitleBlock" FontWeight="SemiBold" FontSize="18" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center"  />
                         <ui:CardAction x:Name="BuildsPageCard" Margin="12,12,12,12" Click="BuildsPageCard_Click" Icon="Box24">

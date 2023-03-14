@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Platinum.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,8 @@ namespace Platinum.Windows
 
         async Task PutTaskDelayWelcomeBack()
         {
-            await Task.Delay(1100);
+            DLLHelper.InitSavedDLLs();
+            await Task.Delay(990);
         }
 
         public StartupWindow()

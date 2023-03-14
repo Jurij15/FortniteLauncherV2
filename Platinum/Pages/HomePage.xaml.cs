@@ -37,16 +37,16 @@ namespace Platinum.Pages
 
         private void MenuBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (GradientBorder.IsVisible == true)
+            if (OptionsPanel.IsVisible == true)
             {
-                Wpf.Ui.Animations.Transitions.ApplyTransition(GradientBorder, Wpf.Ui.Animations.TransitionType.SlideBottom, 195);
-                GradientBorder.Visibility = Visibility.Collapsed;
+                //Wpf.Ui.Animations.Transitions.ApplyTransition(GradientBorder, Wpf.Ui.Animations.TransitionType.SlideBottom, 195);
+                OptionsPanel.Visibility = Visibility.Collapsed;
                 MenuBtn.Content = "Open Menu";
             }
-            else if (GradientBorder.IsVisible == false)
+            else if (OptionsPanel.IsVisible == false)
             {
-                Wpf.Ui.Animations.Transitions.ApplyTransition(GradientBorder, Wpf.Ui.Animations.TransitionType.FadeIn, 195);
-                GradientBorder.Visibility = Visibility.Visible;
+                //Wpf.Ui.Animations.Transitions.ApplyTransition(GradientBorder, Wpf.Ui.Animations.TransitionType.FadeIn, 195);
+                OptionsPanel.Visibility = Visibility.Visible;
                 MenuBtn.Content = "Close Menu";
             }
         }

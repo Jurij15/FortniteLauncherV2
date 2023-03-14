@@ -11,5 +11,7 @@ namespace Platinum
     {
         public static MainWindow MWindow;
         public static NavigationStore GNavigation;
+
+        public static string CurrentlySelectedSSLBypassDLL { get ; set; }
     }
 }

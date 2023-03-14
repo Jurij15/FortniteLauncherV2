@@ -6,38 +6,54 @@
       xmlns:local="clr-namespace:Platinum.Pages"
       mc:Ignorable="d"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+           ShowsNavigationUI="True"
       Title="PlayPage" d:DesignHeight="531" d:DesignWidth="927">
     <ScrollViewer>
         <Grid>
-            <Image x:Name="SplashImage" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="250"/>
-            <ui:CardAction x:Name="BuildsPageCard" VerticalAlignment="Top" Margin="260,4,4,4" Click="BuildsPageCard_Click" Icon="Box24">
-                <StackPanel>
-                    <TextBlock
+            <Image x:Name="SplashImage" Source="../DefaultFortniteIcon.jpg" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="250" Margin="4,4,4,4" IsEnabled="True"/>
+            <StackPanel>
+                <ui:CardAction x:Name="BuildsPageCard" VerticalAlignment="Top" Margin="265,4,4,4" Click="BuildsPageCard_Click" Icon="Box24">
+                    <StackPanel>
+                        <TextBlock
                         Text="Select a build"
                         Margin="0"
                         FontSize="13"
                         FontWeight="Medium"/>
-                    <TextBlock
+                        <TextBlock
                         FontSize="12"
                         Foreground="LightGray"
                         Text="Select a build before launching the game!" />
-                </StackPanel>
-            </ui:CardAction>
-            <ui:CardAction x:Name="InstanceManagerCard" VerticalAlignment="Top" Margin="260,80,4,4" Icon="Box24">
-                <StackPanel>
-                    <TextBlock
+                    </StackPanel>
+                </ui:CardAction>
+                <ui:CardAction x:Name="ServerPageCard" VerticalAlignment="Top" Margin="265,4,4,4" Click="ServerPageCard_Click" Icon="Server24">
+                    <StackPanel>
+                        <TextBlock
+                        Text="Start a private server"
+                        Margin="0"
+                        FontSize="13"
+                        FontWeight="Medium"/>
+                        <TextBlock
+                        FontSize="12"
+                        Foreground="LightGray"
+                        Text="Setup a private server like LawinServer" />
+                    </StackPanel>
+                </ui:CardAction>
+                <ui:CardAction x:Name="InstanceManagerCard" VerticalAlignment="Top" Margin="265,4,4,4" Icon="BoxSearch24">
+                    <StackPanel>
+                        <TextBlock
                         Text="Instance Manager"
                         Margin="0"
                         FontSize="13"
                         FontWeight="Medium"/>
-                    <TextBlock
+                        <TextBlock
                         FontSize="12"
                         Foreground="LightGray"
                         Text="Open instance manager" />
-                </StackPanel>
-            </ui:CardAction>
+                    </StackPanel>
+                </ui:CardAction>
+            </StackPanel>
             <StackPanel Margin="0,250,0,60">
-                <ui:CardExpander x:Name="ConfigExpander" Margin="4,4,4,4" Icon="Settings24">
+                <ui:CardExpander x:Name="ConfigExpander" Margin="4,18,4,4" Icon="Settings24">
                     <ui:CardExpander.Header>
                         <StackPanel>
                             <TextBlock
@@ -52,23 +68,24 @@
                         </StackPanel>
                     </ui:CardExpander.Header>
                     <StackPanel>
-                        <ui:CardControl Icon="WifiSettings20" VerticalAlignment="Top" Margin="4,4,4,4">
+                        <ui:CardControl Icon="WifiSettings20" VerticalAlignment="Top" Margin="4,4,4,4" IconFilled="True">
                             <ui:CardControl.Header>
                                 <StackPanel>
                                     <TextBlock
                     FontSize="13"
                     FontWeight="Medium"
-                    Text="Cranium SSL Bypass"
+                    Text="SSL Bypass DLL"
                     />
                                     <TextBlock
                     FontSize="12"
                     Foreground="{DynamicResource TextFillColorTertiaryBrush}"
-                    Text="Try disabling this if you experience issues with SSL bypass"
+                    Text="Select the desired SSL bypass DLL"
                     />
                                 </StackPanel>
                             </ui:CardControl.Header>
-                            <StackPanel>
-                                <ui:ToggleSwitch x:Name="CraniumSSLToggle" Margin="2,2,2,2"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="CurrentlySelectedDLLBlock" Text="Currently Selected: " Margin="14,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <ui:Button x:Name="OpenDLLSelectorBtn" Content="Select DLL" Appearance="Transparent" Icon="Library24" Click="OpenDLLSelectorBtn_Click"/>
                             </StackPanel>
                         </ui:CardControl>
                         <ui:CardControl Icon="Text16" VerticalAlignment="Top" Margin="4,4,4,4" >
@@ -134,6 +151,29 @@
                 <ui:InfoBar IsOpen="True" Title="Build is not selected!" Message="Please select a build before launching the game" Margin="4,4,4,4" Severity="Warning" IsClosable="False"/>
             </StackPanel>
             <ui:Button Appearance="Primary" Content="LAUNCH" Icon="Play20" x:Name="LaunchBtn" Click="LaunchBtn_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="4,4,4,14"/>
+            <ui:ToggleSwitch Content="Mark as a GameServer" x:Name="MarkAsGameserverProcess" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,109,14" Height="32" Width="197"/>
+
+            <ui:Dialog x:Name="SelectDLLDialog"
+                       ButtonLeftClick="SelectDLLDialog_ButtonLeftClick"
+                       ButtonLeftAppearance="Primary"
+                       ButtonLeftName="Select"
+                       
+                       ButtonRightAppearance="Secondary"
+                       ButtonRightClick="SelectDLLDialog_ButtonRightClick"
+                       ButtonRightName="Cancel"
+                       
+                       DialogHeight="450"
+                       
+                       AllowDrop="True"
+                       >
+                <StackPanel>
+                    <TextBlock Text="Select a DLL" FontSize="20" FontWeight="Medium" Margin="4,4,4,4" DockPanel.Dock="Top"/>
+                    <ListBox x:Name="DLLsList" DockPanel.Dock="Top">
+                        
+                    </ListBox>
+                    <ui:Button Icon="Add24" Content="Add" Margin="4,4,4,4" x:Name="AddDLLToSaves" Click="AddDLLToSaves_Click" DockPanel.Dock="Top"/>
+                </StackPanel>
+            </ui:Dialog>
         </Grid>
     </ScrollViewer>
 </ui:UiPage>

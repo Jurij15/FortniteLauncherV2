@@ -8,6 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DefaultFortniteIcon.jpg" />
+    <None Remove="DefaultFortniteIcon.png" />
+    <None Remove="FNLauncher_Icon.ico" />
     <None Remove="Pages\Truck1.10.png" />
     <None Remove="Windows\FNLauncher_Icon.png" />
   </ItemGroup>
@@ -18,8 +21,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="DefaultFortniteIcon.jpg" />
+    <Resource Include="FNLauncher_Icon.ico" />
     <Resource Include="Pages\Truck1.10.png" />
     <Resource Include="Windows\FNLauncher_Icon.png" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="LauncherData\" />
+    <Folder Include="Settings\" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Content Include="LauncherData\**">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 
 </Project>
