@@ -22,7 +22,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <ui:Button Icon="ArrowLeft28" Content="Back" Margin="4,4,4,4" x:Name="ButtonBack" Click="ButtonBack_Click" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <TextBlock Text="Launch Aruments Builder" Margin="99,4,4,4" FontWeight="Medium" Grid.Row="1" FontSize="26" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <TextBlock Text="Launch Arguments Builder" Margin="99,4,4,4" FontWeight="Medium" Grid.Row="1" FontSize="26" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
         <ui:TextBox x:Name="CurrentLaunchArgumentsBox" Grid.Row="2" Margin="4,4,89,4" VerticalAlignment="Center" IsReadOnly="True" IsReadOnlyCaretVisible="True" PlaceholderText="Current Arguments"/>
         <ui:Button x:Name="ResetArgumentsBtn" Grid.Row="2" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" Icon="ArrowRedo32" Content="Reset"/>
