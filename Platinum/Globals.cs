@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using Wpf.Ui.Controls;
 
 namespace Platinum
@@ -11,7 +12,9 @@ namespace Platinum
     {
         public static MainWindow MWindow;
         public static NavigationStore GNavigation;
+        public static Frame GFrame;
 
         public static string CurrentlySelectedSSLBypassDLL { get ; set; }
+        public static string CurrentlySelectedBuildPath { get ; set; }
     }
 }

@@ -71,5 +71,10 @@ namespace Platinum.Pages
         {
 
         }
+
+        private void ArgumentBuilderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.GFrame.Navigate(new ArgumentBuilder());
+        }
     }
 }

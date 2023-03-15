@@ -25,6 +25,8 @@ namespace Platinum
         {
             InitializeComponent();
             Globals.GNavigation = MainWindowNavStore;
+            Globals.GFrame = RootFrame;
+            Globals.MWindow = this;
         }
 
         private void ThemeButtonNavigation_Click(object sender, RoutedEventArgs e)
@@ -42,6 +44,11 @@ namespace Platinum
         private void UiWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void MainWindowNavStore_Navigated(Wpf.Ui.Controls.Interfaces.INavigation sender, Wpf.Ui.Common.RoutedNavigationEventArgs e)
+        {
+            
         }
     }
 }

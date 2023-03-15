@@ -37,6 +37,7 @@
             Precache="False"
             TransitionDuration="195"
             SelectedPageIndex="0"
+            Navigated="MainWindowNavStore_Navigated"
             Frame="{Binding ElementName=RootFrame}"
             >
             <ui:NavigationStore.Items>

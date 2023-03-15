@@ -104,7 +104,10 @@
                                 </StackPanel>
                             </ui:CardControl.Header>
                             <ScrollViewer>
-                                <ui:TextBox x:Name="launchArgumentsBox" PlaceholderEnabled="True" PlaceholderText="Launch Arguments"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <ui:Button Icon="Edit32" IconFilled="True" Content="Argument Builder" x:Name="ArgumentBuilderBtn" Margin="8,0,0,0" Click="ArgumentBuilderBtn_Click"/>
+                                    <ui:TextBox x:Name="launchArgumentsBox" PlaceholderEnabled="True" PlaceholderText="Launch Arguments" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </StackPanel>
                             </ScrollViewer>
                         </ui:CardControl>
                         <ui:CardControl Icon="CircleLine24" VerticalAlignment="Top" Margin="4,4,4,4" >
@@ -118,7 +121,7 @@
                                     <TextBlock
                     FontSize="12"
                     Foreground="{DynamicResource TextFillColorTertiaryBrush}"
-                    Text="Select which Anti-Cheat will be suspended at launch"
+                    Text="Select which Anti-Cheat will be suspended upon launch"
                     />
                                 </StackPanel>
                             </ui:CardControl.Header>
@@ -129,7 +132,7 @@
                                 </StackPanel>
                             </ScrollViewer>
                         </ui:CardControl>
-                        <ui:CardControl Icon="WifiWarning24" VerticalAlignment="Top" Margin="4,4,4,4">
+                        <ui:CardControl Icon="WifiWarning24" VerticalAlignment="Top" Margin="4,4,4,4" Visibility="Collapsed">
                             <ui:CardControl.Header>
                                 <StackPanel>
                                     <TextBlock
