@@ -5,12 +5,14 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>FNLauncher_Icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="DefaultFortniteIcon.jpg" />
     <None Remove="DefaultFortniteIcon.png" />
     <None Remove="FNLauncher_Icon.ico" />
+    <None Remove="FNLauncher_Icon.png" />
     <None Remove="logopepega.ico" />
     <None Remove="logopepega.png" />
     <None Remove="Pages\Truck1.10.png" />
@@ -24,6 +26,7 @@
   <ItemGroup>
     <Resource Include="DefaultFortniteIcon.jpg" />
     <Resource Include="FNLauncher_Icon.ico" />
+    <Resource Include="FNLauncher_Icon.png" />
     <Resource Include="logopepega.ico" />
     <Resource Include="logopepega.png" />
     <Resource Include="Pages\Truck1.10.png" />
@@ -32,13 +35,16 @@
 
   <ItemGroup>
     <Folder Include="LauncherData\" />
-    <Folder Include="Settings\" />
   </ItemGroup>
 
 	<ItemGroup>
 		<Content Include="LauncherData\**">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="FNLauncher_Icon.ico" />
 	</ItemGroup>
 
 </Project>

@@ -20,20 +20,17 @@ namespace Platinum.Windows
     /// </summary>
     public partial class StartupWindow : Wpf.Ui.Controls.UiWindow
     {
-        async Task PutTaskDelayWelcomeFirstTime()
-        {
-            await Task.Delay(2500);
-        }
-
         async Task PutTaskDelayWelcomeBack()
         {
             DLLHelper.InitSavedDLLs();
-            await Task.Delay(990);
+            await Task.Delay(1000);
         }
 
         public StartupWindow()
         {
             InitializeComponent();
+            Wpf.Ui.Appearance.Theme.Apply(Wpf.Ui.Appearance.ThemeType.Light);
+            Wpf.Ui.Appearance.Accent.ApplySystemAccent();
             OnStartup();
             WelcomeProcessRing.IsIndeterminate = true;
         }
@@ -44,6 +41,14 @@ namespace Platinum.Windows
             await PutTaskDelayWelcomeBack();
             //Settings.SettingsValues.bShouldShowWelcomeBackWindow = false;
             this.Hide();
+            if (Wpf.Ui.Appearance.Theme.GetSystemTheme() == Wpf.Ui.Appearance.SystemThemeType.Dark)
+            {
+                Wpf.Ui.Appearance.Theme.Apply(Wpf.Ui.Appearance.ThemeType.Dark);
+            }
+            else if (Wpf.Ui.Appearance.Theme.GetSystemTheme() == Wpf.Ui.Appearance.SystemThemeType.Light)
+            {
+                Wpf.Ui.Appearance.Theme.Apply(Wpf.Ui.Appearance.ThemeType.Light);
+            }
             MainWindow betterMainWindow = new MainWindow();
             betterMainWindow.Show();
             betterMainWindow.ShowActivated = true;

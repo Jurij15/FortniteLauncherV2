@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Platinum.Settings;
+using System.Xml.Serialization;
+using System.Text.RegularExpressions;
 
 namespace Platinum.Helpers
 {
@@ -41,6 +44,11 @@ namespace Platinum.Helpers
             }
 
             return false;
+        }
+
+        public static string RemoveAllSpacesFromString(string ValidPath)
+        {
+            return ValidPath.Replace(" ", string.Empty);
         }
     }
 }

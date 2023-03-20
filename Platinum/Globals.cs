@@ -18,5 +18,9 @@ namespace Platinum
         public static string CurrentlySelectedBuildPath { get ; set; }
         public static string UserName { get ; set; }
         public static string CurrentLaunchArgunments { get ; set; }
+
+        public static string CurrentlySelectedBuild { get; set; }
+
+        public static List<string> AllSavedBuilds = new List<string>();
     }
 }

@@ -27,6 +27,9 @@
         </Grid.RowDefinitions>
         <ui:TitleBar 
             Title="Platinum Launcher"
+            Icon="FNLauncher_Icon.png"
+            ShowHelp="True"
+            UseSnapLayout="True"
             Grid.Row="1"
             />
         <ui:NavigationStore
@@ -58,7 +61,6 @@
                     Content="Builds"
                     Icon="Box20"
                     PageType="{x:Type pages:BuildsPage}"
-                                        Cache="False"
                     PageTag="BuildsTab"/>
                 <ui:NavigationItem
                     Content="Server"

@@ -106,7 +106,7 @@
                             <ScrollViewer>
                                 <StackPanel Orientation="Horizontal">
                                     <ui:Button Icon="Edit32" IconFilled="True" Content="Argument Picker" x:Name="ArgumentBuilderBtn" Margin="18,0,0,0" Click="ArgumentBuilderBtn_Click"/>
-                                    <ui:TextBox IsReadOnly="True" x:Name="launchArgumentsBox" PlaceholderEnabled="True" PlaceholderText="Launch Arguments" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <ui:TextBox MaxLines="1" IsReadOnly="True" x:Name="launchArgumentsBox" PlaceholderEnabled="True" PlaceholderText="Launch Arguments" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
                                 </StackPanel>
                             </ScrollViewer>
                         </ui:CardControl>
@@ -151,11 +151,27 @@
                         </ui:CardControl>
                     </StackPanel>
                 </ui:CardExpander>
-                <ui:InfoBar IsOpen="True" Title="Build is not selected!" Message="Please select a build before launching the game" Margin="4,4,4,4" Severity="Warning" IsClosable="False"/>
+                <ui:InfoBar IsOpen="True" Title="Build is not selected!" Message="Please select a build before launching the game" Margin="4,4,4,4" Severity="Warning" IsClosable="False" x:Name="BuildUnselectedWarningBar"/>
             </StackPanel>
             <ui:Button Appearance="Primary" Content="LAUNCH" Icon="Play20" x:Name="LaunchBtn" Click="LaunchBtn_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="4,4,4,14"/>
             <ui:ToggleSwitch Content="Mark as a GameServer" x:Name="MarkAsGameserverProcess" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,109,14" Height="32" Width="197"/>
 
+            <ui:Card x:Name="InfoCard" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="4,4,4,4">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock FontWeight="Normal" Text="Current Build:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="CurrentBuildNameBox" FontWeight="Medium" Text="" Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock FontWeight="Normal" Text="Current Path:" Margin="14,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="CurrentPathBox" FontWeight="Medium" Text="" Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                    <ui:Badge x:Name="StatusBadge" Margin="16,0,0,0" Background="Transparent">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <ui:SymbolIcon Symbol="Checkmark20" Filled="True" Foreground="Green" x:Name="ReadyIcon" Visibility="Collapsed"/>
+                            <ui:SymbolIcon Symbol="ErrorCircle20" Filled="True" Foreground="Red" x:Name="UnreadyIcon" Visibility="Collapsed"/>
+                        </StackPanel>
+                    </ui:Badge>
+                </StackPanel>
+            </ui:Card>
+            
             <ui:Dialog x:Name="SelectDLLDialog"
                        ButtonLeftClick="SelectDLLDialog_ButtonLeftClick"
                        ButtonLeftAppearance="Primary"

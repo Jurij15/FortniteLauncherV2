@@ -12,6 +12,7 @@ namespace Platinum
         public static void DoOnStartup()
         {
             //DLLHelper.InitSavedDLLs();
+            Settings.Settings.bIsSaveToRun();
         }
     }
 }
