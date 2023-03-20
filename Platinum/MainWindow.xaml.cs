@@ -39,6 +39,8 @@ namespace Platinum
             {
                 Wpf.Ui.Appearance.Theme.Apply(Wpf.Ui.Appearance.ThemeType.Dark);
             }
+
+            Wpf.Ui.Appearance.Accent.ApplySystemAccent();
         }
 
         private void UiWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)

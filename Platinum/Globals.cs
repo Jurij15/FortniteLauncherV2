@@ -16,5 +16,7 @@ namespace Platinum
 
         public static string CurrentlySelectedSSLBypassDLL { get ; set; }
         public static string CurrentlySelectedBuildPath { get ; set; }
+        public static string UserName { get ; set; }
+        public static string CurrentLaunchArgunments { get ; set; }
     }
 }

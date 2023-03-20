@@ -31,7 +31,7 @@
                     <StackPanel x:Name="OptionsPanel">
                         <TextBlock Text="Platinum Launcher" x:Name="TitleBlock" FontWeight="Bold" FontSize="32" Foreground="WhiteSmoke" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,40,8,8" />
                         <TextBlock Text="Welcome Back!" x:Name="SubtitleBlock" FontWeight="SemiBold" FontSize="18" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center"  />
-                        <ui:CardAction x:Name="BuildsPageCard" Margin="12,12,12,12" Click="BuildsPageCard_Click" Icon="Box24">
+                        <ui:CardAction x:Name="BuildsPageCard" Margin="12,12,12,12" Click="BuildsPageCard_Click" Icon="Box24" Background="Transparent">
                             <StackPanel>
                                 <TextBlock
                         Margin="0"
@@ -44,7 +44,7 @@
                         Text="Select a build" />
                             </StackPanel>
                         </ui:CardAction>
-                        <ui:CardAction x:Name="PlayCard" Margin="12,1,12,12" Click="PlayCard_Click" Icon="Play24">
+                        <ui:CardAction x:Name="PlayCard" Margin="12,1,12,12" Click="PlayCard_Click" Icon="Play24" Background="Transparent">
                             <StackPanel>
                                 <TextBlock
                         Margin="0"
@@ -57,7 +57,7 @@
                         Text="Launch a build!" />
                             </StackPanel>
                         </ui:CardAction>
-                        <ui:CardAction x:Name="ServerCard" Margin="12,1,12,12" Click="ServerCard_Click" Icon="Server24">
+                        <ui:CardAction x:Name="ServerCard" Margin="12,1,12,12" Click="ServerCard_Click" Icon="Server24" Background="Transparent">
                             <StackPanel>
                                 <TextBlock
                         Margin="0"

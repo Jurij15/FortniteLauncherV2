@@ -105,8 +105,8 @@
                             </ui:CardControl.Header>
                             <ScrollViewer>
                                 <StackPanel Orientation="Horizontal">
-                                    <ui:Button Icon="Edit32" IconFilled="True" Content="Argument Builder" x:Name="ArgumentBuilderBtn" Margin="8,0,0,0" Click="ArgumentBuilderBtn_Click"/>
-                                    <ui:TextBox x:Name="launchArgumentsBox" PlaceholderEnabled="True" PlaceholderText="Launch Arguments" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <ui:Button Icon="Edit32" IconFilled="True" Content="Argument Picker" x:Name="ArgumentBuilderBtn" Margin="18,0,0,0" Click="ArgumentBuilderBtn_Click"/>
+                                    <ui:TextBox IsReadOnly="True" x:Name="launchArgumentsBox" PlaceholderEnabled="True" PlaceholderText="Launch Arguments" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </ScrollViewer>
                         </ui:CardControl>

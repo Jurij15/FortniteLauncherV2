@@ -45,34 +45,40 @@
                     Content="Home"
                     Icon="Home20"
                     PageType="{x:Type pages:HomePage}"
+                    Cache="False"
                     PageTag="HomePage"/>
                 <ui:NavigationSeparator/>
                 <ui:NavigationItem
                     Content="Play"
                     Icon="Play20"
                     PageType="{x:Type pages:PlayPage}"
+                                        Cache="False"
                     PageTag="PlayPage"/>
                 <ui:NavigationItem 
                     Content="Builds"
                     Icon="Box20"
                     PageType="{x:Type pages:BuildsPage}"
+                                        Cache="False"
                     PageTag="BuildsTab"/>
                 <ui:NavigationItem
                     Content="Server"
                     Icon="Server20"
                     FontSize="14"
                     PageType="{x:Type pages:ServerPage}"
+                                        Cache="False"
                     PageTag="ServerTab"/>
                 <ui:NavigationItem
                     Content="GameServer"
                     Icon="Games20"
                     FontSize="14"
                     PageType="{x:Type pages:GameServerPage}"
+                                        Cache="False"
                     PageTag="InGameTab"/>
                 <ui:NavigationItem
                     Content="Inject"
                     Icon="PlugConnected20"
                     PageType="{x:Type pages:InjectPage}"
+                                        Cache="False"
                     PageTag="InjectPage"/>
             </ui:NavigationStore.Items>
             <ui:NavigationStore.Footer>
@@ -92,7 +98,7 @@
                     Click="ThemeButtonNavigation_Click"/>
             </ui:NavigationStore.Footer>
         </ui:NavigationStore>
-        <Border Grid.Row="2" Background="Transparent" Margin="70,2,2,2">
+        <Border Grid.Row="2" Background="{DynamicResource ControlFillColorDefaultBrush}" Margin="70,2,2,2" CornerRadius="8,0,0,0">
             <Frame x:Name="RootFrame" Grid.Row="2" Margin="0,0,0,0"/>
         </Border>
     </Grid>
