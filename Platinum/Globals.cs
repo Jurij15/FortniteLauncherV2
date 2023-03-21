@@ -11,7 +11,7 @@ namespace Platinum
     public class Globals
     {
         public static MainWindow MWindow;
-        public static NavigationStore GNavigation;
+        public static NavigationCompact GNavigation;
         public static Frame GFrame;
 
         public static string CurrentlySelectedSSLBypassDLL { get ; set; }

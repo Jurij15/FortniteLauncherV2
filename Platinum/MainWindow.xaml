@@ -8,7 +8,7 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
              Closing="UiWindow_Closing"
-        Title="Platinum Launcher" Height="857" Width="1422"
+        Title="Platinum Launcher" Height="812" Width="1346"
                           Background="{ui:ThemeResource ApplicationBackgroundBrush}"
              ExtendsContentIntoTitleBar="True"
              WindowStartupLocation="CenterScreen"
@@ -25,16 +25,22 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <ui:TitleBar 
             Title="Platinum Launcher"
             Icon="FNLauncher_Icon.png"
             ShowHelp="True"
             UseSnapLayout="True"
             Grid.Row="1"
+            Grid.ColumnSpan="3"
             />
-        <ui:NavigationStore
+        <ui:NavigationCompact
             x:Name="MainWindowNavStore"
             Grid.Row="2"
+            Grid.Column="0"
             HorizontalAlignment="Left"
             TransitionType="FadeInWithSlide"
             Precache="False"
@@ -43,7 +49,7 @@
             Navigated="MainWindowNavStore_Navigated"
             Frame="{Binding ElementName=RootFrame}"
             >
-            <ui:NavigationStore.Items>
+            <ui:NavigationCompact.Items>
                 <ui:NavigationItem
                     Content="Home"
                     Icon="Home20"
@@ -82,8 +88,8 @@
                     PageType="{x:Type pages:InjectPage}"
                                         Cache="False"
                     PageTag="InjectPage"/>
-            </ui:NavigationStore.Items>
-            <ui:NavigationStore.Footer>
+            </ui:NavigationCompact.Items>
+            <ui:NavigationCompact.Footer>
                 <ui:NavigationItem
                     Content="Settings"
                     Icon="Settings20"
@@ -98,9 +104,9 @@
                     Content="Theme"
                     Icon="DarkTheme20"
                     Click="ThemeButtonNavigation_Click"/>
-            </ui:NavigationStore.Footer>
-        </ui:NavigationStore>
-        <Border Grid.Row="2" Background="{DynamicResource ControlFillColorDefaultBrush}" Margin="70,2,2,2" CornerRadius="8,0,0,0">
+            </ui:NavigationCompact.Footer>
+        </ui:NavigationCompact>
+        <Border Grid.Row="2" Grid.Column="2" Background="{DynamicResource ControlFillColorDefaultBrush}" CornerRadius="8,0,0,0">
             <Frame x:Name="RootFrame" Grid.Row="2" Margin="0,0,0,0"/>
         </Border>
     </Grid>
