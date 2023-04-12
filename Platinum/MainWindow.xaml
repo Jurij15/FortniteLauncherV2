@@ -94,6 +94,9 @@
                         <ui:SymbolIcon Symbol="PlugConnected24"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
+                <ui:NavigationViewItem
+                    Content="INVISIBLE_ARGUMENTSPICKER" Visibility="Collapsed"
+                    TargetPageType="{x:Type pages:ArgumentBuilder}" />
             </ui:NavigationView.MenuItems>
             <ui:NavigationView.FooterMenuItems>
                 <ui:NavigationViewItem

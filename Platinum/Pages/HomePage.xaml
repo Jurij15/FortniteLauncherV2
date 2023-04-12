@@ -12,71 +12,83 @@
     ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
     Foreground="{DynamicResource TextFillColorPrimaryBrush}">
     <ScrollViewer>
-        <Border x:Name="RootBorder">
-            <Border.Background>
-                <ImageBrush
-                    RenderOptions.BitmapScalingMode="HighQuality"
-                    Stretch="UniformToFill" ImageSource="/Pages/Truck1.10.png"/>
-            </Border.Background>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border x:Name="GradientBorder" Grid.Row="2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border Margin="8,8,8,8" CornerRadius="8" Grid.Row="0">
+                <Border.Background>
+                    <ImageBrush ImageSource="/Pages/Truck1.10.png"                     
+                                    RenderOptions.BitmapScalingMode="Fant"
+                    Stretch="UniformToFill" />
+                </Border.Background>
+                <Border CornerRadius="8">
                     <Border.Background>
                         <RadialGradientBrush>
                             <GradientStop Offset="-2" Color="#26000000" />
                             <GradientStop Offset="-2" Color="#7F000000" />
                         </RadialGradientBrush>
                     </Border.Background>
-                    <StackPanel x:Name="OptionsPanel">
-                        <TextBlock Text="Platinum Launcher" x:Name="TitleBlock" FontWeight="Bold" FontSize="32" Foreground="WhiteSmoke" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,40,8,8" />
-                        <TextBlock Text="Welcome Back!" x:Name="SubtitleBlock" FontWeight="SemiBold" FontSize="18" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center"  />
-                        <ui:CardAction x:Name="BuildsPageCard" Margin="12,12,12,12" Click="BuildsPageCard_Click" Icon="Box24" Background="Transparent">
-                            <StackPanel>
-                                <TextBlock
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock Text="Platinum Launcher" FontWeight="Medium" FontSize="36" Margin="48,50,50,4" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"/>
+                            <TextBlock Text="Welcome back!" FontSize="28" HorizontalAlignment="Left" Margin="48,4,50,50" VerticalAlignment="Center" Foreground="#B7FFFFFF"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Border>
+
+            <StackPanel x:Name="OptionsPanel" Grid.Row="2">
+                <ui:CardAction x:Name="BuildsPageCard" Margin="12,12,12,12" Click="BuildsPageCard_Click" Icon="Box24" Background="Transparent">
+                    <StackPanel>
+                        <TextBlock
                         Margin="0"
                         FontSize="13"
                         FontWeight="Medium"
                         Text="Builds" />
-                                <TextBlock
+                        <TextBlock
                         FontSize="12"
                         Foreground="LightGray"
                         Text="Select a build" />
-                            </StackPanel>
-                        </ui:CardAction>
-                        <ui:CardAction x:Name="PlayCard" Margin="12,1,12,12" Click="PlayCard_Click" Icon="Play24" Background="Transparent">
-                            <StackPanel>
-                                <TextBlock
+                    </StackPanel>
+                </ui:CardAction>
+                <ui:CardAction x:Name="PlayCard" Margin="12,1,12,12" Click="PlayCard_Click" Icon="Play24" Background="Transparent">
+                    <StackPanel>
+                        <TextBlock
                         Margin="0"
                         FontSize="13"
                         FontWeight="Medium"
                         Text="Play" />
-                                <TextBlock
+                        <TextBlock
                         FontSize="12"
                                                             Foreground="LightGray"
                         Text="Launch a build!" />
-                            </StackPanel>
-                        </ui:CardAction>
-                        <ui:CardAction x:Name="ServerCard" Margin="12,1,12,12" Click="ServerCard_Click" Icon="Server24" Background="Transparent">
-                            <StackPanel>
-                                <TextBlock
+                    </StackPanel>
+                </ui:CardAction>
+                <ui:CardAction x:Name="ServerCard" Margin="12,1,12,12" Click="ServerCard_Click" Icon="Server24" Background="Transparent">
+                    <StackPanel>
+                        <TextBlock
                         Margin="0"
                         FontSize="13"
                         FontWeight="Medium"
                         Text="Server" />
-                                <TextBlock
+                        <TextBlock
                         FontSize="12"
                                                             Foreground="LightGray"
                         Text="Set Up a Private Server!" />
-                            </StackPanel>
-                        </ui:CardAction>
                     </StackPanel>
-                </Border>
-                <ui:Button Appearance="Transparent" x:Name="MenuBtn" Grid.Row="1" Content="Close Menu" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="MenuBtn_Click"/>
-                <ui:Button Appearance="Transparent" x:Name="RerollImageBtn" Grid.Row="1" Content="Reroll Image" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="RerollImageBtn_Click" Margin="0,0,100,0"/>
-            </Grid>
-        </Border>
+                </ui:CardAction>
+            </StackPanel>
+        </Grid>
     </ScrollViewer>
 </Page>

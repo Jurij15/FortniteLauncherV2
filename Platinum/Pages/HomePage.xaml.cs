@@ -22,8 +22,6 @@ namespace Platinum.Pages
     {
         void AnimateAllElements()
         {
-            Wpf.Ui.Animations.Transitions.ApplyTransition(TitleBlock, Wpf.Ui.Animations.TransitionType.FadeIn, 150);
-            Wpf.Ui.Animations.Transitions.ApplyTransition(SubtitleBlock, Wpf.Ui.Animations.TransitionType.FadeIn, 150);
             Wpf.Ui.Animations.Transitions.ApplyTransition(BuildsPageCard, Wpf.Ui.Animations.TransitionType.FadeInWithSlide, 200);
             Wpf.Ui.Animations.Transitions.ApplyTransition(PlayCard, Wpf.Ui.Animations.TransitionType.FadeInWithSlide, 200);
         }
@@ -31,24 +29,7 @@ namespace Platinum.Pages
         public HomePage()
         {
             InitializeComponent();
-            GradientBorder.Visibility = Visibility.Visible;
             AnimateAllElements();
-        }
-
-        private void MenuBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (OptionsPanel.IsVisible == true)
-            {
-                //Wpf.Ui.Animations.Transitions.ApplyTransition(GradientBorder, Wpf.Ui.Animations.TransitionType.SlideBottom, 195);
-                OptionsPanel.Visibility = Visibility.Collapsed;
-                MenuBtn.Content = "Open Menu";
-            }
-            else if (OptionsPanel.IsVisible == false)
-            {
-                //Wpf.Ui.Animations.Transitions.ApplyTransition(GradientBorder, Wpf.Ui.Animations.TransitionType.FadeIn, 195);
-                OptionsPanel.Visibility = Visibility.Visible;
-                MenuBtn.Content = "Close Menu";
-            }
         }
 
         private void BuildsPageCard_Click(object sender, RoutedEventArgs e)
