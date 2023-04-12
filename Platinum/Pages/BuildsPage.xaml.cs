@@ -54,6 +54,7 @@ namespace Platinum.Pages
             NewCard.Width = 200;
 
             NewCard.Margin = new Thickness(2, 2, 2, 2);
+            NewCard.IsChevronVisible = false;
 
             RootPanel.Children.Insert(AddedBuildsIndex, NewCard);
             AddedBuildsIndex++; 

@@ -27,6 +27,8 @@ namespace Platinum
             Globals.GNavigation = MainWindowNavStore;
             Globals.GFrame = RootFrame;
             Globals.MWindow = this;
+
+            Wpf.Ui.Appearance.Watcher.Watch(this, Wpf.Ui.Appearance.BackgroundType.Mica, true);
         }
 
         private void ThemeButtonNavigation_Click(object sender, RoutedEventArgs e)
