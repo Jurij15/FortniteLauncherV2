@@ -6,7 +6,11 @@
       xmlns:local="clr-namespace:Platinum.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="InjectPage">
+      Title="InjectPage"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+          ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}">
 
     <Grid>
         

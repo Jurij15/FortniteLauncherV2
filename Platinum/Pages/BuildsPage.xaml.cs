@@ -22,7 +22,7 @@ namespace Platinum.Pages
     /// <summary>
     /// Interaction logic for BuildsPage.xaml
     /// </summary>
-    public partial class BuildsPage : Wpf.Ui.Controls.UiPage
+    public partial class BuildsPage : Page
     {
         public int AddedBuildsIndex = 0;
         public Wpf.Ui.Controls.ProgressRing ring = new Wpf.Ui.Controls.ProgressRing();
@@ -156,8 +156,8 @@ namespace Platinum.Pages
                 sw.Close();
             }
 
-            Globals.GFrame.Navigate(new PlayPage());
-            Globals.GFrame.Navigate(new BuildsPage());
+            Globals.GNavigation.Navigate(typeof(PlayPage));
+            Globals.GNavigation.Navigate(typeof(BuildsPage));
         }
     }
 }

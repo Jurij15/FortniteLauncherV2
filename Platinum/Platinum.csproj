@@ -20,10 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="WPF-UI" Version="2.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="DefaultFortniteIcon.jpg" />
     <Resource Include="FNLauncher_Icon.ico" />
     <Resource Include="FNLauncher_Icon.png" />
@@ -45,6 +41,10 @@
 
 	<ItemGroup>
 	  <Content Include="FNLauncher_Icon.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Wpf.Ui\Wpf.Ui.csproj" />
 	</ItemGroup>
 
 </Project>

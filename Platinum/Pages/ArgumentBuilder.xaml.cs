@@ -18,7 +18,7 @@ namespace Platinum.Pages
     /// <summary>
     /// Interaction logic for ArgumentBuilder.xaml
     /// </summary>
-    public partial class ArgumentBuilder : Wpf.Ui.Controls.UiPage
+    public partial class ArgumentBuilder : Page
     {
         public ArgumentBuilder()
         {
@@ -33,7 +33,7 @@ namespace Platinum.Pages
         {
             Globals.CurrentLaunchArgunments = CurrentLaunchArgumentsBox.Text;
             Settings.Settings.SaveLaunchArguments(CurrentLaunchArgumentsBox.Text);
-            Globals.GFrame.Navigate(new PlayPage());
+            Globals.GNavigation.Navigate(typeof(PlayPage));
         }
 
         private void CraniumArgsAction_Click(object sender, RoutedEventArgs e)

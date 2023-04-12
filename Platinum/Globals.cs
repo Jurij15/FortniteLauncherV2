@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using Wpf.Ui.Controls;
+using Wpf.Ui.Controls.Navigation;
 
 namespace Platinum
 {
     public class Globals
     {
         public static MainWindow MWindow;
-        public static NavigationCompact GNavigation;
-        public static Frame GFrame;
+        public static NavigationView GNavigation;
 
         public static string CurrentlySelectedSSLBypassDLL { get ; set; }
         public static string CurrentlySelectedBuildPath { get ; set; }

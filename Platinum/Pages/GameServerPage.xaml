@@ -7,7 +7,10 @@
       mc:Ignorable="d" 
       d:DesignHeight="531" d:DesignWidth="927"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-      Title="GameServerPage">
+      Title="GameServerPage"
+          ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}">
 
     <Grid>
         

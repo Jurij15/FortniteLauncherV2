@@ -18,7 +18,7 @@ namespace Platinum.Windows
     /// <summary>
     /// Interaction logic for StartupWindow.xaml
     /// </summary>
-    public partial class StartupWindow : Wpf.Ui.Controls.UiWindow
+    public partial class StartupWindow : Wpf.Ui.Controls.Window.FluentWindow
     {
         async Task PutTaskDelayWelcomeBack()
         {

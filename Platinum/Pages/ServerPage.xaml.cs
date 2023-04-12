@@ -19,7 +19,7 @@ namespace Platinum.Pages
     /// <summary>
     /// Interaction logic for ServerPage.xaml
     /// </summary>
-    public partial class ServerPage : Wpf.Ui.Controls.UiPage
+    public partial class ServerPage : Page
     {
         public ServerPage()
         {
@@ -34,17 +34,17 @@ namespace Platinum.Pages
 
             if (!bInstalled)
             {
-                LawinServerStatusBadge.Appearance = Wpf.Ui.Common.ControlAppearance.Danger;
+                LawinServerStatusBadge.Appearance = Wpf.Ui.Controls.ControlAppearance.Danger;
                 LawinServerStatusBadge.Content = "Not Installed";
             }
             else if (bInstalled && !bRunning)
             {
-                LawinServerStatusBadge.Appearance = Wpf.Ui.Common.ControlAppearance.Caution;
+                LawinServerStatusBadge.Appearance = Wpf.Ui.Controls.ControlAppearance.Caution;
                 LawinServerStatusBadge.Content = "Not Running";
             }
             else if (bRunning)
             {
-                LawinServerStatusBadge.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
+                LawinServerStatusBadge.Appearance = Wpf.Ui.Controls.ControlAppearance.Success;
                 LawinServerStatusBadge.Content = "Running";
             }
         }

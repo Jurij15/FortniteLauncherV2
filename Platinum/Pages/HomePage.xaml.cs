@@ -18,7 +18,7 @@ namespace Platinum.Pages
     /// <summary>
     /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class HomePage : Wpf.Ui.Controls.UiPage
+    public partial class HomePage : Page
     {
         void AnimateAllElements()
         {

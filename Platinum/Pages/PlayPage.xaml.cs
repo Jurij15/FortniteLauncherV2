@@ -21,7 +21,7 @@ namespace Platinum.Pages
     /// <summary>
     /// Interaction logic for PlayPage.xaml
     /// </summary>
-    public partial class PlayPage : Wpf.Ui.Controls.UiPage
+    public partial class PlayPage : Page
     {
         //bool bCustomSSLBypass = false;
         public PlayPage()
@@ -131,7 +131,7 @@ namespace Platinum.Pages
 
         private void ArgumentBuilderBtn_Click(object sender, RoutedEventArgs e)
         {
-            Globals.GFrame.Navigate(new ArgumentBuilder());
+            Globals.GNavigation.Navigate(typeof(ArgumentBuilder));
         }
     }
 }

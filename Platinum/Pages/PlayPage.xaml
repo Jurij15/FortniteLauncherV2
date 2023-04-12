@@ -1,4 +1,4 @@
-﻿<ui:UiPage x:Class="Platinum.Pages.PlayPage"
+﻿<Page x:Class="Platinum.Pages.PlayPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,10 @@
       mc:Ignorable="d"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
            ShowsNavigationUI="True"
-      Title="PlayPage" d:DesignHeight="531" d:DesignWidth="927">
+      Title="PlayPage" d:DesignHeight="531" d:DesignWidth="927"
+          ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}">
     <ScrollViewer>
         <Grid>
             <Image x:Name="SplashImage" Source="../DefaultFortniteIcon.jpg" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="250" Margin="4,4,4,4" IsEnabled="True"/>
@@ -34,7 +37,7 @@
                         FontWeight="Medium"/>
                         <TextBlock
                         FontSize="12"
-                        Foreground="LightGray"
+                            Foreground="LightGray"
                         Text="Setup a private server like LawinServer" />
                     </StackPanel>
                 </ui:CardAction>
@@ -195,4 +198,4 @@
             </ui:Dialog>
         </Grid>
     </ScrollViewer>
-</ui:UiPage>
+</Page>
