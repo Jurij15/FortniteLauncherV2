@@ -1,4 +1,4 @@
-# FortniteLauncherV2 - codenamed Platinum
+# FortniteLauncherV2 - Platinum
 A launcher for Fortnite with some new features 
 
 This was going to be the remake of my [Old Launcher](https://github.com/Jurij15/FortniteLauncher), but 
