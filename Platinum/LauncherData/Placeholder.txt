@@ -1,1 +1,0 @@
-Files in this directory should be located at in same directory as the Platinum executable.
