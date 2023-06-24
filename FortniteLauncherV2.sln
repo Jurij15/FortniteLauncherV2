@@ -3,31 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platinum", "Platinum\Platinum.csproj", "{F7C0303E-EE4F-4B23-9C26-6C4A6B0AA9B4}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawinServer", "LawinServer\LawinServer.csproj", "{3A651501-7F68-4750-A75B-7CACCF41F994}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wpf.Ui", "Wpf.Ui\Wpf.Ui.csproj", "{89011B42-F8E7-4FFE-A980-C818A24B6750}"
-EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F7C0303E-EE4F-4B23-9C26-6C4A6B0AA9B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7C0303E-EE4F-4B23-9C26-6C4A6B0AA9B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7C0303E-EE4F-4B23-9C26-6C4A6B0AA9B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7C0303E-EE4F-4B23-9C26-6C4A6B0AA9B4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3A651501-7F68-4750-A75B-7CACCF41F994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A651501-7F68-4750-A75B-7CACCF41F994}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A651501-7F68-4750-A75B-7CACCF41F994}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A651501-7F68-4750-A75B-7CACCF41F994}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89011B42-F8E7-4FFE-A980-C818A24B6750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89011B42-F8E7-4FFE-A980-C818A24B6750}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89011B42-F8E7-4FFE-A980-C818A24B6750}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89011B42-F8E7-4FFE-A980-C818A24B6750}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
