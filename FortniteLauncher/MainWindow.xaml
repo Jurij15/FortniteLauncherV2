@@ -80,7 +80,59 @@
                 </ResourceDictionary>
             </NavigationView.Resources>
             -->
-            
+            <NavigationView.AutoSuggestBox>
+                <AutoSuggestBox x:Name="NavigationSearchBox" PlaceholderText="Search for a build" QueryIcon="Find" Margin="-10,4,-10,4"/>
+            </NavigationView.AutoSuggestBox>
+            <NavigationView.Header>
+                <BreadcrumbBar x:Name="MainBreadcrumb" FontSize="48" FontWeight="Medium" ItemClicked="MainBreadcrumb_ItemClicked">
+                    <BreadcrumbBar.Resources>
+                        <Style x:Key="BreadcrumbBarItemStyle" TargetType="BreadcrumbBarItem">
+                            <Setter Property="FontSize" Value="28"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                            <Setter Property="Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}"/>
+                        </Style>
+                    </BreadcrumbBar.Resources>
+                    <BreadcrumbBar.ItemTemplate>
+                        <DataTemplate x:Name="BreadcrumbBarItemTemplate" 
+                      x:DataType="BreadcrumbBarItem">
+                            <BreadcrumbBarItem Style="{StaticResource BreadcrumbBarItemStyle}"
+                                         Content="{Binding Content}"/>
+                        </DataTemplate>
+                    </BreadcrumbBar.ItemTemplate>
+                </BreadcrumbBar>
+            </NavigationView.Header>
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Home" x:Name="HomeItem">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE80F;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <!--<NavigationViewItemSeparator/>-->
+                <NavigationViewItem x:Name="PlayPageItem">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE768;"/>
+                    </NavigationViewItem.Icon>
+                    <NavigationViewItem.Content>
+                        <StackPanel Spacing="1" Padding="6">
+                            <TextBlock Text="Play" Margin="-6,0,0,0"/>
+                            <TextBlock x:Name="TotalBuildsBlock" Margin="-4,0,0,0" FontSize="10" Foreground="{ThemeResource TextFillColorTertiaryBrush}"/>
+                        </StackPanel>
+                    </NavigationViewItem.Content>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Private Server" x:Name="PrivateServerItem">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets"  Glyph="&#xE704;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem Content="About" x:Name="AboutItem">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets"  Glyph="&#xE779;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.FooterMenuItems>
+            <Frame x:Name="RootFrame" Margin="0,0,0,0" Navigated="RootFrame_Navigated"/>
         </NavigationView>
     </Grid>
 </windowex:WindowEx>

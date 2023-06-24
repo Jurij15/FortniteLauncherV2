@@ -1,3 +1,4 @@
+using FortniteLauncher.Services;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -13,7 +14,9 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ApplicationSettings;
 using WinUIEx;
+using FortniteLauncher.Pages;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -80,6 +83,9 @@ namespace FortniteLauncher
         {
             Globals.Objects.MainWindow = this;
             Globals.Objects.MainWindowXamlRoot = this.Content.XamlRoot;
+            Globals.Objects.MainFrame = RootFrame;
+            Globals.Objects.MainBreadcrumb = MainBreadcrumb;
+            Globals.Objects.MainNavigation = MainNavigation;
         }
         public MainWindow()
         {
@@ -94,6 +100,47 @@ namespace FortniteLauncher
         }
 
         private void MainNavigation_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            if (args.IsSettingsInvoked)
+            {
+                NavigationService.UpdateBreadcrumb("Settings", true);
+                NavigationService.ShowBreadcrumb();
+                RootFrame.Navigate(typeof(SettingsPage));
+            }
+            if (args.InvokedItemContainer == HomeItem)
+            {
+                NavigationService.UpdateBreadcrumb("Home", true);
+                NavigationService.HideBreadcrumb();
+                RootFrame.Navigate(typeof(HomePage));
+            }
+            if (args.InvokedItemContainer == PlayPageItem)
+            {
+                NavigationService.UpdateBreadcrumb("Select a build", true);
+                NavigationService.ShowBreadcrumb();
+                RootFrame.Navigate(typeof(PlayPage));
+            }
+            if (args.InvokedItemContainer == PrivateServerItem)
+            {
+                NavigationService.UpdateBreadcrumb("Private Server", true);
+                NavigationService.ShowBreadcrumb();
+                RootFrame.Navigate(typeof(PrivateServerPage));
+            }
+            if (args.InvokedItemContainer == AboutItem)
+            {
+                NavigationService.UpdateBreadcrumb("About", true);
+                NavigationService.ShowBreadcrumb();
+                RootFrame.Navigate(typeof(AboutPage));
+            }
+
+            GC.Collect(); //idk, trying to lower ram usage
+        }
+
+        private void MainBreadcrumb_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)
+        {
+
+        }
+
+        private void RootFrame_Navigated(object sender, NavigationEventArgs e)
         {
 
         }

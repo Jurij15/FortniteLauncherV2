@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Animation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +21,69 @@ namespace FortniteLauncher.Services
     }
     public class NavigationService
     {
-        public void Navigate()
+        public static void Navigate(Type PageType, string CustomBreadcrumbText = null, bool RemovePreviousBreadcrumbs = false)
         {
 
         }
 
-        public static void ItemInvoked(NavigationView NavigationView, NavigationViewItemInvokedEventArgs args)
+        public static void UpdateBreadcrumb(string AddText, bool RemovePrevious)
         {
+            if (RemovePrevious)
+            {
+                Globals.Breadcrumbs.Clear();
+            }
+            Globals.Breadcrumbs.Add(AddText);
 
+            Globals.UpdateBreadcrumb();
+        }
+
+        public static void RemoveBreadcrumbSpecificElement(string SpecificElementName)
+        {
+            Globals.Breadcrumbs.Remove(SpecificElementName);
+
+            Globals.UpdateBreadcrumb();
+        }
+
+        public static void NavigateHiearchical(Type TargetPageType, string BreadcrumbText, bool RemovePreviousText)
+        {
+            if (TargetPageType == null) { return; }
+            UpdateBreadcrumb(BreadcrumbText, RemovePreviousText);
+
+            SlideNavigationTransitionInfo info = new SlideNavigationTransitionInfo();
+            info.Effect = SlideNavigationTransitionEffect.FromRight;
+            Globals.Objects.MainFrame.Navigate(TargetPageType, null, info);
+
+            ShowBreadcrumb();
+        }
+
+        public static bool CanGoBack()
+        {
+            return Globals.Objects.MainFrame.CanGoBack;
+        }
+
+        public static void FrameGoBack(bool bNavigatingHome = false)
+        {
+            if (Globals.Breadcrumbs.Count > 1)
+            {
+                Globals.Breadcrumbs.Remove(Globals.Breadcrumbs[1]);
+            }
+            if (bNavigatingHome)
+            {
+                Globals.Objects.MainBreadcrumb.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+            }
+            Globals.UpdateBreadcrumb();
+            Globals.Objects.MainFrame.GoBack();
+        }
+
+        public static void HideBreadcrumb()
+        {
+            Globals.Objects.MainBreadcrumb.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+            Globals.Objects.MainNavigation.AlwaysShowHeader = false;
+        }
+        public static void ShowBreadcrumb()
+        {
+            Globals.Objects.MainBreadcrumb.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
+            Globals.Objects.MainNavigation.AlwaysShowHeader = true;
         }
     }
 }
