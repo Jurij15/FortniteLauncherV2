@@ -42,7 +42,7 @@ namespace FortniteLauncher.Pages
             //LoadBuilds();
         }
 
-        async void CreateCard(string BuildGUID)
+        async Task CreateCard(string BuildGUID)
         {
             BuildsManager manager = new BuildsManager();
 
@@ -88,7 +88,7 @@ namespace FortniteLauncher.Pages
 
             NewCard.Click += NewCard_Click;
 
-            await Task.Delay(9);
+            await Task.Delay(7);
 
             ItemsPanel.Items.Add(NewCard);
         }
@@ -120,11 +120,11 @@ namespace FortniteLauncher.Pages
             }
         }
 
-        void LoadBuilds() //so you can load them with parameters
+        async void LoadBuilds() //so you can load them with parameters
         {
             foreach (var item in _versionGuids)
             {
-                CreateCard(item);
+                await CreateCard(item);
             }
         }
 

@@ -139,6 +139,8 @@ namespace FortniteLauncher
             }
 
             GC.Collect(); //idk, trying to lower ram usage
+
+            MainNavigation.PaneTitle = Globals.PlayerUsername;
         }
 
         private void MainBreadcrumb_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)

@@ -10,5 +10,11 @@
 
     <Grid>
         <TextBox x:Name="FolderBox" Header="Path to folder" PlaceholderText="Path"/>
+        <StackPanel Orientation="Horizontal" Spacing="2" Visibility="Collapsed" x:Name="LoadingPanel"> 
+            <ProgressRing IsIndeterminate="True"/>
+            <StackPanel>
+                <TextBlock Text="Processing"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

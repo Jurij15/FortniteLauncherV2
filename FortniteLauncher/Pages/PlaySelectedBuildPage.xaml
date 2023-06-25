@@ -6,7 +6,8 @@
     xmlns:local="using:FortniteLauncher.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Unloaded="Page_Unloaded">
 
     <Grid Margin="58, 42, 58,0" CanBeScrollAnchor="True" RowSpacing="2">
         <Grid.RowDefinitions>
@@ -77,7 +78,10 @@
                         <TextBlock Text="Rename, change path, delete" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                     </StackPanel>
                 </Expander.Header>
-                <StackPanel>
+                <StackPanel Spacing="2">
+                    <TextBox Header="Build Name" PlaceholderText="Name" x:Name="BuildNameEditBox" Text="{x:Bind Path=_buildName, Mode=OneTime}"/>
+                    <TextBox Header="Build Path" PlaceholderText="Path" x:Name="BuildPathEditBox" Text="{x:Bind Path=_buildPath, Mode=OneTime}"/>
+                    <ComboBox x:Name="SeasonsComboEdit" Header="Fortnite Season"/>
                 </StackPanel>
             </Expander>
         </Grid>

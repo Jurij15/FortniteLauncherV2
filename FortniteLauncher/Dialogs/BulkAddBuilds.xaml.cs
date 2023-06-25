@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -37,64 +38,17 @@ namespace FortniteLauncher.Dialogs
         private async void SenderDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             // i will need to improve this its bad
+            FolderBox.Visibility = Visibility.Collapsed;
+            LoadingPanel.Visibility = Visibility.Visible;
+            await Task.Delay(500);
             int Count = 0;
-            foreach (var directories in Directory.GetDirectories(FolderBox.Text))
+            foreach (var directories in Directory.GetDirectories(FolderBox.Text, "",SearchOption.AllDirectories))
             {
                 if (BuildsHelper.IsPathValid(directories))
                 {
                     BuildsManager manager= new BuildsManager();
                     await manager.CreateBuild(Count.ToString(), directories, Enums.FortniteSeasons.Unknown);
-                    Count++
-                        ;
-                }
-                else
-                {
-                    if (BuildsHelper.IsPathValid(directories))
-                    {
-                        BuildsManager manager = new BuildsManager();
-                        await manager.CreateBuild(Count.ToString(), directories, Enums.FortniteSeasons.Unknown);
-                        Count++
-                            ;
-                    }
-                    else
-                    {
-                        if (BuildsHelper.IsPathValid(directories))
-                        {
-                            BuildsManager manager = new BuildsManager();
-                            await manager.CreateBuild(Count.ToString(), directories, Enums.FortniteSeasons.Unknown);
-                            Count++
-                                ;
-                        }
-                        else
-                        {
-                            if (BuildsHelper.IsPathValid(directories))
-                            {
-                                BuildsManager manager = new BuildsManager();
-                                await manager.CreateBuild(Count.ToString(), directories, Enums.FortniteSeasons.Unknown);
-                                Count++
-                                    ;
-                            }
-                            else
-                            {
-                                if (BuildsHelper.IsPathValid(directories))
-                                {
-                                    BuildsManager manager = new BuildsManager();
-                                    await manager.CreateBuild(Count.ToString(), directories, Enums.FortniteSeasons.Unknown);
-                                    Count++
-                                        ;
-                                }
-                                else
-                                {
-                                    foreach (var item in Directory.GetDirectories(directories))
-                                    {
-                                        BuildsManager manager = new BuildsManager();
-                                        await manager.CreateBuild(Count.ToString(), directories, Enums.FortniteSeasons.Unknown);
-                                        Count++;
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    Count++;
                 }
             }
 

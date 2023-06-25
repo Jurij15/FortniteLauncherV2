@@ -1,5 +1,7 @@
+using FortniteLauncher.Enums;
 using FortniteLauncher.Helpers;
 using FortniteLauncher.Managers;
+using FortniteLauncher.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -26,25 +28,31 @@ namespace FortniteLauncher.Pages
     /// </summary>
     public sealed partial class PlaySelectedBuildPage : Page
     {
+        private string _buildPath;
+        private string _buildName;
+        private string _buildSeason;
+
+        private string _buildGUID;
         public PlaySelectedBuildPage()
         {
             this.InitializeComponent();
 
             BuildsManager manager = new BuildsManager();
 
-            string buildname = manager.GetBuildNameByGUID(Globals.CurrentlySelectedBuildGUID);
-            string buildpath = manager.GetBuildPathByGUID(Globals.CurrentlySelectedBuildGUID);
-            string buildSeason = manager.GetBuildSeasonByGUID(Globals.CurrentlySelectedBuildGUID);
+            _buildName = manager.GetBuildNameByGUID(Globals.CurrentlySelectedBuildGUID);
+            _buildPath = manager.GetBuildPathByGUID(Globals.CurrentlySelectedBuildGUID);
+            _buildSeason = manager.GetBuildSeasonByGUID(Globals.CurrentlySelectedBuildGUID);
+            _buildGUID = Globals.CurrentlySelectedBuildGUID;
 
             BitmapImage bitmapImage = new BitmapImage();
-            bitmapImage.UriSource = new Uri(buildpath + Globals.FortniteStrings.FortniteSplashImage);
+            bitmapImage.UriSource = new Uri(_buildPath + Globals.FortniteStrings.FortniteSplashImage);
             BannerImg.Source = bitmapImage;
 
-            StatusBox.Text = buildSeason;
+            StatusBox.Text = _buildSeason;
 
             FortniteVersionBlock.Text = "Fortnite";
 
-            if (BuildsHelper.IsPathValid(buildpath))
+            if (BuildsHelper.IsPathValid(_buildPath))
             {
                 PlayButton.Visibility = Visibility.Visible;
                 PlayButton.IsEnabled = true;
@@ -55,11 +63,36 @@ namespace FortniteLauncher.Pages
                 PlayButton.IsEnabled = false;
                 ToolTipService.SetToolTip(PlayButton, "Path is not valid!");
             }
+
+            var _enumval = Enum.GetValues(typeof(FortniteSeasons)).Cast<FortniteSeasons>();
+            SeasonsComboEdit.ItemsSource = _enumval;
+
+            var selecteditem = Enum.Parse(typeof(FortniteSeasons), _buildSeason);
+            SeasonsComboEdit.SelectedItem = selecteditem;
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (_buildName != BuildNameEditBox.Text && !string.IsNullOrEmpty(BuildNameEditBox.Text) && !string.IsNullOrWhiteSpace(BuildNameEditBox.Text))
+            {
+                BuildsManager manager = new BuildsManager();
+                manager.SaveNewBuildNameConfigToGuid(_buildGUID, BuildNameEditBox.Text);
+            }
+            if (_buildPath != BuildPathEditBox.Text && !string.IsNullOrEmpty(BuildPathEditBox.Text) && !string.IsNullOrWhiteSpace(BuildPathEditBox.Text))
+            {
+                BuildsManager manager = new BuildsManager();
+                manager.SaveNewBuildPathConfigToGuid(_buildGUID, BuildPathEditBox.Text);
+            }
+            if (_buildSeason != ((FortniteSeasons)SeasonsComboEdit.SelectedItem).ToString())
+            {
+                BuildsManager manager = new BuildsManager();
+                manager.SaveNewBuildSeasonConfigToGuid(_buildGUID, ((FortniteSeasons)SeasonsComboEdit.SelectedItem).ToString());
+            }
         }
     }
 }

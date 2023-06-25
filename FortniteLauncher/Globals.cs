@@ -26,6 +26,9 @@ namespace FortniteLauncher
 
         public static string CurrentlySelectedBuildGUID { get; set; }
 
+
+        public static string PlayerUsername { get; set; }
+
         public static class FortniteStrings
         {
             public static string LocalAppData = Environment.GetEnvironmentVariable("LocalAppData");

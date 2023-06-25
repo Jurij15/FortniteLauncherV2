@@ -101,5 +101,32 @@ namespace FortniteLauncher.Managers
         }
 
         //editing a build (will do later)
+        public void SaveNewBuildNameConfigToGuid(string guid, string NewBuildName)
+        {
+            File.Delete(GetBuildNameConfig(guid));
+            using (StreamWriter sw = File.CreateText(GetBuildNameConfig(guid)))
+            {
+                sw.Write(NewBuildName);
+                sw.Close();
+            }
+        }
+        public void SaveNewBuildPathConfigToGuid(string guid, string NewBuildPath)
+        {
+            File.Delete(GetBuildPathConfig(guid));
+            using (StreamWriter sw = File.CreateText(GetBuildPathConfig(guid)))
+            {
+                sw.Write(NewBuildPath);
+                sw.Close();
+            }
+        }
+        public void SaveNewBuildSeasonConfigToGuid(string guid, string NewBuildSeason)
+        {
+            File.Delete(GetBuildSeasonConfig(guid));
+            using (StreamWriter sw = File.CreateText(GetBuildSeasonConfig(guid)))
+            {
+                sw.Write(NewBuildSeason);
+                sw.Close();
+            }
+        }
     }
 }
