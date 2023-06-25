@@ -113,44 +113,6 @@ namespace FortniteLauncher
 
         }
 
-        private void MainNavigation_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
-        {
-            if (args.IsSettingsInvoked)
-            {
-                NavigationService.UpdateBreadcrumb("Settings", true);
-                NavigationService.ShowBreadcrumb();
-                RootFrame.Navigate(typeof(SettingsPage));
-            }
-            if (args.InvokedItemContainer == HomeItem)
-            {
-                NavigationService.UpdateBreadcrumb("Home", true);
-                NavigationService.HideBreadcrumb();
-                RootFrame.Navigate(typeof(HomePage));
-            }
-            if (args.InvokedItemContainer == PlayPageItem)
-            {
-                NavigationService.UpdateBreadcrumb("Select a build", true);
-                NavigationService.ShowBreadcrumb();
-                RootFrame.Navigate(typeof(PlayPage));
-            }
-            if (args.InvokedItemContainer == PrivateServerItem)
-            {
-                NavigationService.UpdateBreadcrumb("Private Server", true);
-                NavigationService.ShowBreadcrumb();
-                RootFrame.Navigate(typeof(PrivateServerPage));
-            }
-            if (args.InvokedItemContainer == AboutItem)
-            {
-                NavigationService.UpdateBreadcrumb("About", true);
-                NavigationService.ShowBreadcrumb();
-                RootFrame.Navigate(typeof(AboutPage));
-            }
-
-            GC.Collect(); //idk, trying to lower ram usage
-
-            MainNavigation.PaneTitle = Globals.PlayerUsername;
-        }
-
         private void MainBreadcrumb_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)
         {
             RootFrame.GoBack();
@@ -167,6 +129,44 @@ namespace FortniteLauncher
             Globals.Objects.MainWindowXamlRoot = this.Content.XamlRoot;
 
             TotalBuildsBlock.Text = "Total: "+ new BuildsManager().GetAllBuildGuids().Count.ToString();
+        }
+
+        private void MainNavigation_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            if (args.IsSettingsSelected)
+            {
+                NavigationService.UpdateBreadcrumb("Settings", true);
+                NavigationService.ShowBreadcrumb();
+                RootFrame.Navigate(typeof(SettingsPage));
+            }
+            if (args.SelectedItemContainer == HomeItem)
+            {
+                NavigationService.UpdateBreadcrumb("Home", true);
+                NavigationService.HideBreadcrumb();
+                RootFrame.Navigate(typeof(HomePage));
+            }
+            if (args.SelectedItemContainer == PlayPageItem)
+            {
+                NavigationService.UpdateBreadcrumb("Select a build", true);
+                NavigationService.ShowBreadcrumb();
+                RootFrame.Navigate(typeof(PlayPage));
+            }
+            if (args.SelectedItemContainer == PrivateServerItem)
+            {
+                NavigationService.UpdateBreadcrumb("Private Server", true);
+                NavigationService.ShowBreadcrumb();
+                RootFrame.Navigate(typeof(PrivateServerPage));
+            }
+            if (args.SelectedItemContainer == AboutItem)
+            {
+                NavigationService.UpdateBreadcrumb("About", true);
+                NavigationService.ShowBreadcrumb();
+                RootFrame.Navigate(typeof(AboutPage));
+            }
+
+            GC.Collect(); //idk, trying to lower ram usage
+
+            MainNavigation.PaneTitle = Globals.PlayerUsername;
         }
     }
 }

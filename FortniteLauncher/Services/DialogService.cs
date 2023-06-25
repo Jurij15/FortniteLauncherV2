@@ -25,5 +25,22 @@ namespace FortniteLauncher.Services
 
             dialog.ShowAsync();
         }
+
+        public static void ShowGalleryDialog()
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = Globals.Objects.MainWindowXamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Gallery";
+            dialog.Content = new GalleryDialog();
+
+            dialog.Width = 900;
+
+            dialog.CloseButtonText = "OK";
+
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            dialog.ShowAsync();
+        }
     }
 }

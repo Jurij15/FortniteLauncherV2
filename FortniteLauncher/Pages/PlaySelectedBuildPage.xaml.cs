@@ -80,16 +80,6 @@ namespace FortniteLauncher.Pages
 
             var selecteditem = Enum.Parse(typeof(FortniteSeasons), _buildSeason);
             SeasonsComboEdit.SelectedItem = selecteditem;
-
-            foreach (var item in Globals.GalleryImages)
-            {
-                Image img = new Image();
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.UriSource = new Uri("ms-appx:///"+item, UriKind.Absolute);
-                img.Source = bitmapImage;
-
-                Gallery.Items.Add(img);
-            }
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
@@ -122,6 +112,16 @@ namespace FortniteLauncher.Pages
             manager.DeleteBuild(_buildGUID);
 
             NavigationService.FrameGoBack();
+        }
+
+        private void CobaltSSLBypass_Toggled(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GalleryGrid_Click(object sender, RoutedEventArgs e)
+        {
+            DialogService.ShowGalleryDialog();
         }
     }
 }
