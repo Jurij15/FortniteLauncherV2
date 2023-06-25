@@ -6,10 +6,80 @@
     xmlns:local="using:FortniteLauncher.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
     <Grid Margin="58, 42, 58,0" CanBeScrollAnchor="True" RowSpacing="2">
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <RelativePanel x:Name="InfoGrid" Grid.Row="1" Grid.Column="0">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Height="358" Width="242" HorizontalAlignment="Left" CornerRadius="8">
+                    <Image x:Name="BannerImg" HorizontalAlignment="Left"  MaxHeight="358" MaxWidth="242"/>
+                </StackPanel>
+                <StackPanel  Margin="8,0,0,0">
+                    <TextBlock x:Name="FortniteVersionBlock" Text="Fortnite" FontSize="36" FontWeight="Medium"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="StatusBox" Text="Not Installed" FontSize="12" Margin="0,4,0,0" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        <TextBlock Text="·" Margin="2,2,2,2" FontWeight="ExtraBlack"/>
+                        <TextBlock Text="Epic Games" FontSize="12" Margin="0,4,0,0" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="PlayButton" Style="{StaticResource AccentButtonStyle}" Margin="0,10,0,0" Width="222" Height="55" Visibility="Collapsed" Click="PlayButton_Click">
+                            <SymbolIcon Symbol="Play"/>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </RelativePanel>
+        <Grid Margin="45,0,0,0" Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Expander HorizontalAlignment="Stretch" Grid.Row="1" x:Name="LaunchSettingsExpander" HorizontalContentAlignment="Stretch">
+                <Expander.Header>
+                    <StackPanel Margin="8" CornerRadius="8">
+                        <TextBlock Text="Launch Settings" FontSize="15"/>
+                        <TextBlock Text="SSL Bypass, launch arguments" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                </Expander.Header>
+                <StackPanel>
+                </StackPanel>
+            </Expander>
+            <Expander HorizontalAlignment="Stretch" Grid.Row="2" x:Name="BuildSettingsExpander" HorizontalContentAlignment="Stretch">
+                <Expander.Header>
+                    <StackPanel Margin="8" CornerRadius="8">
+                        <TextBlock Text="Build Settings" FontSize="15"/>
+                        <TextBlock Text="Rename, change path, delete" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                </Expander.Header>
+                <StackPanel>
+                </StackPanel>
+            </Expander>
+        </Grid>
     </Grid>
 </Page>

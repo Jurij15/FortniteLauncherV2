@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
@@ -13,8 +13,11 @@
 	  <UseWinUI>true</UseWinUI>
 	  <EnableMsixTooling>true</EnableMsixTooling>
 	  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+	  <WindowsPackageType>None</WindowsPackageType>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Dialogs\AddBuildDialog.xaml" />
+    <None Remove="Dialogs\BulkAddBuilds.xaml" />
     <None Remove="Pages\AboutPage.xaml" />
     <None Remove="Pages\HomePage.xaml" />
     <None Remove="Pages\PlayerOptionsPage.xaml" />
@@ -54,8 +57,14 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Managers\" />
-    <Folder Include="Cores\" />
+    <Content Update="Assets\Truck1.10.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Dialogs\BulkAddBuilds.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\PlayerOptionsPage.xaml">
@@ -94,6 +103,11 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Styles\BreadcrumbBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Dialogs\AddBuildDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

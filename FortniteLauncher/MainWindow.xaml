@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
     xmlns:windowex="using:WinUIEx">
-    <Grid x:Name="RootGrid">
+    <Grid x:Name="RootGrid" Loaded="RootGrid_Loaded">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
             <RowDefinition Height="*"/>

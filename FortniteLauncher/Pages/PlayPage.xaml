@@ -6,9 +6,31 @@
     xmlns:local="using:FortniteLauncher.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Unloaded="Page_Unloaded">
 
     <Grid Margin="58, 42, 58,0" CanBeScrollAnchor="True" RowSpacing="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <AutoSuggestBox x:Name="SearchBox" PlaceholderText="Search" QueryIcon="Find" Grid.Row="1"/>
+        <Grid x:Name="ViewsPanel" Grid.Row="2" Margin="0,4,0,4">
+            <StackPanel Orientation="Horizontal" Spacing="2" HorizontalAlignment="Left">
+                <Button Content="Add Build" x:Name="AddBuildBtn" HorizontalAlignment="Left" Click="AddBuildBtn_Click"/>
+                <Button Content="Bulk add builds" x:Name="BulkAddBuildsBtn" HorizontalAlignment="Left" Click="BulkAddBuildsBtn_Click"/>
+            </StackPanel>
+        </Grid>
+        <GridView x:Name="ItemsPanel" Grid.Row="3" BorderBrush="Transparent" SizeChanged="ItemsPanel_SizeChanged" CanDragItems="False" CanReorderItems="False" Loaded="ItemsPanel_Loaded">
+            <GridView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <ContentThemeTransition />
+                    <EntranceThemeTransition IsStaggeringEnabled="True"/>
+                </TransitionCollection>
 
+            </GridView.ItemContainerTransitions>
+        </GridView>
     </Grid>
 </Page>

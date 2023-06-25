@@ -12,7 +12,7 @@ namespace FortniteLauncher.Managers
 {
     public class BuildsManager
     {
-        public static string RootBuildsDir = Settings.RootSettingsDir + "Builds/";
+        public static string RootBuildsDir = Settings.RootSettingsDir + "Builds";
 
         public static string GetBuildNameConfig(string GUID)
         {
@@ -36,29 +36,70 @@ namespace FortniteLauncher.Managers
             {
                 return null;
             }
-            Directory.CreateDirectory(RootBuildsDir);
+
+            if (!Directory.Exists(RootBuildsDir))
+            {
+                Directory.CreateDirectory(RootBuildsDir);
+            }
 
             string guid = Guid.NewGuid().ToString();
-            string dir = RootBuildsDir + "/" + guid;
+            string dir = RootBuildsDir + "\\" + guid;
             Directory.CreateDirectory(dir);
 
-            using (StreamWriter sw = File.CreateText(dir+ "BuildNameConfig"))
+            using (StreamWriter sw = File.CreateText(dir+ "\\BuildNameConfig"))
             {
                 await sw.WriteAsync(Name);
                 sw.Close();
             }
-            using (StreamWriter sw = File.CreateText(dir + "BuildPathConfig"))
+            using (StreamWriter sw = File.CreateText(dir + "\\BuildPathConfig"))
             {
                 await sw.WriteAsync(Path);
                 sw.Close();
             }
-            using (StreamWriter sw = File.CreateText(dir + "BuildSeasonConfig"))
+            using (StreamWriter sw = File.CreateText(dir + "\\BuildSeasonConfig"))
             {
-                await sw.WriteAsync(Season.ToString());
+                var value = Season;
+                await sw.WriteAsync(value.ToString());
                 sw.Close();
             }
 
             return guid;
         }
+
+        public HashSet<string > GetAllBuildGuids()
+        {
+            if (!Directory.Exists(RootBuildsDir)) //on first time run, create the dir if not existing yet
+            {
+                Directory.CreateDirectory(RootBuildsDir);
+            }
+            var list = new HashSet<string>();
+            foreach (var item in Directory.GetDirectories(RootBuildsDir))
+            {
+                list.Add(Path.GetFileName(item));
+            }
+
+            return list;
+        }
+
+        //get build properties
+        public string GetBuildNameByGUID(string GUID)
+        {
+            return File.ReadAllText(GetBuildNameConfig(GUID));
+        }
+        public string GetBuildPathByGUID(string GUID)
+        {
+            return File.ReadAllText(GetBuildPathConfig(GUID));
+        }
+        public string GetBuildSeasonByGUID(string GUID)
+        {
+            return File.ReadAllText(GetBuildSeasonConfig(GUID));
+        }
+
+        public FortniteSeasons GetBuildSeasonEnumByGUID(string GUID)
+        {
+            return (FortniteSeasons)Enum.Parse(typeof(FortniteSeasons), GetBuildSeasonByGUID(GUID));
+        }
+
+        //editing a build (will do later)
     }
 }

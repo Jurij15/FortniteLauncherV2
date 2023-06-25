@@ -3,7 +3,9 @@ using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WinUIEx;
@@ -21,6 +23,8 @@ namespace FortniteLauncher
             public static BreadcrumbBar MainBreadcrumb;
             public static NavigationView MainNavigation;
         }
+
+        public static string CurrentlySelectedBuildGUID { get; set; }
 
         public static class FortniteStrings
         {

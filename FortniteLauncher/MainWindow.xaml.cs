@@ -17,6 +17,8 @@ using Windows.Foundation.Collections;
 using Windows.UI.ApplicationSettings;
 using WinUIEx;
 using FortniteLauncher.Pages;
+using FortniteLauncher.Cores;
+using FortniteLauncher.Managers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -82,7 +84,6 @@ namespace FortniteLauncher
         void SetGlobalObjects()
         {
             Globals.Objects.MainWindow = this;
-            Globals.Objects.MainWindowXamlRoot = this.Content.XamlRoot;
             Globals.Objects.MainFrame = RootFrame;
             Globals.Objects.MainBreadcrumb = MainBreadcrumb;
             Globals.Objects.MainNavigation = MainNavigation;
@@ -92,6 +93,11 @@ namespace FortniteLauncher
             this.InitializeComponent();
             InitDesign();
             SetGlobalObjects();
+        }
+
+        void OnMainWindowStartup()
+        {
+            Settings.GetSettings();
         }
 
         private void AppTitleBackButton_Click(object sender, RoutedEventArgs e)
@@ -137,12 +143,20 @@ namespace FortniteLauncher
 
         private void MainBreadcrumb_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)
         {
-
+            RootFrame.GoBack();
+            Globals.Breadcrumbs.RemoveAt(1);
         }
 
         private void RootFrame_Navigated(object sender, NavigationEventArgs e)
         {
 
+        }
+
+        private void RootGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            Globals.Objects.MainWindowXamlRoot = this.Content.XamlRoot;
+
+            TotalBuildsBlock.Text = "Total: "+ new BuildsManager().GetAllBuildGuids().Count.ToString();
         }
     }
 }
