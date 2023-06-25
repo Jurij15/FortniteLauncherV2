@@ -1,5 +1,6 @@
 using CommunityToolkit.Labs.WinUI;
 using FortniteLauncher.Dialogs;
+using FortniteLauncher.Helpers;
 using FortniteLauncher.Managers;
 using FortniteLauncher.Services;
 using Microsoft.UI.Text;
@@ -10,6 +11,7 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using System;
@@ -20,6 +22,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -86,14 +89,21 @@ namespace FortniteLauncher.Pages
             NewCard.IsClickEnabled = true;
             NewCard.IsActionIconVisible = false;
 
-            NewCard.Click += NewCard_Click;
+            NewCard.Click += NewCard_ClickAsync;
 
             await Task.Delay(7);
+
+            if (!BuildsHelper.IsPathValid(buildpath))
+            {
+                //NewCard.IsEnabled = false;
+                ToolTipService.SetToolTip(NewCard, "Path to this build is invalid!");
+                BuildSeasonBlock.Text = "Invalid path!";
+            }
 
             ItemsPanel.Items.Add(NewCard);
         }
 
-        private void NewCard_Click(object sender, RoutedEventArgs e)
+        private async void NewCard_ClickAsync(object sender, RoutedEventArgs e)
         {
             string GUID = (sender as SettingsCard).Name;
 
@@ -103,11 +113,24 @@ namespace FortniteLauncher.Pages
 
             ItemsPanel.Items.Clear();
 
+
+            ConnectedAnimation imageAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("ForwardConnectedAnimation");
+            if (imageAnimation != null)
+            {
+                // Connected animation + coordinated animation
+                imageAnimation.TryStart(SearchBox);
+
+            }
+
+
             if (Globals.Objects.MainFrame is null)
             {
                 DialogService.ShowSimpleDialog("Frame is null!", "Error");
                 return;
             }
+
+            //ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("ForwardConnectedAnimation", (UIElement)ItemsPanel.SelectedItem);
+
 
             try
             {

@@ -26,6 +26,7 @@ namespace FortniteLauncher
 
         public static string CurrentlySelectedBuildGUID { get; set; }
 
+        public static HashSet<string> GalleryImages = new HashSet<string>();
 
         public static string PlayerUsername { get; set; }
 

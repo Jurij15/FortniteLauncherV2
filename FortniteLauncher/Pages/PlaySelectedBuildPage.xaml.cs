@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using System;
@@ -17,6 +18,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.WebUI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -44,9 +46,18 @@ namespace FortniteLauncher.Pages
             _buildSeason = manager.GetBuildSeasonByGUID(Globals.CurrentlySelectedBuildGUID);
             _buildGUID = Globals.CurrentlySelectedBuildGUID;
 
-            BitmapImage bitmapImage = new BitmapImage();
-            bitmapImage.UriSource = new Uri(_buildPath + Globals.FortniteStrings.FortniteSplashImage);
-            BannerImg.Source = bitmapImage;
+            if (BuildsHelper.IsPathValid(_buildPath))
+            {
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.UriSource = new Uri(_buildPath + Globals.FortniteStrings.FortniteSplashImage);
+                BannerImg.Source = bitmapImage;
+            }
+            else
+            {
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.UriSource = new Uri("ms-appx:///Assets/FNDefaultIcon.png", UriKind.Absolute);
+                BannerImg.Source = bitmapImage;
+            }
 
             StatusBox.Text = _buildSeason;
 
@@ -69,6 +80,16 @@ namespace FortniteLauncher.Pages
 
             var selecteditem = Enum.Parse(typeof(FortniteSeasons), _buildSeason);
             SeasonsComboEdit.SelectedItem = selecteditem;
+
+            foreach (var item in Globals.GalleryImages)
+            {
+                Image img = new Image();
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.UriSource = new Uri("ms-appx:///"+item, UriKind.Absolute);
+                img.Source = bitmapImage;
+
+                Gallery.Items.Add(img);
+            }
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
@@ -93,6 +114,14 @@ namespace FortniteLauncher.Pages
                 BuildsManager manager = new BuildsManager();
                 manager.SaveNewBuildSeasonConfigToGuid(_buildGUID, ((FortniteSeasons)SeasonsComboEdit.SelectedItem).ToString());
             }
+        }
+
+        private void DeleteConfirmBtn_Click(object sender, RoutedEventArgs e)
+        {
+            BuildsManager manager = new BuildsManager();
+            manager.DeleteBuild(_buildGUID);
+
+            NavigationService.FrameGoBack();
         }
     }
 }

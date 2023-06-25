@@ -128,5 +128,12 @@ namespace FortniteLauncher.Managers
                 sw.Close();
             }
         }
+
+        //delete builds
+        public void DeleteBuild(string guid)
+        {
+            string dir = RootBuildsDir + "\\" + guid;
+            Directory.Delete(dir, true);
+        }
     }
 }

@@ -7,83 +7,126 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Unloaded="Page_Unloaded">
-
-    <Grid Margin="58, 42, 58,0" CanBeScrollAnchor="True" RowSpacing="2">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <RelativePanel x:Name="InfoGrid" Grid.Row="1" Grid.Column="0">
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Height="358" Width="242" HorizontalAlignment="Left" CornerRadius="8">
-                    <Image x:Name="BannerImg" HorizontalAlignment="Left"  MaxHeight="358" MaxWidth="242"/>
-                </StackPanel>
-                <StackPanel  Margin="8,0,0,0">
-                    <TextBlock x:Name="FortniteVersionBlock" Text="Fortnite" FontSize="36" FontWeight="Medium"/>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="StatusBox" Text="Not Installed" FontSize="12" Margin="0,4,0,0" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
-                        <TextBlock Text="·" Margin="2,2,2,2" FontWeight="ExtraBlack"/>
-                        <TextBlock Text="Epic Games" FontSize="12" Margin="0,4,0,0" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button x:Name="PlayButton" Style="{StaticResource AccentButtonStyle}" Margin="0,10,0,0" Width="222" Height="55" Visibility="Collapsed" Click="PlayButton_Click">
-                            <SymbolIcon Symbol="Play"/>
-                        </Button>
-                    </StackPanel>
-                </StackPanel>
-            </StackPanel>
-        </RelativePanel>
-        <Grid Margin="45,0,0,0" Grid.Column="1" Grid.Row="1">
+    Unloaded="Page_Unloaded"
+    xmlns:controls="using:CommunityToolkit.Labs.WinUI">
+    
+    <ScrollViewer Margin="58, 42, 58,0" >
+        <Grid RowSpacing="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Expander HorizontalAlignment="Stretch" Grid.Row="1" x:Name="LaunchSettingsExpander" HorizontalContentAlignment="Stretch">
-                <Expander.Header>
-                    <StackPanel Margin="8" CornerRadius="8">
-                        <TextBlock Text="Launch Settings" FontSize="15"/>
-                        <TextBlock Text="SSL Bypass, launch arguments" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="InfoGrid" Grid.Row="1" Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Height="310" Width="242" HorizontalAlignment="Left" CornerRadius="8">
+                        <Image x:Name="BannerImg" HorizontalAlignment="Left"  MaxHeight="358" MaxWidth="242"/>
                     </StackPanel>
-                </Expander.Header>
-                <StackPanel>
-                </StackPanel>
-            </Expander>
-            <Expander HorizontalAlignment="Stretch" Grid.Row="2" x:Name="BuildSettingsExpander" HorizontalContentAlignment="Stretch">
-                <Expander.Header>
-                    <StackPanel Margin="8" CornerRadius="8">
-                        <TextBlock Text="Build Settings" FontSize="15"/>
-                        <TextBlock Text="Rename, change path, delete" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    <StackPanel  Margin="8,0,0,0">
+                        <TextBlock x:Name="FortniteVersionBlock" Text="Fortnite" FontSize="36" FontWeight="Medium"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="StatusBox" Text="Not Installed" FontSize="12" Margin="0,4,0,0" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                            <TextBlock Text="·" Margin="2,2,2,2" FontWeight="ExtraBlack"/>
+                            <TextBlock Text="Epic Games" FontSize="12" Margin="0,4,0,0" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="PlayButton" Style="{StaticResource AccentButtonStyle}" Margin="0,10,0,0" Width="222" Height="55" Visibility="Collapsed" Click="PlayButton_Click">
+                                <SymbolIcon Symbol="Play"/>
+                            </Button>
+                        </StackPanel>
                     </StackPanel>
-                </Expander.Header>
-                <StackPanel Spacing="2">
-                    <TextBox Header="Build Name" PlaceholderText="Name" x:Name="BuildNameEditBox" Text="{x:Bind Path=_buildName, Mode=OneTime}"/>
-                    <TextBox Header="Build Path" PlaceholderText="Path" x:Name="BuildPathEditBox" Text="{x:Bind Path=_buildPath, Mode=OneTime}"/>
-                    <ComboBox x:Name="SeasonsComboEdit" Header="Fortnite Season"/>
                 </StackPanel>
-            </Expander>
+            </Grid>
+            <Grid x:Name="DescGrid" Grid.Column="1" Grid.Row="1" Margin="0,0,0,0" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" VerticalAlignment="Top" Height="250" Width="430" HorizontalAlignment="Right">
+                <StackPanel Spacing="2" Margin="4">
+                    <TextBlock Text="Description" FontWeight="Medium" Height="15"/>
+                    <MenuFlyoutSeparator Margin="0,4,0,4"/>
+                    <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap">
+                        Create, play, and battle with friends for free in Fortnite. Be the last player standing in Battle Royale and Zero Build, experience a concert or live event, or discover over a million creator made games, including racing, parkour, zombie survival, and more. Find it all in Fortnite!
+                        <LineBreak/>
+                        <LineBreak/>
+                        Play both Battle Royale and Fortnite Creative for free. All in-game purchases are discretionary and include cosmetic items (e.g.Outfits), V-Bucks and seasonal account progression products like the Battle Pass. Download now and jump into the action.
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.ColumnSpan="2" Grid.Row="2" RowSpacing="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Expander HorizontalAlignment="Stretch" Grid.Row="1" x:Name="LaunchSettingsExpander" HorizontalContentAlignment="Stretch">
+                    <Expander.Header>
+                        <StackPanel Margin="8" CornerRadius="8">
+                            <TextBlock Text="Launch Settings" FontSize="15"/>
+                            <TextBlock Text="SSL Bypass, launch arguments" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </Expander.Header>
+                    <StackPanel>
+                    </StackPanel>
+                </Expander>
+                <Expander HorizontalAlignment="Stretch" Grid.Row="2" x:Name="BuildSettingsExpander" HorizontalContentAlignment="Stretch">
+                    <Expander.Header>
+                        <Grid>
+                            <StackPanel Margin="8" CornerRadius="8" HorizontalAlignment="Left">
+                                <TextBlock Text="Build Settings" FontSize="15"/>
+                                <TextBlock Text="Rename, change path, delete" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                            </StackPanel>
+                            <StackPanel Margin="8" CornerRadius="8" HorizontalAlignment="Right">
+                                <Button Background="Red" Content="Delete" x:Name="DeleteBtn">
+                                    <Button.Flyout>
+                                        <Flyout x:Name="DeleteBuildFlyout">
+                                            <StackPanel>
+                                                <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Build will be deleted. Do you want to continue?" Margin="0,0,0,12" />
+                                                <Button x:Name="DeleteConfirmBtn" Click="DeleteConfirmBtn_Click" Content="Confirm" />
+                                            </StackPanel>
+                                        </Flyout>
+                                    </Button.Flyout>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Expander.Header>
+                    <StackPanel Spacing="2">
+                        <TextBox Header="Build Name" PlaceholderText="Name" x:Name="BuildNameEditBox" Text="{x:Bind Path=_buildName, Mode=OneTime}"/>
+                        <TextBox Header="Build Path" PlaceholderText="Path" x:Name="BuildPathEditBox" Text="{x:Bind Path=_buildPath, Mode=OneTime}"/>
+                        <ComboBox x:Name="SeasonsComboEdit" Header="Fortnite Season"/>
+                    </StackPanel>
+                </Expander>
+            </Grid>
+            <controls:SettingsExpander IsExpanded="False" x:Name="GalleryGrid" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Header="Gallery" Margin="0,20,0,0">
+                <controls:SettingsExpander.ItemsHeader>
+                    <StackPanel>
+                        <FlipView x:Name="Gallery" HorizontalAlignment="Stretch">
+                        </FlipView>
+                        <PipsPager x:Name="FlipViewPipsPager"
+                        HorizontalAlignment="Center"
+                         Margin="0, 12, 0, 0"
+                                    NumberOfPages="{x:Bind Gallery.Items.Count}"
+                            SelectedPageIndex="{x:Bind Path=Gallery.SelectedIndex, Mode=TwoWay}" />
+
+                    </StackPanel>
+                </controls:SettingsExpander.ItemsHeader>
+            </controls:SettingsExpander>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </Page>

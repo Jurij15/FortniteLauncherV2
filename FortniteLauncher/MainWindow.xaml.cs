@@ -19,6 +19,7 @@ using WinUIEx;
 using FortniteLauncher.Pages;
 using FortniteLauncher.Cores;
 using FortniteLauncher.Managers;
+using ColorCode.Compilation.Languages;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -60,6 +61,7 @@ namespace FortniteLauncher
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
 
+            this.SetWindowSize(1500, 820);
             this.CenterOnScreen();
             this.SetIsResizable(false);
 
@@ -93,11 +95,17 @@ namespace FortniteLauncher
             this.InitializeComponent();
             InitDesign();
             SetGlobalObjects();
+            OnMainWindowStartup();
         }
 
         void OnMainWindowStartup()
         {
             Settings.GetSettings();
+
+            foreach (var item in Directory.GetFiles("Assets/GalleryContentImages/"))
+            {
+                Globals.GalleryImages.Add(item);
+            }
         }
 
         private void AppTitleBackButton_Click(object sender, RoutedEventArgs e)

@@ -15,18 +15,12 @@
 	  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	  <WindowsPackageType>None</WindowsPackageType>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Dialogs\AddBuildDialog.xaml" />
-    <None Remove="Dialogs\BulkAddBuilds.xaml" />
-    <None Remove="Pages\AboutPage.xaml" />
-    <None Remove="Pages\HomePage.xaml" />
-    <None Remove="Pages\PlayerOptionsPage.xaml" />
-    <None Remove="Pages\PlayPage.xaml" />
-    <None Remove="Pages\PlaySelectedBuildPage.xaml" />
-    <None Remove="Pages\PrivateServerPage.xaml" />
-    <None Remove="Pages\SettingsPage.xaml" />
-    <None Remove="Styles\BreadcrumbBar.xaml" />
-  </ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Assets\GalleryContentImages\**">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -57,6 +51,12 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Assets\FNDefaultIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\GalleryContentImages\FNDefaultIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\Truck1.10.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
