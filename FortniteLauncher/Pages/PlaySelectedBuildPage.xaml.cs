@@ -194,7 +194,13 @@ namespace FortniteLauncher.Pages
 
         private void LaunchSettingsExpander_Expanding(Expander sender, ExpanderExpandingEventArgs args)
         {
-            BuildSettingsExpander.IsExpanded = false;
+            try
+            {
+                BuildSettingsExpander.IsExpanded = false;
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void BuildSettingsExpander_Expanding(Expander sender, ExpanderExpandingEventArgs args)

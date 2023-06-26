@@ -96,5 +96,65 @@ namespace FortniteLauncher.Cores
                 sw.Close();
             }
         }
+
+        public static void SaveNewThemeConfig(int NewTheme)
+        {
+            File.Delete(ThemeConfig);
+            using (StreamWriter sw = File.CreateText(ThemeConfig))
+            {
+                sw.Write(NewTheme.ToString());
+                sw.Close();
+            }
+        }
+
+        public static void SaveNewAuthUsernameConfig(string NewUsername)
+        {
+            File.Delete(ThemeConfig);
+            using (StreamWriter sw = File.CreateText(ThemeConfig))
+            {
+                sw.Write(NewUsername);
+                sw.Close();
+            }
+        }
+
+        public static void SaveNewAuthPasswordConfig(string NewPassword)
+        {
+            File.Delete(NewPassword);
+            using (StreamWriter sw = File.CreateText(NewPassword))
+            {
+                sw.Write(NewPassword);
+                sw.Close();
+            }
+        }
+
+        public static void SaveNewSSLBypassDLLConfigConfig(string NewPath)
+        {
+            File.Delete(SSLBypassDLLConfig);
+            using (StreamWriter sw = File.CreateText(SSLBypassDLLConfig))
+            {
+                sw.Write(NewPath);
+                sw.Close();
+            }
+        }
+
+        public static void SaveNewConsoleDLLConfigConfig(string NewPath)
+        {
+            File.Delete(ConsoleDLLConfig);
+            using (StreamWriter sw = File.CreateText(ConsoleDLLConfig))
+            {
+                sw.Write(NewPath);
+                sw.Close();
+            }
+        }
+
+        public static void SaveNewMemoryLeakFixDLLConfigConfig(string NewPath)
+        {
+            File.Delete(MemoryLeakDLLConfig);
+            using (StreamWriter sw = File.CreateText(MemoryLeakDLLConfig))
+            {
+                sw.Write(NewPath);
+                sw.Close();
+            }
+        }
     }
 }

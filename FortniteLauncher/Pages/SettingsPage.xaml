@@ -9,93 +9,99 @@
     xmlns:labs="using:CommunityToolkit.Labs.WinUI"
     mc:Ignorable="d">
 
-    <Grid Margin="58, 42, 58,0" CanBeScrollAnchor="True" RowSpacing="2">
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition IsStaggeringEnabled="True" />
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Text="Personalization" FontSize="12" Grid.Row="0" Margin="0,2,0,4" FontWeight="SemiBold"/>
-        <labs:SettingsCard x:Name="ThemeCard" Header="Theme" Description="Change app theme (BETA)"
+    <ScrollViewer Margin="58, 42, 58,0">
+        <Grid RowSpacing="2">
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition IsStaggeringEnabled="True" />
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Personalization" FontSize="12" Grid.Row="0" Margin="2,2,0,4" FontWeight="SemiBold"/>
+            <labs:SettingsCard x:Name="ThemeCard" Header="Theme" Description="Change app theme (BETA)"
               Grid.Row="1" >
-            <labs:SettingsCard.HeaderIcon>
-                <FontIcon Glyph="&#xE790;"/>
-            </labs:SettingsCard.HeaderIcon>
-            <Grid>
-                <StackPanel x:Name="CardContentPanel" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <ToggleSwitch OnContent="Dark" OffContent="Light" x:Name="ThemeSwitch"/>
-                </StackPanel>
-            </Grid>
-        </labs:SettingsCard>
-        <labs:SettingsCard x:Name="SoundCard"
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE790;"/>
+                </labs:SettingsCard.HeaderIcon>
+                <Grid>
+                    <StackPanel x:Name="CardContentPanel" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <ToggleSwitch OnContent="Dark" OffContent="Light" x:Name="ThemeSwitch"/>
+                    </StackPanel>
+                </Grid>
+            </labs:SettingsCard>
+            <labs:SettingsCard x:Name="SoundCard"
               Grid.Row="2"
               Header="Sound"
               Description="Enable sound effects while using the app">
-            <labs:SettingsCard.HeaderIcon>
-                <FontIcon Glyph="&#xE8D6;"/>
-            </labs:SettingsCard.HeaderIcon>
-            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
-                <ToggleSwitch x:Name="SoundToggle" OnContent="Play sound effects" OffContent="Don't play sound effects" IsOn="False" IsEnabled="True"/>
-            </StackPanel>
-        </labs:SettingsCard>
-        <TextBlock Text="Game Settings" FontSize="12" Grid.Row="3" Margin="0,2,0,4" FontWeight="SemiBold"/>
-        <labs:SettingsCard x:Name="SSLDLLCard" Visibility="Visible"
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE8D6;"/>
+                </labs:SettingsCard.HeaderIcon>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <ToggleSwitch x:Name="SoundToggle" OnContent="Play sound effects" OffContent="Don't play sound effects" IsOn="False" IsEnabled="True"/>
+                </StackPanel>
+            </labs:SettingsCard>
+            <TextBlock Text="Game Settings" FontSize="12" Grid.Row="3" Margin="2,2,0,4" FontWeight="SemiBold"/>
+            <labs:SettingsCard x:Name="SSLDLLCard" Visibility="Visible"
               Grid.Row="4"
               Header="SSL Bypass"
               Description="todo!">
-            <labs:SettingsCard.HeaderIcon>
-                <FontIcon Glyph="&#xE840;"/>
-            </labs:SettingsCard.HeaderIcon>
-            <TextBox x:Name="SSLBypassDLLPathBox" TextChanged="SSLBypassDLLPathBox_TextChanged"/>
-        </labs:SettingsCard>
-        <labs:SettingsCard x:Name="ConsoleDLLCard" Visibility="Visible"
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE840;"/>
+                </labs:SettingsCard.HeaderIcon>
+                <TextBox x:Name="SSLBypassDLLPathBox" TextChanged="SSLBypassDLLPathBox_TextChanged"/>
+            </labs:SettingsCard>
+            <labs:SettingsCard x:Name="ConsoleDLLCard" Visibility="Visible"
               Grid.Row="5"
               Header="Console DLL"
               Description="todo!">
-            <labs:SettingsCard.HeaderIcon>
-                <FontIcon Glyph="&#xE8C1;"/>
-            </labs:SettingsCard.HeaderIcon>
-            <TextBox x:Name="ConsoleBypassDLLPathBox" TextChanged="ConsoleBypassDLLPathBox_TextChanged"/>
-        </labs:SettingsCard>
-        <labs:SettingsCard x:Name="MemoryLeakDLLCard" Visibility="Visible"
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE8C1;"/>
+                </labs:SettingsCard.HeaderIcon>
+                <TextBox x:Name="ConsoleBypassDLLPathBox" TextChanged="ConsoleBypassDLLPathBox_TextChanged"/>
+            </labs:SettingsCard>
+            <labs:SettingsCard x:Name="MemoryLeakDLLCard" Visibility="Visible"
               Grid.Row="6"
               Header="Memory Leak Fix DLL"
               Description="todo!">
-            <labs:SettingsCard.HeaderIcon>
-                <FontIcon Glyph="&#xE90F;"/>
-            </labs:SettingsCard.HeaderIcon>
-            <TextBox x:Name="MemoryBypassDLLPathBox" TextChanged="MemoryBypassDLLPathBox_TextChanged"/>
-        </labs:SettingsCard>
-        <TextBlock Text="Danger Zone" FontSize="12" Grid.Row="7" Margin="0,2,0,4" FontWeight="SemiBold"/>
-        <labs:SettingsCard x:Name="ResetAppCard" Visibility="Visible"
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE90F;"/>
+                </labs:SettingsCard.HeaderIcon>
+                <TextBox x:Name="MemoryBypassDLLPathBox" TextChanged="MemoryBypassDLLPathBox_TextChanged"/>
+            </labs:SettingsCard>
+            <TextBlock Text="Danger Zone" FontSize="12" Grid.Row="7" Margin="2,2,0,4" FontWeight="SemiBold"/>
+            <labs:SettingsCard x:Name="ResetAppCard" Visibility="Visible"
               Grid.Row="8"
               Header="Reset App"
               Description="This will require app restart!">
-            <labs:SettingsCard.HeaderIcon>
-                <FontIcon Glyph="&#xED10;"/>
-            </labs:SettingsCard.HeaderIcon>
-            <Button x:Name="ResetAppBtn" Click="ResetAppBtn_Click" Background="Red" Content="Reset"/>
-        </labs:SettingsCard>
-        <TextBlock Text="Other Settings" FontSize="12" Grid.Row="9" Margin="0,2,0,4" FontWeight="SemiBold"/>
-        <labs:SettingsCard x:Name="AuthCard" IsClickEnabled="True" Header="Auth Settings" Description="Username, password" Click="AuthCard_Click" Grid.Row="10">
-            <labs:SettingsCard.HeaderIcon>
-                <FontIcon Glyph="&#xEF58;"/>
-            </labs:SettingsCard.HeaderIcon>
-            <labs:SettingsCard.ActionIcon>
-                <FontIcon Glyph="&#xE8A7;"/>
-            </labs:SettingsCard.ActionIcon>
-        </labs:SettingsCard>
-    </Grid>
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xED10;"/>
+                </labs:SettingsCard.HeaderIcon>
+                <Button x:Name="ResetAppBtn" Click="ResetAppBtn_Click" Background="Red" Content="Reset"/>
+            </labs:SettingsCard>
+            <TextBlock Text="Other Settings" FontSize="12" Grid.Row="9" Margin="2,2,0,4" FontWeight="SemiBold"/>
+            <labs:SettingsCard x:Name="AuthCard" IsClickEnabled="True" Header="Auth Settings" Description="Username, password" Click="AuthCard_Click" Grid.Row="10">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xEF58;"/>
+                </labs:SettingsCard.HeaderIcon>
+                <labs:SettingsCard.ActionIcon>
+                    <FontIcon Glyph="&#xE8A7;"/>
+                </labs:SettingsCard.ActionIcon>
+            </labs:SettingsCard>
+        </Grid>
+    </ScrollViewer>
 </Page>

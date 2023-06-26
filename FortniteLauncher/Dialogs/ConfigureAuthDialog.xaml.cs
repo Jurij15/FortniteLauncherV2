@@ -1,3 +1,5 @@
+using CommunityToolkit.Labs.WinUI;
+using FortniteLauncher.Cores;
 using FortniteLauncher.Enums;
 using FortniteLauncher.Managers;
 using Microsoft.UI.Xaml;
@@ -45,10 +47,12 @@ namespace FortniteLauncher.Dialogs
             if (!string.IsNullOrEmpty(UsernameBox.Text) && !string.IsNullOrWhiteSpace(UsernameBox.Text))
             {
                 Globals.SetPlayerUsername(UsernameBox.Text);
+                Settings.SaveNewAuthUsernameConfig(UsernameBox.Text);
             }
             if (!string.IsNullOrEmpty(PasswordBox.Text) && !string.IsNullOrWhiteSpace(PasswordBox.Text))
             {
                 Globals.SetPlayerPassword(PasswordBox.Text);
+                Settings.SaveNewAuthPasswordConfig(PasswordBox.Text);
             }
         }
     }
