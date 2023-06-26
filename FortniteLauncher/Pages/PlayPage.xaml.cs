@@ -117,22 +117,11 @@ namespace FortniteLauncher.Pages
             ItemsPanel.Items.Clear();
 
 
-            ConnectedAnimation imageAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("ForwardConnectedAnimation");
-            if (imageAnimation != null)
-            {
-                // Connected animation + coordinated animation
-                imageAnimation.TryStart(SearchBox);
-
-            }
-
-
             if (Globals.Objects.MainFrame is null)
             {
                 DialogService.ShowSimpleDialog("Frame is null!", "Error");
                 return;
             }
-
-            //ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("ForwardConnectedAnimation", (UIElement)ItemsPanel.SelectedItem);
 
 
             try
@@ -233,8 +222,6 @@ namespace FortniteLauncher.Pages
                 DialogService.ShowSimpleDialog("Frame is null!", "Error");
                 return;
             }
-
-            //ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("ForwardConnectedAnimation", (UIElement)ItemsPanel.SelectedItem);
 
 
             try

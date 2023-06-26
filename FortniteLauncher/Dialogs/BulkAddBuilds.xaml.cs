@@ -37,7 +37,6 @@ namespace FortniteLauncher.Dialogs
 
         private async void SenderDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            // i will need to improve this its bad
             FolderBox.Visibility = Visibility.Collapsed;
             LoadingPanel.Visibility = Visibility.Visible;
             await Task.Delay(500);

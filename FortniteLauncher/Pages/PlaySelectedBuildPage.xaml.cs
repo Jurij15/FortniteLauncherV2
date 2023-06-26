@@ -133,6 +133,8 @@ namespace FortniteLauncher.Pages
                             throw;
                         }
                     }
+
+                    NotificationService.SendSimpleToast("Launch Sucessful!", "Enjoy playing Fortnite " + StatusBox.Text, "PID "+FortniteProcessID.ToString(),1.5);
                 }
             }
         }

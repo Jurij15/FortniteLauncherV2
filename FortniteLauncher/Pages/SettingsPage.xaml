@@ -11,11 +11,6 @@
 
     <ScrollViewer Margin="58, 42, 58,0">
         <Grid RowSpacing="2">
-            <Grid.ChildrenTransitions>
-                <TransitionCollection>
-                    <EntranceThemeTransition IsStaggeringEnabled="True" />
-                </TransitionCollection>
-            </Grid.ChildrenTransitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>

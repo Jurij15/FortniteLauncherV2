@@ -69,6 +69,8 @@ namespace FortniteLauncher
 
             MicaBackdrop abackdrop = new MicaBackdrop();
 
+            this.Title = "Fortnite Launcher";
+
             /*
             if (true)
             {
@@ -107,13 +109,21 @@ namespace FortniteLauncher
                 Globals.GalleryImages.Add(item);
             }
 
+            NotificationService.InitToast();
+
             Globals.PrefetchSavedBuilds();
             BuildsManager.Statistics.InitAllBuildsStats();
+
+            MainNavigation.SelectedItem = HomeItem;
+            RootFrame.Navigate(typeof(HomePage));
+            NavigationService.UpdateBreadcrumb("Home", true);
+            NavigationService.HideBreadcrumb();
+
         }
 
         private void AppTitleBackButton_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.FrameGoBack();
         }
 
         private void MainBreadcrumb_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)
@@ -132,11 +142,6 @@ namespace FortniteLauncher
             Globals.Objects.MainWindowXamlRoot = this.Content.XamlRoot;
 
             TotalBuildsBlock.Text = "Total: "+ new BuildsManager().GetAllBuildGuids().Count.ToString();
-
-            //MainWindowHelper.NavigationResourceDictionary.MainNavigationDictionary = MainNavigationDisableContentBackgroundDictionary;
-            //MainWindowHelper.NavigationResourceDictionary.MainNavigationDictionaryOriginal = MainNavigationDisableContentBackgroundDictionary;
-
-            //MainWindowHelper.NavigationResourceDictionary.AddContentBackground();
         }
 
         private void MainNavigation_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
