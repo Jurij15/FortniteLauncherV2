@@ -129,10 +129,19 @@ namespace FortniteLauncher
             Globals.Objects.MainWindowXamlRoot = this.Content.XamlRoot;
 
             TotalBuildsBlock.Text = "Total: "+ new BuildsManager().GetAllBuildGuids().Count.ToString();
+
+            //MainWindowHelper.NavigationResourceDictionary.MainNavigationDictionary = MainNavigationDisableContentBackgroundDictionary;
+            //MainWindowHelper.NavigationResourceDictionary.MainNavigationDictionaryOriginal = MainNavigationDisableContentBackgroundDictionary;
+
+            //MainWindowHelper.NavigationResourceDictionary.AddContentBackground();
         }
 
         private void MainNavigation_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
+            if (RootFrame.CurrentSourcePageType == typeof(PlaySelectedBuildPage))
+            {
+                NavigationService.FrameGoBack();
+            }
             if (args.IsSettingsSelected)
             {
                 NavigationService.UpdateBreadcrumb("Settings", true);
@@ -166,7 +175,7 @@ namespace FortniteLauncher
 
             GC.Collect(); //idk, trying to lower ram usage
 
-            MainNavigation.PaneTitle = Globals.PlayerUsername;
+            MainNavigation.PaneTitle = Globals.GetPlayerUsername();
         }
     }
 }

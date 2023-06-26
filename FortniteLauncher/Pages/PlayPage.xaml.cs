@@ -39,10 +39,11 @@ namespace FortniteLauncher.Pages
         {
             this.InitializeComponent();
 
+            _versionGuids.Clear();
             BuildsManager manager = new BuildsManager();
             _versionGuids = manager.GetAllBuildGuids();
 
-            //LoadBuilds();
+            LoadBuilds();
         }
 
         async Task CreateCard(string BuildGUID)
@@ -51,7 +52,7 @@ namespace FortniteLauncher.Pages
 
             string buildname = manager.GetBuildNameByGUID(BuildGUID);
             string buildpath = manager.GetBuildPathByGUID(BuildGUID);
-            string buildSeason = manager.GetBuildSeasonByGUID(BuildGUID);
+            string buildSeason = StringsHelper.AddSpacesToNumbers(manager.GetBuildSeasonByGUID(BuildGUID));
 
             SettingsCard NewCard = new SettingsCard();
             StackPanel content = new StackPanel();
@@ -197,7 +198,11 @@ namespace FortniteLauncher.Pages
 
         private void ItemsPanel_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadBuilds();
+            //LoadBuilds();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

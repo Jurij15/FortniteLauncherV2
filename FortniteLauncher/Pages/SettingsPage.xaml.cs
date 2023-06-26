@@ -1,3 +1,4 @@
+using FortniteLauncher.Dialogs;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -26,6 +27,41 @@ namespace FortniteLauncher.Pages
         public SettingsPage()
         {
             this.InitializeComponent();
+
+            SSLBypassDLLPathBox.Text = Config.SSLBypassDLL;
+            ConsoleBypassDLLPathBox.Text = Config.ConsoleDLL;
+            MemoryBypassDLLPathBox.Text = Config.MemoryLeakFixDLL;
+        }
+
+        private async void AuthCard_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = Globals.Objects.MainWindowXamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Auth Settings";
+            dialog.Content = new ConfigureAuthDialog(dialog);
+
+            await dialog.ShowAsync();
+        }
+
+        private void ResetAppBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.ResetApp(true);
+        }
+
+        private void SSLBypassDLLPathBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Config.SSLBypassDLL = ((TextBox)sender).Text;
+        }
+
+        private void ConsoleBypassDLLPathBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void MemoryBypassDLLPathBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

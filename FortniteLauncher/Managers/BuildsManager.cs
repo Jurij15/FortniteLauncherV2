@@ -135,5 +135,10 @@ namespace FortniteLauncher.Managers
             string dir = RootBuildsDir + "\\" + guid;
             Directory.Delete(dir, true);
         }
+
+        public static void ResetBuilds()
+        {
+            Directory.Delete(RootBuildsDir, true);
+        }
     }
 }

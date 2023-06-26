@@ -8,7 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CommunityToolkit.Labs.WinUI"
     mc:Ignorable="d"
-    Unloaded="Page_Unloaded">
+    Unloaded="Page_Unloaded"
+    Loaded="Page_Loaded">
 
     <Grid Margin="58, 42, 58,0" CanBeScrollAnchor="True" RowSpacing="2">
         <Grid.RowDefinitions>
@@ -20,16 +21,22 @@
         <AutoSuggestBox x:Name="SearchBox" PlaceholderText="Search" QueryIcon="Find" Grid.Row="1"/>
         <Grid x:Name="ViewsPanel" Grid.Row="2" Margin="0,4,0,4">
             <StackPanel Orientation="Horizontal" Spacing="2" HorizontalAlignment="Left">
-                <controls:SettingsCard Header="Add Build" IsClickEnabled="True" IsActionIconVisible="True" x:Name="AddBuildBtn" HorizontalAlignment="Left" Click="AddBuildBtn_Click">
-                    <controls:SettingsCard.ActionIcon>
-                        <FontIcon Glyph="&#xE8A7;" />
-                    </controls:SettingsCard.ActionIcon>
-                </controls:SettingsCard>
-                <controls:SettingsCard Header="Bulk add builds" IsClickEnabled="True" IsActionIconVisible="True" x:Name="BulkAddBuildsBtn" HorizontalAlignment="Left" Click="BulkAddBuildsBtn_Click">
-                    <controls:SettingsCard.ActionIcon>
-                        <FontIcon Glyph="&#xE8A7;" />
-                    </controls:SettingsCard.ActionIcon>
-                </controls:SettingsCard>
+                <HyperlinkButton x:Name="AddBuildBtn" HorizontalAlignment="Left" Click="AddBuildBtn_Click">
+                    <HyperlinkButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xE8A7;"/>
+                            <TextBlock Text="Add Build" Margin="2,0,0,0"/>
+                        </StackPanel>
+                    </HyperlinkButton.Content>
+                </HyperlinkButton>
+                <HyperlinkButton x:Name="BulkAddBuildsBtn" HorizontalAlignment="Left" Click="BulkAddBuildsBtn_Click">
+                    <HyperlinkButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xE8A7;"/>
+                            <TextBlock Text="Bulk add builds" Margin="2,0,0,0"/>
+                        </StackPanel>
+                    </HyperlinkButton.Content>
+                </HyperlinkButton>
             </StackPanel>
         </Grid>
         <GridView x:Name="ItemsPanel" Grid.Row="3" BorderBrush="Transparent" SizeChanged="ItemsPanel_SizeChanged" CanDragItems="False" CanReorderItems="False" Loaded="ItemsPanel_Loaded">

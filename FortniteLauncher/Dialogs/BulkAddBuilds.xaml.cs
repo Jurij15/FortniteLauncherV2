@@ -47,7 +47,7 @@ namespace FortniteLauncher.Dialogs
                 if (BuildsHelper.IsPathValid(directories))
                 {
                     BuildsManager manager= new BuildsManager();
-                    await manager.CreateBuild(Count.ToString(), directories, Enums.FortniteSeasons.Unknown);
+                    manager.CreateBuild(Count.ToString(), directories, Enums.FortniteSeasons.Unknown); //lets not make it async
                     Count++;
                 }
             }
@@ -58,6 +58,8 @@ namespace FortniteLauncher.Dialogs
             NavigationService.UpdateBreadcrumb("Select a build", true);
             NavigationService.ShowBreadcrumb();
             Globals.Objects.MainFrame.Navigate(typeof(PlayPage));
+
+            DialogService.ShowSimpleDialog("Found " + Count.ToString() + " builds", "Success");
         }
     }
 }

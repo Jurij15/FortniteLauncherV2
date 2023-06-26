@@ -23,7 +23,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Dialogs\GalleryDialog.xaml" />
+	  <Content Remove="Assets\DLL\console.dll" />
+	  <Content Remove="Assets\DLL\memoryleak.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Assets\DLL\Cobalt.dll" />
+	  <None Remove="Assets\DLL\Cobalt.pdb" />
+	  <None Remove="Dialogs\ConfigureAuthDialog.xaml" />
+	  <None Remove="ContentWindows\GalleryWindow.xaml" />
 	</ItemGroup>
 
   <ItemGroup>
@@ -55,6 +63,12 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Assets\DLL\Cobalt.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\DLL\Cobalt.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\FNDefaultIcon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -66,7 +80,18 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Dialogs\GalleryDialog.xaml">
+    <None Update="Assets\DLL\console.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\DLL\memoryleak.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Page Update="Windows\GalleryWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Dialogs\ConfigureAuthDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

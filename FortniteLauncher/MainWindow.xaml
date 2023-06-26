@@ -61,8 +61,8 @@
                                  IsTitleBarAutoPaddingEnabled="False"
                                  >
             <!-- make it look like windows settings
-                        <NavigationView.Resources>
-                <ResourceDictionary>
+<NavigationView.Resources>
+                <ResourceDictionary x:Name="MainNavigationDisableContentBackgroundDictionary">
                     <ResourceDictionary.ThemeDictionaries>
                         <ResourceDictionary x:Key="Dark">
                             <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{StaticResource NavigationViewExpandedPaneBackground}" />

@@ -1,9 +1,13 @@
-﻿using Microsoft.UI.Xaml;
+﻿using FortniteLauncher.Cores;
+using FortniteLauncher.Managers;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -14,6 +18,7 @@ namespace FortniteLauncher
 {
     public static class Globals
     {
+        public static int Theme { get; set; }
         public static bool bIsFirstTimeRun = false;
         public static class Objects
         {
@@ -28,7 +33,24 @@ namespace FortniteLauncher
 
         public static HashSet<string> GalleryImages = new HashSet<string>();
 
-        public static string PlayerUsername { get; set; }
+        public static string GetPlayerUsername()
+        {
+            return Config.PlayerAuthUsername;
+        }
+        public static string GetPlayerPassword()
+        {
+            return Config.PlayerAuthPassword;
+        }
+
+        public static void SetPlayerUsername(string NewUsername)
+        {
+            Config.PlayerAuthUsername = NewUsername;
+        }
+
+        public static void SetPlayerPassword(string NewPassword)
+        {
+            Config.PlayerAuthPassword = NewPassword;
+        }
 
         public static class FortniteStrings
         {
@@ -47,6 +69,11 @@ namespace FortniteLauncher
             public static string LaunchArguments = "-log -epicapp=Fortnite -epicenv=Prod -epiclocale=en-us -epicportal -skippatchcheck -nobe -fromfl=eac -fltoken=3db3ba5dcbd2e16703f3978d -caldera={} -AUTH_LOGIN=player@projectreboot.dev -AUTH_PASSWORD=Rebooted -AUTH_TYPE=epic";
 
             public static string UserLaunchArguments = $"-skippatchcheck - epicportal -AUTH_TYPE=epic -epicapp=Fortnite -noeac -nobe -AUTH_LOGIN=HELLO@fortnite.com -AUTH_PASSWORD=unused -fltoken=7a848a93a74ba68876c36C1c -fromfl=none";
+
+            public static string GetReadyLaunchArguments(string Username, string Password)
+            {
+                return "-log -epicapp=Fortnite -epicenv=Prod -epiclocale=en-us -epicportal -skippatchcheck -nobe -fromfl=eac -fltoken=3db3ba5dcbd2e16703f3978d -caldera={}"+$" -AUTH_LOGIN={Username}@projectreboot.dev -AUTH_PASSWORD={Password} -AUTH_TYPE=epic";
+            }
         }
 
         public static ObservableCollection<string> Breadcrumbs = new ObservableCollection<string>();
@@ -56,5 +83,24 @@ namespace FortniteLauncher
         }
 
         public static HashSet<string> SavedBuildsGuids = new HashSet<string>();
+
+        public static async void ResetApp(bool bSendNotification)
+        {
+            Directory.Delete(Settings.RootSettingsDir, true);
+            if (bSendNotification) { /*NotificationService.SendSimpleToast("MinecraftLauncher was reset", "Restart was required to complete", 1.9);*/ }
+
+            BuildsManager.ResetBuilds();
+
+            RestartApp();
+        }
+
+        #region TemporaryVars
+        #endregion
+
+        public static async void RestartApp()
+        {
+            Process p = Process.Start("FortniteLauncherV2.exe");
+            Process.GetCurrentProcess().Kill();
+        }
     }
 }

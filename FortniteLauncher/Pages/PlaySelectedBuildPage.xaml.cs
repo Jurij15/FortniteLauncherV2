@@ -1,3 +1,5 @@
+using FortniteLauncher.Cores;
+using FortniteLauncher.Dialogs;
 using FortniteLauncher.Enums;
 using FortniteLauncher.Helpers;
 using FortniteLauncher.Managers;
@@ -13,12 +15,14 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.WebUI;
+using Windows.Web.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,6 +39,9 @@ namespace FortniteLauncher.Pages
         private string _buildSeason;
 
         private string _buildGUID;
+
+        private Process FortniteProcess;
+        private int FortniteProcessID;
         public PlaySelectedBuildPage()
         {
             this.InitializeComponent();
@@ -45,6 +52,8 @@ namespace FortniteLauncher.Pages
             _buildPath = manager.GetBuildPathByGUID(Globals.CurrentlySelectedBuildGUID);
             _buildSeason = manager.GetBuildSeasonByGUID(Globals.CurrentlySelectedBuildGUID);
             _buildGUID = Globals.CurrentlySelectedBuildGUID;
+
+            MainWindowHelper.NavigationResourceDictionary.RemoveContentBackground();
 
             if (BuildsHelper.IsPathValid(_buildPath))
             {
@@ -59,7 +68,7 @@ namespace FortniteLauncher.Pages
                 BannerImg.Source = bitmapImage;
             }
 
-            StatusBox.Text = _buildSeason;
+            StatusBox.Text = StringsHelper.AddSpacesToNumbers(_buildSeason);
 
             FortniteVersionBlock.Text = "Fortnite";
 
@@ -80,11 +89,52 @@ namespace FortniteLauncher.Pages
 
             var selecteditem = Enum.Parse(typeof(FortniteSeasons), _buildSeason);
             SeasonsComboEdit.SelectedItem = selecteditem;
+
+            LaunchArgsBox.Text = Globals.FortniteStrings.GetReadyLaunchArguments(Globals.GetPlayerUsername(), Globals.GetPlayerPassword());
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
+            if (BuildsHelper.IsPathValid(_buildPath))
+            {
+                PlayButton.IsEnabled = false;
+                PlayCore core = new PlayCore();
+                FortniteProcess = core.LaunchFortnite(_buildPath+Globals.FortniteStrings.Fortnite64ShippingExecutablePath, LaunchArgsBox.Text, null, null, false, false);
+                FortniteProcessID = FortniteProcess.Id;
+                PlayButton.IsEnabled = true;
 
+                if (!core.bLaunchStatus)
+                {
+                    DialogService.ShowSimpleDialog("An error occured while launching. Error message " + core.GetLaunchErrorsIfAny(), "Error");
+                }
+                else
+                {
+                    if (SSLBypassToggle.IsOn)
+                    {
+                        try
+                        {
+                            Injector.InjectDll(FortniteProcessID, Config.SSLBypassDLL);
+                        }
+                        catch (Exception ex)
+                        {
+                            DialogService.ShowSimpleDialog("An error occured while injecting SSL bypass DLL. Error message: " + ex.Message, "Error");
+                            throw;
+                        }
+                    }
+                    if (InjectMemoryLeakFixDll.IsOn)
+                    {
+                        try
+                        {
+                            Injector.InjectDll(FortniteProcessID, Config.MemoryLeakFixDLL);
+                        }
+                        catch (Exception ex)
+                        {
+                            DialogService.ShowSimpleDialog("An error occured while injecting memory leak fix DLL. Error message: " + ex.Message, "Error");
+                            throw;
+                        }
+                    }
+                }
+            }
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -104,6 +154,16 @@ namespace FortniteLauncher.Pages
                 BuildsManager manager = new BuildsManager();
                 manager.SaveNewBuildSeasonConfigToGuid(_buildGUID, ((FortniteSeasons)SeasonsComboEdit.SelectedItem).ToString());
             }
+
+            //MainWindowHelper.NavigationResourceDictionary.AddContentBackground();
+
+            //refresh the page
+            if (Globals.Objects.MainFrame.CurrentSourcePageType == typeof(PlayPage))
+            {
+                NavigationService.UpdateBreadcrumb("Select a build", true);
+                NavigationService.ShowBreadcrumb();
+                Globals.Objects.MainFrame.Navigate(typeof(PlayPage));
+            }
         }
 
         private void DeleteConfirmBtn_Click(object sender, RoutedEventArgs e)
@@ -114,14 +174,32 @@ namespace FortniteLauncher.Pages
             NavigationService.FrameGoBack();
         }
 
-        private void CobaltSSLBypass_Toggled(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void GalleryGrid_Click(object sender, RoutedEventArgs e)
         {
             DialogService.ShowGalleryDialog();
+        }
+
+        private void ConfigureUsername_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = Globals.Objects.MainWindowXamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Auth Settings";
+            dialog.Content = new ConfigureAuthDialog(dialog);
+
+            dialog.ShowAsync();
+
+            LaunchArgsBox.Text = Globals.FortniteStrings.GetReadyLaunchArguments(Globals.GetPlayerUsername(), Globals.GetPlayerPassword());
+        }
+
+        private void LaunchSettingsExpander_Expanding(Expander sender, ExpanderExpandingEventArgs args)
+        {
+            BuildSettingsExpander.IsExpanded = false;
+        }
+
+        private void BuildSettingsExpander_Expanding(Expander sender, ExpanderExpandingEventArgs args)
+        {
+            LaunchSettingsExpander.IsExpanded = false;
         }
     }
 }
