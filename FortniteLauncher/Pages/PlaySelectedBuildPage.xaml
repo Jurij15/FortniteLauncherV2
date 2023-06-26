@@ -75,7 +75,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Expander IsExpanded="True" HorizontalAlignment="Stretch" Grid.Row="1" x:Name="LaunchSettingsExpander" HorizontalContentAlignment="Stretch" Expanding="LaunchSettingsExpander_Expanding">
+                <Expander Loaded="LaunchSettingsExpander_Loaded" HorizontalAlignment="Stretch" Grid.Row="1" x:Name="LaunchSettingsExpander" HorizontalContentAlignment="Stretch" Expanding="LaunchSettingsExpander_Expanding">
                     <Expander.Header>
                         <StackPanel Margin="8" CornerRadius="8">
                             <TextBlock Text="Launch Settings" FontSize="15"/>

@@ -3,6 +3,7 @@ using FortniteLauncher.Enums;
 using FortniteLauncher.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,25 +15,42 @@ namespace FortniteLauncher.Managers
     {
         public static string RootBuildsDir = Settings.RootSettingsDir + "Builds";
 
-        public static string GetBuildNameConfig(string GUID)
+        public static class Statistics
+        {
+            public static List<string> AllBuildsNames = new List<string>();
+            public static void InitAllBuildsStats()
+            {
+                foreach (var item in Globals.SavedBuildsGuids)
+                {
+                    AllBuildsNames.Add(STATIC_GetBuildNameByGUID(item));
+                }
+            }
+        }
+
+        public string GetBuildNameConfig(string GUID)
         {
             return RootBuildsDir + "\\" + GUID + "\\BuildNameConfig";
         }
 
-        public static string GetBuildPathConfig(string GUID)
+        public static string STATIC_GetBuildNameConfig(string GUID)
+        {
+            return RootBuildsDir + "\\" + GUID + "\\BuildNameConfig";
+        }
+
+        public string GetBuildPathConfig(string GUID)
         {
             return RootBuildsDir + "\\" + GUID + "\\BuildPathConfig";
         }
 
-        public static string GetBuildSeasonConfig(string GUID)
+        public string GetBuildSeasonConfig(string GUID)
         {
             return RootBuildsDir + "\\" + GUID + "\\BuildSeasonConfig";
         }
 
         //saves a build
-        public async Task<string> CreateBuild(string Name, string Path, FortniteSeasons Season)
+        public async Task<string> CreateBuild(string Name, string Path, FortniteSeasons Season, bool bIgnoreInvalidPath)
         {
-            if (!BuildsHelper.IsPathValid(Path))
+            if (!BuildsHelper.IsPathValid(Path) && !bIgnoreInvalidPath)
             {
                 return null;
             }
@@ -81,10 +99,17 @@ namespace FortniteLauncher.Managers
             return list;
         }
 
+        //builds lists /*For search ONLY*/
+
+
         //get build properties
         public string GetBuildNameByGUID(string GUID)
         {
             return File.ReadAllText(GetBuildNameConfig(GUID));
+        }
+        public static string STATIC_GetBuildNameByGUID(string GUID)
+        {
+            return File.ReadAllText(STATIC_GetBuildNameConfig(GUID));
         }
         public string GetBuildPathByGUID(string GUID)
         {

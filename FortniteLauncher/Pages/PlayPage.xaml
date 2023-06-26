@@ -18,7 +18,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <AutoSuggestBox x:Name="SearchBox" PlaceholderText="Search" QueryIcon="Find" Grid.Row="1"/>
+        <AutoSuggestBox x:Name="SearchBox" PlaceholderText="Search" QueryIcon="Find" Grid.Row="1" SuggestionChosen="SearchBox_SuggestionChosen" TextChanged="SearchBox_TextChanged" QuerySubmitted="SearchBox_QuerySubmitted"/>
         <Grid x:Name="ViewsPanel" Grid.Row="2" Margin="0,4,0,4">
             <StackPanel Orientation="Horizontal" Spacing="2" HorizontalAlignment="Left">
                 <HyperlinkButton x:Name="AddBuildBtn" HorizontalAlignment="Left" Click="AddBuildBtn_Click">

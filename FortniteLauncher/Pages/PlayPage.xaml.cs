@@ -34,16 +34,18 @@ namespace FortniteLauncher.Pages
     /// </summary>
     public sealed partial class PlayPage : Page
     {
-        HashSet<string> _versionGuids = new HashSet<string>();
         public PlayPage()
         {
             this.InitializeComponent();
 
-            _versionGuids.Clear();
             BuildsManager manager = new BuildsManager();
-            _versionGuids = manager.GetAllBuildGuids();
+            Globals.SavedBuildsGuids.Clear();
+            foreach (var item in manager.GetAllBuildGuids())
+            {
+                Globals.SavedBuildsGuids.Add(item);
+            }
 
-            LoadBuilds();
+            LoadBuilds(null);
         }
 
         async Task CreateCard(string BuildGUID)
@@ -144,11 +146,21 @@ namespace FortniteLauncher.Pages
             }
         }
 
-        async void LoadBuilds() //so you can load them with parameters
+        async void LoadBuilds(string IfContainsThisInName) //so you can load them with parameters
         {
-            foreach (var item in _versionGuids)
+            if (IfContainsThisInName != null)
             {
-                await CreateCard(item);
+                foreach (var item in Globals.SavedBuildsGuids)
+                {
+                    await CreateCard(item);
+                }
+            }
+            else
+            {
+                foreach (var item in Globals.SavedBuildsGuids)
+                {
+                    await CreateCard(item);
+                }
             }
         }
 
@@ -176,7 +188,7 @@ namespace FortniteLauncher.Pages
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            _versionGuids.Clear();
+            //_versionGuids.Clear();
         }
 
         private async void BulkAddBuildsBtn_Click(object sender, RoutedEventArgs e)
@@ -203,6 +215,71 @@ namespace FortniteLauncher.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void SearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            string GUID = args.SelectedItem.ToString();
+
+            Globals.CurrentlySelectedBuildGUID = GUID;
+
+            BuildsManager manager = new BuildsManager();
+
+            ItemsPanel.Items.Clear();
+
+
+            if (Globals.Objects.MainFrame is null)
+            {
+                DialogService.ShowSimpleDialog("Frame is null!", "Error");
+                return;
+            }
+
+            //ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("ForwardConnectedAnimation", (UIElement)ItemsPanel.SelectedItem);
+
+
+            try
+            {
+                NavigationService.NavigateHiearchical(typeof(PlaySelectedBuildPage), "Play " + manager.GetBuildNameByGUID(GUID), false);
+            }
+            catch (Exception ex)
+            {
+                DialogService.ShowSimpleDialog(ex.Message, "Error");
+                throw;
+            }
+        }
+
+        private void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            // i dont think, i can use this, due to the structure of how i made builds saving work
+            /*
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                var suitableItems = new List<string>();
+                var splitText = sender.Text.ToLower().Split(" ");
+                foreach (var cat in BuildsManager.Statistics.AllBuildsNames)
+                {
+                    var found = splitText.All((key) =>
+                    {
+                        return cat.ToLower().Contains(key);
+                    });
+                    if (found)
+                    {
+                        suitableItems.Add(cat);
+                    }
+                }
+                if (suitableItems.Count == 0)
+                {
+                    suitableItems.Add("No results found");
+                }
+                sender.ItemsSource = suitableItems;
+            }
+            */
+
+        }
+
+        private void SearchBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+
         }
     }
 }

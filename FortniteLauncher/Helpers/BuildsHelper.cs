@@ -13,6 +13,8 @@ namespace FortniteLauncher.Helpers
         /// Checks if the path provided contains the required files for launching Fortnite
         /// </summary>
         /// <returns>True if it is valid, False if it is invalid</returns>
+        /// 
+        //THIS DOES NOT WORK IN SOME CASES, WILL FIX LATER 
         public static bool IsPathValid(string Path)
         {
             if (File.Exists(Path + Globals.FortniteStrings.Fortnite64ShippingExecutablePath))

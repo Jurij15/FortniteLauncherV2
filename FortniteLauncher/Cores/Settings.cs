@@ -32,7 +32,7 @@ namespace FortniteLauncher.Cores
             }
 
             string theme = File.ReadAllText(ThemeConfig);
-            Globals.Theme = Convert.ToInt32(theme);
+            //Globals.Theme = Convert.ToInt32(theme);
 
             string username = File.ReadAllText(AuthUsernameConfig);
             Globals.SetPlayerUsername(username);
@@ -109,8 +109,8 @@ namespace FortniteLauncher.Cores
 
         public static void SaveNewAuthUsernameConfig(string NewUsername)
         {
-            File.Delete(ThemeConfig);
-            using (StreamWriter sw = File.CreateText(ThemeConfig))
+            File.Delete(AuthUsernameConfig);
+            using (StreamWriter sw = File.CreateText(AuthUsernameConfig))
             {
                 sw.Write(NewUsername);
                 sw.Close();
@@ -119,8 +119,8 @@ namespace FortniteLauncher.Cores
 
         public static void SaveNewAuthPasswordConfig(string NewPassword)
         {
-            File.Delete(NewPassword);
-            using (StreamWriter sw = File.CreateText(NewPassword))
+            File.Delete(AuthPasswordConfig);
+            using (StreamWriter sw = File.CreateText(AuthPasswordConfig))
             {
                 sw.Write(NewPassword);
                 sw.Close();

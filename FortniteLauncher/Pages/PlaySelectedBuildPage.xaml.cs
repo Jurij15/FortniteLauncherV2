@@ -207,5 +207,10 @@ namespace FortniteLauncher.Pages
         {
             LaunchSettingsExpander.IsExpanded = false;
         }
+
+        private void LaunchSettingsExpander_Loaded(object sender, RoutedEventArgs e)
+        {
+            ((Expander)sender).IsExpanded = true;
+        }
     }
 }

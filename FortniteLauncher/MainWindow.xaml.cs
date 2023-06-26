@@ -106,6 +106,9 @@ namespace FortniteLauncher
             {
                 Globals.GalleryImages.Add(item);
             }
+
+            Globals.PrefetchSavedBuilds();
+            BuildsManager.Statistics.InitAllBuildsStats();
         }
 
         private void AppTitleBackButton_Click(object sender, RoutedEventArgs e)

@@ -41,7 +41,7 @@ namespace FortniteLauncher.Dialogs
         private async void PresentorDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             BuildsManager manager = new BuildsManager();
-            string bResult = await manager.CreateBuild(BuildNameBox.Text, BuildPathBox.Text, (FortniteSeasons)SeasonsCombo.SelectedItem);
+            string bResult = await manager.CreateBuild(BuildNameBox.Text, BuildPathBox.Text, (FortniteSeasons)SeasonsCombo.SelectedItem, true);
             if (bResult == null)
             {
                 sender.Hide();
