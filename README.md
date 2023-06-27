@@ -5,3 +5,4 @@ This is a remake of my [Old Launcher](https://github.com/Jurij15/FortniteLaunche
 it has some new features.
 
 This is the WinUI3 branch, the one i am working on right now.
+At the moment, launcher is not complete and has many bugs.
