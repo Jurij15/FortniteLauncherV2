@@ -15,7 +15,7 @@ namespace FortniteLauncher.Helpers
         /// <returns>True if it is valid, False if it is invalid</returns>
         /// 
         //THIS DOES NOT WORK IN SOME CASES, WILL FIX LATER 
-        public static bool IsPathValid(string Path)
+        public static bool IsPathValidOld(string Path)
         {
             if (File.Exists(Path + Globals.FortniteStrings.Fortnite64ShippingExecutablePath))
             {
@@ -42,6 +42,18 @@ namespace FortniteLauncher.Helpers
             }
 
             return false;
+        }
+
+        public static bool IsPathValid(string Path)
+        {
+            bool ReturnValue = false; //default is false
+
+            if (File.Exists(Path+Globals.FortniteStrings.Fortnite64ShippingExecutablePath))
+            {
+                ReturnValue = true;
+            }
+
+            return ReturnValue;
         }
 
         public static string RemoveAllSpacesFromString(string ValidPath)

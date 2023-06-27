@@ -3,6 +3,7 @@ using FortniteLauncher.Enums;
 using FortniteLauncher.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
@@ -100,8 +101,21 @@ namespace FortniteLauncher.Managers
         }
 
         //builds lists /*For search ONLY*/
+        public List<string> GetAllBuildGUIDsThatNameContains(string ContainThisInName)
+        {
+            List<string > list = new List<string>();
 
+            foreach (var item in GetAllBuildGuids())
+            {
+                string name = GetBuildNameByGUID(item);
+                if (name.Contains(ContainThisInName))
+                {
+                    list.Add(item);
+                }
+            }
 
+            return list;
+        }
         //get build properties
         public string GetBuildNameByGUID(string GUID)
         {

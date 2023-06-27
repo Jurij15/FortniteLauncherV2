@@ -180,6 +180,12 @@ namespace FortniteLauncher
                 NavigationService.ShowBreadcrumb();
                 RootFrame.Navigate(typeof(AboutPage));
             }
+            if (args.SelectedItemContainer == InjectItem)
+            {
+                NavigationService.UpdateBreadcrumb("Inject", true);
+                NavigationService.ShowBreadcrumb();
+                RootFrame.Navigate(typeof(InjectPage));
+            }
 
             GC.Collect(); //idk, trying to lower ram usage
 

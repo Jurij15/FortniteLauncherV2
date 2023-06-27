@@ -118,7 +118,6 @@ namespace FortniteLauncher.Pages
                         catch (Exception ex)
                         {
                             DialogService.ShowSimpleDialog("An error occured while injecting SSL bypass DLL. Error message: " + ex.Message, "Error");
-                            throw;
                         }
                     }
                     if (InjectMemoryLeakFixDll.IsOn)
@@ -130,7 +129,17 @@ namespace FortniteLauncher.Pages
                         catch (Exception ex)
                         {
                             DialogService.ShowSimpleDialog("An error occured while injecting memory leak fix DLL. Error message: " + ex.Message, "Error");
-                            throw;
+                        }
+                    }
+                    if (InjectConsoleDLLSwitch.IsOn)
+                    {
+                        try
+                        {
+                            Injector.InjectDll(FortniteProcessID, Config.ConsoleDLL);
+                        }
+                        catch (Exception ex)
+                        {
+                            DialogService.ShowSimpleDialog("An error occured while injecting console DLL. Error message: " + ex.Message, "Error");
                         }
                     }
 

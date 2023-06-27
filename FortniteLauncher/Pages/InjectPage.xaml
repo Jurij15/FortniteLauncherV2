@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="FortniteLauncher.Pages.InjectPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FortniteLauncher.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Margin="58, 42, 58,0" RowSpacing="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="2">
+            <NumberBox Header="Prcocess ID" x:Name="PIDBox" Value="0"/>
+            <Button x:Name="ShowProcesses" Content="Show Processes" Margin="2,0,0,0" VerticalAlignment="Bottom"/>
+        </StackPanel>
+        <TextBox Header="DLL Path" PlaceholderText="Path" x:Name="DLLPathBox" Grid.Row="2"/>
+        <Button Content="Inject" Style="{ThemeResource AccentButtonStyle}" Grid.Row="3" x:Name="InjectBtn" Margin="0,4,0,0" Click="InjectBtn_Click"/>
+    </Grid>
+</Page>

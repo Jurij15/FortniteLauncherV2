@@ -34,6 +34,12 @@ namespace FortniteLauncher.Pages
     /// </summary>
     public sealed partial class PlayPage : Page
     {
+        enum BuildsDisplayMode //todo
+        {
+            List,
+            Normal,
+            Large
+        }
         public PlayPage()
         {
             this.InitializeComponent();
@@ -46,6 +52,19 @@ namespace FortniteLauncher.Pages
             }
 
             LoadBuilds(null);
+        }
+
+        bool CardAlreadyExists(string Name)
+        {
+            foreach (var item in ItemsPanel.Items)
+            {
+                if ((item as SettingsCard).Name.Contains(Name))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         async Task CreateCard(string BuildGUID)
@@ -137,18 +156,26 @@ namespace FortniteLauncher.Pages
 
         async void LoadBuilds(string IfContainsThisInName) //so you can load them with parameters
         {
+            BuildsManager manager = new BuildsManager();
+            ItemsPanel.Items.Clear();
             if (IfContainsThisInName != null)
             {
-                foreach (var item in Globals.SavedBuildsGuids)
+                foreach (var item in manager.GetAllBuildGUIDsThatNameContains(IfContainsThisInName))
                 {
-                    await CreateCard(item);
+                    if (!CardAlreadyExists(item))
+                    {
+                        await CreateCard(item);
+                    }
                 }
             }
             else
             {
                 foreach (var item in Globals.SavedBuildsGuids)
                 {
-                    await CreateCard(item);
+                    if (!CardAlreadyExists(item))
+                    {
+                        await CreateCard(item);
+                    }
                 }
             }
         }
@@ -262,6 +289,14 @@ namespace FortniteLauncher.Pages
             }
             */
 
+            BuildsManager.Statistics.InitAllBuildsStats();
+
+            if (string.IsNullOrEmpty(sender.Text) || string.IsNullOrWhiteSpace(sender.Text))
+            {
+                LoadBuilds(null);
+            }
+
+            LoadBuilds(sender.Text);
         }
 
         private void SearchBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)

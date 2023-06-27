@@ -110,7 +110,7 @@
                 <!--<NavigationViewItemSeparator/>-->
                 <NavigationViewItem x:Name="PlayPageItem">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE768;"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74C;"/>
                     </NavigationViewItem.Icon>
                     <NavigationViewItem.Content>
                         <StackPanel Spacing="1" Padding="6">
@@ -122,6 +122,11 @@
                 <NavigationViewItem Content="Private Server" x:Name="PrivateServerItem">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets"  Glyph="&#xE704;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Inject" x:Name="InjectItem">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE718;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
