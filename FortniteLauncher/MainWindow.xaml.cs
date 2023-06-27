@@ -120,6 +120,11 @@ namespace FortniteLauncher
             NavigationService.UpdateBreadcrumb("Home", true);
             NavigationService.HideBreadcrumb();
 
+            if (!Globals.bIsFirstTimeRun)
+            {
+                InfoDot.Visibility = Visibility.Collapsed;
+            }
+
         }
 
         private void AppTitleBackButton_Click(object sender, RoutedEventArgs e)
@@ -195,6 +200,7 @@ namespace FortniteLauncher
 
         private async void PaneContent_Click(object sender, RoutedEventArgs e)
         {
+            InfoDot.Visibility = Visibility.Collapsed;
             ContentDialog dialog = new ContentDialog();
             dialog.XamlRoot = Globals.Objects.MainWindowXamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
