@@ -34,6 +34,7 @@ namespace FortniteLauncher.Dialogs
 
             var _enumval = Enum.GetValues(typeof(FortniteSeasons)).Cast<FortniteSeasons>();
             SeasonsCombo.ItemsSource = _enumval;
+            SeasonsCombo.SelectedIndex = 0;
 
             PresentorDialog.PrimaryButtonClick += PresentorDialog_PrimaryButtonClick;
         }

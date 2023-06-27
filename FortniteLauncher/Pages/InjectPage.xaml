@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Margin="58, 42, 58,0" RowSpacing="2">
+    <Grid Margin="58, 42, 58,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -22,11 +22,20 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="2">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="2" Margin="0,0,0,2">
             <NumberBox Header="Prcocess ID" x:Name="PIDBox" Value="0"/>
-            <Button x:Name="ShowProcesses" Content="Show Processes" Margin="2,0,0,0" VerticalAlignment="Bottom"/>
+            <Button x:Name="ShowProcesses" Content="Show Processes" Margin="2,0,0,0" VerticalAlignment="Bottom" Click="ShowProcesses_Click"/>
         </StackPanel>
-        <TextBox Header="DLL Path" PlaceholderText="Path" x:Name="DLLPathBox" Grid.Row="2"/>
+        <Grid  Grid.Row="2" RowSpacing="2" HorizontalAlignment="Stretch" Margin="0,2,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Header="DLL Path" PlaceholderText="Path" x:Name="DLLPathBox" HorizontalAlignment="Stretch" Grid.Column="0"/>
+            <Button x:Name="FilePicker" Click="FilePicker_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1">
+                <FontIcon Glyph="&#xE8E5;"/>
+            </Button>
+        </Grid>
         <Button Content="Inject" Style="{ThemeResource AccentButtonStyle}" Grid.Row="3" x:Name="InjectBtn" Margin="0,4,0,0" Click="InjectBtn_Click"/>
     </Grid>
 </Page>

@@ -20,6 +20,7 @@ using FortniteLauncher.Pages;
 using FortniteLauncher.Cores;
 using FortniteLauncher.Managers;
 using ColorCode.Compilation.Languages;
+using FortniteLauncher.Dialogs;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -189,7 +190,31 @@ namespace FortniteLauncher
 
             GC.Collect(); //idk, trying to lower ram usage
 
-            MainNavigation.PaneTitle = Globals.GetPlayerUsername();
+            AuthUsernameBlock.Text = Globals.GetPlayerUsername();
+        }
+
+        private async void PaneContent_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = Globals.Objects.MainWindowXamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Auth Settings";
+            dialog.Content = new ConfigureAuthDialog(dialog);
+
+            await dialog.ShowAsync();
+        }
+
+        private void AppTitlePaneButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool Current = MainNavigation.IsPaneOpen;
+            if (Current)
+            {
+                MainNavigation.IsPaneOpen = false;
+            }
+            else
+            {
+                MainNavigation.IsPaneOpen= true;
+            }
         }
     }
 }

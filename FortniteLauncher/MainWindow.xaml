@@ -18,14 +18,14 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Grid x:Name="AppTitleBar" Background="Transparent" Visibility="Visible" Margin="48,0,0,0" IsHitTestVisible="True" Canvas.ZIndex="2" Grid.Column="1" Grid.Row="0">
+        <Grid x:Name="AppTitleBar" Background="Transparent" Visibility="Visible" Margin="90,0,0,0" IsHitTestVisible="True" Canvas.ZIndex="3" Grid.Column="1" Grid.Row="0">
             <Grid.OpacityTransition>
                 <ScalarTransition Duration="0:0:0.083" />
             </Grid.OpacityTransition>
             <TextBlock
         x:Name="WindowTitle"
         Grid.Column="3"
-        Margin="20,1,0,0"
+        Margin="10,1,0,0"
         VerticalAlignment="Center"
                 HorizontalAlignment="Left"
         FontFamily="Segoe UI Variable Text"
@@ -47,10 +47,24 @@
                 </AnimatedIcon>
             </Button.Content>
         </Button>
-        <NavigationView Grid.Row="1" Canvas.ZIndex="0" Grid.Column="1" Margin="4,0,0,0"
+        <Button x:Name="AppTitlePaneButton"
+                    Background="Transparent"   BorderBrush="Transparent" Grid.ColumnSpan="2" Margin="45,4,0,0" Width="36" Click="AppTitlePaneButton_Click">
+            <Button.Content>
+                <AnimatedIcon Height="17" Margin="-3,0,-3,0">
+                    <AnimatedIcon.Source>
+                        <animatedvisuals:AnimatedGlobalNavigationButtonVisualSource/>
+                    </AnimatedIcon.Source>
+                    <AnimatedIcon.FallbackIconSource>
+                        <SymbolIconSource Symbol="OpenPane"/>
+                    </AnimatedIcon.FallbackIconSource>
+
+                </AnimatedIcon>
+            </Button.Content>
+        </Button>
+        <NavigationView Grid.Row="1" Canvas.ZIndex="1" Grid.Column="1" Margin="4,0,0,0"
                                  x:Name="MainNavigation"
                                  IsBackButtonVisible="Collapsed"
-                                 IsPaneToggleButtonVisible="True"
+                                 IsPaneToggleButtonVisible="False"
                                  IsPaneOpen="False"
                                  
                                  AlwaysShowHeader="True"
@@ -80,9 +94,24 @@
                 </ResourceDictionary>
             </NavigationView.Resources>
             -->
-            <NavigationView.AutoSuggestBox>
-                <AutoSuggestBox x:Name="NavigationSearchBox" PlaceholderText="Search for a build" QueryIcon="Find" Margin="-10,4,-10,4"/>
-            </NavigationView.AutoSuggestBox>
+            <NavigationView.Resources>
+                <ResourceDictionary x:Name="MainNavigationDisableContentBackgroundDictionary">
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Dark">
+                            <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
+                            <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="Light">
+                            <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
+                            <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="HighContrast">
+                            <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{ThemeResource SystemColorWindowColor}" />
+                            <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{ThemeResource SystemColorWindowColor}" />
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
+            </NavigationView.Resources>
             <NavigationView.Header>
                 <BreadcrumbBar x:Name="MainBreadcrumb" FontSize="48" FontWeight="Medium" ItemClicked="MainBreadcrumb_ItemClicked">
                     <BreadcrumbBar.Resources>
@@ -101,6 +130,28 @@
                     </BreadcrumbBar.ItemTemplate>
                 </BreadcrumbBar>
             </NavigationView.Header>
+            <NavigationView.PaneHeader>
+                <Button x:Name="PaneContent" Padding="6" Background="Transparent" BorderThickness="1" Click="PaneContent_Click" VerticalContentAlignment="Center" BorderBrush="Transparent" Margin="4,2,4,2" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+                    <Grid>
+                        <InfoBadge HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource AttentionDotInfoBadgeStyle}" x:Name="InfoDot"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <Grid HorizontalAlignment="Left">
+                                <Grid x:Name="PFP" VerticalAlignment="Center">
+                                    <Ellipse Width="50" Height="50">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="/Assets/PFP-upscale.jpeg" />
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </Grid>
+                            </Grid>
+                            <StackPanel Margin="8,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <TextBlock x:Name="AuthUsernameBlock" FontSize="15" Foreground="{ThemeResource TextFillColorPrimaryBrush}" FontWeight="Medium"/>
+                                <TextBlock Text="Click to edit Auth!" FontSize="12" Foreground="{ThemeResource TextFillColorTertiaryBrush}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Button>
+            </NavigationView.PaneHeader>
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Home" x:Name="HomeItem">
                     <NavigationViewItem.Icon>

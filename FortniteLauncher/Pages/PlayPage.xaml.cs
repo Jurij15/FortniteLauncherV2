@@ -1,5 +1,6 @@
 using CommunityToolkit.Labs.WinUI;
 using FortniteLauncher.Dialogs;
+using FortniteLauncher.Enums;
 using FortniteLauncher.Helpers;
 using FortniteLauncher.Managers;
 using FortniteLauncher.Services;
@@ -51,6 +52,13 @@ namespace FortniteLauncher.Pages
                 Globals.SavedBuildsGuids.Add(item);
             }
 
+            ItemsPanel.Items.Clear();
+
+            var _enumval = Enum.GetValues(typeof(BuildsDisplayMode)).Cast<BuildsDisplayMode>();
+            ViewsBox.ItemsSource = _enumval;
+
+            ViewsBox.SelectedIndex = 1;
+
             LoadBuilds(null);
         }
 
@@ -78,6 +86,7 @@ namespace FortniteLauncher.Pages
             SettingsCard NewCard = new SettingsCard();
             StackPanel content = new StackPanel();
             Image seasonImage = new Image();
+            StackPanel SeasonImageBorder = new StackPanel();
             TextBlock BuildNameBlock = new TextBlock();
             TextBlock BuildSeasonBlock = new TextBlock();
 
@@ -86,9 +95,30 @@ namespace FortniteLauncher.Pages
             BitmapImage bitmapImage = new BitmapImage();
             bitmapImage.UriSource = new Uri(buildpath + Globals.FortniteStrings.FortniteSplashImage);
 
-            seasonImage.Source = bitmapImage;
-            seasonImage.Height = 150;
-            seasonImage.Width = 120;
+            if (ViewsBox.SelectedIndex == 1)
+            {
+                //normal
+                seasonImage.Source = bitmapImage;
+                SeasonImageBorder.Height = 150;
+                SeasonImageBorder.Width = 120;
+            }
+            else if (ViewsBox.SelectedIndex == 2)
+            {
+                //large
+                seasonImage.Source = bitmapImage;
+                SeasonImageBorder.Height = 180;
+                SeasonImageBorder.Width = 150;
+            }
+            else
+            {
+                //normal by default
+                seasonImage.Source = bitmapImage;
+                SeasonImageBorder.Height = 150;
+                SeasonImageBorder.Width = 120;
+            }
+
+            SeasonImageBorder.Children.Add(seasonImage);
+            SeasonImageBorder.CornerRadius = new CornerRadius(4); //maybe set it to 2?
 
             BuildNameBlock.Text = buildname;
             BuildSeasonBlock.Text = buildSeason;
@@ -102,7 +132,7 @@ namespace FortniteLauncher.Pages
 
             content.Spacing = 1;
 
-            content.Children.Add(seasonImage);
+            content.Children.Add(SeasonImageBorder);
             content.Children.Add(BuildNameBlock);
             content.Children.Add(BuildSeasonBlock);
 
@@ -121,8 +151,10 @@ namespace FortniteLauncher.Pages
                 ToolTipService.SetToolTip(NewCard, "Path to this build is invalid!");
                 BuildSeasonBlock.Text = "Invalid path!";
             }
-
-            ItemsPanel.Items.Add(NewCard);
+            if (!CardAlreadyExists(BuildGUID))
+            {
+                ItemsPanel.Items.Add(NewCard);
+            }
         }
 
         private async void NewCard_ClickAsync(object sender, RoutedEventArgs e)
@@ -162,20 +194,14 @@ namespace FortniteLauncher.Pages
             {
                 foreach (var item in manager.GetAllBuildGUIDsThatNameContains(IfContainsThisInName))
                 {
-                    if (!CardAlreadyExists(item))
-                    {
-                        await CreateCard(item);
-                    }
+                    await CreateCard(item);
                 }
             }
             else
             {
                 foreach (var item in Globals.SavedBuildsGuids)
                 {
-                    if (!CardAlreadyExists(item))
-                    {
-                        await CreateCard(item);
-                    }
+                    await CreateCard(item);
                 }
             }
         }
@@ -302,6 +328,12 @@ namespace FortniteLauncher.Pages
         private void SearchBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
 
+        }
+
+        private void ViewsBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ItemsPanel.Items.Clear();
+            LoadBuilds(null);
         }
     }
 }

@@ -9,14 +9,14 @@ namespace FortniteLauncher.Helpers
 {
     public class ProcessHelper
     {
-        public static List<int> GetAllFortniteProcessesPID()
+        public static List<Process> GetAllFortniteProcessesPID()
         {
-            List<int> pids = new List<int>();    
+            List<Process> pids = new List<Process>();    
             foreach (var item in Process.GetProcesses())
             {
-                if (item.MainWindowTitle.Contains("Fortnite") && item.MainWindowTitle != "FortniteLauncher")
+                if (item.MainWindowTitle.Contains("Fortnite"))
                 {
-                    pids.Add(item.Id);
+                    pids.Add(item);
                 }
             }
 

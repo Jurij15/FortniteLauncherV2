@@ -1,4 +1,5 @@
 using FortniteLauncher.Cores;
+using FortniteLauncher.Dialogs;
 using FortniteLauncher.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -14,6 +15,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Gaming.Input.ForceFeedback;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -25,6 +28,7 @@ namespace FortniteLauncher.Pages
     /// </summary>
     public sealed partial class InjectPage : Page
     {
+        public static int ProcessID { get; set; }
         public InjectPage()
         {
             this.InitializeComponent();
@@ -41,6 +45,31 @@ namespace FortniteLauncher.Pages
                 DialogService.ShowSimpleDialog("An error occured while injecting. Error message: " + ex.Message, "Error");
                 throw;
             }
+        }
+
+        private async void FilePicker_Click(object sender, RoutedEventArgs e)
+        {
+            StorageFile file = (StorageFile)await DialogService.OpenFilePickerToSelectSingleFile(Windows.Storage.Pickers.PickerViewMode.List);
+            if (file != null)
+            {
+                if (file.FileType == ".dll")
+                {
+                    DLLPathBox.Text = file.Path;
+                }
+            }
+        }
+
+        private async void ShowProcesses_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = Globals.Objects.MainWindowXamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Select a ProcessID";
+            dialog.Content = new InstanceManagerDialog(dialog);
+
+            await dialog.ShowAsync();
+
+            PIDBox.Value = ProcessID;
         }
     }
 }

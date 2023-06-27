@@ -20,24 +20,32 @@
         </Grid.RowDefinitions>
         <AutoSuggestBox x:Name="SearchBox" PlaceholderText="Search" QueryIcon="Find" Grid.Row="1" SuggestionChosen="SearchBox_SuggestionChosen" TextChanged="SearchBox_TextChanged" QuerySubmitted="SearchBox_QuerySubmitted"/>
         <Grid x:Name="ViewsPanel" Grid.Row="2" Margin="0,4,0,4">
-            <StackPanel Orientation="Horizontal" Spacing="2" HorizontalAlignment="Left">
-                <HyperlinkButton x:Name="AddBuildBtn" HorizontalAlignment="Left" Click="AddBuildBtn_Click">
-                    <HyperlinkButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <FontIcon Glyph="&#xE8A7;"/>
-                            <TextBlock Text="Add Build" Margin="2,0,0,0"/>
-                        </StackPanel>
-                    </HyperlinkButton.Content>
-                </HyperlinkButton>
-                <HyperlinkButton x:Name="BulkAddBuildsBtn" HorizontalAlignment="Left" Click="BulkAddBuildsBtn_Click">
-                    <HyperlinkButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <FontIcon Glyph="&#xE8A7;"/>
-                            <TextBlock Text="Bulk add builds" Margin="2,0,0,0"/>
-                        </StackPanel>
-                    </HyperlinkButton.Content>
-                </HyperlinkButton>
-            </StackPanel>
+            <Grid RowSpacing="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Left">
+                    <HyperlinkButton x:Name="AddBuildBtn" HorizontalAlignment="Left" Click="AddBuildBtn_Click">
+                        <HyperlinkButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Glyph="&#xE8A7;"/>
+                                <TextBlock Text="Add Build" Margin="2,0,0,0"/>
+                            </StackPanel>
+                        </HyperlinkButton.Content>
+                    </HyperlinkButton>
+                    <HyperlinkButton x:Name="BulkAddBuildsBtn" HorizontalAlignment="Left" Click="BulkAddBuildsBtn_Click">
+                        <HyperlinkButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Glyph="&#xE8A7;"/>
+                                <TextBlock Text="Bulk add builds" Margin="2,0,0,0"/>
+                            </StackPanel>
+                        </HyperlinkButton.Content>
+                    </HyperlinkButton>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <ComboBox x:Name="ViewsBox" SelectionChanged="ViewsBox_SelectionChanged"/>
+                </StackPanel>
+            </Grid>
         </Grid>
         <GridView x:Name="ItemsPanel" Grid.Row="3" BorderBrush="Transparent" SizeChanged="ItemsPanel_SizeChanged" CanDragItems="False" CanReorderItems="False" Loaded="ItemsPanel_Loaded">
             <GridView.ItemContainerTransitions>

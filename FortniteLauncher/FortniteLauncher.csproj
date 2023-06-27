@@ -32,6 +32,7 @@
 	  <None Remove="Assets\DLL\Cobalt.pdb" />
 	  <None Remove="Dialogs\ConfigureAuthDialog.xaml" />
 	  <None Remove="ContentWindows\GalleryWindow.xaml" />
+	  <None Remove="Dialogs\InstanceManagerDialog.xaml" />
 	  <None Remove="Pages\InjectPage.xaml" />
 	</ItemGroup>
 
@@ -76,6 +77,12 @@
     <Content Update="Assets\GalleryContentImages\FNDefaultIcon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="Assets\PFP-upscale.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\PFP.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\Truck1.10.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -87,6 +94,9 @@
     <None Update="Assets\DLL\memoryleak.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Dialogs\InstanceManagerDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Pages\InjectPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
