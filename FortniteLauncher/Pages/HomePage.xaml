@@ -6,9 +6,53 @@
     xmlns:local="using:FortniteLauncher.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:media="using:CommunityToolkit.WinUI.UI.Media"
     mc:Ignorable="d">
 
     <Grid Margin="58, 42, 58,0" CanBeScrollAnchor="True" RowSpacing="2">
-         
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border x:Name="HeaderBorder" Grid.Row="0" CornerRadius="8">
+            <Border.Background>
+                <ImageBrush ImageSource="ms-appx:///Assets\thumb.png" Stretch="UniformToFill"/>
+            </Border.Background>
+            <Border x:Name="HeaderBlurBorder" CornerRadius="8">
+                <Border.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Offset="0" Color="#1F000000" />
+                        <GradientStop Offset="1" Color="#4F000000" />
+                    </RadialGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Grid.Background>
+                        <media:BackdropBlurBrush Amount="1.70"/>
+                    </Grid.Background>
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock Text="FortniteLauncher" FontWeight="Medium" FontSize="36" Margin="48,50,50,4" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"/>
+                        <TextBlock Text="A custom Fortnite Experience" FontSize="28" HorizontalAlignment="Left" Margin="48,4,50,8" VerticalAlignment="Center" Foreground="#B7FFFFFF"/>
+                        <Button x:Name="StartNow" Content="Start Now" Background="Transparent" Click="StartNow_Click" HorizontalAlignment="Left" Margin="48,4,50,50" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="Made by Jurij15" Margin="2,2,2,2" Opacity="0.6" Foreground="{ThemeResource TextFillColorTertiaryBrush}"/>
+                </Grid>
+            </Border>
+        </Border>
     </Grid>
 </Page>

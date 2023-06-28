@@ -56,6 +56,10 @@ namespace FortniteLauncher.Pages
                 {
                     DLLPathBox.Text = file.Path;
                 }
+                else
+                {
+                    DialogService.ShowSimpleDialog("Selected file is not a DLL!", "Error");
+                }
             }
         }
 

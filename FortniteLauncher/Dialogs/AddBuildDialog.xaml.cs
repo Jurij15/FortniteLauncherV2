@@ -16,6 +16,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.Web.UI;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -57,6 +58,12 @@ namespace FortniteLauncher.Dialogs
                 NavigationService.ShowBreadcrumb();
                 Globals.Objects.MainFrame.Navigate(typeof(PlayPage));
             }
+        }
+
+        private async void PickerDIalogBtn_Click(object sender, RoutedEventArgs e)
+        {
+            StorageFolder pickedFolder = await DialogService.OpenFolderPickerToSelectSingleFile(Windows.Storage.Pickers.PickerViewMode.List);
+            BuildPathBox.Text = pickedFolder.Path;
         }
     }
 }

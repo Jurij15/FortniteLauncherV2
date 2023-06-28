@@ -47,10 +47,6 @@ namespace FortniteLauncher.Pages
 
             BuildsManager manager = new BuildsManager();
             Globals.SavedBuildsGuids.Clear();
-            foreach (var item in manager.GetAllBuildGuids())
-            {
-                Globals.SavedBuildsGuids.Add(item);
-            }
 
             ItemsPanel.Items.Clear();
 
@@ -199,7 +195,7 @@ namespace FortniteLauncher.Pages
             }
             else
             {
-                foreach (var item in Globals.SavedBuildsGuids)
+                foreach (var item in manager.GetAllBuildGuids())
                 {
                     await CreateCard(item);
                 }

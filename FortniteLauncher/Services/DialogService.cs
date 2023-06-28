@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Windows.Storage.Pickers;
 using WinUIEx;
 
@@ -65,6 +66,27 @@ namespace FortniteLauncher.Services
 
             // Open the picker for the user to pick a file
             return await openPicker.PickSingleFileAsync();
+
+        }
+
+        public static async Task<StorageFolder> OpenFolderPickerToSelectSingleFile(PickerViewMode ViewMode)
+        {
+            // Create a file picker
+            FolderPicker openPicker = new Windows.Storage.Pickers.FolderPicker();
+
+            // Retrieve the window handle (HWND) of the current WinUI 3 window.
+            var window = Globals.Objects.MainWindow;
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+
+            // Initialize the folder picker with the window handle (HWND).
+            WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hWnd);
+
+            // Set options for your file picker
+            openPicker.ViewMode = ViewMode;
+            openPicker.FileTypeFilter.Add("*");
+
+            // Open the picker for the user to pick a file
+            return await openPicker.PickSingleFolderAsync();
 
         }
     }

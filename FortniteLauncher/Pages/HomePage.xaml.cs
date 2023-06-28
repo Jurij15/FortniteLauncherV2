@@ -27,5 +27,10 @@ namespace FortniteLauncher.Pages
         {
             this.InitializeComponent();
         }
+
+        private void StartNow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
