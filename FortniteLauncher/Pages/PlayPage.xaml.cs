@@ -47,6 +47,7 @@ namespace FortniteLauncher.Pages
 
             BuildsManager manager = new BuildsManager();
             Globals.SavedBuildsGuids.Clear();
+            Globals.SavedBuildsGuids = manager.GetAllBuildGuids();
 
             ItemsPanel.Items.Clear();
 

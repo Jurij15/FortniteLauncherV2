@@ -82,7 +82,7 @@ namespace FortniteLauncher
             Objects.MainBreadcrumb.ItemsSource = Breadcrumbs;
         }
 
-        public static List<string> SavedBuildsGuids = new List<string>();
+        public static HashSet<string> SavedBuildsGuids = new HashSet<string>();
 
         public static void PrefetchSavedBuilds()
         {

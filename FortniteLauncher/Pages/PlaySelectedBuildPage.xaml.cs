@@ -169,12 +169,14 @@ namespace FortniteLauncher.Pages
             //MainWindowHelper.NavigationResourceDictionary.AddContentBackground();
 
             //refresh the page
+            /*
             if (Globals.Objects.MainFrame.CurrentSourcePageType == typeof(PlayPage))
             {
                 NavigationService.UpdateBreadcrumb("Select a build", true);
                 NavigationService.ShowBreadcrumb();
                 Globals.Objects.MainFrame.Navigate(typeof(PlayPage));
             }
+            */
         }
 
         private void DeleteConfirmBtn_Click(object sender, RoutedEventArgs e)

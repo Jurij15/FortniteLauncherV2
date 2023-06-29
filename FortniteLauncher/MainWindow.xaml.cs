@@ -129,7 +129,22 @@ namespace FortniteLauncher
 
         private void AppTitleBackButton_Click(object sender, RoutedEventArgs e)
         {
+            /* Crashes idk why
+            if (RootFrame.BackStack[RootFrame.BackStack.Count].SourcePageType == typeof(HomePage))
+            {
+                NavigationService.FrameGoBack(true);
+            }
+            else
+            {
+                NavigationService.FrameGoBack();
+            }
+            */
+
             NavigationService.FrameGoBack();
+            if (RootFrame.CurrentSourcePageType == typeof(HomePage))
+            {
+                NavigationService.HideBreadcrumb();
+            }
         }
 
         private void MainBreadcrumb_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)

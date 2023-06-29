@@ -6,9 +6,57 @@
     xmlns:local="using:FortniteLauncher.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:CommunityToolkit.Labs.WinUI"
     mc:Ignorable="d">
 
-    <Grid Margin="58, 42, 58,0" CanBeScrollAnchor="True" RowSpacing="2">
-
-    </Grid>
+    <ScrollViewer Margin="58, 42, 58,0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <controls:SettingsExpander x:Name="LawinServerExpander" Grid.Row="1" Header="LawinServer" Description="Use LawinServer as your API">
+                <controls:SettingsExpander.HeaderIcon>
+                    <ImageIcon Source="ms-appx:///Assets\logopepega.png"/>
+                </controls:SettingsExpander.HeaderIcon>
+                <controls:SettingsExpander.Content>
+                    <StackPanel>
+                        <TextBlock x:Name="LawinServerStatusBox" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                </controls:SettingsExpander.Content>
+                <controls:SettingsExpander.ItemsHeader>
+                    <InfoBar x:Name="LawinServerStatus" Title="Not Installed" Message="LawinServer is not installed" Severity="Informational" Visibility="Visible" IsClosable="False"/>
+                </controls:SettingsExpander.ItemsHeader>
+                <controls:SettingsExpander.Items>
+                    <controls:SettingsCard>
+                        <controls:SettingsCard.Header>
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <Button Content="Install" x:Name="InstallLawinBtn" Click="InstallLawinBtn_Click"/>
+                                <Button Content="Uninstall" x:Name="UninstallLawinBtn" Click="UninstallLawinBtn_Click"/>
+                                <Button Content="Reinstall" x:Name="ReinstallLawinBtn" Click="ReinstallLawinBtn_Click"/>
+                            </StackPanel>
+                        </controls:SettingsCard.Header>
+                    </controls:SettingsCard>
+                    <controls:SettingsCard x:Name="StartStopBar">
+                        <controls:SettingsCard.Header>
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <Button Content="Start" x:Name="StartLawinBtn" Click="StartLawinBtn_Click"/>
+                                <Button Content="Stop" x:Name="StopLawinBtn" Click="StopLawinBtn_Click"/>
+                            </StackPanel>
+                        </controls:SettingsCard.Header>
+                    </controls:SettingsCard>
+                </controls:SettingsExpander.Items>
+            </controls:SettingsExpander>
+        </Grid>
+    </ScrollViewer>
 </Page>

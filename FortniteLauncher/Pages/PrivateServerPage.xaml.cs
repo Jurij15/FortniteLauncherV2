@@ -1,3 +1,5 @@
+using FortniteLauncher.Helpers;
+using FortniteLauncher.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -23,9 +25,162 @@ namespace FortniteLauncher.Pages
     /// </summary>
     public sealed partial class PrivateServerPage : Page
     {
+        void StatusInstalled()
+        {
+            LawinServerStatus.Title = "Installed";
+            LawinServerStatus.Message = "LawinServer is installed";
+            LawinServerStatus.Severity = InfoBarSeverity.Success;
+            LawinServerStatus.IsOpen = true;
+
+            LawinServerStatusBox.Text = "Installed";
+            StartStopBar.Visibility = Visibility.Visible;
+        }
+        void StatusUninstalled()
+        {
+            LawinServerStatus.Title = "Not Installed";
+            LawinServerStatus.Message = "LawinServer is not installed";
+            LawinServerStatus.Severity = InfoBarSeverity.Error;
+            LawinServerStatus.IsOpen = true;
+
+            LawinServerStatusBox.Text = "Not Installed";
+            StartStopBar.Visibility = Visibility.Collapsed;
+        }
         public PrivateServerPage()
         {
             this.InitializeComponent();
+            CheckStatus();
+        }
+
+        void CheckStatus()
+        {
+            if (LawinServerHelper.IsLawinServerInstalled())
+            {
+                StatusInstalled();
+            }
+            else
+            {
+                StatusUninstalled();
+            }
+        }
+
+        private void InstallLawinBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (LawinServerHelper.IsLawinServerInstalled())
+            {
+                DialogService.ShowSimpleDialog("LawinServer is already installed!", "");
+                return;
+            }
+            try
+            {
+                LawinServerHelper.InstallLawinServer();
+
+                if (LawinServerHelper.IsLawinServerInstalled())
+                {
+                    StatusInstalled();
+                }
+            }
+            catch (Exception ex)
+            {
+                DialogService.ShowSimpleDialog("An error occured. Error message: " + ex.Message, "Install Failed");
+            }
+        }
+
+        private void UninstallLawinBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!LawinServerHelper.IsLawinServerInstalled())
+            {
+                DialogService.ShowSimpleDialog("LawinServer is not installed!", "");
+                return;
+            }
+            try
+            {
+                LawinServerHelper.UninstallLawinServer();
+
+                if (!LawinServerHelper.IsLawinServerInstalled())
+                {
+                    StatusUninstalled();
+                }
+            }
+            catch (Exception ex)
+            {
+                DialogService.ShowSimpleDialog("An error occured. Error message: " + ex.Message, "Uninnstall Failed");
+            }
+        }
+
+        private void ReinstallLawinBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!LawinServerHelper.IsLawinServerInstalled())
+            {
+                DialogService.ShowSimpleDialog("LawinServer is not installed!", "");
+                return;
+            }
+            try
+            {
+                LawinServerHelper.UninstallLawinServer();
+
+                if (LawinServerHelper.IsLawinServerInstalled())
+                {
+                    StatusUninstalled();
+                }
+            }
+            catch (Exception ex)
+            {
+                DialogService.ShowSimpleDialog("An error occured. Error message: " + ex.Message, "Uninnstall Failed");
+            }
+
+            if (LawinServerHelper.IsLawinServerInstalled())
+            {
+                DialogService.ShowSimpleDialog("LawinServer is already installed!", "");
+                return;
+            }
+            try
+            {
+                LawinServerHelper.InstallLawinServer();
+
+                if (LawinServerHelper.IsLawinServerInstalled())
+                {
+                    StatusInstalled();
+                }
+            }
+            catch (Exception ex)
+            {
+                DialogService.ShowSimpleDialog("An error occured. Error message: " + ex.Message, "Install Failed");
+            }
+        }
+
+        private void StartLawinBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (LawinServerHelper.IsLawinServerRunning())
+            {
+                DialogService.ShowSimpleDialog("LawinServer is already running!", "");
+                return;
+            }
+            try
+            {
+                LawinServerHelper.TryInstallNodePackages();
+                LawinServerHelper.Start();
+            }
+            catch (Exception ex)
+            {
+                DialogService.ShowSimpleDialog("An error occured. Error message: " + ex.Message, "Start Failed");
+            }
+        }
+
+        private void StopLawinBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!LawinServerHelper.IsLawinServerRunning())
+            {
+                DialogService.ShowSimpleDialog("LawinServer is not running!", "");
+                return;
+            }
+            try
+            {
+                LawinServerHelper.Stop();
+            }
+            catch (Exception ex)
+            {
+                DialogService.ShowSimpleDialog("An error occured. Error message: " + ex.Message, "Stop Failed");
+            }
         }
     }
 }

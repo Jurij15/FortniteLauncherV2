@@ -80,6 +80,9 @@
     <Content Update="Assets\GalleryContentImages\FNDefaultIcon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="Assets\logopepega.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\PFP-upscale.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

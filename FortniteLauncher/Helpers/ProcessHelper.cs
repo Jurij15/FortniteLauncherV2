@@ -14,7 +14,7 @@ namespace FortniteLauncher.Helpers
             List<Process> pids = new List<Process>();    
             foreach (var item in Process.GetProcesses())
             {
-                if (item.MainWindowTitle.Contains("Fortnite"))
+                if (item.MainWindowTitle.Contains("Fortnite") && !item.MainWindowTitle.Contains("Launcher"))
                 {
                     pids.Add(item);
                 }
