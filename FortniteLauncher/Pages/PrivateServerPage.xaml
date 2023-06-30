@@ -30,8 +30,9 @@
                     <ImageIcon Source="ms-appx:///Assets\logopepega.png"/>
                 </controls:SettingsExpander.HeaderIcon>
                 <controls:SettingsExpander.Content>
-                    <StackPanel>
-                        <TextBlock x:Name="LawinServerStatusBox" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    <StackPanel Spacing="4" Orientation="Horizontal">
+                        <HyperlinkButton x:Name="OpenDir" VerticalAlignment="Center" Content="Open Directory" Click="OpenDir_Click"/>
+                        <TextBlock VerticalAlignment="Center" x:Name="LawinServerStatusBox" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                     </StackPanel>
                 </controls:SettingsExpander.Content>
                 <controls:SettingsExpander.ItemsHeader>

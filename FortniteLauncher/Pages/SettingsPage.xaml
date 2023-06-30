@@ -26,6 +26,9 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock Text="Personalization" FontSize="12" Grid.Row="0" Margin="2,2,0,4" FontWeight="SemiBold"/>
             <labs:SettingsCard x:Name="ThemeCard" Header="Theme" Description="Change app theme (BETA)"
@@ -96,6 +99,25 @@
                 <labs:SettingsCard.ActionIcon>
                     <FontIcon Glyph="&#xE8A7;"/>
                 </labs:SettingsCard.ActionIcon>
+            </labs:SettingsCard>
+            <labs:SettingsCard x:Name="ExportImportSettings" Header="Settings Backup" Description="Backup or import settings configuration" Grid.Row="11">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE72C;"/>
+                </labs:SettingsCard.HeaderIcon>
+                <StackPanel Spacing="4" Orientation="Horizontal">
+                    <Button x:Name="ExportSettings" Click="ExportSettings_Click">
+                        <StackPanel Spacing="2" Orientation="Horizontal">
+                            <FontIcon Glyph="&#xEDE1;"/>
+                            <TextBlock Text="Export"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="ImportSettings" Click="ImportSettings_Click">
+                        <StackPanel Spacing="2" Orientation="Horizontal">
+                            <FontIcon Glyph="&#xE8B5;"/>
+                            <TextBlock Text="Import"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
             </labs:SettingsCard>
         </Grid>
     </ScrollViewer>

@@ -1,4 +1,5 @@
 using FortniteLauncher.Dialogs;
+using FortniteLauncher.Managers;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -60,6 +61,16 @@ namespace FortniteLauncher.Pages
         }
 
         private void MemoryBypassDLLPathBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void ExportSettings_Click(object sender, RoutedEventArgs e)
+        {
+            BackupManager.CreateBackup(true);
+        }
+
+        private void ImportSettings_Click(object sender, RoutedEventArgs e)
         {
 
         }

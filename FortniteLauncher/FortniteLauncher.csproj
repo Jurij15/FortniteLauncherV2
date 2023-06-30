@@ -32,6 +32,7 @@
 	  <None Remove="Assets\DLL\Cobalt.pdb" />
 	  <None Remove="Dialogs\ConfigureAuthDialog.xaml" />
 	  <None Remove="ContentWindows\GalleryWindow.xaml" />
+	  <None Remove="Dialogs\DebugTestingWelcomeDialog.xaml" />
 	  <None Remove="Dialogs\InstanceManagerDialog.xaml" />
 	  <None Remove="Pages\InjectPage.xaml" />
 	</ItemGroup>
@@ -181,6 +182,9 @@
     <None Update="Assets\DLL\memoryleak.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Dialogs\DebugTestingWelcomeDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Dialogs\InstanceManagerDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

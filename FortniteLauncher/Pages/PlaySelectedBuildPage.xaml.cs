@@ -189,7 +189,7 @@ namespace FortniteLauncher.Pages
 
         private void GalleryGrid_Click(object sender, RoutedEventArgs e)
         {
-            DialogService.ShowGalleryDialog();
+            DialogService.CreateGalleryWindow();
         }
 
         private void ConfigureUsername_Click(object sender, RoutedEventArgs e)

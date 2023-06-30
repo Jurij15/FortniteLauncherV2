@@ -14,6 +14,8 @@ namespace FortniteLauncher.Cores
     {
         public static string RootSettingsDir = "Settings/";
 
+        public static string RootBackupsDir = "Backups\\";
+
         public static string ThemeConfig = RootSettingsDir + "ThemeConfig";
         public static string AuthUsernameConfig = RootSettingsDir + "AuthUsername";
         public static string AuthPasswordConfig = RootSettingsDir + "AuthPassword";
@@ -57,6 +59,7 @@ namespace FortniteLauncher.Cores
         public static void CreateSettings()
         {
             Directory.CreateDirectory(RootSettingsDir);
+            Directory.CreateDirectory(RootBackupsDir);
 
             //default values
             using (StreamWriter sw = File.CreateText(ThemeConfig))

@@ -176,5 +176,10 @@ namespace FortniteLauncher.Pages
                 DialogService.ShowSimpleDialog("An error occured. Error message: " + ex.Message, "Stop Failed");
             }
         }
+
+        private void OpenDir_Click(object sender, RoutedEventArgs e)
+        {
+            LawinServerHelper.OpenDir();
+        }
     }
 }

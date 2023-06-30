@@ -31,13 +31,30 @@ namespace FortniteLauncher.Services
             dialog.ShowAsync();
         }
 
-        public static void ShowGalleryDialog()
+        public static async Task<ContentDialog> ShowSimpleDialogAsync(object Content, string Title)
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = Globals.Objects.MainWindowXamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = Title;
+            dialog.Content = Content;
+
+            dialog.CloseButtonText = "OK";
+
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            await dialog.ShowAsync();
+
+            return dialog;
+        }
+
+        public static void CreateGalleryWindow()
         {
             GalleryWindow window = new GalleryWindow();
             window.Show();
         }
 
-        public static ContentControl CreateContentDialog(string Title, object Content)
+        public static ContentDialog CreateContentDialog(string Title, object Content)
         {
             ContentDialog dialog = new ContentDialog();
             dialog.XamlRoot = Globals.Objects.MainWindowXamlRoot;

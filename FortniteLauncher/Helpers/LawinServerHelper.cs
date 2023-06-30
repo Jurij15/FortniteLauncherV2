@@ -122,5 +122,10 @@ namespace FortniteLauncher.Helpers
 
             Start();
         }
+
+        public static void OpenDir()
+        {
+
+        }
     }
 }

@@ -21,6 +21,7 @@ using FortniteLauncher.Cores;
 using FortniteLauncher.Managers;
 using ColorCode.Compilation.Languages;
 using FortniteLauncher.Dialogs;
+using Windows.System;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -158,11 +159,15 @@ namespace FortniteLauncher
 
         }
 
-        private void RootGrid_Loaded(object sender, RoutedEventArgs e)
+        private async void RootGrid_Loaded(object sender, RoutedEventArgs e)
         {
             Globals.Objects.MainWindowXamlRoot = this.Content.XamlRoot;
 
             TotalBuildsBlock.Text = "Total: "+ new BuildsManager().GetAllBuildGuids().Count.ToString();
+
+            ContentDialog dialog = DialogService.CreateContentDialog("", new DebugTestingWelcomeDialog());
+            dialog.CloseButtonText = "OK";
+            await dialog.ShowAsync();
         }
 
         private void MainNavigation_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

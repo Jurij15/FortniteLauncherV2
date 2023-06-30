@@ -33,6 +33,8 @@ namespace FortniteLauncher
 
         public static HashSet<string> GalleryImages = new HashSet<string>();
 
+        public static string VersionString = "2.0-DEV";
+
         public static string GetPlayerUsername()
         {
             return Config.PlayerAuthUsername;
