@@ -16,6 +16,9 @@ namespace FortniteLauncher.Helpers
 {
     public class LawinServerHelper
     {
+        private static int LawinServerProcessiD = 0;
+        private static bool bStarted = false;
+
         public static string LawinServerDir = Settings.RootSettingsDir + "\\LawinServer";
         public static string LawinServerWorkingDir = LawinServerDir + "\\LawinServer-main";
         public static string LawinServerTemp = Settings.RootSettingsDir + "Temp";
@@ -32,28 +35,14 @@ namespace FortniteLauncher.Helpers
             return RetVal;
         }
 
-        public static bool IsLawinServerRunning() //todo
+        public static bool IsLawinServerRunning()
         {
-            //https://stackoverflow.com/questions/570098/in-c-how-to-check-if-a-tcp-port-is-available
             bool RetVal = false;
 
-            int port = 456; //<--- This is your value
-
-            // Evaluate current system tcp connections. This is the same information provided
-            // by the netstat command line application, just in .Net strongly-typed object
-            // form.  We will look through the list, and if our port we would like to use
-            // in our TcpClient is occupied, we will set isAvailable to false.
-            IPGlobalProperties ipGlobalProperties = IPGlobalProperties.GetIPGlobalProperties();
-            TcpConnectionInformation[] tcpConnInfoArray = ipGlobalProperties.GetActiveTcpConnections();
-
-            foreach (TcpConnectionInformation tcpi in tcpConnInfoArray)
+            if (LawinServerProcessiD != 0)
             {
-                if (tcpi.LocalEndPoint.Port == port)
-                {
-                    RetVal = false;
-                    break;
-                }
-            }
+                RetVal = true;
+            }   
 
             return RetVal;
         }
@@ -88,31 +77,37 @@ namespace FortniteLauncher.Helpers
             Directory.Delete(LawinServerDir, true);
         }
 
-        public static void Start()
+        private static void Start()
         {
+            if (bStarted)
+            {
+                return;
+            }
             Process p = new Process();
             p.StartInfo.FileName = "cmd.exe";
             p.StartInfo.Verb = "runas";
             p.StartInfo.Arguments = "/C cd Settings/LawinServer/LawinServer-main && start.bat";
+            p.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
             p.Start();
+
+            LawinServerProcessiD = p.Id;
+            bStarted = true;
+
+            DialogService.ShowSimpleDialog("lawinServer started minimized", "");
         }
 
         public static void Stop()
         {
-            foreach (var item in Process.GetProcesses())
-            {
-                if (item.ProcessName.Contains("Node.js"))
-                {
-                    item.Kill();
-                    break;
-                }
-            }
+            Process.GetProcessById(LawinServerProcessiD).Kill();
+            bStarted = false; 
+            LawinServerProcessiD = 0;
         }
 
-        public static void TryInstallNodePackages()
+        public static void TryInstallNodePackagesAndStart()
         {
             if (Directory.Exists(LawinServerWorkingDir + "\\node_modules"))
             {
+                Start();
                 return;//packages are already installed
             }
             Process p = new Process();
@@ -122,6 +117,10 @@ namespace FortniteLauncher.Helpers
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardOutput = true;
             p.Start();
+
+            p.WaitForExit();
+
+            Start();
         }
     }
 }

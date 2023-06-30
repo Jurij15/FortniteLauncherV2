@@ -157,8 +157,7 @@ namespace FortniteLauncher.Pages
             }
             try
             {
-                LawinServerHelper.TryInstallNodePackages();
-                LawinServerHelper.Start();
+                LawinServerHelper.TryInstallNodePackagesAndStart();
             }
             catch (Exception ex)
             {
@@ -168,11 +167,6 @@ namespace FortniteLauncher.Pages
 
         private void StopLawinBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!LawinServerHelper.IsLawinServerRunning())
-            {
-                DialogService.ShowSimpleDialog("LawinServer is not running!", "");
-                return;
-            }
             try
             {
                 LawinServerHelper.Stop();
