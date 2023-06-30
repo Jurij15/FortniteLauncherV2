@@ -6,4 +6,4 @@ it has some new features.
 
 This is the WinUI3 branch, the one i am working on right now.
 
-At the moment, launcher is very incomplete, but some basic things should work.
+At the moment, launcher is incomplete, but some basic things should work.
