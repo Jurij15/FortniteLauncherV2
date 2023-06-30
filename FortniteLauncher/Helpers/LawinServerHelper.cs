@@ -90,7 +90,11 @@ namespace FortniteLauncher.Helpers
 
         public static void Start()
         {
-            Process.Start(LawinServerWorkingDir + "\\start.bat");
+            Process p = new Process();
+            p.StartInfo.FileName = "cmd.exe";
+            p.StartInfo.Verb = "runas";
+            p.StartInfo.Arguments = "/C cd Settings/LawinServer/LawinServer-main && start.bat";
+            p.Start();
         }
 
         public static void Stop()
@@ -107,15 +111,17 @@ namespace FortniteLauncher.Helpers
 
         public static void TryInstallNodePackages()
         {
+            if (Directory.Exists(LawinServerWorkingDir + "\\node_modules"))
+            {
+                return;//packages are already installed
+            }
             Process p = new Process();
-            p.StartInfo.FileName = LawinServerWorkingDir + "\\install_packages.bat";
+            p.StartInfo.FileName = "cmd.exe";
             p.StartInfo.Verb = "runas";
-            p.StartInfo.UseShellExecute = true;
+            p.StartInfo.Arguments = "/C cd Settings/LawinServer/LawinServer-main && install_packages.bat";
+            p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardOutput = true;
             p.Start();
-
-            string Message = p.StandardOutput.ReadToEnd();
-            DialogService.ShowSimpleDialog(Message, "");
         }
     }
 }

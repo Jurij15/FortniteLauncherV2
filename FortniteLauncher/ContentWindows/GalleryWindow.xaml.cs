@@ -47,6 +47,15 @@ namespace FortniteLauncher.ContentWindows
 
                 Gallery.Items.Add(img);
             }
+
+            FlipViewPipsPager.NumberOfPages = Gallery.Items.Count;
+
+            
+        }
+
+        private void FullscreenBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AppWindow.SetPresenter(Microsoft.UI.Windowing.AppWindowPresenterKind.FullScreen);
         }
     }
 }

@@ -227,7 +227,8 @@ namespace FortniteLauncher.Pages
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            //_versionGuids.Clear();
+            Globals.SavedBuildsGuids.Clear();
+            ItemsPanel.Items.Clear();
         }
 
         private async void BulkAddBuildsBtn_Click(object sender, RoutedEventArgs e)

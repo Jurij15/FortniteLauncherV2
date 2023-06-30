@@ -9,7 +9,8 @@
     xmlns:controls="using:CommunityToolkit.Labs.WinUI"
     mc:Ignorable="d"
     Unloaded="Page_Unloaded"
-    Loaded="Page_Loaded">
+    Loaded="Page_Loaded"
+    NavigationCacheMode="Disabled">
 
     <Grid Margin="58, 42, 58,0" CanBeScrollAnchor="True" RowSpacing="2">
         <Grid.RowDefinitions>

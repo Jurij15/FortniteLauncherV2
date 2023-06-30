@@ -12,20 +12,29 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" x:Name="TitleBar">
-            <TextBlock Text="FortniteLauncher - Gallery" Margin="32,0,0,0"         FontFamily="Segoe UI Variable Text" VerticalAlignment="Center"
+        <Grid Grid.Row="0" x:Name="TitleBar" Margin="90,0,0,0">
+            <TextBlock Visibility="Collapsed" Text="FortniteLauncher - Gallery"    Margin="8,0,0,0"     FontFamily="Segoe UI Variable Text" VerticalAlignment="Center"
                 Style="{StaticResource CaptionTextBlockStyle}"/>
         </Grid>
-        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
-            <FlipView x:Name="Gallery" Background="Transparent">
-            </FlipView>
-            <PipsPager x:Name="FlipViewPipsPager" PreviousButtonVisibility="Visible" NextButtonVisibility="Visible"
-                        HorizontalAlignment="Center"
-                         Margin="0, 8, 0, 0"
+        <Button x:Name="FullscreenBtn" Click="FullscreenBtn_Click" Background="Transparent" Margin="4,0,0,0"  BorderBrush="Transparent">
+            <Button.Content>
+                <FontIcon Glyph="&#xE740;"/>
+            </Button.Content>
+        </Button>
+        <PipsPager x:Name="FlipViewPipsPager" HorizontalAlignment="Center"
+                         Margin="0, 0, 0, 0"
                                     NumberOfPages="{x:Bind Gallery.Items.Count}"
                             SelectedPageIndex="{x:Bind Path=Gallery.SelectedIndex, Mode=TwoWay}" />
+        <StackPanel Grid.Row="1">
+            <ScrollViewer ZoomMode="Enabled" HorizontalScrollMode="Enabled" VerticalScrollMode="Enabled">
+                <FlipView x:Name="Gallery" Background="Transparent">
+                </FlipView>
+            </ScrollViewer>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
         </StackPanel>
     </Grid>
 </windowex:WindowEx>
