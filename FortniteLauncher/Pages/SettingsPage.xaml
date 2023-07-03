@@ -10,7 +10,7 @@
     mc:Ignorable="d">
 
     <ScrollViewer Margin="58, 42, 58,0">
-        <Grid RowSpacing="2">
+        <Grid RowSpacing="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -30,69 +30,30 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Personalization" FontSize="12" Grid.Row="0" Margin="2,2,0,4" FontWeight="SemiBold"/>
-            <labs:SettingsCard x:Name="ThemeCard" Header="Theme" Description="Change app theme (BETA)"
+            <labs:SettingsCard x:Name="PersonalizationPageCard" Header="Personalization" Description="Theme, sound effects" IsClickEnabled="True" Click="PersonalizationPageCard_Click"
               Grid.Row="1" >
                 <labs:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE790;"/>
                 </labs:SettingsCard.HeaderIcon>
-                <Grid>
-                    <StackPanel x:Name="CardContentPanel" HorizontalAlignment="Right" VerticalAlignment="Center">
-                        <ToggleSwitch OnContent="Dark" OffContent="Light" x:Name="ThemeSwitch"/>
-                    </StackPanel>
-                </Grid>
             </labs:SettingsCard>
-            <labs:SettingsCard x:Name="SoundCard"
+            <labs:SettingsCard x:Name="GameSettingsPageCard" Visibility="Visible" IsClickEnabled="True" Click="GameSettingsPageCard_Click"
               Grid.Row="2"
-              Header="Sound"
-              Description="Enable sound effects while using the app">
-                <labs:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xE8D6;"/>
-                </labs:SettingsCard.HeaderIcon>
-                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <ToggleSwitch x:Name="SoundToggle" OnContent="Play sound effects" OffContent="Don't play sound effects" IsOn="False" IsEnabled="True"/>
-                </StackPanel>
-            </labs:SettingsCard>
-            <TextBlock Text="Game Settings" FontSize="12" Grid.Row="3" Margin="2,2,0,4" FontWeight="SemiBold"/>
-            <labs:SettingsCard x:Name="SSLDLLCard" Visibility="Visible"
-              Grid.Row="4"
-              Header="SSL Bypass"
-              Description="todo!">
+              Header="Game"
+              Description="SSl bypass, console, memory leak fix">
                 <labs:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE840;"/>
                 </labs:SettingsCard.HeaderIcon>
-                <TextBox x:Name="SSLBypassDLLPathBox" TextChanged="SSLBypassDLLPathBox_TextChanged"/>
             </labs:SettingsCard>
-            <labs:SettingsCard x:Name="ConsoleDLLCard" Visibility="Visible"
-              Grid.Row="5"
-              Header="Console DLL"
-              Description="todo!">
-                <labs:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xE8C1;"/>
-                </labs:SettingsCard.HeaderIcon>
-                <TextBox x:Name="ConsoleBypassDLLPathBox" TextChanged="ConsoleBypassDLLPathBox_TextChanged"/>
-            </labs:SettingsCard>
-            <labs:SettingsCard x:Name="MemoryLeakDLLCard" Visibility="Visible"
-              Grid.Row="6"
-              Header="Memory Leak Fix DLL"
-              Description="todo!">
-                <labs:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xE90F;"/>
-                </labs:SettingsCard.HeaderIcon>
-                <TextBox x:Name="MemoryBypassDLLPathBox" TextChanged="MemoryBypassDLLPathBox_TextChanged"/>
-            </labs:SettingsCard>
-            <TextBlock Text="Danger Zone" FontSize="12" Grid.Row="7" Margin="2,2,0,4" FontWeight="SemiBold"/>
-            <labs:SettingsCard x:Name="ResetAppCard" Visibility="Visible"
-              Grid.Row="8"
-              Header="Reset App"
-              Description="This will require app restart!">
+            <labs:SettingsCard x:Name="AdvancedPageCard" Visibility="Visible" IsClickEnabled="True" Click="AdvancedPageCard_Click"
+              Grid.Row="3"
+              Header="Advanced"
+              Description="Reset App">
                 <labs:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xED10;"/>
                 </labs:SettingsCard.HeaderIcon>
-                <Button x:Name="ResetAppBtn" Click="ResetAppBtn_Click" Background="Red" Content="Reset"/>
             </labs:SettingsCard>
-            <TextBlock Text="Other Settings" FontSize="12" Grid.Row="9" Margin="2,2,0,4" FontWeight="SemiBold"/>
-            <labs:SettingsCard x:Name="AuthCard" IsClickEnabled="True" Header="Auth Settings" Description="Username, password" Click="AuthCard_Click" Grid.Row="10">
+            <TextBlock Text="Related" FontSize="12" Grid.Row="10" Margin="2,2,0,4" FontWeight="SemiBold"/>
+            <labs:SettingsCard x:Name="AuthCard" IsClickEnabled="True" Header="Auth Settings" Description="Username, password" Click="AuthCard_Click" Grid.Row="11">
                 <labs:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xEF58;"/>
                 </labs:SettingsCard.HeaderIcon>
@@ -100,24 +61,10 @@
                     <FontIcon Glyph="&#xE8A7;"/>
                 </labs:SettingsCard.ActionIcon>
             </labs:SettingsCard>
-            <labs:SettingsCard x:Name="ExportImportSettings" Header="Settings Backup" Description="Backup or import settings configuration" Grid.Row="11">
+            <labs:SettingsCard x:Name="BackupsPageCard" IsClickEnabled="True" Header="Backups" Description="Export settings, import settings" Click="BackupsPageCard_Click" Grid.Row="4">
                 <labs:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE72C;"/>
                 </labs:SettingsCard.HeaderIcon>
-                <StackPanel Spacing="4" Orientation="Horizontal">
-                    <Button x:Name="ExportSettings" Click="ExportSettings_Click">
-                        <StackPanel Spacing="2" Orientation="Horizontal">
-                            <FontIcon Glyph="&#xEDE1;"/>
-                            <TextBlock Text="Export"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="ImportSettings" Click="ImportSettings_Click">
-                        <StackPanel Spacing="2" Orientation="Horizontal">
-                            <FontIcon Glyph="&#xE8B5;"/>
-                            <TextBlock Text="Import"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
             </labs:SettingsCard>
         </Grid>
     </ScrollViewer>

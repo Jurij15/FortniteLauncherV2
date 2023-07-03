@@ -1,5 +1,7 @@
 using FortniteLauncher.Dialogs;
 using FortniteLauncher.Managers;
+using FortniteLauncher.Pages.SettingsPages;
+using FortniteLauncher.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -28,10 +30,6 @@ namespace FortniteLauncher.Pages
         public SettingsPage()
         {
             this.InitializeComponent();
-
-            SSLBypassDLLPathBox.Text = Config.SSLBypassDLL;
-            ConsoleBypassDLLPathBox.Text = Config.ConsoleDLL;
-            MemoryBypassDLLPathBox.Text = Config.MemoryLeakFixDLL;
         }
 
         private async void AuthCard_Click(object sender, RoutedEventArgs e)
@@ -50,29 +48,24 @@ namespace FortniteLauncher.Pages
             Globals.ResetApp(true);
         }
 
-        private void SSLBypassDLLPathBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void BackupsPageCard_Click(object sender, RoutedEventArgs e)
         {
-            Config.SSLBypassDLL = ((TextBox)sender).Text;
+            NavigationService.NavigateHiearchical(typeof(BackupsPage), "Backups", false);
         }
 
-        private void ConsoleBypassDLLPathBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void PersonalizationPageCard_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.NavigateHiearchical(typeof(PersonalizationPage), "Personalization", false);
         }
 
-        private void MemoryBypassDLLPathBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void GameSettingsPageCard_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.NavigateHiearchical(typeof(GameSettingsPage), "Game Settings", false);
         }
 
-        private void ExportSettings_Click(object sender, RoutedEventArgs e)
+        private void AdvancedPageCard_Click(object sender, RoutedEventArgs e)
         {
-            BackupManager.CreateBackup(true);
-        }
-
-        private void ImportSettings_Click(object sender, RoutedEventArgs e)
-        {
-
+            NavigationService.NavigateHiearchical(typeof(AdvancedSettingsPage), "Advanced Settings", false);
         }
     }
 }

@@ -35,6 +35,10 @@
 	  <None Remove="Dialogs\DebugTestingWelcomeDialog.xaml" />
 	  <None Remove="Dialogs\InstanceManagerDialog.xaml" />
 	  <None Remove="Pages\InjectPage.xaml" />
+	  <None Remove="Pages\SettingsPages\AdvancedSettingsPage.xaml" />
+	  <None Remove="Pages\SettingsPages\BackupsPage.xaml" />
+	  <None Remove="Pages\SettingsPages\GameSettingsPage.xaml" />
+	  <None Remove="Pages\SettingsPages\PersonalizationPage.xaml" />
 	</ItemGroup>
 
   <ItemGroup>
@@ -182,6 +186,18 @@
     <None Update="Assets\DLL\memoryleak.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Pages\SettingsPages\BackupsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Pages\SettingsPages\AdvancedSettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Pages\SettingsPages\GameSettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Pages\SettingsPages\PersonalizationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Dialogs\DebugTestingWelcomeDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

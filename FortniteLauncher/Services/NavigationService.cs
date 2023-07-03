@@ -63,9 +63,13 @@ namespace FortniteLauncher.Services
 
         public static void FrameGoBack(bool bNavigatingHome = false)
         {
+            if (!CanGoBack())
+            {
+                return;
+            }
             if (Globals.Breadcrumbs.Count > 1)
             {
-                Globals.Breadcrumbs.Remove(Globals.Breadcrumbs[1]);
+                Globals.Breadcrumbs.Remove(Globals.Breadcrumbs[Globals.Breadcrumbs.Count]);
             }
             if (bNavigatingHome)
             {

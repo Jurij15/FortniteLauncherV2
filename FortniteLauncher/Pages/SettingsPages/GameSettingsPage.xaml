@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="FortniteLauncher.Pages.SettingsPages.GameSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FortniteLauncher.Pages.SettingsPages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:labs="using:CommunityToolkit.Labs.WinUI">
+
+    <Grid Margin="58, 42, 58,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <labs:SettingsCard x:Name="SSLDLLCard" Visibility="Visible"
+              Grid.Row="4"
+              Header="SSL Bypass"
+              Description="todo!">
+            <labs:SettingsCard.HeaderIcon>
+                <FontIcon Glyph="&#xE840;"/>
+            </labs:SettingsCard.HeaderIcon>
+            <TextBox x:Name="SSLBypassDLLPathBox" TextChanged="SSLBypassDLLPathBox_TextChanged"/>
+        </labs:SettingsCard>
+        <labs:SettingsCard x:Name="ConsoleDLLCard" Visibility="Visible"
+              Grid.Row="5"
+              Header="Console DLL"
+              Description="todo!">
+            <labs:SettingsCard.HeaderIcon>
+                <FontIcon Glyph="&#xE8C1;"/>
+            </labs:SettingsCard.HeaderIcon>
+            <TextBox x:Name="ConsoleBypassDLLPathBox" TextChanged="ConsoleBypassDLLPathBox_TextChanged"/>
+        </labs:SettingsCard>
+        <labs:SettingsCard x:Name="MemoryLeakDLLCard" Visibility="Visible"
+              Grid.Row="6"
+              Header="Memory Leak Fix DLL"
+              Description="todo!">
+            <labs:SettingsCard.HeaderIcon>
+                <FontIcon Glyph="&#xE90F;"/>
+            </labs:SettingsCard.HeaderIcon>
+            <TextBox x:Name="MemoryBypassDLLPathBox" TextChanged="MemoryBypassDLLPathBox_TextChanged"/>
+        </labs:SettingsCard>
+    </Grid>
+</Page>
