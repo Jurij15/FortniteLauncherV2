@@ -1,3 +1,5 @@
+using FortniteLauncher.Dialogs;
+using FortniteLauncher.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -31,6 +33,13 @@ namespace FortniteLauncher.Pages
         private void StartNow_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private async void ShowMsgTesting_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = DialogService.CreateContentDialog("", new DebugTestingWelcomeDialog());
+            dialog.CloseButtonText = "OK";
+            await dialog.ShowAsync();
         }
     }
 }

@@ -12,23 +12,7 @@
     <Grid Margin="58, 42, 58,0" CanBeScrollAnchor="True" RowSpacing="2">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border x:Name="HeaderBorder" Grid.Row="0" CornerRadius="8">
             <Border.Background>
@@ -54,5 +38,29 @@
                 </Grid>
             </Border>
         </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" x:Name="NotificationsGrid" RowSpacing="4" Margin="0,12,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Messages" Foreground="{ThemeResource TextFillColorSecondaryBrush}" FontSize="12" Grid.Row="0"/>
+                <InfoBar Title="Testing" Message="Welcome to FortniteLauncherV2 Testing!" IsOpen="True" Severity="Informational" Grid.Row="1">
+                    <InfoBar.ActionButton>
+                        <HyperlinkButton x:Name="ShowMsgTesting" Content="Show Message" Click="ShowMsgTesting_Click"/>
+                    </InfoBar.ActionButton>
+                </InfoBar>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>
