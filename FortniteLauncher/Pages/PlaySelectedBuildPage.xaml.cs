@@ -225,5 +225,12 @@ namespace FortniteLauncher.Pages
         {
             //((Expander)sender).IsExpanded = true;
         }
+
+        private void InjectRelated_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.UpdateBreadcrumb("Inject", true);
+            NavigationService.ShowBreadcrumb();
+            Globals.Objects.MainFrame.Navigate(typeof(InjectPage));
+        }
     }
 }
