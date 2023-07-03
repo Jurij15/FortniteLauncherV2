@@ -6,9 +6,63 @@
     xmlns:local="using:FortniteLauncher.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:labs="using:CommunityToolkit.Labs.WinUI"
     mc:Ignorable="d">
 
-    <Grid Margin="58, 42, 58,0" CanBeScrollAnchor="True" RowSpacing="2">
-
+    <Grid Margin="58, 42, 58,0" CanBeScrollAnchor="True" RowSpacing="4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <labs:SettingsExpander x:Name="LauncherAboutExpander" Grid.Row="1" Header="FortniteLauncher" Description="by Jurij15">
+            <labs:SettingsExpander.Content>
+                <TextBlock x:Name="VersionBlock" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+            </labs:SettingsExpander.Content>
+            <labs:SettingsExpander.Items>
+                <labs:SettingsCard>
+                    <labs:SettingsCard.Header>
+                        <StackPanel>
+                            <TextBlock Text="This project is not affiliated with Epic Games in any way." FontStyle="Italic" FontSize="13" Margin="0,0,0,4"/>
+                            <TextBlock Text="Artwork copyright goes to its respective owners." FontStyle="Italic" FontSize="13" Margin="0,0,0,4"/>
+                            <HyperlinkButton NavigateUri="https://github.com/Jurij15/FortniteLauncherV2" Content="GitHub"/>
+                        </StackPanel>
+                    </labs:SettingsCard.Header>
+                </labs:SettingsCard>
+            </labs:SettingsExpander.Items>
+        </labs:SettingsExpander>
+        <labs:SettingsExpander x:Name="FortniteAboutExpander" Grid.Row="2" Header="Fortnite" Description="by Epic Games">
+            <labs:SettingsExpander.HeaderIcon>
+                <ImageIcon Source="ms-appx:///Assets\FNDefaultIcon.png"/>
+            </labs:SettingsExpander.HeaderIcon>
+            <labs:SettingsExpander.Items>
+                <labs:SettingsCard>
+                    <labs:SettingsCard.Header>
+                        <StackPanel>
+                            <HyperlinkButton NavigateUri="https://fortnite.com/" Content="Official Website"/>
+                            <HyperlinkButton NavigateUri="http://status.epicgames.com/" Content="Status Page"/>
+                        </StackPanel>
+                    </labs:SettingsCard.Header>
+                </labs:SettingsCard>
+            </labs:SettingsExpander.Items>
+        </labs:SettingsExpander>
+        <labs:SettingsExpander x:Name="OtherAboutExpander" Grid.Row="3" Header="Credits">
+            <labs:SettingsExpander.Items>
+                <labs:SettingsCard>
+                    <labs:SettingsCard.Header>
+                        <StackPanel>
+                        </StackPanel>
+                    </labs:SettingsCard.Header>
+                </labs:SettingsCard>
+            </labs:SettingsExpander.Items>
+        </labs:SettingsExpander>
     </Grid>
 </Page>

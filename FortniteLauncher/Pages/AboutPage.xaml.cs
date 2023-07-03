@@ -26,6 +26,8 @@ namespace FortniteLauncher.Pages
         public AboutPage()
         {
             this.InitializeComponent();
+
+            VersionBlock.Text = Globals.VersionString;
         }
     }
 }
