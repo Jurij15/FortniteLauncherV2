@@ -6,6 +6,7 @@
     xmlns:local="using:FortniteLauncher.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:labs="using:CommunityToolkit.Labs.WinUI"
     mc:Ignorable="d">
 
     <Grid Margin="58, 42, 58,0">
@@ -22,20 +23,24 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="2" Margin="0,0,0,2">
+        <StackPanel x:Name="PIDPanel" Grid.Row="1" Spacing="2">
             <NumberBox Header="Prcocess ID" x:Name="PIDBox" Value="0"/>
             <Button x:Name="ShowProcesses" Content="Show Processes" Margin="2,0,0,0" VerticalAlignment="Bottom" Click="ShowProcesses_Click"/>
         </StackPanel>
-        <Grid  Grid.Row="2" RowSpacing="2" HorizontalAlignment="Stretch" Margin="0,2,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBox Header="DLL Path" PlaceholderText="Path" x:Name="DLLPathBox" HorizontalAlignment="Stretch" Grid.Column="0"/>
-            <Button x:Name="FilePicker" Click="FilePicker_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1">
-                <FontIcon Glyph="&#xE8E5;"/>
-            </Button>
-        </Grid>
-        <Button Content="Inject" Style="{ThemeResource AccentButtonStyle}" Grid.Row="3" x:Name="InjectBtn" Margin="0,4,0,0" Click="InjectBtn_Click"/>
+
+        <StackPanel Grid.Row="2" Spacing="4" Margin="0,8, 0,0">
+            <labs:SettingsCard Header="Inject Console DLL" IsClickEnabled="True" x:Name="ConsoleInject" IsActionIconVisible="True" Click="ConsoleInject_Click">
+                <labs:SettingsCard.ActionIcon>
+                    <FontIcon Glyph="&#xE718;"/>
+                </labs:SettingsCard.ActionIcon>
+                <labs:SettingsCard.Description>
+                    <TextBlock>
+                        You can change the DLL in <Hyperlink x:Name="OpenGameSettings" Click="OpenGameSettings_Click">Settings</Hyperlink>
+                    </TextBlock>
+                </labs:SettingsCard.Description>
+            </labs:SettingsCard>
+            <labs:SettingsCard Header="Custom DLL" IsClickEnabled="True" x:Name="CustomInject" IsActionIconVisible="True" Click="CustomInject_Click">
+            </labs:SettingsCard>
+        </StackPanel>
     </Grid>
 </Page>

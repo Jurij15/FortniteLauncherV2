@@ -135,6 +135,8 @@ namespace FortniteLauncher.Pages
 
             NewCard.Content = content;
 
+            ToolTipService.SetToolTip(NewCard, "Play " + buildname);
+
             NewCard.IsClickEnabled = true;
             NewCard.IsActionIconVisible = false;
 

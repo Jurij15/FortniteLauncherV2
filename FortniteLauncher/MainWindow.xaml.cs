@@ -22,6 +22,7 @@ using FortniteLauncher.Managers;
 using ColorCode.Compilation.Languages;
 using FortniteLauncher.Dialogs;
 using Windows.System;
+using FortniteLauncher.Pages.GuidesPages;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -73,8 +74,7 @@ namespace FortniteLauncher
 
             this.Title = "Fortnite Launcher";
 
-            /*
-            if (true)
+            if (Globals.Theme == 1)
             {
                 //light
                 abackdrop.Kind = Microsoft.UI.Composition.SystemBackdrops.MicaKind.BaseAlt; //idk if i should keep this in, it looks nice but idk
@@ -83,7 +83,11 @@ namespace FortniteLauncher
             {
                 abackdrop.Kind = Microsoft.UI.Composition.SystemBackdrops.MicaKind.Base;
             }
-            */
+
+            if (Environment.OSVersion.Version.Build <= 22000) //enable the normal look of navigationview on windows 10
+            {
+                MainNavigationDisableContentBackgroundDictionary.ThemeDictionaries.Clear();
+            }
             this.SystemBackdrop = abackdrop;
         }
 
@@ -104,7 +108,6 @@ namespace FortniteLauncher
 
         void OnMainWindowStartup()
         {
-            Settings.GetSettings();
 
             foreach (var item in Directory.GetFiles("Assets/GalleryContentImages/"))
             {
@@ -172,10 +175,12 @@ namespace FortniteLauncher
 
         private void MainNavigation_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
+            /*
             if (RootFrame.CurrentSourcePageType == typeof(PlaySelectedBuildPage))
             {
                 NavigationService.FrameGoBack();
             }
+            */
             if (args.IsSettingsSelected)
             {
                 NavigationService.UpdateBreadcrumb("Settings", true);
@@ -211,6 +216,12 @@ namespace FortniteLauncher
                 NavigationService.UpdateBreadcrumb("Inject", true);
                 NavigationService.ShowBreadcrumb();
                 RootFrame.Navigate(typeof(InjectPage));
+            }
+            if (args.SelectedItemContainer == GuidesItem)
+            {
+                NavigationService.UpdateBreadcrumb("Guides", true);
+                NavigationService.ShowBreadcrumb();
+                RootFrame.Navigate(typeof(GuidesPage));
             }
 
             GC.Collect(); //idk, trying to lower ram usage

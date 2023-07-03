@@ -1,5 +1,7 @@
 using FortniteLauncher.Cores;
 using FortniteLauncher.Dialogs;
+using FortniteLauncher.Pages.InjectPages;
+using FortniteLauncher.Pages.SettingsPages;
 using FortniteLauncher.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -34,35 +36,6 @@ namespace FortniteLauncher.Pages
             this.InitializeComponent();
         }
 
-        private void InjectBtn_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Injector.InjectDll(Convert.ToInt32(PIDBox.Value), DLLPathBox.Text);
-            }
-            catch (Exception ex)
-            {
-                DialogService.ShowSimpleDialog("An error occured while injecting. Error message: " + ex.Message, "Error");
-                throw;
-            }
-        }
-
-        private async void FilePicker_Click(object sender, RoutedEventArgs e)
-        {
-            StorageFile file = (StorageFile)await DialogService.OpenFilePickerToSelectSingleFile(Windows.Storage.Pickers.PickerViewMode.List);
-            if (file != null)
-            {
-                if (file.FileType == ".dll")
-                {
-                    DLLPathBox.Text = file.Path;
-                }
-                else
-                {
-                    DialogService.ShowSimpleDialog("Selected file is not a DLL!", "Error");
-                }
-            }
-        }
-
         private async void ShowProcesses_Click(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
@@ -74,6 +47,31 @@ namespace FortniteLauncher.Pages
             await dialog.ShowAsync();
 
             PIDBox.Value = ProcessID;
+        }
+
+        private void ConsoleInject_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Injector.InjectDll(Convert.ToInt32(PIDBox.Value), Settings.ConsoleDLLConfig);
+            }
+            catch (Exception ex)
+            {
+                DialogService.ShowSimpleDialog("An error occured while injecting. Error message: " + ex.Message, "Error");
+                throw;
+            }
+        }
+
+        private void OpenGameSettings_Click(Microsoft.UI.Xaml.Documents.Hyperlink sender, Microsoft.UI.Xaml.Documents.HyperlinkClickEventArgs args)
+        {
+            Globals.Objects.MainNavigation.SelectedItem = Globals.Objects.MainNavigation.SettingsItem;
+            NavigationService.NavigateHiearchical(typeof(SettingsPage), "Settings", true);
+            NavigationService.NavigateHiearchical(typeof(GameSettingsPage), "Game Settings", false);
+        }
+
+        private void CustomInject_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.NavigateHiearchical(typeof(CustomDLLInjectPage), "Custom DLL", false);
         }
     }
 }

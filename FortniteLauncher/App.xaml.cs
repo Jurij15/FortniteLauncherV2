@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using FortniteLauncher.Cores;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -33,6 +34,16 @@ namespace FortniteLauncher
         public App()
         {
             this.InitializeComponent();
+            Settings.GetSettings(); //in case the config is not created
+            string text = File.ReadAllText(Settings.ThemeConfig);
+            if (text.Contains("0"))
+            {
+                App.Current.RequestedTheme = ApplicationTheme.Dark;
+            }
+            else if (text.Contains("1"))
+            {
+                App.Current.RequestedTheme = ApplicationTheme.Light;
+            }
         }
 
         /// <summary>

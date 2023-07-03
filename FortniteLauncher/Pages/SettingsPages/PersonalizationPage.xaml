@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     xmlns:labs="using:CommunityToolkit.Labs.WinUI">
 
-    <Grid Margin="58, 42, 58,0">
+    <Grid Margin="58, 42, 58,0" RowSpacing="4">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -18,26 +18,34 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <InfoBar Severity="Warning" x:Name="AppRestartRequired" Title="App Restart" Message="App needs to be restarted for Theme settings to apply!">
+            <InfoBar.ActionButton>
+                <HyperlinkButton x:Name="RestartAppBtn" Content="Restart Now" Click="RestartAppBtn_Click"/>
+            </InfoBar.ActionButton>
+        </InfoBar>
         <labs:SettingsCard x:Name="ThemeCard" Header="Theme" Description="Change app theme (BETA)"
-              Grid.Row="1" >
+              Grid.Row="2" >
             <labs:SettingsCard.HeaderIcon>
                 <FontIcon Glyph="&#xE790;"/>
             </labs:SettingsCard.HeaderIcon>
             <Grid>
                 <StackPanel x:Name="CardContentPanel" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <ToggleSwitch OnContent="Dark" OffContent="Light" x:Name="ThemeSwitch"/>
+                    <ComboBox x:Name="ThemeBox" SelectionChanged="ThemeBox_SelectionChanged">
+                        <ComboBoxItem Content="Dark" x:Name="DarkTheme"/>
+                        <ComboBoxItem Content="Light" x:Name="LightTheme"/>
+                    </ComboBox>
                 </StackPanel>
             </Grid>
         </labs:SettingsCard>
         <labs:SettingsCard x:Name="SoundCard"
-              Grid.Row="2"
+              Grid.Row="3"
               Header="Sound"
               Description="Enable sound effects while using the app">
             <labs:SettingsCard.HeaderIcon>
                 <FontIcon Glyph="&#xE8D6;"/>
             </labs:SettingsCard.HeaderIcon>
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
-                <ToggleSwitch x:Name="SoundToggle" OnContent="Play sound effects" OffContent="Don't play sound effects" IsOn="False" IsEnabled="True"/>
+                <ToggleSwitch x:Name="SoundToggle" IsEnabled="True" Toggled="SoundToggle_Toggled"/>
             </StackPanel>
         </labs:SettingsCard>
     </Grid>

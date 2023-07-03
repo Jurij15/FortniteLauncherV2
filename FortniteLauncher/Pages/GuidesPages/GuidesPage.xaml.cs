@@ -16,21 +16,16 @@ using Windows.Foundation.Collections;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace FortniteLauncher.Pages.SettingsPages
+namespace FortniteLauncher.Pages.GuidesPages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AdvancedSettingsPage : Page
+    public sealed partial class GuidesPage : Page
     {
-        public AdvancedSettingsPage()
+        public GuidesPage()
         {
             this.InitializeComponent();
-        }
-
-        private void ResetAppBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Globals.ResetApp(true);
         }
     }
 }

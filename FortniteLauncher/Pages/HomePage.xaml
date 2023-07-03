@@ -55,7 +55,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Messages" Foreground="{ThemeResource TextFillColorSecondaryBrush}" FontSize="12" Grid.Row="0"/>
-                <InfoBar Title="Testing" Message="Welcome to FortniteLauncherV2 Testing!" IsOpen="True" Severity="Informational" Grid.Row="1">
+                <InfoBar Title="Testing" Message="Welcome to FortniteLauncherV2 Testing!" IsOpen="True" Severity="Informational" Grid.Row="1" IsClosable="False">
                     <InfoBar.ActionButton>
                         <HyperlinkButton x:Name="ShowMsgTesting" Content="Show Message" Click="ShowMsgTesting_Click"/>
                     </InfoBar.ActionButton>

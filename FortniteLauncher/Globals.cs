@@ -1,5 +1,6 @@
 ﻿using FortniteLauncher.Cores;
 using FortniteLauncher.Managers;
+using FortniteLauncher.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
@@ -34,6 +35,8 @@ namespace FortniteLauncher
         public static HashSet<string> GalleryImages = new HashSet<string>();
 
         public static string VersionString = "2.0-DEV";
+
+        public static ElementSoundPlayerState SoundMode;
 
         public static string GetPlayerUsername()
         {
@@ -98,7 +101,7 @@ namespace FortniteLauncher
         public static async void ResetApp(bool bSendNotification)
         {
             Directory.Delete(Settings.RootSettingsDir, true);
-            if (bSendNotification) { /*NotificationService.SendSimpleToast("MinecraftLauncher was reset", "Restart was required to complete", 1.9);*/ }
+            if (bSendNotification) { NotificationService.SendSimpleToast("FortniteLauncher was reset", "Restart was required to complete","", 1.9); }
 
             BuildsManager.ResetBuilds();
 
@@ -110,7 +113,8 @@ namespace FortniteLauncher
 
         public static async void RestartApp()
         {
-            Process p = Process.Start("FortniteLauncherV2.exe");
+            Process p = Process.Start("FortniteLauncher.exe");
+            p.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
             Process.GetCurrentProcess().Kill();
         }
     }

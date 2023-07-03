@@ -34,7 +34,7 @@ namespace FortniteLauncher.Cores
             }
 
             string theme = File.ReadAllText(ThemeConfig);
-            //Globals.Theme = Convert.ToInt32(theme);
+            Globals.Theme = Convert.ToInt32(theme);
 
             string username = File.ReadAllText(AuthUsernameConfig);
             Globals.SetPlayerUsername(username);

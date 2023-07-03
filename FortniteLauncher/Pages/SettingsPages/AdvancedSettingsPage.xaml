@@ -9,7 +9,7 @@
     mc:Ignorable="d"
      xmlns:labs="using:CommunityToolkit.Labs.WinUI">
 
-    <Grid Margin="58, 42, 58,0">
+    <Grid Margin="58, 42, 58,0" RowSpacing="4">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -18,8 +18,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <InfoBar Severity="Warning" Message="Only change these settings if you know what you are doing!" IsOpen="True" IsClosable="False"/>
         <labs:SettingsCard x:Name="ResetAppCard" Visibility="Visible"
-              Grid.Row="1"
+              Grid.Row="2"
               Header="Reset App"
               Description="This will require app restart!">
             <labs:SettingsCard.HeaderIcon>

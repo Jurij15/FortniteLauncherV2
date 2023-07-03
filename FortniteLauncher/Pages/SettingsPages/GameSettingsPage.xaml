@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     xmlns:labs="using:CommunityToolkit.Labs.WinUI">
 
-    <Grid Margin="58, 42, 58,0">
+    <Grid Margin="58, 42, 58,0" RowSpacing="4">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -26,7 +26,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <labs:SettingsCard x:Name="SSLDLLCard" Visibility="Visible"
-              Grid.Row="4"
+              Grid.Row="1"
               Header="SSL Bypass"
               Description="todo!">
             <labs:SettingsCard.HeaderIcon>
@@ -35,7 +35,7 @@
             <TextBox x:Name="SSLBypassDLLPathBox" TextChanged="SSLBypassDLLPathBox_TextChanged"/>
         </labs:SettingsCard>
         <labs:SettingsCard x:Name="ConsoleDLLCard" Visibility="Visible"
-              Grid.Row="5"
+              Grid.Row="2"
               Header="Console DLL"
               Description="todo!">
             <labs:SettingsCard.HeaderIcon>
@@ -44,7 +44,7 @@
             <TextBox x:Name="ConsoleBypassDLLPathBox" TextChanged="ConsoleBypassDLLPathBox_TextChanged"/>
         </labs:SettingsCard>
         <labs:SettingsCard x:Name="MemoryLeakDLLCard" Visibility="Visible"
-              Grid.Row="6"
+              Grid.Row="3"
               Header="Memory Leak Fix DLL"
               Description="todo!">
             <labs:SettingsCard.HeaderIcon>
