@@ -85,8 +85,6 @@ namespace FortniteLauncher.Pages.SettingsPages
                 ElementSoundPlayer.State = ElementSoundPlayerState.Off;
                 Globals.SoundMode = ElementSoundPlayerState.Off;
             }
-
-            AppRestartRequired.IsOpen = true;
         }
 
         private void RestartAppBtn_Click(object sender, RoutedEventArgs e)

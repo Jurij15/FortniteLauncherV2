@@ -63,6 +63,10 @@ namespace FortniteLauncher.Dialogs
         private async void PickerDIalogBtn_Click(object sender, RoutedEventArgs e)
         {
             StorageFolder pickedFolder = await DialogService.OpenFolderPickerToSelectSingleFile(Windows.Storage.Pickers.PickerViewMode.List);
+            if (pickedFolder.Path == null)
+            {
+                return;
+            }
             BuildPathBox.Text = pickedFolder.Path;
         }
     }

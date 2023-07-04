@@ -119,7 +119,7 @@ namespace FortniteLauncher
             Globals.PrefetchSavedBuilds();
             BuildsManager.Statistics.InitAllBuildsStats();
 
-            MainNavigation.SelectedItem = HomeItem;
+            //MainNavigation.SelectedItem = HomeItem;
             RootFrame.Navigate(typeof(HomePage));
             NavigationService.UpdateBreadcrumb("Home", true);
             NavigationService.HideBreadcrumb();

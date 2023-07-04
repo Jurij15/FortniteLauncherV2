@@ -19,10 +19,12 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.WebUI;
 using Windows.Web.UI;
+using WinUIEx;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -82,6 +84,8 @@ namespace FortniteLauncher.Pages
                 PlayButton.Visibility = Visibility.Visible;
                 PlayButton.IsEnabled = false;
                 ToolTipService.SetToolTip(PlayButton, "Path is not valid!");
+
+                OpenDirectory.IsEnabled = false;
             }
 
             var _enumval = Enum.GetValues(typeof(FortniteSeasons)).Cast<FortniteSeasons>();
@@ -93,7 +97,7 @@ namespace FortniteLauncher.Pages
             LaunchArgsBox.Text = Globals.FortniteStrings.GetReadyLaunchArguments(Globals.GetPlayerUsername(), Globals.GetPlayerPassword());
         }
 
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        private async void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             if (BuildsHelper.IsPathValid(_buildPath))
             {
@@ -144,6 +148,10 @@ namespace FortniteLauncher.Pages
                     }
 
                     NotificationService.SendSimpleToast("Launch Sucessful!", "Enjoy playing Fortnite " + StatusBox.Text, "PID "+FortniteProcessID.ToString(),1.5);
+
+                    await Task.Delay(2000);
+
+                    Globals.Objects.MainWindow.Minimize();
                 }
             }
         }
@@ -231,6 +239,15 @@ namespace FortniteLauncher.Pages
             NavigationService.UpdateBreadcrumb("Inject", true);
             NavigationService.ShowBreadcrumb();
             Globals.Objects.MainFrame.Navigate(typeof(InjectPage));
+        }
+
+        private void OpenDirectory_Click(object sender, RoutedEventArgs e)
+        {
+
+            Process p = new Process();
+            p.StartInfo.FileName = "explorer.exe";
+            p.StartInfo.Arguments = _buildPath;
+            p.Start();
         }
     }
 }

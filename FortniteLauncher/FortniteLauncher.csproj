@@ -35,6 +35,7 @@
 	  <None Remove="Dialogs\DebugTestingWelcomeDialog.xaml" />
 	  <None Remove="Dialogs\InstanceManagerDialog.xaml" />
 	  <None Remove="Pages\GuidesPages\GuidesPage.xaml" />
+	  <None Remove="Pages\GuidesPages\ViewGuidePage.xaml" />
 	  <None Remove="Pages\InjectPage.xaml" />
 	  <None Remove="Pages\InjectPages\CustomDLLInjectPage.xaml" />
 	  <None Remove="Pages\SettingsPages\AdvancedSettingsPage.xaml" />
@@ -188,6 +189,9 @@
     <None Update="Assets\DLL\memoryleak.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Pages\GuidesPages\ViewGuidePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Pages\GuidesPages\GuidesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

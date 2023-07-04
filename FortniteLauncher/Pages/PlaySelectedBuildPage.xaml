@@ -51,13 +51,13 @@
                     </StackPanel>
                 </StackPanel>
             </Grid>
-            <StackPanel x:Name="RelatedPanel" Spacing="4" Grid.Row="2" Grid.ColumnSpan="2">
+            <StackPanel x:Name="RelatedPanel" Spacing="4" Grid.Row="3" Grid.ColumnSpan="2">
                 <TextBlock Text="Related" FontSize="12" Grid.Row="10" Margin="2,2,0,4" FontWeight="SemiBold"/>
                 <controls:SettingsCard x:Name="InjectRelated" Header="Inject" IsClickEnabled="True" Click="InjectRelated_Click">
                     
                 </controls:SettingsCard>
             </StackPanel>
-            <Grid x:Name="DescGrid" Padding="4" Grid.ColumnSpan="2" Grid.Row="3" Margin="0,0,0,0" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" HorizontalAlignment="Stretch">
+            <Grid x:Name="DescGrid" Padding="4" Grid.ColumnSpan="2" Grid.Row="2" Margin="0,0,0,0" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" HorizontalAlignment="Stretch">
                 <StackPanel Spacing="2" Margin="4">
                     <TextBlock Text="Description" FontWeight="Medium" Height="15"/>
                     <MenuFlyoutSeparator Margin="0,4,0,4"/>
@@ -137,7 +137,7 @@
                                 <TextBlock Text="Build Settings" FontSize="15"/>
                                 <TextBlock Text="Rename, change path, delete" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                             </StackPanel>
-                            <StackPanel Margin="8" CornerRadius="8" HorizontalAlignment="Right">
+                            <StackPanel Margin="8" CornerRadius="8" HorizontalAlignment="Right" Orientation="Horizontal" Spacing="4">
                                 <Button Background="Red" Content="Delete" x:Name="DeleteBtn">
                                     <Button.Flyout>
                                         <Flyout x:Name="DeleteBuildFlyout">
@@ -147,6 +147,9 @@
                                             </StackPanel>
                                         </Flyout>
                                     </Button.Flyout>
+                                </Button>
+                                <Button x:Name="OpenDirectory" Click="OpenDirectory_Click" ToolTipService.ToolTip="Open Directory">
+                                    <FontIcon Glyph="&#xE838;"/>
                                 </Button>
                             </StackPanel>
                         </Grid>

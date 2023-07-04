@@ -1,4 +1,3 @@
-using FortniteLauncher.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -22,21 +21,12 @@ namespace FortniteLauncher.Pages.GuidesPages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class GuidesPage : Page
+    public sealed partial class ViewGuidePage : Page
     {
-        public GuidesPage()
+        public static string SelectedGuideHTMLFilePath;
+        public ViewGuidePage()
         {
             this.InitializeComponent();
-        }
-
-        private void GetStartedCardGuide_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.NavigateHiearchical(typeof(ViewGuidePage), "Get Started", false);
-        }
-
-        private void HostWithRebootCardGuide_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.NavigateHiearchical(typeof(ViewGuidePage), "Host Games", false);
         }
     }
 }

@@ -28,7 +28,7 @@
         <labs:SettingsCard x:Name="SSLDLLCard" Visibility="Visible"
               Grid.Row="1"
               Header="SSL Bypass"
-              Description="todo!">
+              Description="DLL that will bypass SSL Pinning">
             <labs:SettingsCard.HeaderIcon>
                 <FontIcon Glyph="&#xE840;"/>
             </labs:SettingsCard.HeaderIcon>
@@ -37,7 +37,7 @@
         <labs:SettingsCard x:Name="ConsoleDLLCard" Visibility="Visible"
               Grid.Row="2"
               Header="Console DLL"
-              Description="todo!">
+              Description="DLL that creates the UE console">
             <labs:SettingsCard.HeaderIcon>
                 <FontIcon Glyph="&#xE8C1;"/>
             </labs:SettingsCard.HeaderIcon>
@@ -46,7 +46,7 @@
         <labs:SettingsCard x:Name="MemoryLeakDLLCard" Visibility="Visible"
               Grid.Row="3"
               Header="Memory Leak Fix DLL"
-              Description="todo!">
+              Description="DLL That fixes a possible memory leak in some Fortnite seasons">
             <labs:SettingsCard.HeaderIcon>
                 <FontIcon Glyph="&#xE90F;"/>
             </labs:SettingsCard.HeaderIcon>
