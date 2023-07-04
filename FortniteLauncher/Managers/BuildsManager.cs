@@ -16,18 +16,6 @@ namespace FortniteLauncher.Managers
     {
         public static string RootBuildsDir = Settings.RootSettingsDir + "Builds";
 
-        public static class Statistics
-        {
-            public static List<string> AllBuildsNames = new List<string>();
-            public static void InitAllBuildsStats()
-            {
-                foreach (var item in Globals.SavedBuildsGuids)
-                {
-                    AllBuildsNames.Add(STATIC_GetBuildNameByGUID(item));
-                }
-            }
-        }
-
         public string GetBuildNameConfig(string GUID)
         {
             return RootBuildsDir + "\\" + GUID + "\\BuildNameConfig";

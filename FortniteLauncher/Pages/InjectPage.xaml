@@ -35,7 +35,7 @@
                 </labs:SettingsCard.ActionIcon>
                 <labs:SettingsCard.Description>
                     <TextBlock>
-                        You can change the DLL in <Hyperlink x:Name="OpenGameSettings" Click="OpenGameSettings_Click">Settings</Hyperlink>
+                        You can change the DLL in Settings
                     </TextBlock>
                 </labs:SettingsCard.Description>
             </labs:SettingsCard>

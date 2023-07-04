@@ -89,15 +89,6 @@ namespace FortniteLauncher
 
         public static HashSet<string> SavedBuildsGuids = new HashSet<string>();
 
-        public static void PrefetchSavedBuilds()
-        {
-            BuildsManager manager = new BuildsManager();
-            foreach (var item in manager.GetAllBuildGuids())
-            {
-                SavedBuildsGuids.Add(item);
-            }
-        }
-
         public static async void ResetApp(bool bSendNotification)
         {
             Directory.Delete(Settings.RootSettingsDir, true);

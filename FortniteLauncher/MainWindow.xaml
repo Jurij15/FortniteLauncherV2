@@ -163,16 +163,10 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <!--<NavigationViewItemSeparator/>-->
-                <NavigationViewItem x:Name="PlayPageItem">
+                <NavigationViewItem x:Name="PlayPageItem" Content="Play">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74C;"/>
                     </NavigationViewItem.Icon>
-                    <NavigationViewItem.Content>
-                        <StackPanel Spacing="1" Padding="6">
-                            <TextBlock Text="Play" Margin="-6,0,0,0"/>
-                            <TextBlock x:Name="TotalBuildsBlock" Margin="-4,0,0,0" FontSize="10" Foreground="{ThemeResource TextFillColorTertiaryBrush}"/>
-                        </StackPanel>
-                    </NavigationViewItem.Content>
                 </NavigationViewItem>
                 <NavigationViewItem Content="Private Server" x:Name="PrivateServerItem">
                     <NavigationViewItem.Icon>

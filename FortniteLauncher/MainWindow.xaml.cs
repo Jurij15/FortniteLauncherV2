@@ -116,10 +116,7 @@ namespace FortniteLauncher
 
             NotificationService.InitToast();
 
-            Globals.PrefetchSavedBuilds();
-            BuildsManager.Statistics.InitAllBuildsStats();
-
-            //MainNavigation.SelectedItem = HomeItem;
+            MainNavigation.SelectedItem = HomeItem;
             RootFrame.Navigate(typeof(HomePage));
             NavigationService.UpdateBreadcrumb("Home", true);
             NavigationService.HideBreadcrumb();
@@ -165,8 +162,6 @@ namespace FortniteLauncher
         private async void RootGrid_Loaded(object sender, RoutedEventArgs e)
         {
             Globals.Objects.MainWindowXamlRoot = this.Content.XamlRoot;
-
-            TotalBuildsBlock.Text = "Total: "+ new BuildsManager().GetAllBuildGuids().Count.ToString();
 
             ContentDialog dialog = DialogService.CreateContentDialog("", new DebugTestingWelcomeDialog());
             dialog.CloseButtonText = "OK";

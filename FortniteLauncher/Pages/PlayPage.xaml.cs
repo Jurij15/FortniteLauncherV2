@@ -315,8 +315,6 @@ namespace FortniteLauncher.Pages
             }
             */
 
-            BuildsManager.Statistics.InitAllBuildsStats();
-
             if (string.IsNullOrEmpty(sender.Text) || string.IsNullOrWhiteSpace(sender.Text))
             {
                 LoadBuilds(null);
