@@ -93,7 +93,7 @@ namespace FortniteLauncher.Helpers
             LawinServerProcessiD = p.Id;
             bStarted = true;
 
-            DialogService.ShowSimpleDialog("lawinServer started minimized", "");
+            //DialogService.ShowSimpleDialog("lawinServer started minimized", "");
         }
 
         public static void Stop()
@@ -125,7 +125,11 @@ namespace FortniteLauncher.Helpers
 
         public static void OpenDir()
         {
+            Process p = new Process();
+            p.StartInfo.FileName = "explorer.exe";
+            p.StartInfo.Arguments = LawinServerWorkingDir;
 
+            p.Start();
         }
     }
 }

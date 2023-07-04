@@ -33,7 +33,7 @@
             </Grid.ColumnDefinitions>
             <Grid x:Name="InfoGrid" Grid.Row="1" Grid.Column="0">
                 <StackPanel Orientation="Horizontal">
-                    <StackPanel Height="358" Width="242" HorizontalAlignment="Left" CornerRadius="8">
+                    <StackPanel HorizontalAlignment="Left" CornerRadius="8">
                         <Image x:Name="BannerImg" HorizontalAlignment="Left"  MaxHeight="358" MaxWidth="242"/>
                     </StackPanel>
                     <StackPanel  Margin="8,0,0,0">
@@ -57,7 +57,7 @@
                     
                 </controls:SettingsCard>
             </StackPanel>
-            <Grid x:Name="DescGrid" Padding="4" Grid.ColumnSpan="2" Grid.Row="2" Margin="0,0,0,0" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" HorizontalAlignment="Stretch">
+            <Grid x:Name="DescGrid" Margin="0,24,0,0" Padding="4" Grid.ColumnSpan="2" Grid.Row="2" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" HorizontalAlignment="Stretch">
                 <StackPanel Spacing="2" Margin="4">
                     <TextBlock Text="Description" FontWeight="Medium" Height="15"/>
                     <MenuFlyoutSeparator Margin="0,4,0,4"/>
@@ -161,7 +161,7 @@
                     </StackPanel>
                 </Expander>
             </Grid>
-            <controls:SettingsCard x:Name="GalleryGrid" Click="GalleryGrid_Click" IsClickEnabled="True" IsActionIconVisible="True" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Header="Gallery" Margin="0,20,0,0">
+            <controls:SettingsCard x:Name="GalleryGrid" Click="GalleryGrid_Click" IsClickEnabled="True" IsActionIconVisible="True" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Header="Gallery" Margin="0,4,0,0">
                 <controls:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE7C5;"/>
                 </controls:SettingsCard.HeaderIcon>

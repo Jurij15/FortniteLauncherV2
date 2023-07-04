@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using WinUIEx;
@@ -21,6 +22,8 @@ namespace FortniteLauncher
     {
         public static int Theme { get; set; }
         public static bool bIsFirstTimeRun = false;
+
+        public static bool LEnableDebugConsole = false;
         public static class Objects
         {
             public static WindowEx MainWindow;
@@ -78,6 +81,26 @@ namespace FortniteLauncher
             public static string GetReadyLaunchArguments(string Username, string Password)
             {
                 return "-log -epicapp=Fortnite -epicenv=Prod -epiclocale=en-us -epicportal -skippatchcheck -nobe -fromfl=eac -fltoken=3db3ba5dcbd2e16703f3978d -caldera={}"+$" -AUTH_LOGIN={Username}@projectreboot.dev -AUTH_PASSWORD={Password} -AUTH_TYPE=epic";
+            }
+        }
+
+        public static class DebugConsole
+        {
+            [DllImport("kernel32.dll", EntryPoint = "AllocConsole", SetLastError = true, CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+            private static extern int AllocConsole();
+
+            public static void SetupConsole()
+            {
+                AllocConsole();
+                Logger.Log(LogImportance.Info, LogSource.AppCore, "Console Enabled!");
+            }
+
+            [DllImport("kernel32.dll", EntryPoint = "FreeConsole", SetLastError = true, CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+            private static extern int FreeConsole();
+
+            public static void CloseConsole()
+            {
+                FreeConsole();
             }
         }
 

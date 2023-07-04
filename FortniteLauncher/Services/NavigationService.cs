@@ -35,6 +35,8 @@ namespace FortniteLauncher.Services
             Globals.Breadcrumbs.Add(AddText);
 
             Globals.UpdateBreadcrumb();
+
+            Logger.Log(LogImportance.Error, LogSource.Navigation, "Breadcrumb updated");
         }
 
         public static void RemoveBreadcrumbSpecificElement(string SpecificElementName)
@@ -42,6 +44,8 @@ namespace FortniteLauncher.Services
             Globals.Breadcrumbs.Remove(SpecificElementName);
 
             Globals.UpdateBreadcrumb();
+
+            Logger.Log(LogImportance.Error, LogSource.Navigation, "Removed specific breadcrumb");
         }
 
         public static void NavigateHiearchical(Type TargetPageType, string BreadcrumbText, bool RemovePreviousText)
@@ -54,6 +58,8 @@ namespace FortniteLauncher.Services
             Globals.Objects.MainFrame.Navigate(TargetPageType, null, info);
 
             ShowBreadcrumb();
+
+            Logger.Log(LogImportance.Error, LogSource.Navigation, "Navigated hierarchical to page "+TargetPageType.Name.ToString());
         }
 
         public static bool CanGoBack()

@@ -1,4 +1,5 @@
 ﻿using FortniteLauncher.Cores;
+using FortniteLauncher.Helpers;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -34,15 +35,25 @@ namespace FortniteLauncher
         public App()
         {
             this.InitializeComponent();
+
+            LaunchArgumentsHelper.Parse();
+
+            if (Globals.LEnableDebugConsole)
+            {
+                Globals.DebugConsole.SetupConsole();
+            }
+
             Settings.GetSettings(); //in case the config is not created
             string text = File.ReadAllText(Settings.ThemeConfig);
             if (text.Contains("0"))
             {
                 App.Current.RequestedTheme = ApplicationTheme.Dark;
+                Logger.Log(LogImportance.Info, LogSource.AppCore, "App theme is DARK");
             }
             else if (text.Contains("1"))
             {
                 App.Current.RequestedTheme = ApplicationTheme.Light;
+                Logger.Log(LogImportance.Info, LogSource.AppCore, "App theme is LIGHT");
             }
         }
 

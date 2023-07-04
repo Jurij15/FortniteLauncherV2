@@ -114,6 +114,8 @@ namespace FortniteLauncher
                 Globals.GalleryImages.Add(item);
             }
 
+            Logger.Log(LogImportance.Info, LogSource.Startup, "Found " + Globals.GalleryImages.Count + " gallery images!");
+
             NotificationService.InitToast();
 
             MainNavigation.SelectedItem = HomeItem;
@@ -152,16 +154,25 @@ namespace FortniteLauncher
         {
             RootFrame.GoBack();
             Globals.Breadcrumbs.RemoveAt(1);
+
+            Logger.Log(LogImportance.Info, LogSource.Navigation, "Breadcrumb item clicked");
         }
 
         private void RootFrame_Navigated(object sender, NavigationEventArgs e)
         {
-
+            try
+            {
+                Logger.Log(LogImportance.Info, LogSource.Navigation, "Frame Navigated to " + e.Content);
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
         private async void RootGrid_Loaded(object sender, RoutedEventArgs e)
         {
             Globals.Objects.MainWindowXamlRoot = this.Content.XamlRoot;
+            Logger.Log(LogImportance.Info, LogSource.AppCore, "Initialized app XamlRoot");
 
             ContentDialog dialog = DialogService.CreateContentDialog("", new DebugTestingWelcomeDialog());
             dialog.CloseButtonText = "OK";
@@ -222,6 +233,8 @@ namespace FortniteLauncher
             GC.Collect(); //idk, trying to lower ram usage
 
             AuthUsernameBlock.Text = Globals.GetPlayerUsername();
+
+            Logger.Log(LogImportance.Info, LogSource.Navigation, "Selected page for navigation: "+args.SelectedItemContainer.Content.ToString());
         }
 
         private async void PaneContent_Click(object sender, RoutedEventArgs e)
@@ -247,6 +260,8 @@ namespace FortniteLauncher
             {
                 MainNavigation.IsPaneOpen= true;
             }
+
+            Logger.Log(LogImportance.Info, LogSource.AppCore, "IsPaneOpen state changed to "+MainNavigation.IsPaneOpen.ToString());
         }
     }
 }

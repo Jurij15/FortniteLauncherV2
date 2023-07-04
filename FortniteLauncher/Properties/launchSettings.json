@@ -4,7 +4,8 @@
       "commandName": "MsixPackage"
     },
     "FortniteLauncher (Unpackaged)": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "-EnableDbgConsole"
     }
   }
 }

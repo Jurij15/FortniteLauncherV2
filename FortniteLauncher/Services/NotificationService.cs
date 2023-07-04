@@ -61,6 +61,8 @@ namespace FortniteLauncher.Services
             catch (Exception ex)
             {
                 bToastFailedInit = true;
+
+                Logger.Log(LogImportance.Error, LogSource.NotificationService, "Notifications failed to Initialize. Error: "+ex.Message);
             }
         }
     }

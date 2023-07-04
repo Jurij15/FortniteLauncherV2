@@ -31,7 +31,6 @@
                 </controls:SettingsExpander.HeaderIcon>
                 <controls:SettingsExpander.Content>
                     <StackPanel Spacing="4" Orientation="Horizontal">
-                        <HyperlinkButton x:Name="OpenDir" VerticalAlignment="Center" Content="Open Directory" Click="OpenDir_Click"/>
                         <TextBlock VerticalAlignment="Center" x:Name="LawinServerStatusBox" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                     </StackPanel>
                 </controls:SettingsExpander.Content>
@@ -53,6 +52,14 @@
                             <StackPanel Orientation="Horizontal" Spacing="4">
                                 <Button Content="Start" x:Name="StartLawinBtn" Click="StartLawinBtn_Click"/>
                                 <Button Content="Stop" x:Name="StopLawinBtn" Click="StopLawinBtn_Click"/>
+                            </StackPanel>
+                        </controls:SettingsCard.Header>
+                    </controls:SettingsCard>
+                    <controls:SettingsCard x:Name="LinksBar">
+                        <controls:SettingsCard.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <HyperlinkButton x:Name="OpenDir" Content="Open Directory" Click="OpenDir_Click"/>
+                                <HyperlinkButton x:Name="LawinGitHub" Content="GitHub" NavigateUri="https://github.com/Lawin0129/LawinServer"/>
                             </StackPanel>
                         </controls:SettingsCard.Header>
                     </controls:SettingsCard>
