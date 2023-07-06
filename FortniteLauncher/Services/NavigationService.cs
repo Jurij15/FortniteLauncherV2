@@ -2,98 +2,119 @@
 using Microsoft.UI.Xaml.Media.Animation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FortniteLauncher.Services
 {
-    public enum NavigationPages
-    {
-        Home,
-        Play, //select the build to play
-        PrivateServer,//?
-        About, //about the launcher //might just merge it into settings
-        Settings, 
-        //these are not displayed in navigation view, will be navigated to using breadcrumb
-        SelectedBuildPage, //after build was selected, show launch options
-        PlayerOptionsPage //idk, for stuff like username if using auth argument
-    }
     public class NavigationService
     {
-        public static void Navigate(Type PageType, string CustomBreadcrumbText = null, bool RemovePreviousBreadcrumbs = false)
+        #region Classes
+        //thanks to https://github.com/microsoft/devhome/blob/main/settings/DevHome.Settings/Models/Breadcrumb.cs#L10
+        public class Breadcrumb
         {
-
-        }
-
-        public static void UpdateBreadcrumb(string AddText, bool RemovePrevious)
-        {
-            if (RemovePrevious)
+            public Breadcrumb(string label, Type page)
             {
-                Globals.Breadcrumbs.Clear();
+                Label = label;
+                Page = page;
             }
-            Globals.Breadcrumbs.Add(AddText);
+            public string Label { get; }
 
-            Globals.UpdateBreadcrumb();
+            public Type Page { get; }
 
-            Logger.Log(LogImportance.Info, LogSource.Navigation, "Breadcrumb updated");
+            public override string ToString() => Label;
+
+            public void NavigateToFromBreadcrumb(int BreadcrumbItemIndex)
+            {
+                NavigationService.NavigateInternal(Page, BreadcrumbItemIndex);
+            }
         }
+        #endregion
 
-        public static void RemoveBreadcrumbSpecificElement(string SpecificElementName)
+        #region Properties
+        public static NavigationView MainNavigation { get; private set; }
+        public static BreadcrumbBar MainBreadcrumb { get; private set; }
+
+        public static Frame MainFrame { get; private set; }
+
+        public static ObservableCollection<Breadcrumb> BreadCrumbs = new ObservableCollection<Breadcrumb>();
+        #endregion
+
+        #region Constructor
+        public static void Init(NavigationView navigationView, BreadcrumbBar breadcrumbBar, Frame frame)
         {
-            Globals.Breadcrumbs.Remove(SpecificElementName);
-
-            Globals.UpdateBreadcrumb();
-
-            Logger.Log(LogImportance.Info, LogSource.Navigation, "Removed specific breadcrumb");
+            MainNavigation = navigationView;
+            MainBreadcrumb = breadcrumbBar;
+            MainFrame = frame;
         }
+        #endregion
 
-        public static void NavigateHiearchical(Type TargetPageType, string BreadcrumbText, bool RemovePreviousText)
+        #region Private Functions
+        private static void UpdateBreadcrumb()
         {
-            if (TargetPageType == null) { return; }
-            UpdateBreadcrumb(BreadcrumbText, RemovePreviousText);
+            MainBreadcrumb.ItemsSource = BreadCrumbs;
+        }
+        private static void NavigateInternal(Type page, int BreadcrumbBarIndex)
+        {
+            SlideNavigationTransitionInfo info = new SlideNavigationTransitionInfo();
+            info.Effect = SlideNavigationTransitionEffect.FromLeft;
+            MainFrame.Navigate(page, null, info);
+
+            int indexToRemoveAfter = BreadcrumbBarIndex;
+
+            if (indexToRemoveAfter < BreadCrumbs.Count - 1)
+            {
+                int itemsToRemove = BreadCrumbs.Count - indexToRemoveAfter - 1;
+
+                for (int i = 0; i < itemsToRemove; i++)
+                {
+                    BreadCrumbs.RemoveAt(indexToRemoveAfter + 1);
+                }
+            }
+        }
+        #endregion
+
+        #region Public Functions
+        public static void Navigate(Type TargetPageType, string BreadcrumbItemLabel, bool ClearNavigation)
+        {
+            if (ClearNavigation)
+            {
+                BreadCrumbs.Clear();
+                MainFrame.BackStack.Clear();
+            }
+            BreadCrumbs.Add(new Breadcrumb(BreadcrumbItemLabel, TargetPageType));
 
             SlideNavigationTransitionInfo info = new SlideNavigationTransitionInfo();
-            info.Effect = SlideNavigationTransitionEffect.FromRight;
-            Globals.Objects.MainFrame.Navigate(TargetPageType, null, info);
-
-            ShowBreadcrumb();
-
-            Logger.Log(LogImportance.Info, LogSource.Navigation, "Navigated hierarchical to page "+TargetPageType.Name.ToString());
-        }
-
-        public static bool CanGoBack()
-        {
-            return Globals.Objects.MainFrame.CanGoBack;
-        }
-
-        public static void FrameGoBack(bool bNavigatingHome = false)
-        {
-            if (!CanGoBack())
+            if (ClearNavigation)
             {
-                return;
+                info.Effect = SlideNavigationTransitionEffect.FromBottom; //navigating fresh
             }
-            if (Globals.Breadcrumbs.Count > 1)
+            else
             {
-                Globals.Breadcrumbs.Remove(Globals.Breadcrumbs[Globals.Breadcrumbs.Count]);
+                info.Effect = SlideNavigationTransitionEffect.FromRight;
             }
-            if (bNavigatingHome)
-            {
-                Globals.Objects.MainBreadcrumb.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
-            }
-            Globals.UpdateBreadcrumb();
-            Globals.Objects.MainFrame.GoBack();
+
+            UpdateBreadcrumb();
+            ChangeBreadcrumbVisibility(true);
+
+            MainFrame.Navigate(TargetPageType, null, info);
         }
 
-        public static void HideBreadcrumb()
+        public static void ChangeBreadcrumbVisibility(bool IsBreadcrumbVisible)
         {
-            Globals.Objects.MainBreadcrumb.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
-            Globals.Objects.MainNavigation.AlwaysShowHeader = false;
+            if (IsBreadcrumbVisible)
+            {
+                MainBreadcrumb.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
+                MainNavigation.AlwaysShowHeader = true;
+            }
+            else
+            {
+                MainBreadcrumb.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+                MainNavigation.AlwaysShowHeader = false;
+            }
         }
-        public static void ShowBreadcrumb()
-        {
-            Globals.Objects.MainBreadcrumb.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
-            Globals.Objects.MainNavigation.AlwaysShowHeader = true;
-        }
+        #endregion
     }
 }

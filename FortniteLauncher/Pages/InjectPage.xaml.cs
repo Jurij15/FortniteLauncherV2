@@ -65,13 +65,13 @@ namespace FortniteLauncher.Pages
         private void OpenGameSettings_Click(Microsoft.UI.Xaml.Documents.Hyperlink sender, Microsoft.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {
             Globals.Objects.MainNavigation.SelectedItem = Globals.Objects.MainNavigation.SettingsItem;
-            NavigationService.NavigateHiearchical(typeof(SettingsPage), "Settings", true);
-            NavigationService.NavigateHiearchical(typeof(GameSettingsPage), "Game Settings", false);
+            NavigationService.Navigate(typeof(SettingsPage), "Settings", true);
+            NavigationService.Navigate(typeof(GameSettingsPage), "Game Settings", false);
         }
 
         private void CustomInject_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.NavigateHiearchical(typeof(CustomDLLInjectPage), "Custom DLL", false);
+            NavigationService.Navigate(typeof(CustomDLLInjectPage), "Custom DLL", false);
         }
     }
 }

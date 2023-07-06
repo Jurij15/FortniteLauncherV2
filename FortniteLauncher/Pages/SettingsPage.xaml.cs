@@ -50,22 +50,22 @@ namespace FortniteLauncher.Pages
 
         private void BackupsPageCard_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.NavigateHiearchical(typeof(BackupsPage), "Backups", false);
+            NavigationService.Navigate(typeof(BackupsPage), "Backups", false);
         }
 
         private void PersonalizationPageCard_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.NavigateHiearchical(typeof(PersonalizationPage), "Personalization", false);
+            NavigationService.Navigate(typeof(PersonalizationPage), "Personalization", false);
         }
 
         private void GameSettingsPageCard_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.NavigateHiearchical(typeof(GameSettingsPage), "Game Settings", false);
+            NavigationService.Navigate(typeof(GameSettingsPage), "Game Settings", false);
         }
 
         private void AdvancedPageCard_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.NavigateHiearchical(typeof(AdvancedSettingsPage), "Advanced Settings", false);
+            NavigationService.Navigate(typeof(AdvancedSettingsPage), "Advanced Settings", false);
         }
     }
 }

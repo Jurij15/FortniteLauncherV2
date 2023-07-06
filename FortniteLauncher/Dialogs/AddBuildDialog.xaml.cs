@@ -54,9 +54,7 @@ namespace FortniteLauncher.Dialogs
                 sender.Hide();
 
                 //refresh the page
-                NavigationService.UpdateBreadcrumb("Select a build", true);
-                NavigationService.ShowBreadcrumb();
-                Globals.Objects.MainFrame.Navigate(typeof(PlayPage));
+                NavigationService.Navigate(typeof(PlayPage), "Select a build", true);
             }
         }
 

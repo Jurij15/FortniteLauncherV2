@@ -176,7 +176,7 @@ namespace FortniteLauncher.Pages
 
             try
             {
-                NavigationService.NavigateHiearchical(typeof(PlaySelectedBuildPage), "Play " + manager.GetBuildNameByGUID(GUID), false);
+                NavigationService.Navigate(typeof(PlaySelectedBuildPage), "Play " + manager.GetBuildNameByGUID(GUID), false);
             }
             catch (Exception ex)
             {
@@ -279,7 +279,7 @@ namespace FortniteLauncher.Pages
 
             try
             {
-                NavigationService.NavigateHiearchical(typeof(PlaySelectedBuildPage), "Play " + manager.GetBuildNameByGUID(GUID), false);
+                NavigationService.Navigate(typeof(PlaySelectedBuildPage), "Play " + manager.GetBuildNameByGUID(GUID), false);
             }
             catch (Exception ex)
             {

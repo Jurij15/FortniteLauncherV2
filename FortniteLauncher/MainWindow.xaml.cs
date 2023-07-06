@@ -23,6 +23,7 @@ using ColorCode.Compilation.Languages;
 using FortniteLauncher.Dialogs;
 using Windows.System;
 using FortniteLauncher.Pages.GuidesPages;
+using static FortniteLauncher.Services.NavigationService;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -103,6 +104,9 @@ namespace FortniteLauncher
             this.InitializeComponent();
             InitDesign();
             SetGlobalObjects();
+
+            NavigationService.Init(MainNavigation, MainBreadcrumb, RootFrame);
+
             OnMainWindowStartup();
         }
 
@@ -119,9 +123,8 @@ namespace FortniteLauncher
             NotificationService.InitToast();
 
             MainNavigation.SelectedItem = HomeItem;
-            RootFrame.Navigate(typeof(HomePage));
-            NavigationService.UpdateBreadcrumb("Home", true);
-            NavigationService.HideBreadcrumb();
+            NavigationService.Navigate(typeof(HomePage), "Home", true);
+            NavigationService.ChangeBreadcrumbVisibility(false);
 
             if (!Globals.bIsFirstTimeRun)
             {
@@ -142,17 +145,15 @@ namespace FortniteLauncher
                 NavigationService.FrameGoBack();
             }
             */
-            NavigationService.FrameGoBack();
-            if (RootFrame.CurrentSourcePageType == typeof(HomePage))
-            {
-                NavigationService.HideBreadcrumb();
-            }
         }
 
         private void MainBreadcrumb_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)
         {
-            RootFrame.GoBack();
-            Globals.Breadcrumbs.RemoveAt(1);
+            if (args.Index < NavigationService.BreadCrumbs.Count - 1)
+            {
+                var crumb = (Breadcrumb)args.Item;
+                crumb.NavigateToFromBreadcrumb(args.Index);
+            }
 
             Logger.Log(LogImportance.Info, LogSource.Navigation, "Breadcrumb item clicked");
         }
@@ -188,45 +189,32 @@ namespace FortniteLauncher
             */
             if (args.IsSettingsSelected)
             {
-                NavigationService.UpdateBreadcrumb("Settings", true);
-                NavigationService.ShowBreadcrumb();
-                RootFrame.Navigate(typeof(SettingsPage));
+                NavigationService.Navigate(typeof(SettingsPage), "Settings", true);
             }
             if (args.SelectedItemContainer == HomeItem)
             {
-                NavigationService.UpdateBreadcrumb("Home", true);
-                NavigationService.HideBreadcrumb();
-                RootFrame.Navigate(typeof(HomePage));
+                NavigationService.Navigate(typeof(HomePage), "Home", true);
+                ChangeBreadcrumbVisibility(false);
             }
             if (args.SelectedItemContainer == PlayPageItem)
             {
-                NavigationService.UpdateBreadcrumb("Select a build", true);
-                NavigationService.ShowBreadcrumb();
-                RootFrame.Navigate(typeof(PlayPage));
+                NavigationService.Navigate(typeof(PlayPage), "Select a build", true);
             }
             if (args.SelectedItemContainer == PrivateServerItem)
             {
-                NavigationService.UpdateBreadcrumb("Private Server", true);
-                NavigationService.ShowBreadcrumb();
-                RootFrame.Navigate(typeof(PrivateServerPage));
+                NavigationService.Navigate(typeof(PrivateServerPage), "Private Server", true);
             }
             if (args.SelectedItemContainer == AboutItem)
             {
-                NavigationService.UpdateBreadcrumb("About", true);
-                NavigationService.ShowBreadcrumb();
-                RootFrame.Navigate(typeof(AboutPage));
+                NavigationService.Navigate(typeof(AboutPage), "About", true);
             }
             if (args.SelectedItemContainer == InjectItem)
             {
-                NavigationService.UpdateBreadcrumb("Inject", true);
-                NavigationService.ShowBreadcrumb();
-                RootFrame.Navigate(typeof(InjectPage));
+                NavigationService.Navigate(typeof(InjectPage), "Inject", true);
             }
             if (args.SelectedItemContainer == GuidesItem)
             {
-                NavigationService.UpdateBreadcrumb("Guides", true);
-                NavigationService.ShowBreadcrumb();
-                RootFrame.Navigate(typeof(GuidesPage));
+                NavigationService.Navigate(typeof(GuidesPage), "Guides", true);
             }
 
             GC.Collect(); //idk, trying to lower ram usage

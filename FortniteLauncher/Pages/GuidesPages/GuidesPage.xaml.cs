@@ -31,12 +31,12 @@ namespace FortniteLauncher.Pages.GuidesPages
 
         private void GetStartedCardGuide_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.NavigateHiearchical(typeof(ViewGuidePage), "Get Started", false);
+            NavigationService.Navigate(typeof(ViewGuidePage), "Get Started", false);
         }
 
         private void HostWithRebootCardGuide_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.NavigateHiearchical(typeof(ViewGuidePage), "Host Games", false);
+            NavigationService.Navigate(typeof(ViewGuidePage), "Host Games", false);
         }
     }
 }

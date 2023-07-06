@@ -192,7 +192,7 @@ namespace FortniteLauncher.Pages
             BuildsManager manager = new BuildsManager();
             manager.DeleteBuild(_buildGUID);
 
-            NavigationService.FrameGoBack();
+            NavigationService.Navigate(typeof(PlayPage), "Select a build", true);
         }
 
         private void GalleryGrid_Click(object sender, RoutedEventArgs e)
@@ -236,9 +236,7 @@ namespace FortniteLauncher.Pages
 
         private void InjectRelated_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.UpdateBreadcrumb("Inject", true);
-            NavigationService.ShowBreadcrumb();
-            Globals.Objects.MainFrame.Navigate(typeof(InjectPage));
+            NavigationService.Navigate(typeof(InjectPage), "Select a build", true);
         }
 
         private void OpenDirectory_Click(object sender, RoutedEventArgs e)
