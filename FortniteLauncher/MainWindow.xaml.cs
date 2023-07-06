@@ -142,7 +142,6 @@ namespace FortniteLauncher
                 NavigationService.FrameGoBack();
             }
             */
-
             NavigationService.FrameGoBack();
             if (RootFrame.CurrentSourcePageType == typeof(HomePage))
             {

@@ -91,5 +91,34 @@ namespace FortniteLauncher.Pages.SettingsPages
         {
             Globals.RestartApp();
         }
+
+        private void BackdropComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem selecteditem =(ComboBoxItem)((ComboBox)sender).SelectedItem;
+            if (selecteditem == MicaBackdrop)
+            {
+                Microsoft.UI.Xaml.Media.MicaBackdrop backdrop = new MicaBackdrop();
+                backdrop.Kind = Microsoft.UI.Composition.SystemBackdrops.MicaKind.Base;
+
+                Globals.Objects.MainWindow.SystemBackdrop = backdrop;
+            }
+            else if (selecteditem == MicaAltBackdrop)
+            {
+                Microsoft.UI.Xaml.Media.MicaBackdrop backdrop = new MicaBackdrop();
+                backdrop.Kind = Microsoft.UI.Composition.SystemBackdrops.MicaKind.BaseAlt;
+
+                Globals.Objects.MainWindow.SystemBackdrop = backdrop;
+            }
+            else if (selecteditem == AcrylicBackdrop)
+            {
+                Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop backdrop = new DesktopAcrylicBackdrop();
+
+                Globals.Objects.MainWindow.SystemBackdrop = backdrop;
+            }
+            if (selecteditem == NoneBackdrop)
+            {
+                Globals.Objects.MainWindow.SystemBackdrop = null;
+            }
+        }
     }
 }
