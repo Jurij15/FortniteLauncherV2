@@ -65,6 +65,8 @@ namespace FortniteLauncher
         {
             m_window = new MainWindow();
             m_window.Activate();
+
+            Globals.Objects.m_window = m_window;
         }
 
         private Window m_window;

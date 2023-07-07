@@ -1,4 +1,5 @@
 using FortniteLauncher.Cores;
+using FortniteLauncher.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -63,11 +64,14 @@ namespace FortniteLauncher.Pages.SettingsPages
             {
                 Settings.SaveNewThemeConfig(0);
                 Globals.Theme = 0;
+
+                ThemeService.ChangeTheme(ElementTheme.Dark);
             }
             else if (ThemeBox.SelectedItem == LightTheme)
             {
                 Settings.SaveNewThemeConfig(1);
                 Globals.Theme = 1;
+                ThemeService.ChangeTheme(ElementTheme.Light);
             }
 
             AppRestartRequired.IsOpen = true;

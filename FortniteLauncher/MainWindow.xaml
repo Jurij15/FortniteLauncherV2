@@ -97,23 +97,9 @@
             -->
             <NavigationView.Resources>
                 <ResourceDictionary x:Name="MainNavigationDisableContentBackgroundDictionary">
-                    <ResourceDictionary.ThemeDictionaries>
-                        <ResourceDictionary x:Key="Dark">
-                            <Thickness x:Key="NavigationViewHeaderMargin">56,26,0,0</Thickness>
-                            <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
-                            <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
-                        </ResourceDictionary>
-                        <ResourceDictionary x:Key="Light">
-                            <Thickness x:Key="NavigationViewHeaderMargin">56,26,0,0</Thickness>
-                            <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
-                            <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
-                        </ResourceDictionary>
-                        <ResourceDictionary x:Key="HighContrast">
-                            <Thickness x:Key="NavigationViewHeaderMargin">56,26,0,0</Thickness>
-                            <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{ThemeResource SystemColorWindowColor}" />
-                            <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{ThemeResource SystemColorWindowColor}" />
-                        </ResourceDictionary>
-                    </ResourceDictionary.ThemeDictionaries>
+                    <Thickness x:Key="NavigationViewHeaderMargin">56,26,0,0</Thickness>
+                    <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
+                    <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
                 </ResourceDictionary>
             </NavigationView.Resources>
             <NavigationView.Header>

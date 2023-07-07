@@ -31,6 +31,8 @@ namespace FortniteLauncher
             public static Frame MainFrame;
             public static BreadcrumbBar MainBreadcrumb;
             public static NavigationView MainNavigation;
+
+            public static Window m_window;
         }
 
         public static string CurrentlySelectedBuildGUID { get; set; }
