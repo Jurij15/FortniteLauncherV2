@@ -105,7 +105,7 @@ namespace FortniteLauncher
             InitDesign();
             SetGlobalObjects();
 
-            NavigationService.Init(MainNavigation, MainBreadcrumb, RootFrame);
+            InitializeNavigationService(MainNavigation, MainBreadcrumb, RootFrame);
 
             OnMainWindowStartup();
         }

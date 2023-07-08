@@ -1,5 +1,8 @@
+using ABI.Windows.UI;
+using CommunityToolkit.WinUI.UI.Animations;
 using FortniteLauncher.Cores;
 using FortniteLauncher.Services;
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -15,6 +18,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -47,6 +51,11 @@ namespace FortniteLauncher.Pages.SettingsPages
             else
             {
                 SoundToggle.IsOn = false;
+            }
+
+            if (ThemeService.IsContentLayerVisible())
+            {
+                BackgroundLayerCardSwitch.IsOn = true;
             }
 
             InitFinished = true;
@@ -82,7 +91,7 @@ namespace FortniteLauncher.Pages.SettingsPages
             if (SoundToggle.IsOn)
             {
                 ElementSoundPlayer.State = ElementSoundPlayerState.On;
-                Globals.SoundMode = ElementSoundPlayerState.On;
+                Globals.SoundMode = ElementSoundPlayerState.On; 
             }
             else
             {
@@ -98,6 +107,7 @@ namespace FortniteLauncher.Pages.SettingsPages
 
         private void BackdropComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            (Globals.Objects.MainWindow.Content as Grid).Background = new SolidColorBrush(Colors.Transparent);
             ComboBoxItem selecteditem =(ComboBoxItem)((ComboBox)sender).SelectedItem;
             if (selecteditem == MicaBackdrop)
             {
@@ -122,6 +132,24 @@ namespace FortniteLauncher.Pages.SettingsPages
             if (selecteditem == NoneBackdrop)
             {
                 Globals.Objects.MainWindow.SystemBackdrop = null;
+                (Globals.Objects.MainWindow.Content as Grid).Background = App.Current.Resources["ApplicationPageBackgroundThemeBrush"] as SolidColorBrush;
+            }
+        }
+
+        private void BackgroundLayerCardSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (!InitFinished)
+            {
+                return;
+            }
+
+            if (BackgroundLayerCardSwitch.IsOn)
+            {
+                ThemeService.SetContentBackgrund(false);
+            }
+            else
+            {
+                ThemeService.SetContentBackgrund(true);
             }
         }
     }

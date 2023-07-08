@@ -92,48 +92,84 @@ namespace FortniteLauncher.Pages
             BitmapImage bitmapImage = new BitmapImage();
             bitmapImage.UriSource = new Uri(buildpath + Globals.FortniteStrings.FortniteSplashImage);
 
-            if (ViewsBox.SelectedIndex == 1)
+            if (ViewsBox.SelectedIndex == 0) //list
             {
-                //normal
+                Grid ListContent = new Grid();
+
                 seasonImage.Source = bitmapImage;
-                SeasonImageBorder.Height = 150;
-                SeasonImageBorder.Width = 120;
-            }
-            else if (ViewsBox.SelectedIndex == 2)
-            {
-                //large
-                seasonImage.Source = bitmapImage;
-                SeasonImageBorder.Height = 180;
-                SeasonImageBorder.Width = 150;
+                SeasonImageBorder.Height = 70;
+                SeasonImageBorder.Width = 50;
+
+                SeasonImageBorder.Children.Add(seasonImage);
+                SeasonImageBorder.CornerRadius = new CornerRadius(4); //maybe set it to 2?
+
+                BuildNameBlock.Text = buildname;
+                BuildSeasonBlock.Text = buildSeason;
+
+                BuildNameBlock.FontWeight = FontWeights.Medium;
+                BuildSeasonBlock.FontSize = 12;
+                BuildSeasonBlock.Foreground = Application.Current.Resources["TextFillColorSecondaryBrush"] as SolidColorBrush;
+
+                SeasonImageBorder.HorizontalAlignment = HorizontalAlignment.Left;
+                SeasonImageBorder.VerticalAlignment = VerticalAlignment.Center;
+                BuildNameBlock.HorizontalAlignment = HorizontalAlignment.Left;
+                BuildSeasonBlock.HorizontalAlignment = HorizontalAlignment.Center;
+
+                ListContent.Children.Add(SeasonImageBorder);
+                ListContent.Children.Add(BuildNameBlock);
+                ListContent.Children.Add(BuildSeasonBlock);
+
+                ListContent.HorizontalAlignment = HorizontalAlignment.Left;
+
+                NewCard.Content = ListContent;
+
+                NewCard.MinWidth = ItemsPanel.ActualWidth - 6;
             }
             else
             {
-                //normal by default
-                seasonImage.Source = bitmapImage;
-                SeasonImageBorder.Height = 150;
-                SeasonImageBorder.Width = 120;
+                if (ViewsBox.SelectedIndex == 1)
+                {
+                    //normal
+                    seasonImage.Source = bitmapImage;
+                    SeasonImageBorder.Height = 150;
+                    SeasonImageBorder.Width = 120;
+                }
+                else if (ViewsBox.SelectedIndex == 2)
+                {
+                    //large
+                    seasonImage.Source = bitmapImage;
+                    SeasonImageBorder.Height = 180;
+                    SeasonImageBorder.Width = 150;
+                }
+                else
+                {
+                    //normal by default
+                    seasonImage.Source = bitmapImage;
+                    SeasonImageBorder.Height = 150;
+                    SeasonImageBorder.Width = 120;
+                }
+
+                SeasonImageBorder.Children.Add(seasonImage);
+                SeasonImageBorder.CornerRadius = new CornerRadius(4); //maybe set it to 2?
+
+                BuildNameBlock.Text = buildname;
+                BuildSeasonBlock.Text = buildSeason;
+
+                BuildNameBlock.FontWeight = FontWeights.Medium;
+                BuildSeasonBlock.FontSize = 12;
+                BuildSeasonBlock.Foreground = Application.Current.Resources["TextFillColorSecondaryBrush"] as SolidColorBrush;
+
+                BuildNameBlock.HorizontalAlignment = HorizontalAlignment.Center;
+                BuildSeasonBlock.HorizontalAlignment = HorizontalAlignment.Center;
+
+                content.Spacing = 1;
+
+                content.Children.Add(SeasonImageBorder);
+                content.Children.Add(BuildNameBlock);
+                content.Children.Add(BuildSeasonBlock);
+
+                NewCard.Content = content;
             }
-
-            SeasonImageBorder.Children.Add(seasonImage);
-            SeasonImageBorder.CornerRadius = new CornerRadius(4); //maybe set it to 2?
-
-            BuildNameBlock.Text = buildname;
-            BuildSeasonBlock.Text = buildSeason;
-
-            BuildNameBlock.FontWeight = FontWeights.Medium;
-            BuildSeasonBlock.FontSize = 12;
-            BuildSeasonBlock.Foreground = Application.Current.Resources["TextFillColorSecondaryBrush"] as SolidColorBrush;
-
-            BuildNameBlock.HorizontalAlignment = HorizontalAlignment.Center;
-            BuildSeasonBlock.HorizontalAlignment = HorizontalAlignment.Center;
-
-            content.Spacing = 1;
-
-            content.Children.Add(SeasonImageBorder);
-            content.Children.Add(BuildNameBlock);
-            content.Children.Add(BuildSeasonBlock);
-
-            NewCard.Content = content;
 
             ToolTipService.SetToolTip(NewCard, "Play " + buildname);
 

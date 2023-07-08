@@ -38,7 +38,7 @@
             </Grid>
         </labs:SettingsCard>
         <labs:SettingsCard x:Name="SoundCard"
-              Grid.Row="4"
+              Grid.Row="5"
               Header="Sound"
               Description="Enable sound effects while using the app">
             <labs:SettingsCard.HeaderIcon>
@@ -61,6 +61,12 @@
                 <ComboBoxItem Content="Acrylic" x:Name="AcrylicBackdrop"/>
                 <ComboBoxItem Content="None" x:Name="NoneBackdrop"/>
             </ComboBox>
+        </labs:SettingsCard>
+        <labs:SettingsCard x:Name="BackgroundCard"
+                           Grid.Row="4"
+                           Header="Content Layer Visibility"
+                           Description="Show or hide the content layer">
+            <ToggleSwitch x:Name="BackgroundLayerCardSwitch" Toggled="BackgroundLayerCardSwitch_Toggled"/>
         </labs:SettingsCard>
     </Grid>
 </Page>

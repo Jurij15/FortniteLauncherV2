@@ -43,7 +43,7 @@ namespace FortniteLauncher.Services
         #endregion
 
         #region Constructor
-        public static void Init(NavigationView navigationView, BreadcrumbBar breadcrumbBar, Frame frame)
+        public static void InitializeNavigationService(NavigationView navigationView, BreadcrumbBar breadcrumbBar, Frame frame)
         {
             MainNavigation = navigationView;
             MainBreadcrumb = breadcrumbBar;
