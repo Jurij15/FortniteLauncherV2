@@ -25,39 +25,39 @@ namespace FortniteLauncher.Services
         {
             if (ShowBackground)
             {
-                Globals.Objects.MainNavigation.Resources.Clear();
+                Globals.Objects.MainNavigationHideBackgroundLayerDictionaty.Clear();
             }
             else if(!ShowBackground)
             {
                 SolidColorBrush brush = Globals.Objects.MainNavigation.Resources["NavigationViewContentGridBorderBrush"] as SolidColorBrush;
                 //SolidColorBrush brush = (SolidColorBrush)App.Current.Resources["NavigationViewContentGridBorderBrush"];
 
-                Globals.Objects.MainNavigation.Resources.Add("NavigationViewContentGridBorderBrush", brush);
-                Globals.Objects.MainNavigation.Resources.Add("NavigationViewContentBackground", brush);
+                Globals.Objects.MainNavigationHideBackgroundLayerDictionaty.Add("NavigationViewContentGridBorderBrush", brush);
+                Globals.Objects.MainNavigationHideBackgroundLayerDictionaty.Add("NavigationViewContentBackground", brush);
             }
 
             Thickness t = new Thickness(56, 26, 0, 0);
-            Globals.Objects.MainNavigation.Resources.Add("NavigationViewHeaderMargin", t);
+            Globals.Objects.MainNavigationHideBackgroundLayerDictionaty.Add("NavigationViewHeaderMargin", t);
         }
 
         public static bool IsContentLayerVisible()
         {
-            bool retVal = false;
+            bool retVal = true;
 
             try
             {
                 if (Globals.Objects.MainNavigation.Resources["NavigationViewContentGridBorderBrush"] == Globals.Objects.MainNavigation.Resources["NavigationViewContentGridBorderBrush"] && Globals.Objects.MainNavigation.Resources["NavigationViewContentBackground"] == Globals.Objects.MainNavigation.Resources["NavigationViewContentGridBorderBrush"])
                 {
-                    retVal = false;
+                    retVal = true;
                 }
                 else
                 {
-                    retVal = true;
+                    retVal = false;
                 }
             }
             catch (Exception ex)
             {
-                retVal = false;
+                retVal = true;
             }
 
             return retVal;

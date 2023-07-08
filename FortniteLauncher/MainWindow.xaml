@@ -96,11 +96,9 @@
             </NavigationView.Resources>
             -->
             <NavigationView.Resources>
-                <ResourceDictionary x:Name="MainNavigationDisableContentBackgroundDictionary">
-                    <Thickness x:Key="NavigationViewHeaderMargin">56,26,0,0</Thickness>
-                    <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
-                    <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
-                </ResourceDictionary>
+                <Thickness x:Key="NavigationViewHeaderMargin">56,26,0,0</Thickness>
+                <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
+                <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
             </NavigationView.Resources>
             <NavigationView.Header>
                 <BreadcrumbBar x:Name="MainBreadcrumb" FontSize="48" FontWeight="Medium" ItemClicked="MainBreadcrumb_ItemClicked">
@@ -110,6 +108,10 @@
                             <Setter Property="FontWeight" Value="SemiBold"/>
                             <Setter Property="Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}"/>
                         </Style>
+                        <x:Double x:Key="BreadcrumbBarChevronFontSize">12</x:Double>
+                        <Thickness x:Key="BreadcrumbBarChevronPadding">12,0</Thickness>
+                        <ThemeResource x:Key="BreadcrumbBarNormalForegroundBrush" ResourceKey="TextFillColorSecondaryBrush"></ThemeResource>
+                        <ThemeResource x:Key="BreadcrumbBarHoverForegroundBrush" ResourceKey="TextFillColorTertiaryBrush"></ThemeResource>
                     </BreadcrumbBar.Resources>
                     <BreadcrumbBar.ItemTemplate>
                         <DataTemplate x:Name="BreadcrumbBarItemTemplate" 

@@ -30,6 +30,7 @@
 	<ItemGroup>
 	  <None Remove="Assets\DLL\Cobalt.dll" />
 	  <None Remove="Assets\DLL\Cobalt.pdb" />
+	  <None Remove="Dialogs\AddDLLToLibraryDialog.xaml" />
 	  <None Remove="Dialogs\ConfigureAuthDialog.xaml" />
 	  <None Remove="ContentWindows\GalleryWindow.xaml" />
 	  <None Remove="Dialogs\DebugTestingWelcomeDialog.xaml" />
@@ -40,6 +41,7 @@
 	  <None Remove="Pages\InjectPages\CustomDLLInjectPage.xaml" />
 	  <None Remove="Pages\SettingsPages\AdvancedSettingsPage.xaml" />
 	  <None Remove="Pages\SettingsPages\BackupsPage.xaml" />
+	  <None Remove="Pages\SettingsPages\DLLLibrarySettingsPage.xaml" />
 	  <None Remove="Pages\SettingsPages\GameSettingsPage.xaml" />
 	  <None Remove="Pages\SettingsPages\PersonalizationPage.xaml" />
 	</ItemGroup>
@@ -189,6 +191,12 @@
     <None Update="Assets\DLL\memoryleak.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Dialogs\AddDLLToLibraryDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Pages\SettingsPages\DLLLibrarySettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Pages\GuidesPages\ViewGuidePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

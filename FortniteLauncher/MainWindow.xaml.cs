@@ -87,7 +87,7 @@ namespace FortniteLauncher
 
             if (Environment.OSVersion.Version.Build <= 22000) //enable the normal look of navigationview on windows 10
             {
-                MainNavigationDisableContentBackgroundDictionary.ThemeDictionaries.Clear();
+                //MainNavigationDisableContentBackgroundDictionary.ThemeDictionaries.Clear();
             }
             this.SystemBackdrop = abackdrop;
         }
@@ -98,6 +98,7 @@ namespace FortniteLauncher
             Globals.Objects.MainFrame = RootFrame;
             Globals.Objects.MainBreadcrumb = MainBreadcrumb;
             Globals.Objects.MainNavigation = MainNavigation;
+            //Globals.Objects.MainNavigationHideBackgroundLayerDictionaty = MainNavigationDisableContentBackgroundDictionary;
         }
         public MainWindow()
         {

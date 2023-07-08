@@ -145,11 +145,11 @@ namespace FortniteLauncher.Pages.SettingsPages
 
             if (BackgroundLayerCardSwitch.IsOn)
             {
-                ThemeService.SetContentBackgrund(false);
+                ThemeService.SetContentBackgrund(true);
             }
             else
             {
-                ThemeService.SetContentBackgrund(true);
+                ThemeService.SetContentBackgrund(false);
             }
         }
     }

@@ -25,6 +25,17 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <labs:SettingsCard x:Name="DLLLibraryCard"
+                           Grid.Row="0"
+                           Header="DLL Library"
+                           Description="Configure the DLL library"
+                           IsClickEnabled="True"
+                           Click="DLLLibraryCard_Click"
+                           IsActionIconVisible="True">
+            <labs:SettingsCard.HeaderIcon>
+                <FontIcon Glyph="&#xE8F1;"/>
+            </labs:SettingsCard.HeaderIcon>
+        </labs:SettingsCard>
         <labs:SettingsCard x:Name="SSLDLLCard" Visibility="Visible"
               Grid.Row="1"
               Header="SSL Bypass"

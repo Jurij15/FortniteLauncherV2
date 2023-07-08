@@ -31,6 +31,7 @@ namespace FortniteLauncher
             public static Frame MainFrame;
             public static BreadcrumbBar MainBreadcrumb;
             public static NavigationView MainNavigation;
+            public static ResourceDictionary MainNavigationHideBackgroundLayerDictionaty;
 
             public static Window m_window;
         }

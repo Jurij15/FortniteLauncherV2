@@ -6,4 +6,6 @@
 
     <x:Double x:Key="BreadcrumbBarChevronFontSize">12</x:Double>
     <Thickness x:Key="BreadcrumbBarChevronPadding">12,0</Thickness>
+    <ThemeResource x:Key="BreadcrumbBarNormalForegroundBrush" ResourceKey="TextFillColorSecondaryBrush"></ThemeResource>
+    <ThemeResource x:Key="BreadcrumbBarHoverForegroundBrush" ResourceKey="TextFillColorTertiaryBrush"></ThemeResource>
 </ResourceDictionary>

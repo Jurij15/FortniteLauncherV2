@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="FortniteLauncher.Pages.SettingsPages.DLLLibrarySettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FortniteLauncher.Pages.SettingsPages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:labs="using:CommunityToolkit.Labs.WinUI">
+
+    <ScrollViewer Margin="58, 42, 58,0">
+        <Grid RowSpacing="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" MaxHeight="150" VerticalAlignment="Top" Height=" 150">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="PresenterGrid" Grid.Column="0" VerticalAlignment="Top">
+                    <StackPanel Spacing="4" HorizontalAlignment="Left">
+                        <TextBlock x:Name="DLLNameBox" FontSize="24" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="DLLPathBox" FontSize="16" FontWeight="Medium" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        <TextBlock x:Name="DLLGuidBox" FontSize="9" Foreground="{ThemeResource TextFillColorTertiaryBrush}"/>
+                    </StackPanel>
+                </Grid>
+                <Grid x:Name="SelectorGrid" Grid.Column="1">
+                    <ListView x:Name="DLLListSelector" SelectionChanged="DLLListSelector_SelectionChanged" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="Transparent" MaxHeight="150"/>
+                </Grid>
+            </Grid>
+            <labs:SettingsExpander x:Name="EditExpander"
+                               Header="Edit"
+                               Grid.Row="1">
+                <labs:SettingsExpander.HeaderIcon>
+                    <FontIcon Glyph="&#xE70F;"/>
+                </labs:SettingsExpander.HeaderIcon>
+                <labs:SettingsExpander.Items>
+                    <labs:SettingsCard Header="Name">
+                        <TextBox x:Name="DLLNameEditBox" Text="{x:Bind DLLNameBox.Text, Mode=TwoWay}" MinWidth="450" MaxWidth="450"/>
+                    </labs:SettingsCard>
+                    <labs:SettingsCard Header="Path">
+                        <TextBox x:Name="DLLPathEditBox" Text="{x:Bind DLLPathBox.Text, Mode=TwoWay}" MinWidth="450" MaxWidth="450"/>
+                    </labs:SettingsCard>
+                    <labs:SettingsCard>
+                        <labs:SettingsCard.Header>
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <Button x:Name="SaveBtn" Style="{ThemeResource AccentButtonStyle}" Content="Save" Click="SaveBtn_Click"/>
+                                <Button x:Name="DeleteBtn" Content="Delete" Click="DeleteBtn_Click"/>
+                            </StackPanel>
+                        </labs:SettingsCard.Header>
+                    </labs:SettingsCard>
+                </labs:SettingsExpander.Items>
+            </labs:SettingsExpander>
+            <labs:SettingsCard x:Name="AddDLLCard"
+                           Grid.Row="2"
+                           Header="Add"
+                           Description="Add a card to the library"
+                           IsClickEnabled="True"
+                           Click="AddDLLCard_Click"/>
+        </Grid>
+    </ScrollViewer>
+</Page>
