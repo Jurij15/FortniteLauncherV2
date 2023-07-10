@@ -30,6 +30,11 @@
                 </Grid.ColumnDefinitions>
                 <Grid x:Name="PresenterGrid" Grid.Column="0" VerticalAlignment="Top">
                     <StackPanel Spacing="4" HorizontalAlignment="Left">
+                        <StackPanel.ChildrenTransitions>
+                            <TransitionCollection>
+                                <ContentThemeTransition />
+                            </TransitionCollection>
+                        </StackPanel.ChildrenTransitions>
                         <TextBlock x:Name="DLLNameBox" FontSize="24" FontWeight="SemiBold"/>
                         <TextBlock x:Name="DLLPathBox" FontSize="16" FontWeight="Medium" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                         <TextBlock x:Name="DLLGuidBox" FontSize="9" Foreground="{ThemeResource TextFillColorTertiaryBrush}"/>
@@ -65,7 +70,7 @@
             <labs:SettingsCard x:Name="AddDLLCard"
                            Grid.Row="2"
                            Header="Add"
-                           Description="Add a card to the library"
+                           Description="Add a DLL to the library"
                            IsClickEnabled="True"
                            Click="AddDLLCard_Click"/>
         </Grid>

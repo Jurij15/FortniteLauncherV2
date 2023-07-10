@@ -59,7 +59,7 @@ namespace FortniteLauncher.Pages.SettingsPages
 
             DLLNameBox.Text = name;
             DLLPathBox.Text = path;
-            DLLGuidBox.Text = guid;
+            DLLGuidBox.Text = "GUID: "+guid;
         }
 
         private async void AddDLLCard_Click(object sender, RoutedEventArgs e)
