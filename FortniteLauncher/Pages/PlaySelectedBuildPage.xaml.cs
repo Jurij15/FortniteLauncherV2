@@ -99,6 +99,8 @@ namespace FortniteLauncher.Pages
 
         private async void PlayButton_Click(object sender, RoutedEventArgs e)
         {
+            ContentDialog loadingDiaalog = DialogService.CreateLoadingDialog("Lauching", "Launcher might freeze a little");
+            loadingDiaalog.ShowAsync();
             if (BuildsHelper.IsPathValid(_buildPath))
             {
                 PlayButton.IsEnabled = false;
@@ -109,6 +111,7 @@ namespace FortniteLauncher.Pages
 
                 if (!core.bLaunchStatus)
                 {
+                    loadingDiaalog.Hide();
                     DialogService.ShowSimpleDialog("An error occured while launching. Error message " + core.GetLaunchErrorsIfAny(), "Error");
                 }
                 else
@@ -121,6 +124,7 @@ namespace FortniteLauncher.Pages
                         }
                         catch (Exception ex)
                         {
+                            loadingDiaalog.Hide();
                             DialogService.ShowSimpleDialog("An error occured while injecting SSL bypass DLL. Error message: " + ex.Message, "Error");
                         }
                     }
@@ -132,6 +136,7 @@ namespace FortniteLauncher.Pages
                         }
                         catch (Exception ex)
                         {
+                            loadingDiaalog.Hide();
                             DialogService.ShowSimpleDialog("An error occured while injecting memory leak fix DLL. Error message: " + ex.Message, "Error");
                         }
                     }
@@ -143,6 +148,7 @@ namespace FortniteLauncher.Pages
                         }
                         catch (Exception ex)
                         {
+                            loadingDiaalog.Hide();
                             DialogService.ShowSimpleDialog("An error occured while injecting console DLL. Error message: " + ex.Message, "Error");
                         }
                     }
@@ -154,6 +160,12 @@ namespace FortniteLauncher.Pages
                     Globals.Objects.MainWindow.Minimize();
                 }
             }
+            else
+            {
+                loadingDiaalog.Hide();
+            }
+
+            loadingDiaalog.Hide();
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)

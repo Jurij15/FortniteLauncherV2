@@ -35,6 +35,7 @@
 	  <None Remove="ContentWindows\GalleryWindow.xaml" />
 	  <None Remove="Dialogs\DebugTestingWelcomeDialog.xaml" />
 	  <None Remove="Dialogs\InstanceManagerDialog.xaml" />
+	  <None Remove="Dialogs\LoadingDialog.xaml" />
 	  <None Remove="Pages\GuidesPages\GuidesPage.xaml" />
 	  <None Remove="Pages\GuidesPages\ViewGuidePage.xaml" />
 	  <None Remove="Pages\InjectPage.xaml" />
@@ -295,4 +296,10 @@
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
+  <ItemGroup>
+    <CustomAdditionalCompileInputs Remove="Dialogs\LoadingDialog.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Remove="Dialogs\LoadingDialog.xaml" />
+  </ItemGroup>
 </Project>
