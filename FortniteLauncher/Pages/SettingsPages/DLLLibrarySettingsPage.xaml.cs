@@ -1,4 +1,7 @@
 using CommunityToolkit.Common.Parsers.Core;
+using FortniteLauncher.Cores;
+using FortniteLauncher.Managers;
+using FortniteLauncher.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -52,6 +55,13 @@ namespace FortniteLauncher.Pages.SettingsPages
         private void DLLListSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Managers.DLLibraryManager manager = new Managers.DLLibraryManager();
+            if (DLLListSelector.SelectedItem == null)
+            {
+                DLLNameBox.Text = "Select a DLL to begin";
+                DLLPathBox.Text = "";
+                DLLGuidBox.Text = "";
+                return;
+            }
             string guid = (DLLListSelector.SelectedItem as ListViewItem).Name as string;
 
             string name = manager.GetDLLNameByGUID(guid);
@@ -60,6 +70,12 @@ namespace FortniteLauncher.Pages.SettingsPages
             DLLNameBox.Text = name;
             DLLPathBox.Text = path;
             DLLGuidBox.Text = "GUID: "+guid;
+
+            if (!File.Exists(path))
+            {
+                DLLPathBox.Text = "File does not exist!";
+                DLLPathBox.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
+            }
         }
 
         private async void AddDLLCard_Click(object sender, RoutedEventArgs e)
@@ -70,9 +86,9 @@ namespace FortniteLauncher.Pages.SettingsPages
             dialog.Title = "Add a DLL";
             dialog.Content = new Dialogs.AddDLLToLibraryDialog(dialog);
 
-            await dialog.ShowAsync();
-
             dialog.Closed += Dialog_Closed;
+
+            await dialog.ShowAsync();
         }
 
         private void Dialog_Closed(ContentDialog sender, ContentDialogClosedEventArgs args)
@@ -82,12 +98,21 @@ namespace FortniteLauncher.Pages.SettingsPages
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            DLLibraryManager manager = new DLLibraryManager();
+            manager.SaveNewDLLNameConfigToGuid((DLLListSelector.SelectedItem as ListViewItem).Name as string, DLLNameEditBox.Text);
+            manager.SaveNewDLLPathConfigToGuid((DLLListSelector.SelectedItem as ListViewItem).Name as string, DLLPathEditBox.Text);
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
+            DLLibraryManager manager = new DLLibraryManager();
 
+            string guid = (DLLListSelector.SelectedItem as ListViewItem).Name as string;
+            DLLListSelector.SelectedItem = null;
+
+            manager.DeleteDLL(guid);
+
+            LoadDLLs();
         }
     }
 }

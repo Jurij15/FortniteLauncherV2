@@ -63,6 +63,8 @@
                 Margin="10,4,0,0" 
                 Width="36" 
                 Click="AppTitlePaneButton_Click">
+            <Button.Resources>
+            </Button.Resources>
                 <Button.Content>
                     <AnimatedIcon Height="17" Margin="-3,0,-3,0">
                         <AnimatedIcon.Source>

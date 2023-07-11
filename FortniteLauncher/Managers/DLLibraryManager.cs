@@ -108,15 +108,6 @@ namespace FortniteLauncher.Managers
                 sw.Close();
             }
         }
-        public void SaveNewDLLSeasonConfigToGuid(string guid, string NewBuildSeason)
-        {
-            File.Delete(GetDLLPathConfig(guid));
-            using (StreamWriter sw = File.CreateText(GetDLLPathConfig(guid)))
-            {
-                sw.Write(NewBuildSeason);
-                sw.Close();
-            }
-        }
 
         //delete builds
         public void DeleteDLL(string guid)

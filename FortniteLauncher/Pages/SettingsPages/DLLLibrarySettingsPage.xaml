@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    NavigationCacheMode="Disabled"
     xmlns:labs="using:CommunityToolkit.Labs.WinUI">
 
     <ScrollViewer Margin="58, 32, 58,0">
@@ -25,10 +26,11 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" MaxHeight="150" VerticalAlignment="Top" Height=" 150">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid x:Name="PresenterGrid" Grid.Column="0" VerticalAlignment="Top">
+                <Grid x:Name="PresenterGrid" Grid.Column="1" VerticalAlignment="Top">
                     <StackPanel Spacing="4" HorizontalAlignment="Left">
                         <StackPanel.ChildrenTransitions>
                             <TransitionCollection>
@@ -40,7 +42,7 @@
                         <TextBlock x:Name="DLLGuidBox" FontSize="9" Foreground="{ThemeResource TextFillColorTertiaryBrush}"/>
                     </StackPanel>
                 </Grid>
-                <Grid x:Name="SelectorGrid" Grid.Column="1">
+                <Grid x:Name="SelectorGrid" Grid.Column="2">
                     <ListView x:Name="DLLListSelector" SelectionChanged="DLLListSelector_SelectionChanged" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="Transparent" MaxHeight="150"/>
                 </Grid>
             </Grid>

@@ -41,8 +41,6 @@ namespace FortniteLauncher.Dialogs
         {
             Managers.DLLibraryManager manager = new Managers.DLLibraryManager();
             await manager.AddDllToLib(DLLNameBox.Text, DLLPathBox.Text);
-
-
         }
 
         private async void ExploreBtn_Click(object sender, RoutedEventArgs e)

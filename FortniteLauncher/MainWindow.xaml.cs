@@ -89,7 +89,6 @@ namespace FortniteLauncher
             Globals.Objects.MainFrame = RootFrame;
             Globals.Objects.MainBreadcrumb = MainBreadcrumb;
             Globals.Objects.MainNavigation = MainNavigation;
-            //Globals.Objects.MainNavigationHideBackgroundLayerDictionaty = MainNavigationDisableContentBackgroundDictionary;
         }
         public MainWindow()
         {
@@ -176,12 +175,6 @@ namespace FortniteLauncher
 
         private void MainNavigation_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            /*
-            if (RootFrame.CurrentSourcePageType == typeof(PlaySelectedBuildPage))
-            {
-                NavigationService.FrameGoBack();
-            }
-            */
             if (args.IsSettingsSelected)
             {
                 NavigationService.Navigate(typeof(SettingsPage), "Settings", true);
@@ -211,8 +204,6 @@ namespace FortniteLauncher
             {
                 NavigationService.Navigate(typeof(GuidesPage), "Guides", true);
             }
-
-            GC.Collect(); //idk, trying to lower ram usage
 
             AuthUsernameBlock.Text = Globals.GetPlayerUsername();
 
