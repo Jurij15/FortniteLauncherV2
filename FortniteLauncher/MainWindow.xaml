@@ -18,23 +18,31 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Grid x:Name="AppTitleBar" Background="Transparent" Visibility="Visible" Margin="90,0,0,0" IsHitTestVisible="True" Canvas.ZIndex="3" Grid.Column="1" Grid.Row="0">
+        <Grid x:Name="AppTitleBar" Background="Transparent" Visibility="Visible" Margin="55,0,0,0" IsHitTestVisible="True" Canvas.ZIndex="3" Grid.Column="1" Grid.Row="0">
             <Grid.OpacityTransition>
                 <ScalarTransition Duration="0:0:0.083" />
             </Grid.OpacityTransition>
-            <TextBlock
-        x:Name="WindowTitle"
-        Grid.Column="3"
-        Margin="10,1,0,0"
-        VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-        FontFamily="Segoe UI Variable Text"
-                Style="{StaticResource CaptionTextBlockStyle}"
-        FontSize="12"
-        Text="Fortnite Launcher" />
+            <Image Source="/Assets/FNLauncher_Icon.png"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Width="16"
+                   Height="16"/>
+            <TextBlock  x:Name="WindowTitle"
+                        Grid.Column="3"
+                        Margin="28,0,0,0"
+                        TextWrapping="NoWrap"
+                        VerticalAlignment="Center"
+                        FontFamily="Segoe UI Variable Text"
+                        Style="{StaticResource CaptionTextBlockStyle}"
+                        Text="Fortnite Launcher" />
         </Grid>
-        <Button x:Name="AppTitleBackButton" Visibility="Collapsed"
-                    Background="Transparent"   BorderBrush="Transparent" Grid.ColumnSpan="2" Margin="45,4,0,0" Width="36" Click="AppTitleBackButton_Click">
+        <Button x:Name="AppTitleBackButton" 
+                Visibility="Collapsed"
+                Background="Transparent"   
+                BorderBrush="Transparent" 
+                Grid.ColumnSpan="2" 
+                Margin="45,4,0,0" Width="36" 
+                Click="AppTitleBackButton_Click">
             <Button.Content>
                 <AnimatedIcon Height="17" Margin="-3,0,-3,0">
                     <AnimatedIcon.Source>
@@ -48,18 +56,23 @@
             </Button.Content>
         </Button>
         <Button x:Name="AppTitlePaneButton"
-                    Background="Transparent"   BorderBrush="Transparent" Grid.ColumnSpan="2" Margin="10,4,0,0" Width="36" Click="AppTitlePaneButton_Click">
-            <Button.Content>
-                <AnimatedIcon Height="17" Margin="-3,0,-3,0">
-                    <AnimatedIcon.Source>
-                        <animatedvisuals:AnimatedGlobalNavigationButtonVisualSource/>
-                    </AnimatedIcon.Source>
-                    <AnimatedIcon.FallbackIconSource>
-                        <SymbolIconSource Symbol="OpenPane"/>
-                    </AnimatedIcon.FallbackIconSource>
-
-                </AnimatedIcon>
-            </Button.Content>
+                Background="Transparent"   
+                BorderBrush="Transparent" 
+                VerticalAlignment="Center"
+                Grid.ColumnSpan="2" 
+                Margin="10,4,0,0" 
+                Width="36" 
+                Click="AppTitlePaneButton_Click">
+                <Button.Content>
+                    <AnimatedIcon Height="17" Margin="-3,0,-3,0">
+                        <AnimatedIcon.Source>
+                            <animatedvisuals:AnimatedGlobalNavigationButtonVisualSource/>
+                        </AnimatedIcon.Source>
+                        <AnimatedIcon.FallbackIconSource>
+                            <SymbolIconSource Symbol="OpenPane"/>
+                        </AnimatedIcon.FallbackIconSource>
+                    </AnimatedIcon>
+                </Button.Content>
         </Button>
         <NavigationView Grid.Row="1" Canvas.ZIndex="1" Grid.Column="1" Margin="4,0,0,0"
                                  x:Name="MainNavigation"
@@ -73,9 +86,10 @@
                                  SelectionChanged="MainNavigation_SelectionChanged"
                                  IsTabStop="False"
                                  IsTitleBarAutoPaddingEnabled="False"
+                                 Loaded="MainNavigation_Loaded"
                                  
                                  >
-            <!-- make it look like windows settings
+            <!-- make it look like windows settings  <Thickness x:Key="NavigationViewHeaderMargin">56,24,0,0</Thickness>
 <NavigationView.Resources>
                 <ResourceDictionary x:Name="MainNavigationDisableContentBackgroundDictionary">
                     <ResourceDictionary.ThemeDictionaries>
@@ -96,9 +110,23 @@
             </NavigationView.Resources>
             -->
             <NavigationView.Resources>
-                <Thickness x:Key="NavigationViewHeaderMargin">56,26,0,0</Thickness>
-                <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
-                <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
+                <ResourceDictionary x:Name="MainNavigationDisableContentBackgroundDictionary">
+                    <Thickness x:Key="NavigationViewHeaderMargin">56,26,0,0</Thickness>
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Dark">
+                            <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
+                            <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="Light">
+                            <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
+                            <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="HighContrast">
+                            <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{ThemeResource SystemColorWindowColor}" />
+                            <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{ThemeResource SystemColorWindowColor}" />
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
             </NavigationView.Resources>
             <NavigationView.Header>
                 <BreadcrumbBar x:Name="MainBreadcrumb" FontSize="48" FontWeight="Medium" ItemClicked="MainBreadcrumb_ItemClicked">

@@ -16,7 +16,7 @@ namespace FortniteLauncher.Services
 {
     public class DialogService
     {
-        public static void ShowSimpleDialog(object Content, string Title)
+        public static void ShowSimpleDialog(object Content, string Title = "")
         {
             ContentDialog dialog = new ContentDialog();
             dialog.XamlRoot = Globals.Objects.MainWindowXamlRoot;
@@ -31,7 +31,7 @@ namespace FortniteLauncher.Services
             dialog.ShowAsync();
         }
 
-        public static async Task<ContentDialog> ShowSimpleDialogAsync(object Content, string Title)
+        public static async Task<ContentDialog> ShowSimpleDialogAsync(object Content, string Title = "")
         {
             ContentDialog dialog = new ContentDialog();
             dialog.XamlRoot = Globals.Objects.MainWindowXamlRoot;

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using Windows.UI.WindowManagement;
 
 namespace FortniteLauncher.Services
@@ -21,43 +22,46 @@ namespace FortniteLauncher.Services
         }
 
         //disable/enable the background layer
-        public static void SetContentBackgrund(bool ShowBackground)
+        public static void ChangeNavigationBackgroundContentLayerVisibility(bool ShowContentBackgroundLayer)
         {
-            if (ShowBackground)
-            {
-                Globals.Objects.MainNavigationHideBackgroundLayerDictionaty.Clear();
-            }
-            else if(!ShowBackground)
-            {
-                SolidColorBrush brush = Globals.Objects.MainNavigation.Resources["NavigationViewContentGridBorderBrush"] as SolidColorBrush;
-                //SolidColorBrush brush = (SolidColorBrush)App.Current.Resources["NavigationViewContentGridBorderBrush"];
-
-                Globals.Objects.MainNavigationHideBackgroundLayerDictionaty.Add("NavigationViewContentGridBorderBrush", brush);
-                Globals.Objects.MainNavigationHideBackgroundLayerDictionaty.Add("NavigationViewContentBackground", brush);
-            }
-
-            Thickness t = new Thickness(56, 26, 0, 0);
-            Globals.Objects.MainNavigationHideBackgroundLayerDictionaty.Add("NavigationViewHeaderMargin", t);
-        }
-
-        public static bool IsContentLayerVisible()
-        {
-            bool retVal = true;
-
             try
             {
-                if (Globals.Objects.MainNavigation.Resources["NavigationViewContentGridBorderBrush"] == Globals.Objects.MainNavigation.Resources["NavigationViewContentGridBorderBrush"] && Globals.Objects.MainNavigation.Resources["NavigationViewContentBackground"] == Globals.Objects.MainNavigation.Resources["NavigationViewContentGridBorderBrush"])
+                if (ShowContentBackgroundLayer)
                 {
-                    retVal = true;
+                    //remove the border
+                    Globals.Objects.MainNavigation.Resources.Remove("NavigationViewContentGridBorderBrush");
+                    //remove the transparent background
+                    Globals.Objects.MainNavigation.Resources.Remove("NavigationViewContentBackground");
                 }
                 else
                 {
-                    retVal = false;
+
                 }
             }
             catch (Exception ex)
             {
-                retVal = true;
+                DialogService.ShowSimpleDialog("Operation failed! Error: " + ex.Message, "Fail!");
+            }
+        }
+
+        public static bool IsContentBackgroundLayerVisible()
+        {
+            bool retVal = false;
+
+            try
+            {
+                if (Globals.Objects.MainNavigation.Resources["NavigationViewContentGridBorderBrush"] != null)
+                {
+                    retVal = false;
+                }
+                else
+                {
+                    retVal = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                retVal = false;
             }
 
             return retVal;

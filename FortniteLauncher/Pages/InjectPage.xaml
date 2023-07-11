@@ -9,7 +9,7 @@
     xmlns:labs="using:CommunityToolkit.Labs.WinUI"
     mc:Ignorable="d">
 
-    <Grid Margin="58, 42, 58,0">
+    <Grid Margin="58, 32, 58,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>

@@ -20,6 +20,8 @@ namespace FortniteLauncher.Cores
         public static string AuthUsernameConfig = RootSettingsDir + "AuthUsername";
         public static string AuthPasswordConfig = RootSettingsDir + "AuthPassword";
         public static string ShowIfAnotherInstanceRunningDialogConfig = "ShowIfAnotherInstanceRunningDialog";
+        
+        public static string ContentLayerVisibilityConfig = RootSettingsDir + "ContentLayerVisibility";
 
         public static string SSLBypassDLLConfig = RootSettingsDir + "SSLBypassDLLConfig";
         public static string ConsoleDLLConfig = RootSettingsDir + "ConsoleDLLConfig";
@@ -54,6 +56,9 @@ namespace FortniteLauncher.Cores
 
             string memoryconfig = File.ReadAllText(MemoryLeakDLLConfig);
             Config.MemoryLeakFixDLL = memoryconfig;
+
+            int contentlayerbool = Convert.ToInt32(File.ReadAllText(ContentLayerVisibilityConfig));
+            Globals.ShowContentBackgroundLayer = Convert.ToBoolean(contentlayerbool);
         }
 
         public static void CreateSettings()
@@ -96,6 +101,11 @@ namespace FortniteLauncher.Cores
             using (StreamWriter sw = File.CreateText(MemoryLeakDLLConfig))
             {
                 sw.Write("Assets/DLL/memoryleak.dll");
+                sw.Close();
+            }
+            using (StreamWriter sw = File.CreateText(ContentLayerVisibilityConfig))
+            {
+                sw.Write("0");
                 sw.Close();
             }
         }
@@ -156,6 +166,16 @@ namespace FortniteLauncher.Cores
             using (StreamWriter sw = File.CreateText(MemoryLeakDLLConfig))
             {
                 sw.Write(NewPath);
+                sw.Close();
+            }
+        }
+
+        public static void SaveNewContentBackgroundLayerVisibilityConfig(int NewValue)
+        {
+            File.Delete(ContentLayerVisibilityConfig);
+            using (StreamWriter sw = File.CreateText(ContentLayerVisibilityConfig))
+            {
+                sw.Write(NewValue.ToString());
                 sw.Close();
             }
         }

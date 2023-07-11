@@ -8,6 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Margin="58, 42, 58,0">
+    <StackPanel Margin="58, 32, 58,0">
     </StackPanel>
 </Page>

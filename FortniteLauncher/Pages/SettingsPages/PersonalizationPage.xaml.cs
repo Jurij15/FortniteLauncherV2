@@ -53,7 +53,7 @@ namespace FortniteLauncher.Pages.SettingsPages
                 SoundToggle.IsOn = false;
             }
 
-            if (ThemeService.IsContentLayerVisible())
+            if (Globals.ShowContentBackgroundLayer)
             {
                 BackgroundLayerCardSwitch.IsOn = true;
             }
@@ -69,14 +69,13 @@ namespace FortniteLauncher.Pages.SettingsPages
             }
             if (ThemeBox.SelectedItem == null) { return; }
 
-            if (ThemeBox.SelectedItem == DarkTheme)
+            if ((ComboBoxItem)ThemeBox.SelectedItem == DarkTheme)
             {
                 Settings.SaveNewThemeConfig(0);
                 Globals.Theme = 0;
-
                 ThemeService.ChangeTheme(ElementTheme.Dark);
             }
-            else if (ThemeBox.SelectedItem == LightTheme)
+            else if ((ComboBoxItem)ThemeBox.SelectedItem == LightTheme)
             {
                 Settings.SaveNewThemeConfig(1);
                 Globals.Theme = 1;
@@ -142,14 +141,15 @@ namespace FortniteLauncher.Pages.SettingsPages
             {
                 return;
             }
-
-            if (BackgroundLayerCardSwitch.IsOn)
+            AppRestartRequired.IsOpen = true;
+            Settings.SaveNewContentBackgroundLayerVisibilityConfig(Convert.ToInt32(((ToggleSwitch)sender).IsOn));
+            if (((ToggleSwitch)sender).IsOn)
             {
-                ThemeService.SetContentBackgrund(true);
+                ThemeService.ChangeNavigationBackgroundContentLayerVisibility(false);
             }
             else
             {
-                ThemeService.SetContentBackgrund(false);
+                ThemeService.ChangeNavigationBackgroundContentLayerVisibility(true);
             }
         }
     }

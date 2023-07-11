@@ -21,6 +21,7 @@ namespace FortniteLauncher
     public static class Globals
     {
         public static int Theme { get; set; }
+        public static bool ShowContentBackgroundLayer { get; set; }
         public static bool bIsFirstTimeRun = false;
 
         public static bool LEnableDebugConsole = false;
@@ -31,7 +32,6 @@ namespace FortniteLauncher
             public static Frame MainFrame;
             public static BreadcrumbBar MainBreadcrumb;
             public static NavigationView MainNavigation;
-            public static ResourceDictionary MainNavigationHideBackgroundLayerDictionaty;
 
             public static Window m_window;
         }

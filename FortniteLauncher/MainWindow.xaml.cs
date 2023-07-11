@@ -75,20 +75,11 @@ namespace FortniteLauncher
 
             this.Title = "Fortnite Launcher";
 
-            if (Globals.Theme == 1)
+            if (Globals.ShowContentBackgroundLayer)
             {
-                //light
-                abackdrop.Kind = Microsoft.UI.Composition.SystemBackdrops.MicaKind.BaseAlt; //idk if i should keep this in, it looks nice but idk
-            }
-            else
-            {
-                abackdrop.Kind = Microsoft.UI.Composition.SystemBackdrops.MicaKind.Base;
+                MainNavigationDisableContentBackgroundDictionary.ThemeDictionaries.Clear();
             }
 
-            if (Environment.OSVersion.Version.Build <= 22000) //enable the normal look of navigationview on windows 10
-            {
-                //MainNavigationDisableContentBackgroundDictionary.ThemeDictionaries.Clear();
-            }
             this.SystemBackdrop = abackdrop;
         }
 
@@ -175,9 +166,12 @@ namespace FortniteLauncher
             Globals.Objects.MainWindowXamlRoot = this.Content.XamlRoot;
             Logger.Log(LogImportance.Info, LogSource.AppCore, "Initialized app XamlRoot");
 
-            ContentDialog dialog = DialogService.CreateContentDialog("", new DebugTestingWelcomeDialog());
-            dialog.CloseButtonText = "OK";
-            await dialog.ShowAsync();
+            if (Globals.bIsFirstTimeRun)
+            {
+                ContentDialog dialog = DialogService.CreateContentDialog("", new DebugTestingWelcomeDialog());
+                dialog.CloseButtonText = "OK";
+                await dialog.ShowAsync();
+            }
         }
 
         private void MainNavigation_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -250,6 +244,10 @@ namespace FortniteLauncher
             }
 
             Logger.Log(LogImportance.Info, LogSource.AppCore, "IsPaneOpen state changed to "+MainNavigation.IsPaneOpen.ToString());
+        }
+
+        private void MainNavigation_Loaded(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

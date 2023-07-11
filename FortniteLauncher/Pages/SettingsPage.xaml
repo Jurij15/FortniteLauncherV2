@@ -9,7 +9,7 @@
     xmlns:labs="using:CommunityToolkit.Labs.WinUI"
     mc:Ignorable="d">
 
-    <ScrollViewer Margin="58, 42, 58,0">
+    <ScrollViewer Margin="58, 32, 58,0">
         <Grid RowSpacing="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
