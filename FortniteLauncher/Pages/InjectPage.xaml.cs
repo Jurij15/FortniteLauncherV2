@@ -1,6 +1,5 @@
 using FortniteLauncher.Cores;
 using FortniteLauncher.Dialogs;
-using FortniteLauncher.Pages.InjectPages;
 using FortniteLauncher.Pages.SettingsPages;
 using FortniteLauncher.Services;
 using Microsoft.UI.Xaml;
@@ -12,6 +11,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -38,40 +38,44 @@ namespace FortniteLauncher.Pages
 
         private async void ShowProcesses_Click(object sender, RoutedEventArgs e)
         {
+            StackPanel panel = new StackPanel();
+            ListView view = new ListView();
+
+            foreach (Process process in Process.GetProcesses())
+            {
+                if (process.ProcessName.Contains("Fortnite") && !process.ProcessName.Contains("Launcher"))
+                {
+                    ListViewItem NewItem = new ListViewItem();
+                    NewItem.Content = process.ProcessName;
+                    NewItem.Name = process.Id.ToString();
+                    NewItem.Tag = process.Id;
+
+                    view.Items.Add(NewItem);
+                }
+            }
+
             ContentDialog dialog = new ContentDialog();
             dialog.XamlRoot = Globals.Objects.MainWindowXamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Select a ProcessID";
-            dialog.Content = new InstanceManagerDialog(dialog);
+            dialog.Title = "Select a Process ID";
+            dialog.Content = view;
+
+            dialog.CloseButtonText = "Cancel";
+            dialog.PrimaryButtonClick += Dialog_PrimaryButtonClick;
+            dialog.PrimaryButtonText = "Select";
+
+            dialog.DefaultButton = ContentDialogButton.Primary;
 
             await dialog.ShowAsync();
-
-            PIDBox.Value = ProcessID;
         }
 
-        private void ConsoleInject_Click(object sender, RoutedEventArgs e)
+        private void Dialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            try
-            {
-                Injector.InjectDll(Convert.ToInt32(PIDBox.Value), Settings.ConsoleDLLConfig);
-            }
-            catch (Exception ex)
-            {
-                DialogService.ShowSimpleDialog("An error occured while injecting. Error message: " + ex.Message, "Error");
-                throw;
-            }
-        }
+            var selecteditem = ((ListView)sender.Content).SelectedItem;
 
-        private void OpenGameSettings_Click(Microsoft.UI.Xaml.Documents.Hyperlink sender, Microsoft.UI.Xaml.Documents.HyperlinkClickEventArgs args)
-        {
-            Globals.Objects.MainNavigation.SelectedItem = Globals.Objects.MainNavigation.SettingsItem;
-            NavigationService.Navigate(typeof(SettingsPage), "Settings", true);
-            NavigationService.Navigate(typeof(GameSettingsPage), "Game Settings", false);
-        }
+            if (selecteditem == null) { return; }
 
-        private void CustomInject_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(typeof(CustomDLLInjectPage), "Custom DLL", false);
+            PIDBox.Value = Convert.ToInt32(((ListViewItem)selecteditem).Name);
         }
     }
 }

@@ -36,12 +36,10 @@
 	  <None Remove="Dialogs\ConfigureAuthDialog.xaml" />
 	  <None Remove="ContentWindows\GalleryWindow.xaml" />
 	  <None Remove="Dialogs\DebugTestingWelcomeDialog.xaml" />
-	  <None Remove="Dialogs\InstanceManagerDialog.xaml" />
 	  <None Remove="Dialogs\LoadingDialog.xaml" />
 	  <None Remove="Pages\GuidesPages\GuidesPage.xaml" />
 	  <None Remove="Pages\GuidesPages\ViewGuidePage.xaml" />
 	  <None Remove="Pages\InjectPage.xaml" />
-	  <None Remove="Pages\InjectPages\CustomDLLInjectPage.xaml" />
 	  <None Remove="Pages\SettingsPages\AdvancedSettingsPage.xaml" />
 	  <None Remove="Pages\SettingsPages\BackupsPage.xaml" />
 	  <None Remove="Pages\SettingsPages\DLLLibrarySettingsPage.xaml" />
@@ -81,6 +79,9 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Assets\DesertChest5.40.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\DLL\Cobalt.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -212,9 +213,6 @@
     <Page Update="Pages\GuidesPages\GuidesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Pages\InjectPages\CustomDLLInjectPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Update="Pages\SettingsPages\BackupsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -228,9 +226,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Dialogs\DebugTestingWelcomeDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Dialogs\InstanceManagerDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Pages\InjectPage.xaml">

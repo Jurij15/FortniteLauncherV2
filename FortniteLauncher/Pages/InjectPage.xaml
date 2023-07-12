@@ -23,24 +23,14 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="PIDPanel" Grid.Row="1" Spacing="2">
-            <NumberBox Header="Prcocess ID" x:Name="PIDBox" Value="0"/>
-            <Button x:Name="ShowProcesses" Content="Show Processes" Margin="2,0,0,0" VerticalAlignment="Bottom" Click="ShowProcesses_Click"/>
-        </StackPanel>
-
-        <StackPanel Grid.Row="2" Spacing="4" Margin="0,8, 0,0">
-            <labs:SettingsCard Header="Inject Console DLL" IsClickEnabled="True" x:Name="ConsoleInject" IsActionIconVisible="True" Click="ConsoleInject_Click">
-                <labs:SettingsCard.ActionIcon>
-                    <FontIcon Glyph="&#xE718;"/>
-                </labs:SettingsCard.ActionIcon>
-                <labs:SettingsCard.Description>
-                    <TextBlock>
-                        You can change the DLL in Settings
-                    </TextBlock>
-                </labs:SettingsCard.Description>
-            </labs:SettingsCard>
-            <labs:SettingsCard Header="Custom DLL" IsClickEnabled="True" x:Name="CustomInject" IsActionIconVisible="True" Click="CustomInject_Click">
-            </labs:SettingsCard>
-        </StackPanel>
+        <labs:SettingsCard x:Name="ProcessIDcard"
+                           Header="Process ID">
+            <StackPanel Orientation="Horizontal" Spacing="4">
+                <NumberBox x:Name="PIDBox"/>
+                <Button x:Name="ShowProcessesBtn" Click="ShowProcesses_Click">
+                    <SymbolIcon Symbol="OpenLocal"/>
+                </Button>
+            </StackPanel>
+        </labs:SettingsCard>
     </Grid>
 </Page>

@@ -24,6 +24,8 @@ using FortniteLauncher.Dialogs;
 using Windows.System;
 using FortniteLauncher.Pages.GuidesPages;
 using static FortniteLauncher.Services.NavigationService;
+using FortniteLauncher.Classes;
+using Microsoft.UI.Windowing;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -81,6 +83,8 @@ namespace FortniteLauncher
             }
 
             this.SystemBackdrop = abackdrop;
+
+            this.SetIcon("Assets\\FNLauncher_Icon.ico");
         }
 
         void SetGlobalObjects()
