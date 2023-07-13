@@ -23,7 +23,10 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <labs:SettingsExpander x:Name="LauncherAboutExpander" Grid.Row="1" Header="FortniteLauncher" Description="by Jurij15">
+        <labs:SettingsExpander x:Name="LauncherAboutExpander" Grid.Row="1" Header="FortniteLauncher" Description="by Jurij15" IsExpanded="True">
+            <labs:SettingsExpander.HeaderIcon>
+                <ImageIcon Source="ms-appx:///Assets\FNLauncher_Icon.png"/>
+            </labs:SettingsExpander.HeaderIcon>
             <labs:SettingsExpander.Content>
                 <TextBlock x:Name="VersionBlock" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
             </labs:SettingsExpander.Content>

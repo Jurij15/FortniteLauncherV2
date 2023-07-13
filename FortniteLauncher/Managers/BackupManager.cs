@@ -45,5 +45,10 @@ namespace FortniteLauncher.Managers
             p.StartInfo.Arguments = Settings.RootSettingsDir;
             p.Start();
         }
+
+        public static async void RestoreFromBackup(string BackupZipPath)
+        {
+
+        }
     }
 }

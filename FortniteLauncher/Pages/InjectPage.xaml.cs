@@ -33,8 +33,6 @@ namespace FortniteLauncher.Pages
     /// </summary>
     public sealed partial class InjectPage : Page
     {
-        bool PIDPresent = false;
-        bool PathPresent = false;
         public static int ProcessID { get; set; }
         public InjectPage()
         {
@@ -106,21 +104,12 @@ namespace FortniteLauncher.Pages
         {
             if (sender.Value > 1)
             {
-                PIDPresent = true;
+                InjectButton.IsEnabled = true;
             }
         }
 
         private void DLLPathBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-           PathPresent = true;
-        }
-
-        void ChangeInjectBtnState()
-        {
-            if (PathPresent && PIDPresent)
-            {
-                InjectButton.IsEnabled = true;
-            }
         }
     }
 }

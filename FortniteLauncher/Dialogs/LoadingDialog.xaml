@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <ProgressRing IsIndeterminate="True" Grid.Column="0" VerticalAlignment="Center" Height="60" Width="60"/>
         <StackPanel Spacing="3" Grid.Column="1" VerticalAlignment="Center" Margin="-10,0,0,0">
-            <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind _header}" x:Name="HeaderBlock"/>
+            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{x:Bind _header}" x:Name="HeaderBlock"/>
             <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{x:Bind _body}" x:Name="BodyBlock"/>
         </StackPanel>
     </Grid>

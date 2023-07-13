@@ -113,7 +113,7 @@
                             <ToggleSwitch OnContent="Suspend BE" OffContent="Suspend BE"/>
                             <ToggleSwitch OnContent="Suspend EAC" OffContent="Suspend EAC"/>
                             <ToggleSwitch OnContent="Fix Memory Leak" OffContent="Fix Memory Leak" x:Name="InjectMemoryLeakFixDll" IsOn="True"/>
-                            <ToggleSwitch OnContent="Inject Console" OffContent="Inject Console" x:Name="InjectConsoleDLLSwitch" IsOn="True"/>
+                            <ToggleSwitch OnContent="Inject Console" Visibility="Collapsed" OffContent="Inject Console" x:Name="InjectConsoleDLLSwitch"/>
                         </StackPanel>
                         <Grid RowSpacing="2" Grid.Row="3" HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>

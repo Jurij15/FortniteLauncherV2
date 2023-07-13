@@ -15,5 +15,16 @@ namespace FortniteLauncher
         public static string SSLBypassDLL { get; set; } 
         public static string ConsoleDLL { get; set; }
         public static string MemoryLeakFixDLL { get; set; } 
+
+        public class GameLaunchConfig
+        {
+            public static bool EnableSSLBypassConfig;
+
+            public static bool SuspendBEConfig;
+            public static bool SuspendEACConfig;
+            public static bool FixMemoryLeakConfig;
+
+            public static string LaunchArguments;
+        }
     }
 }
