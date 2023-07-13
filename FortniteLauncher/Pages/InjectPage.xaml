@@ -7,9 +7,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:labs="using:CommunityToolkit.Labs.WinUI"
+    NavigationCacheMode="Enabled"
     mc:Ignorable="d">
 
-    <Grid Margin="58, 32, 58,0">
+    <Grid Margin="58, 32, 58,0" RowSpacing="3">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -24,13 +25,31 @@
         </Grid.RowDefinitions>
 
         <labs:SettingsCard x:Name="ProcessIDcard"
-                           Header="Process ID">
+                           Header="Process ID"
+                           Grid.Row="1">
             <StackPanel Orientation="Horizontal" Spacing="4">
-                <NumberBox x:Name="PIDBox"/>
+                <NumberBox x:Name="PIDBox" ValueChanged="Box_ValueChanged"/>
                 <Button x:Name="ShowProcessesBtn" Click="ShowProcesses_Click">
                     <SymbolIcon Symbol="OpenLocal"/>
                 </Button>
             </StackPanel>
         </labs:SettingsCard>
+        <labs:SettingsCard x:Name="DLLCard"
+                           Header="DLL"
+                           Grid.Row="2">
+            <StackPanel Orientation="Horizontal" Spacing="4">
+                <TextBox x:Name="DLLPathBox" PlaceholderText="Path" TextChanged="DLLPathBox_TextChanged"/>
+                <Button x:Name="SelectDLLBtn" Click="SelectDLLBtn_Click">
+                    <SymbolIcon Symbol="OpenLocal"/>
+                </Button>
+            </StackPanel>
+        </labs:SettingsCard>
+        <StackPanel Orientation="Horizontal" Spacing="2" Grid.Row="3">
+            <AppBarButton Label="Inject" x:Name="InjectButton" Click="InjectButton_Click" IsEnabled="False">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE718;"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </StackPanel>
     </Grid>
 </Page>

@@ -27,20 +27,37 @@ namespace FortniteLauncher.Pages.SettingsPages
     /// </summary>
     public sealed partial class DLLLibrarySettingsPage : Page
     {
-        void LoadDLLs()
+        void LoadDLLs(string IfNameContainsThis = null)
         {
             Managers.DLLibraryManager manager = new Managers.DLLibraryManager();
 
-            DLLListSelector.Items.Clear();
-            foreach (var item in manager.GetAllDLLGuids())
+            if (IfNameContainsThis != null)
             {
-                string name = manager.GetDLLNameByGUID(item);
+                DLLListSelector.Items.Clear();
+                foreach (var item in manager.GetAllDLLGUIDsThatNameContains(IfNameContainsThis))
+                {
+                    string name = manager.GetDLLNameByGUID(item);
 
-                ListViewItem NewItem = new ListViewItem();
-                NewItem.Name = item;
-                NewItem.Content = name;
+                    ListViewItem NewItem = new ListViewItem();
+                    NewItem.Name = item;
+                    NewItem.Content = name;
 
-                DLLListSelector.Items.Add(NewItem);
+                    DLLListSelector.Items.Add(NewItem);
+                }
+            }
+            else
+            {
+                DLLListSelector.Items.Clear();
+                foreach (var item in manager.GetAllDLLGuids())
+                {
+                    string name = manager.GetDLLNameByGUID(item);
+
+                    ListViewItem NewItem = new ListViewItem();
+                    NewItem.Name = item;
+                    NewItem.Content = name;
+
+                    DLLListSelector.Items.Add(NewItem);
+                }
             }
         }
         public DLLLibrarySettingsPage()
@@ -113,6 +130,11 @@ namespace FortniteLauncher.Pages.SettingsPages
             manager.DeleteDLL(guid);
 
             LoadDLLs();
+        }
+
+        private void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            LoadDLLs(sender.Text);
         }
     }
 }

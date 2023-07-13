@@ -43,7 +43,12 @@
             <labs:SettingsCard.HeaderIcon>
                 <FontIcon Glyph="&#xE840;"/>
             </labs:SettingsCard.HeaderIcon>
-            <TextBox x:Name="SSLBypassDLLPathBox" TextChanged="SSLBypassDLLPathBox_TextChanged"/>
+            <StackPanel Orientation="Horizontal" Spacing="2">
+                <TextBox x:Name="SSLBypassDLLPathBox" TextChanged="SSLBypassDLLPathBox_TextChanged"/>
+                <Button x:Name="SelectSSLBypassDLL" Click="SelectSSLBypassDLL_Click">
+                    <SymbolIcon Symbol="OpenFile"/>
+                </Button>
+            </StackPanel>
         </labs:SettingsCard>
         <labs:SettingsCard x:Name="ConsoleDLLCard" Visibility="Visible"
               Grid.Row="2"
@@ -52,7 +57,12 @@
             <labs:SettingsCard.HeaderIcon>
                 <FontIcon Glyph="&#xE8C1;"/>
             </labs:SettingsCard.HeaderIcon>
-            <TextBox x:Name="ConsoleBypassDLLPathBox" TextChanged="ConsoleBypassDLLPathBox_TextChanged"/>
+            <StackPanel Orientation="Horizontal" Spacing="2">
+                <TextBox x:Name="ConsoleBypassDLLPathBox" TextChanged="ConsoleBypassDLLPathBox_TextChanged"/>
+                <Button x:Name="SelectConsoleDLL" Click="SelectConsoleDLL_Click">
+                    <SymbolIcon Symbol="OpenFile"/>
+                </Button>
+            </StackPanel>
         </labs:SettingsCard>
         <labs:SettingsCard x:Name="MemoryLeakDLLCard" Visibility="Visible"
               Grid.Row="3"
@@ -61,7 +71,12 @@
             <labs:SettingsCard.HeaderIcon>
                 <FontIcon Glyph="&#xE90F;"/>
             </labs:SettingsCard.HeaderIcon>
-            <TextBox x:Name="MemoryBypassDLLPathBox" TextChanged="MemoryBypassDLLPathBox_TextChanged"/>
+            <StackPanel Orientation="Horizontal" Spacing="2">
+                <TextBox x:Name="MemoryBypassDLLPathBox" TextChanged="MemoryBypassDLLPathBox_TextChanged"/>
+                <Button x:Name="SelectMemoryLeakBypassDLL" Click="SelectMemoryLeakBypassDLL_Click">
+                    <SymbolIcon Symbol="OpenFile"/>
+                </Button>
+            </StackPanel>
         </labs:SettingsCard>
     </Grid>
 </Page>

@@ -65,6 +65,15 @@ namespace FortniteLauncher.Services
             return dialog;
         }
 
+        public static ContentDialog CreateBareContentDialog()
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = Globals.Objects.MainWindowXamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+
+            return dialog;
+        }
+
         public static ContentDialog CreateLoadingDialog(string Header, string Body = null)
         {
             ContentDialog dialog = new ContentDialog();

@@ -13,7 +13,7 @@ namespace FortniteLauncher.Classes
         {
             OK
         }
-        public static void Show(string Content, string Title, Options Options = Options.OK)
+        public static void Show(string Content, string Title = null, Options Options = Options.OK)
         {
             [DllImport("user32.dll")]
             static extern int MessageBox(IntPtr hWind, String text, String caption, int options);

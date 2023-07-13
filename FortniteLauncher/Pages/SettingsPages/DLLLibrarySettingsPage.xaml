@@ -24,7 +24,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" MaxHeight="150" VerticalAlignment="Top" Height=" 150">
+            <Grid Grid.Row="0" MaxHeight="250" VerticalAlignment="Top" MinHeight=" 180" Margin="0,2,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -43,7 +43,14 @@
                     </StackPanel>
                 </Grid>
                 <Grid x:Name="SelectorGrid" Grid.Column="2">
-                    <ListView x:Name="DLLListSelector" SelectionChanged="DLLListSelector_SelectionChanged" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="Transparent" MaxHeight="150"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <AutoSuggestBox x:Name="SearchBox" QueryIcon="Find" PlaceholderText="Search" TextChanged="SearchBox_TextChanged"/>
+                        <ListView x:Name="DLLListSelector" SelectionChanged="DLLListSelector_SelectionChanged" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="Transparent" MaxHeight="150" Grid.Row="1"/>
+                    </Grid>
                 </Grid>
             </Grid>
             <labs:SettingsExpander x:Name="EditExpander"
@@ -74,7 +81,16 @@
                            Header="Add"
                            Description="Add a DLL to the library"
                            IsClickEnabled="True"
-                           Click="AddDLLCard_Click"/>
+                           IsActionIconVisible="True"
+                           AllowFocusOnInteraction="True"
+                           Click="AddDLLCard_Click">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE710;"/>
+                </labs:SettingsCard.HeaderIcon>
+                <labs:SettingsCard.ActionIcon>
+                    <FontIcon Glyph="&#xE8A7;"/>
+                </labs:SettingsCard.ActionIcon>
+            </labs:SettingsCard>
         </Grid>
     </ScrollViewer>
 </Page>

@@ -73,7 +73,7 @@ namespace FortniteLauncher.Managers
             foreach (var item in GetAllDLLGuids())
             {
                 string name = GetDLLNameByGUID(item);
-                if (name.Contains(ContainThisInName))
+                if (name.Contains(ContainThisInName, StringComparison.OrdinalIgnoreCase))
                 {
                     list.Add(item);
                 }

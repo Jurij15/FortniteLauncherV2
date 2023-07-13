@@ -13,6 +13,8 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using FortniteLauncher.Services;
+using FortniteLauncher.Cores;
+using FortniteLauncher.Helpers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,22 +37,46 @@ namespace FortniteLauncher.Pages.SettingsPages
 
         private void SSLBypassDLLPathBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            Config.SSLBypassDLL = ((TextBox)sender).Text;
+            Settings.SaveNewSSLBypassDLLConfigConfig(((TextBox)sender).Text);
         }
 
         private void ConsoleBypassDLLPathBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            Config.ConsoleDLL = ((TextBox)sender).Text;
+            Settings.SaveNewConsoleDLLConfigConfig(((TextBox)sender).Text);
         }
 
         private void MemoryBypassDLLPathBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            Config.MemoryLeakFixDLL = ((TextBox)sender).Text;
+            Settings.SaveNewMemoryLeakFixDLLConfigConfig(((TextBox)sender).Text);
         }
 
         private void DLLLibraryCard_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(typeof(DLLLibrarySettingsPage), "DLL Library", false);
+        }
+
+        private async void SelectSSLBypassDLL_Click(object sender, RoutedEventArgs e)
+        {
+            await DLLLibraryHelper.ShowDLLLibrary_SelectDLLDialog();
+
+            SSLBypassDLLPathBox.Text = DLLLibraryHelper.ISelectedDLLPath;
+        }
+
+        private async void SelectConsoleDLL_Click(object sender, RoutedEventArgs e)
+        {
+            await DLLLibraryHelper.ShowDLLLibrary_SelectDLLDialog();
+
+            ConsoleBypassDLLPathBox.Text = DLLLibraryHelper.ISelectedDLLPath;
+        }
+
+        private async void SelectMemoryLeakBypassDLL_Click(object sender, RoutedEventArgs e)
+        {
+            await DLLLibraryHelper.ShowDLLLibrary_SelectDLLDialog();
+
+            MemoryBypassDLLPathBox.Text = DLLLibraryHelper.ISelectedDLLPath;
         }
     }
 }

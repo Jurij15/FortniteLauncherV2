@@ -36,6 +36,7 @@
 	  <None Remove="Dialogs\ConfigureAuthDialog.xaml" />
 	  <None Remove="ContentWindows\GalleryWindow.xaml" />
 	  <None Remove="Dialogs\DebugTestingWelcomeDialog.xaml" />
+	  <None Remove="Dialogs\DLLLibrary_SelectDLLDialog.xaml" />
 	  <None Remove="Dialogs\LoadingDialog.xaml" />
 	  <None Remove="Pages\GuidesPages\GuidesPage.xaml" />
 	  <None Remove="Pages\GuidesPages\ViewGuidePage.xaml" />
@@ -201,6 +202,9 @@
     <None Update="Assets\DLL\memoryleak.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Dialogs\DLLLibrary_SelectDLLDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Dialogs\AddDLLToLibraryDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
