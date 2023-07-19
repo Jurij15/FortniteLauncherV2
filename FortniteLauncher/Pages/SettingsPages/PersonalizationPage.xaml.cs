@@ -143,14 +143,6 @@ namespace FortniteLauncher.Pages.SettingsPages
             }
             AppRestartRequired.IsOpen = true;
             Settings.SaveNewContentBackgroundLayerVisibilityConfig(Convert.ToInt32(((ToggleSwitch)sender).IsOn));
-            if (((ToggleSwitch)sender).IsOn)
-            {
-                ThemeService.ChangeNavigationBackgroundContentLayerVisibility(false);
-            }
-            else
-            {
-                ThemeService.ChangeNavigationBackgroundContentLayerVisibility(true);
-            }
         }
     }
 }

@@ -50,7 +50,7 @@
                 </Button>
             </StackPanel>
         </labs:SettingsCard>
-        <labs:SettingsCard x:Name="ConsoleDLLCard" Visibility="Visible"
+        <labs:SettingsCard x:Name="ConsoleDLLCard" Visibility="Collapsed"
               Grid.Row="2"
               Header="Console DLL"
               Description="DLL that creates the UE console">

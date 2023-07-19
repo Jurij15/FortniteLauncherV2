@@ -20,51 +20,5 @@ namespace FortniteLauncher.Services
                 frameworkElement.RequestedTheme = theme;
             }
         }
-
-        //disable/enable the background layer
-        public static void ChangeNavigationBackgroundContentLayerVisibility(bool ShowContentBackgroundLayer)
-        {
-            try
-            {
-                if (ShowContentBackgroundLayer)
-                {
-                    //remove the border
-                    Globals.Objects.MainNavigation.Resources.Remove("NavigationViewContentGridBorderBrush");
-                    //remove the transparent background
-                    Globals.Objects.MainNavigation.Resources.Remove("NavigationViewContentBackground");
-                }
-                else
-                {
-
-                }
-            }
-            catch (Exception ex)
-            {
-                DialogService.ShowSimpleDialog("Operation failed! Error: " + ex.Message, "Fail!");
-            }
-        }
-
-        public static bool IsContentBackgroundLayerVisible()
-        {
-            bool retVal = false;
-
-            try
-            {
-                if (Globals.Objects.MainNavigation.Resources["NavigationViewContentGridBorderBrush"] != null)
-                {
-                    retVal = false;
-                }
-                else
-                {
-                    retVal = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                retVal = false;
-            }
-
-            return retVal;
-        }
     }
 }

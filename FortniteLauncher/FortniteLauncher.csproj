@@ -41,6 +41,8 @@
 	  <None Remove="Pages\GuidesPages\GuidesPage.xaml" />
 	  <None Remove="Pages\GuidesPages\ViewGuidePage.xaml" />
 	  <None Remove="Pages\InjectPage.xaml" />
+	  <None Remove="Pages\PlaySelectedBuildPages\BuildSettingsPage.xaml" />
+	  <None Remove="Pages\PlaySelectedBuildPages\LaunchSettingsPage.xaml" />
 	  <None Remove="Pages\SettingsPages\AdvancedSettingsPage.xaml" />
 	  <None Remove="Pages\SettingsPages\BackupsPage.xaml" />
 	  <None Remove="Pages\SettingsPages\DLLLibrarySettingsPage.xaml" />
@@ -202,6 +204,12 @@
     <None Update="Assets\DLL\memoryleak.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Pages\PlaySelectedBuildPages\BuildSettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Pages\PlaySelectedBuildPages\LaunchSettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Dialogs\DLLLibrary_SelectDLLDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

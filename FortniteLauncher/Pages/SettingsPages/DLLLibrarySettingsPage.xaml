@@ -30,8 +30,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid x:Name="PresenterGrid" Grid.Column="1" VerticalAlignment="Top">
-                    <StackPanel Spacing="4" HorizontalAlignment="Left">
+                <Grid VerticalAlignment="Stretch" x:Name="PresenterGrid" Grid.Column="1" CornerRadius="8" Margin="0,0,4,2" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
+                    <StackPanel Spacing="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4">
                         <StackPanel.ChildrenTransitions>
                             <TransitionCollection>
                                 <ContentThemeTransition />

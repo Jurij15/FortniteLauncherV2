@@ -55,8 +55,6 @@ namespace FortniteLauncher.Pages
             _buildSeason = manager.GetBuildSeasonByGUID(Globals.CurrentlySelectedBuildGUID);
             _buildGUID = Globals.CurrentlySelectedBuildGUID;
 
-            MainWindowHelper.NavigationResourceDictionary.RemoveContentBackground();
-
             if (BuildsHelper.IsPathValid(_buildPath))
             {
                 BitmapImage bitmapImage = new BitmapImage();

@@ -64,7 +64,7 @@ namespace FortniteLauncher.Helpers
             }
             catch (Exception ex)
             {
-                DialogService.ShowSimpleDialog("Unable to download update. Error message: " + ex.Message, "Download Failed");
+                DialogService.ShowSimpleDialog("Unable to download LawinServer. Error message: " + ex.Message, "Download Failed");
                 throw;
             }
 
