@@ -77,7 +77,7 @@ namespace FortniteLauncher
 
             this.Title = "Fortnite Launcher";
 
-            if (Globals.ShowContentBackgroundLayer)
+            if (Globals.Settings.ShowContentBackgroundLayer)
             {
                 MainNavigationDisableContentBackgroundDictionary.ThemeDictionaries.Clear();
             }
@@ -209,7 +209,7 @@ namespace FortniteLauncher
                 NavigationService.Navigate(typeof(GuidesPage), "Guides", true);
             }
 
-            AuthUsernameBlock.Text = Globals.GetPlayerUsername();
+            AuthUsernameBlock.Text = Globals.Settings.PlayerAuthUsername;
 
             Logger.Log(LogImportance.Info, LogSource.Navigation, "Selected page for navigation: "+args.SelectedItemContainer.Content.ToString());
         }

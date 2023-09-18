@@ -19,6 +19,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
+using WinUIEx;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,16 +36,16 @@ namespace FortniteLauncher.Pages.SettingsPages
         {
             this.InitializeComponent();
 
-            if (Globals.Theme == 0) //dark
+            if (Globals.Settings.Theme == ElementTheme.Dark) //dark
             {
                 ThemeBox.SelectedItem = DarkTheme;
             }
-            else if (Globals.Theme == 1)
+            else if (Globals.Settings.Theme == ElementTheme.Light)
             {
                 ThemeBox.SelectedItem = LightTheme;
             }
 
-            if (Globals.SoundMode == ElementSoundPlayerState.On)
+            if (Globals.Settings.SoundMode == ElementSoundPlayerState.On)
             {
                 SoundToggle.IsOn = true;
             }
@@ -53,7 +54,7 @@ namespace FortniteLauncher.Pages.SettingsPages
                 SoundToggle.IsOn = false;
             }
 
-            if (Globals.ShowContentBackgroundLayer)
+            if (Globals.Settings.ShowContentBackgroundLayer)
             {
                 BackgroundLayerCardSwitch.IsOn = true;
             }
@@ -69,16 +70,17 @@ namespace FortniteLauncher.Pages.SettingsPages
             }
             if (ThemeBox.SelectedItem == null) { return; }
 
+            //TODO:: Rewrite this so it uses ElementTheme
             if ((ComboBoxItem)ThemeBox.SelectedItem == DarkTheme)
             {
-                Settings.SaveNewThemeConfig(0);
-                Globals.Theme = 0;
+                Globals.Settings.Theme = ElementTheme.Dark;
+                SettingsJson.SaveSettings();
                 ThemeService.ChangeTheme(ElementTheme.Dark);
             }
             else if ((ComboBoxItem)ThemeBox.SelectedItem == LightTheme)
             {
-                Settings.SaveNewThemeConfig(1);
-                Globals.Theme = 1;
+                Globals.Settings.Theme = ElementTheme.Light;
+                SettingsJson.SaveSettings();
                 ThemeService.ChangeTheme(ElementTheme.Light);
             }
 
@@ -90,12 +92,12 @@ namespace FortniteLauncher.Pages.SettingsPages
             if (SoundToggle.IsOn)
             {
                 ElementSoundPlayer.State = ElementSoundPlayerState.On;
-                Globals.SoundMode = ElementSoundPlayerState.On; 
+                Globals.Settings.SoundMode = ElementSoundPlayerState.On; 
             }
             else
             {
                 ElementSoundPlayer.State = ElementSoundPlayerState.Off;
-                Globals.SoundMode = ElementSoundPlayerState.Off;
+                Globals.Settings.SoundMode = ElementSoundPlayerState.Off;
             }
         }
 
@@ -142,7 +144,8 @@ namespace FortniteLauncher.Pages.SettingsPages
                 return;
             }
             AppRestartRequired.IsOpen = true;
-            Settings.SaveNewContentBackgroundLayerVisibilityConfig(Convert.ToInt32(((ToggleSwitch)sender).IsOn));
+            Globals.Settings.ShowContentBackgroundLayer = ((ToggleSwitch)sender).IsOn;
+            SettingsJson.SaveSettings();
         }
     }
 }

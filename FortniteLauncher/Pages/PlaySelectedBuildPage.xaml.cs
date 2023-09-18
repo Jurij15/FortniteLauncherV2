@@ -92,7 +92,7 @@ namespace FortniteLauncher.Pages
             var selecteditem = Enum.Parse(typeof(FortniteSeasons), _buildSeason);
             SeasonsComboEdit.SelectedItem = selecteditem;
 
-            LaunchArgsBox.Text = Globals.FortniteStrings.GetReadyLaunchArguments(Globals.GetPlayerUsername(), Globals.GetPlayerPassword());
+            LaunchArgsBox.Text = Globals.FortniteStrings.GetReadyLaunchArguments(Globals.Settings.PlayerAuthUsername, Globals.Settings.PlayerAuthPassword);
         }
 
         private async void PlayButton_Click(object sender, RoutedEventArgs e)
@@ -118,7 +118,7 @@ namespace FortniteLauncher.Pages
                     {
                         try
                         {
-                            Injector.InjectDll(FortniteProcessID, Config.SSLBypassDLL);
+                            Injector.InjectDll(FortniteProcessID, Globals.Settings.SSLBypassDLL);
                         }
                         catch (Exception ex)
                         {
@@ -130,7 +130,7 @@ namespace FortniteLauncher.Pages
                     {
                         try
                         {
-                            Injector.InjectDll(FortniteProcessID, Config.MemoryLeakFixDLL);
+                            Injector.InjectDll(FortniteProcessID, Globals.Settings.MemoryLeakFixDLL);
                         }
                         catch (Exception ex)
                         {
@@ -142,7 +142,7 @@ namespace FortniteLauncher.Pages
                     {
                         try
                         {
-                            Injector.InjectDll(FortniteProcessID, Config.ConsoleDLL);
+                            Injector.InjectDll(FortniteProcessID, Globals.Settings.ConsoleDLL);
                         }
                         catch (Exception ex)
                         {
@@ -220,7 +220,7 @@ namespace FortniteLauncher.Pages
 
             dialog.ShowAsync();
 
-            LaunchArgsBox.Text = Globals.FortniteStrings.GetReadyLaunchArguments(Globals.GetPlayerUsername(), Globals.GetPlayerPassword());
+            LaunchArgsBox.Text = Globals.FortniteStrings.GetReadyLaunchArguments(Globals.Settings.PlayerAuthUsername, Globals.Settings.PlayerAuthPassword);
         }
 
         private void LaunchSettingsExpander_Expanding(Expander sender, ExpanderExpandingEventArgs args)

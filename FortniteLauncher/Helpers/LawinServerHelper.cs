@@ -19,9 +19,9 @@ namespace FortniteLauncher.Helpers
         private static int LawinServerProcessiD = 0;
         private static bool bStarted = false;
 
-        public static string LawinServerDir = Settings.RootSettingsDir + "\\LawinServer";
+        public static string LawinServerDir = Globals.RootSettingsDir + "\\LawinServer";
         public static string LawinServerWorkingDir = LawinServerDir + "\\LawinServer-main";
-        public static string LawinServerTemp = Settings.RootSettingsDir + "Temp";
+        public static string LawinServerTemp = Globals.RootSettingsDir + "Temp";
         public static string LawinServerGitPath = "https://github.com/Lawin0129/LawinServer/archive/refs/heads/main.zip";
         public static bool IsLawinServerInstalled()
         {

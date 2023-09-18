@@ -14,7 +14,7 @@ namespace FortniteLauncher.Managers
 {
     public class BuildsManager
     {
-        public static string RootBuildsDir = Settings.RootSettingsDir + "Builds";
+        public static string RootBuildsDir = Globals.RootSettingsDir + "Builds";
 
         public string GetBuildNameConfig(string GUID)
         {

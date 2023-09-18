@@ -20,11 +20,15 @@ namespace FortniteLauncher
 {
     public static class Globals
     {
-        public static int Theme { get; set; }
-        public static bool ShowContentBackgroundLayer { get; set; }
-        public static bool bIsFirstTimeRun = false;
+        public static string RootSettingsDir = "Settings/";
+        public static string RootBackupsDir = "Backups\\";
+        public static string SettingsFile = RootSettingsDir + "settings.json";
 
+        public static bool bIsFirstTimeRun = false;
         public static bool LEnableDebugConsole = false;
+
+        public static SettingsJson Settings;
+
         public static class Objects
         {
             public static WindowEx MainWindow;
@@ -42,27 +46,6 @@ namespace FortniteLauncher
 
         public static string VersionString = "2.0-DEV";
 
-        public static ElementSoundPlayerState SoundMode;
-
-        public static string GetPlayerUsername()
-        {
-            return Config.PlayerAuthUsername;
-        }
-        public static string GetPlayerPassword()
-        {
-            return Config.PlayerAuthPassword;
-        }
-
-        public static void SetPlayerUsername(string NewUsername)
-        {
-            Config.PlayerAuthUsername = NewUsername;
-        }
-
-        public static void SetPlayerPassword(string NewPassword)
-        {
-            Config.PlayerAuthPassword = NewPassword;
-        }
-
         public static class FortniteStrings
         {
             public static string LocalAppData = Environment.GetEnvironmentVariable("LocalAppData");
@@ -77,13 +60,13 @@ namespace FortniteLauncher
 
             public static string FortniteSplashImage = @"\FortniteGame\Content\Splash\Splash.bmp";
 
-            public static string LaunchArguments = "-log -epicapp=Fortnite -epicenv=Prod -epiclocale=en-us -epicportal -skippatchcheck -nobe -fromfl=eac -fltoken=3db3ba5dcbd2e16703f3978d -caldera={} -AUTH_LOGIN=player@projectreboot.dev -AUTH_PASSWORD=Rebooted -AUTH_TYPE=epic";
+            public static string LaunchArguments = "-log -epicapp=Fortnite -epicenv=Prod -epiclocale=en-us -epicportal -skippatchcheck -nobe -fromfl=eac -fltoken=3db3ba5dcbd2e16703f3978d -caldera={} -AUTH_LOGIN=player@epicgames.dev -AUTH_PASSWORD=Rebooted -AUTH_TYPE=epic";
 
             public static string UserLaunchArguments = $"-skippatchcheck - epicportal -AUTH_TYPE=epic -epicapp=Fortnite -noeac -nobe -AUTH_LOGIN=HELLO@fortnite.com -AUTH_PASSWORD=unused -fltoken=7a848a93a74ba68876c36C1c -fromfl=none";
 
             public static string GetReadyLaunchArguments(string Username, string Password)
             {
-                return "-log -epicapp=Fortnite -epicenv=Prod -epiclocale=en-us -epicportal -skippatchcheck -nobe -fromfl=eac -fltoken=3db3ba5dcbd2e16703f3978d -caldera={}"+$" -AUTH_LOGIN={Username}@projectreboot.dev -AUTH_PASSWORD={Password} -AUTH_TYPE=epic";
+                return "-log -epicapp=Fortnite -epicenv=Prod -epiclocale=en-us -epicportal -skippatchcheck -nobe -fromfl=eac -fltoken=3db3ba5dcbd2e16703f3978d -caldera={}"+$" -AUTH_LOGIN={Username}@epicgames.dev -AUTH_PASSWORD={Password} -AUTH_TYPE=epic";
             }
         }
 
@@ -107,17 +90,11 @@ namespace FortniteLauncher
             }
         }
 
-        public static ObservableCollection<string> Breadcrumbs = new ObservableCollection<string>();
-        public static void UpdateBreadcrumb()
-        {
-            Objects.MainBreadcrumb.ItemsSource = Breadcrumbs;
-        }
-
         public static HashSet<string> SavedBuildsGuids = new HashSet<string>();
 
         public static async void ResetApp(bool bSendNotification)
         {
-            Directory.Delete(Settings.RootSettingsDir, true);
+            Directory.Delete(Globals.RootSettingsDir, true);
             if (bSendNotification) { NotificationService.SendSimpleToast("FortniteLauncher was reset", "Restart was required to complete","", 1.9); }
 
             BuildsManager.ResetBuilds();

@@ -43,17 +43,14 @@ namespace FortniteLauncher
                 Globals.DebugConsole.SetupConsole();
             }
 
-            Settings.GetSettings(); //in case the config is not created
-            string text = File.ReadAllText(Settings.ThemeConfig);
-            if (text.Contains("0"))
+            SettingsJson.GetSettings();
+            if (Globals.Settings.Theme == ElementTheme.Dark)
             {
                 App.Current.RequestedTheme = ApplicationTheme.Dark;
-                Logger.Log(LogImportance.Info, LogSource.AppCore, "App theme is DARK");
             }
-            else if (text.Contains("1"))
+            else if (Globals.Settings.Theme == ElementTheme.Light)
             {
                 App.Current.RequestedTheme = ApplicationTheme.Light;
-                Logger.Log(LogImportance.Info, LogSource.AppCore, "App theme is LIGHT");
             }
         }
 

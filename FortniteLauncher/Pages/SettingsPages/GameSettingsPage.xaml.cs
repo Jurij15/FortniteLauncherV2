@@ -30,27 +30,27 @@ namespace FortniteLauncher.Pages.SettingsPages
         {
             this.InitializeComponent();
 
-            SSLBypassDLLPathBox.Text = Config.SSLBypassDLL;
-            ConsoleBypassDLLPathBox.Text = Config.ConsoleDLL;
-            MemoryBypassDLLPathBox.Text = Config.MemoryLeakFixDLL;
+            SSLBypassDLLPathBox.Text = Globals.Settings.SSLBypassDLL;
+            ConsoleBypassDLLPathBox.Text = Globals.Settings.ConsoleDLL;
+            MemoryBypassDLLPathBox.Text = Globals.Settings.MemoryLeakFixDLL;
         }
 
         private void SSLBypassDLLPathBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Config.SSLBypassDLL = ((TextBox)sender).Text;
-            Settings.SaveNewSSLBypassDLLConfigConfig(((TextBox)sender).Text);
+            Globals.Settings.SSLBypassDLL = ((TextBox)sender).Text;
+            SettingsJson.SaveSettings();
         }
 
         private void ConsoleBypassDLLPathBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Config.ConsoleDLL = ((TextBox)sender).Text;
-            Settings.SaveNewConsoleDLLConfigConfig(((TextBox)sender).Text);
+            Globals.Settings.ConsoleDLL = ((TextBox)sender).Text;
+            SettingsJson.SaveSettings();
         }
 
         private void MemoryBypassDLLPathBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Config.MemoryLeakFixDLL = ((TextBox)sender).Text;
-            Settings.SaveNewMemoryLeakFixDLLConfigConfig(((TextBox)sender).Text);
+            Globals.Settings.MemoryLeakFixDLL = ((TextBox)sender).Text;
+            SettingsJson.SaveSettings();
         }
 
         private void DLLLibraryCard_Click(object sender, RoutedEventArgs e)

@@ -86,20 +86,88 @@ namespace FortniteLauncher.Services
             }
             BreadCrumbs.Add(new Breadcrumb(BreadcrumbItemLabel, TargetPageType));
 
-            SlideNavigationTransitionInfo info = new SlideNavigationTransitionInfo();
             if (ClearNavigation)
             {
-                info.Effect = SlideNavigationTransitionEffect.FromBottom; //navigating fresh
+                MainFrame.Navigate(TargetPageType, null, new EntranceNavigationTransitionInfo());
             }
             else
             {
-                info.Effect = SlideNavigationTransitionEffect.FromRight;
+                SlideNavigationTransitionInfo info = new SlideNavigationTransitionInfo();
+                (info as SlideNavigationTransitionInfo).Effect = SlideNavigationTransitionEffect.FromRight;
+                MainFrame.Navigate(TargetPageType, null, info);
             }
 
             UpdateBreadcrumb();
             ChangeBreadcrumbVisibility(true);
+        }
+        public static void Navigate(Type TargetPageType, string BreadcrumbItemLabel, bool ClearNavigation, bool BreadcrumbVisibility)
+        {
+            if (ClearNavigation)
+            {
+                BreadCrumbs.Clear();
+                MainFrame.BackStack.Clear();
+            }
+            BreadCrumbs.Add(new Breadcrumb(BreadcrumbItemLabel, TargetPageType));
 
+            ChangeBreadcrumbVisibility(BreadcrumbVisibility);
+
+            if (ClearNavigation)
+            {
+                MainFrame.Navigate(TargetPageType, null, new EntranceNavigationTransitionInfo());
+            }
+            else
+            {
+                SlideNavigationTransitionInfo info = new SlideNavigationTransitionInfo();
+                (info as SlideNavigationTransitionInfo).Effect = SlideNavigationTransitionEffect.FromRight;
+                MainFrame.Navigate(TargetPageType, null, info);
+            }
+
+            UpdateBreadcrumb();
+        }
+        public static void Navigate(Type TargetPageType, string BreadcrumbItemLabel, bool ClearNavigation, SlideNavigationTransitionEffect TransitionEffect, bool BreadcrumbVisibility)
+        {
+            ChangeBreadcrumbVisibility(BreadcrumbVisibility);
+            if (ClearNavigation)
+            {
+                BreadCrumbs.Clear();
+                MainFrame.BackStack.Clear();
+            }
+            BreadCrumbs.Add(new Breadcrumb(BreadcrumbItemLabel, TargetPageType));
+
+            SlideNavigationTransitionInfo info = new SlideNavigationTransitionInfo();
+            info.Effect = (SlideNavigationTransitionEffect)TransitionEffect;
+
+            UpdateBreadcrumb();
             MainFrame.Navigate(TargetPageType, null, info);
+
+            UpdateBreadcrumb();
+        }
+
+        public static void NavigateSuppressedAnim(Type TargetPageType, string BreadcrumbItemLabel, bool ClearNavigation)
+        {
+            if (ClearNavigation)
+            {
+                BreadCrumbs.Clear();
+                MainFrame.BackStack.Clear();
+            }
+            BreadCrumbs.Add(new Breadcrumb(BreadcrumbItemLabel, TargetPageType));
+
+            UpdateBreadcrumb();
+            MainFrame.Navigate(TargetPageType, null, new SuppressNavigationTransitionInfo());
+        }
+
+        public static void NavigateSuppressedAnim(Type TargetPageType, string BreadcrumbItemLabel, bool ClearNavigation, bool BreadcrumbVisibility)
+        {
+            if (ClearNavigation)
+            {
+                BreadCrumbs.Clear();
+                MainFrame.BackStack.Clear();
+            }
+            BreadCrumbs.Add(new Breadcrumb(BreadcrumbItemLabel, TargetPageType));
+
+            UpdateBreadcrumb();
+            MainFrame.Navigate(TargetPageType, null, new SuppressNavigationTransitionInfo());
+            ChangeBreadcrumbVisibility(BreadcrumbVisibility);
         }
 
         public static void ChangeBreadcrumbVisibility(bool IsBreadcrumbVisible)
@@ -114,6 +182,7 @@ namespace FortniteLauncher.Services
                 MainBreadcrumb.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
                 MainNavigation.AlwaysShowHeader = false;
             }
+
         }
         #endregion
     }

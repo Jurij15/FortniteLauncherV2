@@ -12,7 +12,7 @@ namespace FortniteLauncher.Managers
 {
     public class DLLibraryManager
     {
-        public static string RootBuildsDir = Settings.RootSettingsDir + "DLLibrary";
+        public static string RootBuildsDir = Globals.RootSettingsDir + "DLLibrary";
 
         public string GetDLLNameConfig(string GUID)
         {

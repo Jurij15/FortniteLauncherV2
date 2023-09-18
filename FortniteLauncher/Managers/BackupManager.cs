@@ -17,7 +17,7 @@ namespace FortniteLauncher.Managers
         {
 			try
 			{
-                ZipFile.CreateFromDirectory(Cores.Settings.RootSettingsDir, Cores.Settings.RootBackupsDir + "Backup" + DateTime.Now.ToString("dd-mm--yyyy--mm--hh-ss"));
+                ZipFile.CreateFromDirectory(Globals.RootSettingsDir, Globals.RootBackupsDir + "Backup" + DateTime.Now.ToString("dd-mm--yyyy--mm--hh-ss"));
 
                 if (bShowOpenDirectoryDialog)
                 {
@@ -42,7 +42,7 @@ namespace FortniteLauncher.Managers
         {
             Process p = new Process();
             p.StartInfo.FileName = "explorer.exe";
-            p.StartInfo.Arguments = Settings.RootSettingsDir;
+            p.StartInfo.Arguments = Globals.RootSettingsDir;
             p.Start();
         }
 

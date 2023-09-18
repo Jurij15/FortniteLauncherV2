@@ -138,10 +138,9 @@
                             <Setter Property="FontWeight" Value="SemiBold"/>
                             <Setter Property="Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}"/>
                         </Style>
-                        <x:Double x:Key="BreadcrumbBarChevronFontSize">12</x:Double>
-                        <Thickness x:Key="BreadcrumbBarChevronPadding">12,0</Thickness>
-                        <ThemeResource x:Key="BreadcrumbBarNormalForegroundBrush" ResourceKey="TextFillColorSecondaryBrush"></ThemeResource>
-                        <ThemeResource x:Key="BreadcrumbBarHoverForegroundBrush" ResourceKey="TextFillColorTertiaryBrush"></ThemeResource>
+                        <StaticResource x:Key="BreadcrumbBarNormalForegroundBrush" ResourceKey="TextFillColorSecondaryBrush" />
+                        <StaticResource x:Key="BreadcrumbBarHoverForegroundBrush" ResourceKey="TextFillColorPrimaryBrush" />
+                        <StaticResource x:Key="BreadcrumbBarPressedForegroundBrush" ResourceKey="TextFillColorTertiaryBrush" />
                     </BreadcrumbBar.Resources>
                     <BreadcrumbBar.ItemTemplate>
                         <DataTemplate x:Name="BreadcrumbBarItemTemplate" 

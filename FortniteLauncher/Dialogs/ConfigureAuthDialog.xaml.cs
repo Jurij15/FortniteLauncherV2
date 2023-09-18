@@ -38,21 +38,21 @@ namespace FortniteLauncher.Dialogs
 
             PresenterDialog.DefaultButton = ContentDialogButton.Primary;
 
-            UsernameBox.Text = Globals.GetPlayerUsername();
-            PasswordBox.Text = Globals.GetPlayerPassword();
+            UsernameBox.Text = Globals.Settings.PlayerAuthUsername;
+            PasswordBox.Text = Globals.Settings.PlayerAuthPassword;
         }
 
         private void PresenterDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             if (!string.IsNullOrEmpty(UsernameBox.Text) && !string.IsNullOrWhiteSpace(UsernameBox.Text))
             {
-                Globals.SetPlayerUsername(UsernameBox.Text);
-                Settings.SaveNewAuthUsernameConfig(UsernameBox.Text);
+                Globals.Settings.PlayerAuthUsername = UsernameBox.Text;
+                SettingsJson.SaveSettings();
             }
             if (!string.IsNullOrEmpty(PasswordBox.Text) && !string.IsNullOrWhiteSpace(PasswordBox.Text))
             {
-                Globals.SetPlayerPassword(PasswordBox.Text);
-                Settings.SaveNewAuthPasswordConfig(PasswordBox.Text);
+                Globals.Settings.PlayerAuthPassword=PasswordBox.Text;
+                SettingsJson.SaveSettings();
             }
         }
     }
