@@ -7,10 +7,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CommunityToolkit.Labs.WinUI"
+    xmlns:custom="using:FortniteLauncher.Controls"
     mc:Ignorable="d"
     Unloaded="Page_Unloaded"
     Loaded="Page_Loaded"
-    NavigationCacheMode="Disabled">
+    NavigationCacheMode="Required">
 
     <Grid Margin="58, 32, 58,0" CanBeScrollAnchor="True" RowSpacing="2">
         <Grid.RowDefinitions>
@@ -48,13 +49,12 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <GridView x:Name="ItemsPanel" Grid.Row="3" BorderBrush="Transparent" SizeChanged="ItemsPanel_SizeChanged" CanDragItems="False" CanReorderItems="False" Loaded="ItemsPanel_Loaded">
+        <GridView x:Name="ItemsPanel" Grid.Row="3" BorderBrush="Transparent" SizeChanged="ItemsPanel_SizeChanged" CanDragItems="False" CanReorderItems="False" SelectionMode="None" Loaded="ItemsPanel_Loaded">
             <GridView.ItemContainerTransitions>
                 <TransitionCollection>
                     <ContentThemeTransition />
                     <EntranceThemeTransition IsStaggeringEnabled="True"/>
                 </TransitionCollection>
-
             </GridView.ItemContainerTransitions>
         </GridView>
     </Grid>

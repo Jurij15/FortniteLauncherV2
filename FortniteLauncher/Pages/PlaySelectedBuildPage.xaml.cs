@@ -2,6 +2,7 @@ using FortniteLauncher.Cores;
 using FortniteLauncher.Dialogs;
 using FortniteLauncher.Enums;
 using FortniteLauncher.Helpers;
+using FortniteLauncher.Json;
 using FortniteLauncher.Managers;
 using FortniteLauncher.Services;
 using Microsoft.UI.Xaml;
@@ -19,6 +20,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -50,9 +52,11 @@ namespace FortniteLauncher.Pages
 
             BuildsManager manager = new BuildsManager();
 
-            _buildName = manager.GetBuildNameByGUID(Globals.CurrentlySelectedBuildGUID);
-            _buildPath = manager.GetBuildPathByGUID(Globals.CurrentlySelectedBuildGUID);
-            _buildSeason = manager.GetBuildSeasonByGUID(Globals.CurrentlySelectedBuildGUID);
+            BuildJson json = manager.GetBuildJsonWithGuid(Globals.CurrentlySelectedBuildGUID);
+
+            _buildName = json.Name;
+            _buildPath = json.Path;
+            _buildSeason = json.Season;
             _buildGUID = Globals.CurrentlySelectedBuildGUID;
 
             if (BuildsHelper.IsPathValid(_buildPath))
@@ -168,20 +172,22 @@ namespace FortniteLauncher.Pages
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
+            //TODO: FIX THIS
+
             if (_buildName != BuildNameEditBox.Text && !string.IsNullOrEmpty(BuildNameEditBox.Text) && !string.IsNullOrWhiteSpace(BuildNameEditBox.Text))
             {
                 BuildsManager manager = new BuildsManager();
-                manager.SaveNewBuildNameConfigToGuid(_buildGUID, BuildNameEditBox.Text);
+                //manager.SaveNewBuildNameConfigToGuid(_buildGUID, BuildNameEditBox.Text);
             }
             if (_buildPath != BuildPathEditBox.Text && !string.IsNullOrEmpty(BuildPathEditBox.Text) && !string.IsNullOrWhiteSpace(BuildPathEditBox.Text))
             {
                 BuildsManager manager = new BuildsManager();
-                manager.SaveNewBuildPathConfigToGuid(_buildGUID, BuildPathEditBox.Text);
+                //manager.SaveNewBuildPathConfigToGuid(_buildGUID, BuildPathEditBox.Text);
             }
             if (_buildSeason != ((FortniteSeasons)SeasonsComboEdit.SelectedItem).ToString())
             {
                 BuildsManager manager = new BuildsManager();
-                manager.SaveNewBuildSeasonConfigToGuid(_buildGUID, ((FortniteSeasons)SeasonsComboEdit.SelectedItem).ToString());
+                //manager.SaveNewBuildSeasonConfigToGuid(_buildGUID, ((FortniteSeasons)SeasonsComboEdit.SelectedItem).ToString());
             }
 
             //MainWindowHelper.NavigationResourceDictionary.AddContentBackground();

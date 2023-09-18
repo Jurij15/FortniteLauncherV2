@@ -1,4 +1,5 @@
 using FortniteLauncher.Enums;
+using FortniteLauncher.Json;
 using FortniteLauncher.Managers;
 using FortniteLauncher.Pages;
 using FortniteLauncher.Services;
@@ -40,10 +41,14 @@ namespace FortniteLauncher.Dialogs
             PresentorDialog.PrimaryButtonClick += PresentorDialog_PrimaryButtonClick;
         }
 
-        private async void PresentorDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private void PresentorDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             BuildsManager manager = new BuildsManager();
-            string bResult = await manager.CreateBuild(BuildNameBox.Text, BuildPathBox.Text, (FortniteSeasons)SeasonsCombo.SelectedItem, true);
+            BuildJson json = new BuildJson();
+            json.Path = BuildPathBox.Text;
+            json.Name = BuildNameBox.Text;
+            json.Season = ((FortniteSeasons)SeasonsCombo.SelectedItem).ToString();
+            string bResult = manager.CreateBuildConfig(json);
             if (bResult == null)
             {
                 sender.Hide();

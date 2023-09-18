@@ -45,8 +45,9 @@ namespace FortniteLauncher.Dialogs
             {
                 if (BuildsHelper.IsPathValid(directories))
                 {
+                    //TODO:: Fix THIS
                     BuildsManager manager= new BuildsManager();
-                    manager.CreateBuild(Count.ToString(), directories, Enums.FortniteSeasons.Unknown ,false); //lets not make it async
+                    //manager.CreateBuild(Count.ToString(), directories, Enums.FortniteSeasons.Unknown ,false); //lets not make it async
                     Count++;
                 }
             }

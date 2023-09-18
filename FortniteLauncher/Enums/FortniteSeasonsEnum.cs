@@ -58,5 +58,7 @@ namespace FortniteLauncher.Enums
         Chapter3Season2,
         [Description("Chapter 3 Season 3")]
         Chapter3Season3,
+        [Description("Chapter 3 Season 4")]
+        Chapter3Season4,
     }
 }

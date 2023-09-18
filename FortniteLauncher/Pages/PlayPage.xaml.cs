@@ -24,6 +24,8 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
+using FortniteLauncher.Controls;
+using FortniteLauncher.Json;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,209 +37,46 @@ namespace FortniteLauncher.Pages
     /// </summary>
     public sealed partial class PlayPage : Page
     {
-        enum BuildsDisplayMode //todo
-        {
-            List,
-            Normal,
-            Large
-        }
         public PlayPage()
         {
             this.InitializeComponent();
 
-            BuildsManager manager = new BuildsManager();
-            Globals.SavedBuildsGuids.Clear();
-            Globals.SavedBuildsGuids = manager.GetAllBuildGuids();
-
-            ItemsPanel.Items.Clear();
-
-            var _enumval = Enum.GetValues(typeof(BuildsDisplayMode)).Cast<BuildsDisplayMode>();
-            ViewsBox.ItemsSource = _enumval;
-
-            ViewsBox.SelectedIndex = 1;
-
             LoadBuilds(null);
         }
 
-        bool CardAlreadyExists(string Name)
+        void LoadBuilds(string IfContainsThisInName) //so you can load them with parameters
         {
-            foreach (var item in ItemsPanel.Items)
+
+            if (IfContainsThisInName == null)
             {
-                if ((item as SettingsCard).Name.Contains(Name))
+                BuildsManager manager = new BuildsManager();
+                List<string> guids = manager.GetAllGuids().ToList();
+
+                foreach (var item in guids)
                 {
-                    return true;
-                }
-            }
+                    BuildJson json = manager.GetBuildJsonWithGuid(item);
 
-            return false;
-        }
+                    BuildCard card = new BuildCard();
+                    card.BuildName = json.Name;
+                    card.BuildSeason = StringsHelper.AddSpacesToNumbers(json.Season);
+                    card.BuildJson = json;
 
-        async Task CreateCard(string BuildGUID)
-        {
-            BuildsManager manager = new BuildsManager();
+                    Image image = new Image();
 
-            string buildname = manager.GetBuildNameByGUID(BuildGUID);
-            string buildpath = manager.GetBuildPathByGUID(BuildGUID);
-            string buildSeason = StringsHelper.AddSpacesToNumbers(manager.GetBuildSeasonByGUID(BuildGUID));
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.UriSource = new Uri(json.Path + Globals.FortniteStrings.FortniteSplashImage);
 
-            SettingsCard NewCard = new SettingsCard();
-            StackPanel content = new StackPanel();
-            Image seasonImage = new Image();
-            StackPanel SeasonImageBorder = new StackPanel();
-            TextBlock BuildNameBlock = new TextBlock();
-            TextBlock BuildSeasonBlock = new TextBlock();
+                    image.Source = bitmapImage;
+                    card.BuildImageSource = bitmapImage;
 
-            NewCard.Name = BuildGUID;
+                    //card.SeasonImage = image;
 
-            BitmapImage bitmapImage = new BitmapImage();
-            bitmapImage.UriSource = new Uri(buildpath + Globals.FortniteStrings.FortniteSplashImage);
-
-            if (ViewsBox.SelectedIndex == 0) //list
-            {
-                Grid ListContent = new Grid();
-
-                seasonImage.Source = bitmapImage;
-                SeasonImageBorder.Height = 70;
-                SeasonImageBorder.Width = 50;
-
-                SeasonImageBorder.Children.Add(seasonImage);
-                SeasonImageBorder.CornerRadius = new CornerRadius(4); //maybe set it to 2?
-
-                BuildNameBlock.Text = buildname;
-                BuildSeasonBlock.Text = buildSeason;
-
-                BuildNameBlock.FontWeight = FontWeights.Medium;
-                BuildSeasonBlock.FontSize = 12;
-                BuildSeasonBlock.Foreground = Application.Current.Resources["TextFillColorSecondaryBrush"] as SolidColorBrush;
-
-                SeasonImageBorder.HorizontalAlignment = HorizontalAlignment.Left;
-                SeasonImageBorder.VerticalAlignment = VerticalAlignment.Center;
-                BuildNameBlock.HorizontalAlignment = HorizontalAlignment.Left;
-                BuildSeasonBlock.HorizontalAlignment = HorizontalAlignment.Center;
-
-                ListContent.Children.Add(SeasonImageBorder);
-                ListContent.Children.Add(BuildNameBlock);
-                ListContent.Children.Add(BuildSeasonBlock);
-
-                ListContent.HorizontalAlignment = HorizontalAlignment.Left;
-
-                NewCard.Content = ListContent;
-
-                NewCard.MinWidth = ItemsPanel.ActualWidth - 6;
-            }
-            else
-            {
-                if (ViewsBox.SelectedIndex == 1)
-                {
-                    //normal
-                    seasonImage.Source = bitmapImage;
-                    SeasonImageBorder.Height = 150;
-                    SeasonImageBorder.Width = 120;
-                }
-                else if (ViewsBox.SelectedIndex == 2)
-                {
-                    //large
-                    seasonImage.Source = bitmapImage;
-                    SeasonImageBorder.Height = 180;
-                    SeasonImageBorder.Width = 150;
-                }
-                else
-                {
-                    //normal by default
-                    seasonImage.Source = bitmapImage;
-                    SeasonImageBorder.Height = 150;
-                    SeasonImageBorder.Width = 120;
-                }
-
-                SeasonImageBorder.Children.Add(seasonImage);
-                SeasonImageBorder.CornerRadius = new CornerRadius(4); //maybe set it to 2?
-
-                BuildNameBlock.Text = buildname;
-                BuildSeasonBlock.Text = buildSeason;
-
-                BuildNameBlock.FontWeight = FontWeights.Medium;
-                BuildSeasonBlock.FontSize = 12;
-                BuildSeasonBlock.Foreground = Application.Current.Resources["TextFillColorSecondaryBrush"] as SolidColorBrush;
-
-                BuildNameBlock.HorizontalAlignment = HorizontalAlignment.Center;
-                BuildSeasonBlock.HorizontalAlignment = HorizontalAlignment.Center;
-
-                content.Spacing = 1;
-
-                content.Children.Add(SeasonImageBorder);
-                content.Children.Add(BuildNameBlock);
-                content.Children.Add(BuildSeasonBlock);
-
-                NewCard.Content = content;
-            }
-
-            ToolTipService.SetToolTip(NewCard, "Play " + buildname);
-
-            NewCard.IsClickEnabled = true;
-            NewCard.IsActionIconVisible = false;
-
-            NewCard.Click += NewCard_ClickAsync;
-
-            await Task.Delay(7);
-
-            if (!BuildsHelper.IsPathValid(buildpath))
-            {
-                //NewCard.IsEnabled = false;
-                ToolTipService.SetToolTip(NewCard, "Path to this build is invalid!");
-                BuildSeasonBlock.Text = "Invalid path!";
-            }
-            if (!CardAlreadyExists(BuildGUID))
-            {
-                ItemsPanel.Items.Add(NewCard);
-            }
-        }
-
-        private async void NewCard_ClickAsync(object sender, RoutedEventArgs e)
-        {
-            string GUID = (sender as SettingsCard).Name;
-
-            Globals.CurrentlySelectedBuildGUID = GUID;
-
-            BuildsManager manager = new BuildsManager();
-
-            ItemsPanel.Items.Clear();
-
-
-            if (Globals.Objects.MainFrame is null)
-            {
-                DialogService.ShowSimpleDialog("Frame is null!", "Error");
-                return;
-            }
-
-
-            try
-            {
-                NavigationService.Navigate(typeof(PlaySelectedBuildPage), "Play " + manager.GetBuildNameByGUID(GUID), false);
-            }
-            catch (Exception ex)
-            {
-                DialogService.ShowSimpleDialog(ex.Message, "Error");
-                throw;
-            }
-        }
-
-        async void LoadBuilds(string IfContainsThisInName) //so you can load them with parameters
-        {
-            BuildsManager manager = new BuildsManager();
-            ItemsPanel.Items.Clear();
-            if (IfContainsThisInName != null)
-            {
-                foreach (var item in manager.GetAllBuildGUIDsThatNameContains(IfContainsThisInName))
-                {
-                    await CreateCard(item);
+                    ItemsPanel.Items.Add(card);
                 }
             }
             else
             {
-                foreach (var item in manager.GetAllBuildGuids())
-                {
-                    await CreateCard(item);
-                }
+
             }
         }
 
@@ -266,7 +105,7 @@ namespace FortniteLauncher.Pages
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             Globals.SavedBuildsGuids.Clear();
-            ItemsPanel.Items.Clear();
+            //ItemsPanel.Items.Clear();
         }
 
         private async void BulkAddBuildsBtn_Click(object sender, RoutedEventArgs e)
@@ -289,6 +128,8 @@ namespace FortniteLauncher.Pages
         private void ItemsPanel_Loaded(object sender, RoutedEventArgs e)
         {
             //LoadBuilds();
+
+            //ItemsPanel.Items.Add(new BuildCard() { BuildJson = new BuildJson(), BuildName = "8,40", BuildSeason = "Season 8"});
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -315,7 +156,7 @@ namespace FortniteLauncher.Pages
 
             try
             {
-                NavigationService.Navigate(typeof(PlaySelectedBuildPage), "Play " + manager.GetBuildNameByGUID(GUID), false);
+                //NavigationService.Navigate(typeof(PlaySelectedBuildPage), "Play " + manager.GetBuildNameByGUID(GUID), false);
             }
             catch (Exception ex)
             {
