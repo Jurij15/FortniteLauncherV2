@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="PlatinumV2.Pages.ShellPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:PlatinumV2.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:navigation="using:NavigationService"
+    xmlns:navigationcontrols="using:NavigationService.Controls"
+    xmlns:pages="using:PlatinumV2.Pages"
+    mc:Ignorable="d">
+
+    <NavigationView
+        x:Name="MainNavigation"
+        Margin="4,0,0,0"
+        IsBackButtonVisible="Collapsed"
+        IsBackEnabled="False"
+        IsPaneOpen="True"
+        IsPaneToggleButtonVisible="False"
+        OpenPaneLength="200"
+        PaneDisplayMode="Left">
+        <NavigationView.Resources>
+            <ResourceDictionary x:Name="MainNavigationDisableContentBackgroundDictionary">
+                <Thickness x:Key="NavigationViewHeaderMargin">25,12,25,0</Thickness>
+                <ResourceDictionary.ThemeDictionaries>
+                    <ResourceDictionary x:Key="Dark">
+                        <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
+                        <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
+                    </ResourceDictionary>
+                    <ResourceDictionary x:Key="Light">
+                        <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
+                        <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{StaticResource NavigationViewExpandedPaneBackground}" />
+                    </ResourceDictionary>
+                    <ResourceDictionary x:Key="HighContrast">
+                        <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{ThemeResource SystemColorWindowColor}" />
+                        <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{ThemeResource SystemColorWindowColor}" />
+                    </ResourceDictionary>
+                </ResourceDictionary.ThemeDictionaries>
+            </ResourceDictionary>
+        </NavigationView.Resources>
+        <NavigationView.Header>
+            <navigationcontrols:NavigationBreadcrumbBar x:Name="MainBreadcrum" />
+        </NavigationView.Header>
+        <NavigationView.MenuItems>
+            <NavigationViewItem
+                x:Name="HomeItem"
+                navigation:NavigationProperties.NavigateAnimationTypeProperty="Entrance"
+                Content="Home">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE80F;" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItem
+                x:Name="PlayItem"
+                navigation:NavigationProperties.NavigateAnimationTypeProperty="Entrance"
+                navigation:NavigationProperties.TargetPageTypePropertyProperty="pages:PlayPage"
+                Content="Play">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE768;" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItem
+                x:Name="HostItem"
+                navigation:NavigationProperties.NavigateAnimationTypeProperty="Entrance"
+                Content="Host">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE704;" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+        </NavigationView.MenuItems>
+        <NavigationView.Content>
+            <Frame x:Name="MainFrame" Loaded="MainFrame_Loaded" />
+        </NavigationView.Content>
+    </NavigationView>
+</Page>

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FortniteLauncher", "FortniteLauncher\FortniteLauncher.csproj", "{F4D56205-1A20-4000-AB35-22853F314E4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FortniteLauncher", "FortniteLauncher\FortniteLauncher.csproj", "{F4D56205-1A20-4000-AB35-22853F314E4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlatinumV2", "PlatinumV2\PlatinumV2.csproj", "{E19522AC-45F8-4314-BFBE-A161E2194219}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,24 @@ Global
 		{F4D56205-1A20-4000-AB35-22853F314E4E}.Release|x86.ActiveCfg = Release|x86
 		{F4D56205-1A20-4000-AB35-22853F314E4E}.Release|x86.Build.0 = Release|x86
 		{F4D56205-1A20-4000-AB35-22853F314E4E}.Release|x86.Deploy.0 = Release|x86
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Debug|ARM64.Build.0 = Debug|ARM64
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Debug|x64.ActiveCfg = Debug|x64
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Debug|x64.Build.0 = Debug|x64
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Debug|x64.Deploy.0 = Debug|x64
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Debug|x86.ActiveCfg = Debug|x86
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Debug|x86.Build.0 = Debug|x86
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Debug|x86.Deploy.0 = Debug|x86
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Release|ARM64.ActiveCfg = Release|ARM64
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Release|ARM64.Build.0 = Release|ARM64
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Release|ARM64.Deploy.0 = Release|ARM64
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Release|x64.ActiveCfg = Release|x64
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Release|x64.Build.0 = Release|x64
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Release|x64.Deploy.0 = Release|x64
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Release|x86.ActiveCfg = Release|x86
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Release|x86.Build.0 = Release|x86
+		{E19522AC-45F8-4314-BFBE-A161E2194219}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

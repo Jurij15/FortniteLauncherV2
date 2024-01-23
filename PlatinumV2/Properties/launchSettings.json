@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PlatinumV2 (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "PlatinumV2 (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
