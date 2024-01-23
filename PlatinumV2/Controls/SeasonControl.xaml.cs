@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using PlatinumV2.Classes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,6 +21,14 @@ namespace PlatinumV2.Controls
 {
     public sealed partial class SeasonControl : UserControl
     {
+        public static readonly DependencyProperty SeasonBaseClassProperty =
+            DependencyProperty.Register("SeasonBaseClass", typeof(FortniteSeasonBaseClass), typeof(SeasonControl), new PropertyMetadata(null));
+        public FortniteSeasonBaseClass SeasonBaseClass
+        {
+            get { return (FortniteSeasonBaseClass)GetValue(SeasonBaseClassProperty); }
+            set { SetValue(SeasonBaseClassProperty, value); }
+        }
+
         public static readonly DependencyProperty SeasonCardBackgroundImageSourceProperty =
             DependencyProperty.Register("SeasonCardBackgroundImageSource", typeof(ImageSource), typeof(SeasonControl), new PropertyMetadata(null));
         public ImageSource SeasonCardBackgroundImageSource
@@ -39,6 +48,7 @@ namespace PlatinumV2.Controls
         public SeasonControl()
         {
             this.InitializeComponent();
+            this.DataContext = this;
         }
 
         private void SetPointerNormalState(object sender, PointerRoutedEventArgs e)

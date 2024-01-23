@@ -15,6 +15,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Controls\SeasonControl.xaml" />
+    <None Remove="Pages\HomePag.xaml" />
     <None Remove="Pages\PlayPage.xaml" />
     <None Remove="Pages\ShellPage.xaml" />
     <None Remove="Pages\StartupPage.xaml" />
@@ -59,8 +60,40 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interop\" />
+    <Folder Include="Assets\Fortnite\Backgrounds\" />
+    <Folder Include="Assets\Fortnite\Splashes\" />
     <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Assets\Fortnite\Splashes\Chapter1Season0.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Fortnite\Splashes\Chapter1Season1.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Fortnite\Splashes\Chapter1Season2.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Fortnite\Splashes\Chapter1Season3.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Fortnite\Splashes\Chapter1Season4.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Fortnite\Splashes\Chapter1Season6.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\LogoBase1920x1080.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\SplashDefault-Vertical-Text.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\HomePag.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\SeasonControl.xaml">

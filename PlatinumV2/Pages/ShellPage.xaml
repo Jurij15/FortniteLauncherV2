@@ -46,6 +46,7 @@
             <NavigationViewItem
                 x:Name="HomeItem"
                 navigation:NavigationProperties.NavigateAnimationTypeProperty="Entrance"
+                navigation:NavigationProperties.TargetPageTypePropertyProperty="pages:HomePag"
                 Content="Home">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xE80F;" />

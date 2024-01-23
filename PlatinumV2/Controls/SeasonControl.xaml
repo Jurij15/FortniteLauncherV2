@@ -59,7 +59,6 @@
 
         <Grid
             x:Name="BackgroundGrid"
-            Padding="12"
             Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
             BackgroundSizing="InnerBorderEdge"
             BorderBrush="{ThemeResource GridViewItemBorderBrushDefaultBrush}"
@@ -77,7 +76,27 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Image x:Name="oBackgroundImage" />
+            <Grid
+                Grid.Row="0"
+                Width="190"
+                Height="290">
+                <Grid.Background>
+                    <ImageBrush
+                        x:Name="oBackgroundImage"
+                        ImageSource="{x:Bind SeasonCardBackgroundImageSource}"
+                        Stretch="UniformToFill" />
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}">
+                    <TextBlock
+                        x:Name="oSeasonDisplayName"
+                        Margin="16,24,24,24"
+                        Text="{x:Bind SeasonDisplayName}" />
+                </StackPanel>
+            </Grid>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

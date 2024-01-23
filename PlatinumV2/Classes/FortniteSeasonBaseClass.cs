@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace PlatinumV2.Classes
 {
-    public class FortniteSeasonBaseClass
+    public abstract class FortniteSeasonBaseClass
     {
-        public string SeasonName {  get; set; }
+        public abstract string SeasonName {  get;}
 
-        public List<string> BuildNames { get; set; }
+        public abstract string SeasonDisplayName { get;}
+        public abstract string SeasonDescription { get;}
+        public abstract string SplashImagePath { get;}
+        public abstract string SeasonImagePath { get;}
 
-        public string SeasonDisplayName { get; set; }
-        public string SeasonDescription { get; set; }
+        public abstract List<string> BuildsTagsList { get;}
     }
 }

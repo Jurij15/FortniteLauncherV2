@@ -11,7 +11,5 @@ namespace PlatinumV2.Classes
         public string OwnerSeasonName { get; set; }
 
         public string BuildName { get; set; }
-        public string SeasonDisplayName { get; set; }
-        public string SeasonDescription { get; set; }
     }
 }
