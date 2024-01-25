@@ -20,6 +20,7 @@ using PlatinumV2.Classes;
 using Microsoft.UI.Xaml.Media.Animation;
 using PlatinumV2.Helpers;
 using System.Threading.Tasks;
+using Windows.Devices.Pwm;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -123,6 +124,19 @@ namespace PlatinumV2.Pages
 
         private void RootGrid_Loaded(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void InfoGrid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            // Calculate the new height for HeroImageSpacer
+            double newHeight = PView.ActualHeight - e.NewSize.Height;
+
+            // Ensure the new height is at least 20 pixels above the image
+            double minHeightAboveImage = 20;
+            newHeight = Math.Max(newHeight, minHeightAboveImage);
+
+            // Set the new height for HeroImageSpacer
+            HeroImageSpacer.Height = newHeight;
         }
     }
 }
