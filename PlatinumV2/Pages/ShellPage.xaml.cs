@@ -23,6 +23,13 @@ namespace PlatinumV2.Pages
     /// </summary>
     public sealed partial class ShellPage : Page
     {
+        public static void ChangePaneState(bool IsPaneOpen)
+        {
+            NavigationService.NavigationService.MainNavigation.IsPaneOpen = IsPaneOpen;
+        }
+
+
+
         public ShellPage()
         {
             this.InitializeComponent();

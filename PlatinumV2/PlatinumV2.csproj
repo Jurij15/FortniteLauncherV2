@@ -16,6 +16,7 @@
   <ItemGroup>
     <None Remove="Controls\SeasonControl.xaml" />
     <None Remove="Pages\HomePag.xaml" />
+    <None Remove="Pages\PlayFortnitePage.xaml" />
     <None Remove="Pages\PlayPage.xaml" />
     <None Remove="Pages\ShellPage.xaml" />
     <None Remove="Pages\StartupPage.xaml" />
@@ -65,6 +66,21 @@
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Assets\Fortnite\Backgrounds\Chapter1Season3Background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Fortnite\Backgrounds\Chapter1Season4Background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Fortnite\Backgrounds\Chapter1Season5Background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Fortnite\Backgrounds\Chapter1Season6Background.webp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Fortnite\Backgrounds\DefaultChapter1Background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\Fortnite\Splashes\Chapter1Season0.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -83,12 +99,20 @@
     <Content Update="Assets\Fortnite\Splashes\Chapter1Season6.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="Assets\HD_transparent_picture.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\LogoBase1920x1080.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\SplashDefault-Vertical-Text.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\PlayFortnitePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\HomePag.xaml">

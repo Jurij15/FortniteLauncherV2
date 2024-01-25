@@ -9,7 +9,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:interactions="using:Microsoft.Xaml.Interactions.Core"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:local="using:PortableAppsManager.Controls"
+    xmlns:local="using:PlatinumV2.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:media="using:CommunityToolkit.WinUI.UI.Media"
     xmlns:ui="using:CommunityToolkit.WinUI.UI"
@@ -87,13 +87,35 @@
                         Stretch="UniformToFill" />
                 </Grid.Background>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="1" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}">
+                <Grid
+                    x:Name="oChapterInformation"
+                    Grid.Row="0"
+                    HorizontalAlignment="Stretch"
+                    Background="{ThemeResource AcrylicInAppFillColorBaseBrush}"
+                    Visibility="Collapsed">
+                    <TextBlock
+                        x:Name="ooChapterDisplayName"
+                        Margin="2"
+                        HorizontalAlignment="Center"
+                        Text="{x:Bind ChapterDisplayName}" />
+                </Grid>
+                <StackPanel
+                    x:Name="oSeasonInformation"
+                    Grid.Row="2"
+                    Padding="16"
+                    Background="{ThemeResource AcrylicInAppFillColorBaseBrush}">
+                    <TextBlock
+                        x:Name="oChapterDisplayName"
+                        Margin="0,0,0,2"
+                        Style="{ThemeResource BodyTextBlockStyle}"
+                        Text="{x:Bind ChapterDisplayName}" />
                     <TextBlock
                         x:Name="oSeasonDisplayName"
-                        Margin="16,24,24,24"
+                        Style="{ThemeResource BodyStrongTextBlockStyle}"
                         Text="{x:Bind SeasonDisplayName}" />
                 </StackPanel>
             </Grid>

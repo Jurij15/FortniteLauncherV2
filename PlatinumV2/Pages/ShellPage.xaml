@@ -18,7 +18,7 @@
         IsBackEnabled="False"
         IsPaneOpen="True"
         IsPaneToggleButtonVisible="False"
-        OpenPaneLength="200"
+        OpenPaneLength="150"
         PaneDisplayMode="Left">
         <NavigationView.Resources>
             <ResourceDictionary x:Name="MainNavigationDisableContentBackgroundDictionary">

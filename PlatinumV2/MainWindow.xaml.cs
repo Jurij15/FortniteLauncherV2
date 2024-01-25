@@ -36,6 +36,9 @@ namespace PlatinumV2
             this.SystemBackdrop = new MicaBackdrop();
             this.Title = "Development";
 
+            //this.SetWindowSize(1444, 832);
+            this.CenterOnScreen();
+
             this.ExtendsContentIntoTitleBar = true;
             this.SetTitleBar(AppTitleBar);
         }

@@ -45,6 +45,14 @@ namespace PlatinumV2.Controls
             set { SetValue(SeasonDisplayNameProperty, value); }
         }
 
+        public static readonly DependencyProperty ChapterDisplayNameProperty =
+            DependencyProperty.Register("ChapterDisplayName", typeof(string), typeof(SeasonControl), new PropertyMetadata(null));
+        public string ChapterDisplayName
+        {
+            get { return (string)GetValue(ChapterDisplayNameProperty); }
+            set { SetValue(ChapterDisplayNameProperty, value); }
+        }
+
         public SeasonControl()
         {
             this.InitializeComponent();
@@ -64,6 +72,18 @@ namespace PlatinumV2.Controls
         private void SetPointerPressedState(object sender, PointerRoutedEventArgs e)
         {
             VisualStateManager.GoToState(this, "Pressed", true);
+        }
+
+        public void PrepareToAnimate()
+        {
+            oSeasonInformation.Visibility = Visibility.Collapsed;
+            oChapterInformation.Visibility = Visibility.Collapsed;
+        }
+
+        public void UndoAnimate()
+        {
+            oSeasonInformation.Visibility = Visibility.Visible;
+            oChapterInformation.Visibility = Visibility.Visible;
         }
     }
 }

@@ -25,7 +25,7 @@
             <Button
                 x:Name="TitleBarBackButton"
                 Grid.Column="0"
-                Margin="4,0,0,0"
+                Margin="8,0,0,0"
                 Background="Transparent"
                 BorderBrush="Transparent"
                 Visibility="Collapsed">
