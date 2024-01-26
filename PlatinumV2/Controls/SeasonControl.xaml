@@ -101,6 +101,7 @@
                         x:Name="ooChapterDisplayName"
                         Margin="2"
                         HorizontalAlignment="Center"
+                        FontFamily="Segoe UI Variable Display"
                         Text="{x:Bind ChapterDisplayName}" />
                 </Grid>
                 <StackPanel
@@ -111,10 +112,12 @@
                     <TextBlock
                         x:Name="oChapterDisplayName"
                         Margin="0,0,0,2"
+                        FontFamily="Segoe UI Variable Display"
                         Style="{ThemeResource BodyTextBlockStyle}"
                         Text="{x:Bind ChapterDisplayName}" />
                     <TextBlock
                         x:Name="oSeasonDisplayName"
+                        FontFamily="Segoe UI Variable Display"
                         Style="{ThemeResource BodyStrongTextBlockStyle}"
                         Text="{x:Bind SeasonDisplayName}" />
                 </StackPanel>

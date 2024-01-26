@@ -14,6 +14,7 @@
     <NavigationView
         x:Name="MainNavigation"
         Margin="4,0,0,0"
+        FontFamily="Segoe UI Variable Display"
         IsBackButtonVisible="Collapsed"
         IsBackEnabled="False"
         IsPaneOpen="True"
@@ -71,7 +72,10 @@
             </NavigationViewItem>
         </NavigationView.MenuItems>
         <NavigationView.Content>
-            <Frame x:Name="MainFrame" Loaded="MainFrame_Loaded" />
+            <Frame
+                x:Name="MainFrame"
+                CornerRadius="8,0,0,0"
+                Loaded="MainFrame_Loaded" />
         </NavigationView.Content>
     </NavigationView>
 </Page>

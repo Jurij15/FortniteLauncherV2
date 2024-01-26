@@ -45,7 +45,12 @@ namespace PlatinumV2.Pages
             Img.Source = ImageHelper.GetImageSource(_baseClass.SeasonImagePath);
             InfoGrid.Visibility = Visibility.Visible;
 
-            await Task.Delay(100);
+            await Task.Delay(50);
+
+            //ContentScroller.ScrollToVerticalOffset(208);
+            ContentScroller.ScrollToVerticalOffset(104);
+
+            await Task.Delay(50);
 
             var anim = ConnectedAnimationService.GetForCurrentView().GetAnimation("ForwardSeasonAnimation");
             anim.Completed += Anim_Completed;
@@ -65,6 +70,8 @@ namespace PlatinumV2.Pages
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
+            _baseClass = null;
+
             NavigationService.NavigationService.ChangeBreadcrumbVisibility(true);
             //just a bug in the service, this just fixes it temporarely
             NavigationService.NavigationService.MainNavigation.AlwaysShowHeader = true;
@@ -131,12 +138,27 @@ namespace PlatinumV2.Pages
             // Calculate the new height for HeroImageSpacer
             double newHeight = PView.ActualHeight - e.NewSize.Height;
 
-            // Ensure the new height is at least 20 pixels above the image
-            double minHeightAboveImage = 20;
-            newHeight = Math.Max(newHeight, minHeightAboveImage);
+            // Ensure the new height is at least 20 pixels above the bottom
+            double minHeightAboveBottom = 20;
+            newHeight = Math.Max(newHeight-280, minHeightAboveBottom);
 
             // Set the new height for HeroImageSpacer
             HeroImageSpacer.Height = newHeight;
+
+            // Ensure at least 20 pixels of space below the InfoPane
+            double minSpaceBelowInfoPane = 20;
+            double spaceBelowInfoPane = ContentScroller.ActualHeight - (e.NewSize.Height + minSpaceBelowInfoPane);
+
+            // Adjust the height of the InfoPane if needed
+            if (spaceBelowInfoPane < 0)
+            {
+                InfoGrid.Height += spaceBelowInfoPane;
+            }
+        }
+
+        private void ContentScroller_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+            //PlayButton.Content = ContentScroller.VerticalOffset.ToString();
         }
     }
 }
