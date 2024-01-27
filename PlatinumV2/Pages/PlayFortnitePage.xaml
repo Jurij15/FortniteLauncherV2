@@ -88,7 +88,6 @@
                             <Image
                                 x:Name="FortniteSplashImage"
                                 HorizontalAlignment="Center"
-                                Source="{x:Bind _baseClass.SplashImagePath}"
                                 Stretch="UniformToFill"
                                 Visibility="Visible" />
                         </Border>

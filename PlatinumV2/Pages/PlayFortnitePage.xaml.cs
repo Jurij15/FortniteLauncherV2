@@ -21,6 +21,7 @@ using Microsoft.UI.Xaml.Media.Animation;
 using PlatinumV2.Helpers;
 using System.Threading.Tasks;
 using Windows.Devices.Pwm;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -58,7 +59,7 @@ namespace PlatinumV2.Pages
             {
                 anim.TryStart(FortniteSplashImage);
             }
-
+            FortniteSplashImage.Source = new BitmapImage() { UriSource = new Uri(_baseClass.SplashImagePath) };
 
             base.OnNavigatedTo(e);
 
@@ -98,6 +99,7 @@ namespace PlatinumV2.Pages
 
         private void Anim_Completed(ConnectedAnimation sender, object args)
         {
+            FortniteSplashImage.Source = new BitmapImage() { UriSource = new Uri(_baseClass.SplashImagePath) };
         }
 
         public PlayFortnitePage()
