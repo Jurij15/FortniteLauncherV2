@@ -83,7 +83,7 @@ namespace PlatinumV2.Controls
         public void UndoAnimate()
         {
             oSeasonInformation.Visibility = Visibility.Visible;
-            oChapterInformation.Visibility = Visibility.Visible;
+            //oChapterInformation.Visibility = Visibility.Visible;
         }
     }
 }

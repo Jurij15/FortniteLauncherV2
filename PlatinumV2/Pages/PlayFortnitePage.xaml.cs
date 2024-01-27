@@ -79,6 +79,9 @@ namespace PlatinumV2.Pages
 
             if (BackButtonPressed)
             {
+                //ConnectedAnimationService.GetForCurrentView().DefaultDuration = new TimeSpan(0, 0, 0, 4);
+                var anim = ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("BackSeasonAnimation", FortniteSplashImage);
+                anim.Configuration = new DirectConnectedAnimationConfiguration();
                 BackButtonPressed = false;
             }
             base.OnNavigatingFrom(e);

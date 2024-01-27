@@ -22,6 +22,7 @@ using Windows.Foundation.Collections;
 using WinUIEx.Messaging;
 using Microsoft.UI.Xaml.Media.Animation;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.UserDataTasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -96,12 +97,29 @@ namespace PlatinumV2.Pages
             LoadVersions();
         }
 
-        private void GridView_Loaded(object sender, RoutedEventArgs e)
+        private async void GridView_Loaded(object sender, RoutedEventArgs e)
         {
-            if (_cachedControl != null)
+            var anim = ConnectedAnimationService.GetForCurrentView().GetAnimation("BackSeasonAnimation");
+            if (_cachedControl != null && anim != null)
             {
+                //MessageBox.Show("completed");
+                if (anim != null)
+                {
+                    anim.Completed += Anim_Completed;
+                    anim.TryStart(_cachedControl);
+                }
+
                 _cachedControl.UndoAnimate();
+                _cachedControl = null;
             }
+            else
+            { 
+                LoadVersions();
+            }
+        }
+
+        private void Anim_Completed(ConnectedAnimation sender, object args)
+        {
             LoadVersions();
         }
     }
