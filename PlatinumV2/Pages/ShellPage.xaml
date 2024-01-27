@@ -14,16 +14,19 @@
     <NavigationView
         x:Name="MainNavigation"
         Margin="4,0,0,0"
+        navigation:NavigationProperties.SettingsPageTypeProperty="pages:SettingsPage"
+        navigation:NavigationProperties.NavigateAnimationTypeProperty="Entrance"
         FontFamily="Segoe UI Variable Display"
         IsBackButtonVisible="Collapsed"
         IsBackEnabled="False"
         IsPaneOpen="True"
         IsPaneToggleButtonVisible="False"
-        OpenPaneLength="150"
-        PaneDisplayMode="Left">
+        OpenPaneLength="72"
+        PaneDisplayMode="Left"
+        Style="{ThemeResource StoreNavigationViewStyle}">
         <NavigationView.Resources>
             <ResourceDictionary x:Name="MainNavigationDisableContentBackgroundDictionary">
-                <Thickness x:Key="NavigationViewHeaderMargin">25,12,25,0</Thickness>
+                <Thickness x:Key="NavigationViewHeaderMargin">48,12,48,0</Thickness>
                 <ResourceDictionary.ThemeDictionaries>
                     <ResourceDictionary x:Key="Dark">
                         <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="{StaticResource NavigationViewExpandedPaneBackground}" />

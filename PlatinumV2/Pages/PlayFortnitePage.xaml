@@ -3,8 +3,7 @@
     x:Class="PlatinumV2.Pages.PlayFortnitePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:backdrop="using:MicaForUWP.Media"
-    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:controls="using:PlatinumV2.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:PlatinumV2.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -115,22 +114,21 @@
                                 <TextBlock
                                     Margin="0,4,0,0"
                                     FontFamily="Segoe UI Variable Display"
-                                    FontSize="12"
                                     Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                    Style="{ThemeResource TitleTextBlockStyle}"
+                                    Style="{ThemeResource SubtitleTextBlockStyle}"
                                     Text="Epic Games" />
                                 <TextBlock
                                     Margin="2,2,2,2"
                                     FontFamily="Segoe UI Variable Display"
                                     FontWeight="ExtraBlack"
+                                    Style="{ThemeResource SubtitleTextBlockStyle}"
                                     Text="·" />
                                 <TextBlock
                                     x:Name="ChapterBox"
                                     Margin="0,4,0,0"
                                     FontFamily="Segoe UI Variable Display"
-                                    FontSize="12"
                                     Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                    Style="{ThemeResource TitleTextBlockStyle}"
+                                    Style="{ThemeResource SubtitleTextBlockStyle}"
                                     Text="{x:Bind _baseClass.ChapterDisplayName}" />
                             </StackPanel>
                             <StackPanel
@@ -150,7 +148,10 @@
                                     SelectedIndex="0">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate x:DataType="x:String">
-                                            <StackPanel Padding="4" Spacing="2">
+                                            <StackPanel
+                                                Width="60"
+                                                Padding="4"
+                                                Spacing="2">
                                                 <TextBlock Style="{ThemeResource BodyStrongTextBlockStyle}" Text="{Binding}" />
                                                 <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="State" />
                                             </StackPanel>
@@ -246,17 +247,32 @@
                     Height="800"
                     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                     <Grid.Resources>
-                        <ResourceDictionary>
-                            <ResourceDictionary.ThemeDictionaries>
-                                <ResourceDictionary x:Key="Light">
-                                    <Color x:Key="GradientStopColor">#FFFFFF</Color>
-                                </ResourceDictionary>
-                                <ResourceDictionary x:Key="Dark">
-                                    <Color x:Key="GradientStopColor">#000000</Color>
-                                </ResourceDictionary>
-                            </ResourceDictionary.ThemeDictionaries>
-                        </ResourceDictionary>
+                        <Thickness x:Key="ContentGridRowSpacingMargin">0,14,0,14</Thickness>
                     </Grid.Resources>
+                    <Grid x:Name="ActuallContentGrid" Margin="175,0,175,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <controls:SeasonInfoHeaderControl
+                            Grid.Row="0"
+                            Margin="{StaticResource ContentGridRowSpacingMargin}"
+                            Header="Description">
+                            <TextBlock
+                                IsTextSelectionEnabled="True"
+                                Style="{ThemeResource BodyTextBlockStyle}"
+                                Text="{x:Bind _baseClass.SeasonDescription}" />
+                        </controls:SeasonInfoHeaderControl>
+                    </Grid>
                 </Grid>
             </StackPanel>
         </ScrollViewer>

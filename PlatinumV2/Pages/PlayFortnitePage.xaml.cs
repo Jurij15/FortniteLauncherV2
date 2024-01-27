@@ -36,11 +36,32 @@ namespace PlatinumV2.Pages
         SeasonControl _seasonControl;
         FortniteSeasonBaseClass _baseClass;
 
+        public enum PageBackground
+        {
+            Solid,
+            Transparent
+        }
+
+        private void SetPageBackground(PageBackground Background)
+        {
+            if (Background == PageBackground.Solid)
+            {
+                ContentGrid.Background = Application.Current.Resources["ApplicationPageBackgroundThemeBrush"] as Brush;
+            }
+            else
+            {
+                //ContentGrid.Background = Application.Current.Resources["SystemControlPageBackgroundMediumAltMediumBrush"] as Brush;
+                ContentGrid.Background = Application.Current.Resources["SystemControlPageBackgroundAltMediumBrush"] as Brush;
+            }
+        }
+
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             //prepare the properties for binding
             _seasonControl = (SeasonControl)e.Parameter;
             _baseClass = _seasonControl.SeasonBaseClass;
+
+            SetPageBackground(PageBackground.Solid);
 
             Img.Source = ImageHelper.GetImageSource("ms-appx:///Assets\\HD_transparent_picture.png");
             Img.Source = ImageHelper.GetImageSource(_baseClass.SeasonImagePath);
@@ -49,7 +70,7 @@ namespace PlatinumV2.Pages
             await Task.Delay(50);
 
             //ContentScroller.ScrollToVerticalOffset(208);
-            ContentScroller.ScrollToVerticalOffset(104);
+            ContentScroller.ScrollToVerticalOffset(417);
 
             await Task.Delay(50);
 
@@ -148,7 +169,7 @@ namespace PlatinumV2.Pages
             newHeight = Math.Max(newHeight-280, minHeightAboveBottom);
 
             // Set the new height for HeroImageSpacer
-            HeroImageSpacer.Height = newHeight;
+            HeroImageSpacer.Height = newHeight+250;
 
             // Ensure at least 20 pixels of space below the InfoPane
             double minSpaceBelowInfoPane = 20;

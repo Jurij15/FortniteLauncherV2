@@ -105,21 +105,13 @@ namespace PlatinumV2.Pages
                 //MessageBox.Show("completed");
                 if (anim != null)
                 {
-                    anim.Completed += Anim_Completed;
                     anim.TryStart(_cachedControl);
                 }
 
                 _cachedControl.UndoAnimate();
                 _cachedControl = null;
             }
-            else
-            { 
-                LoadVersions();
-            }
-        }
-
-        private void Anim_Completed(ConnectedAnimation sender, object args)
-        {
+            await Task.Delay(70);
             LoadVersions();
         }
     }
